@@ -6,6 +6,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import PrivateRoute from "./components/PrivateRoute";
+import Home from "./components/Home";
 
 
 function App() {
@@ -14,25 +15,16 @@ function App() {
 
   if (loading) {
     return (
-      <div>Loading...</div>
+      <div>Loading App.js</div>
     );
   }
 
   return (
     <div className="App">
       <BrowserRouter>
-        <header className="App-header">
-          <h1>
-            Test auth0 client side with react
-          </h1>
-          <p>
-          <NavBar />
-          </p>
-        </header>
         <Switch>
-          <Route path="/" exact />
+          <Route path="/" exact component={Home} />
           <PrivateRoute path="/profile" component={Profile} />
-
         </Switch>
       </BrowserRouter>
     </div>
