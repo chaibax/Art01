@@ -1,10 +1,10 @@
 import React from "react";
-import NavBar from "./components/NavBar";
 import { useAuth0 } from "./react-auth0-wrapper";
 import './App.css';
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
+import Paint from "./components/Paint";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
 
@@ -25,6 +25,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/paint" component={Paint} />
         </Switch>
       </BrowserRouter>
     </div>

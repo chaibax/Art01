@@ -5,10 +5,12 @@
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.2.4",
     "babel-preset-react-app": "^9.0.2",
+    "public-ip": "^4.0.0",
     "react": "^16.10.1",
+    "react-async-fetcher": "^1.0.1",
     "react-dom": "^16.10.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "^3.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
