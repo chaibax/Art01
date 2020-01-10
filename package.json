@@ -5,6 +5,8 @@
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.2.4",
     "babel-preset-react-app": "^9.0.2",
+    "bulma": "^0.8.0",
+    "node-sass": "^4.13.0",
     "public-ip": "^4.0.0",
     "react": "^16.10.1",
     "react-async-fetcher": "^1.0.1",
