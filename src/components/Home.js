@@ -27,7 +27,7 @@ const Home = () => {
               1
             </span>
           </h1>
-          <h2 className="subtitle is-size-3 has-text-centered">First massively participatory Art project
+          <h2 className="subtitle is-size-3 has-text-centered">First massively participatory Art project!
       </h2><h2 className="subtitle is-size-3 has-text-centered"><NavBar /></h2>          
         </div>
         </div>
