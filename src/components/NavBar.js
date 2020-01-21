@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <div>
       {!isAuthenticated && (
-        <button
+        <button className="button is-primary"
           onClick={() =>
             loginWithRedirect({})
           }
