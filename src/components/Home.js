@@ -47,9 +47,10 @@ const Home = () => {
                                 1
                             </span>
                         </h1>
-                        <h2 className="subtitle is-size-3 has-text-centered">
+                        <h2 className="subtitle is-size-3 has-text-centered" style={{textShadow:"0 0 3px #80ffc0, 0 0 10px #00ff66, 0 0 20px #00ff66, 0 0 30px #00ff66", fontSize:"30px",color:"#f0fff8"}}>
                             First massively participatory art project
                         </h2>
+
                         <h2 className="subtitle is-size-3 has-text-centered">
                             <NavBar/>
                         </h2>
