@@ -7,8 +7,8 @@ const Paint = () => {
   const FirstIP = user['https://art01/FirstIP'];
   if (loading || !user  ) {
     return (
-      <div>Loading paint page...</div>
-    );
+      <div className="pageloader is-active"><span className="title">Loading Art01</span></div>
+      );
   }
   return (
       <h2>Hello {user.given_name}, yout IP is ==> {FirstIP} ==

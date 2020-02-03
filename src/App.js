@@ -16,7 +16,7 @@ function App() {
 
   if (loading) {
     return (
-      <div>Loading App.js</div>
+      <div className="pageloader is-active"><span className="title">Loading Art01</span></div>
     );
   }
 

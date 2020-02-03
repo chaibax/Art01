@@ -6,7 +6,8 @@ const Profile = () => {
 
   if (loading || !user) {
     return (
-      <div>Loading profile...</div>
+      <div className="pageloader is-active"><span className="title">Loading Profile</span></div>
+
     );
   }
 
