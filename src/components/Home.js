@@ -6,8 +6,8 @@ const Home = () => {
     <section className="hero is-large">
         <div className="hero-body">
 
-      <div className="columns is-mobile is-centered">
-        <div className="column is-half">
+      <div className="columns is-centered">
+       
         <div className="container">
 
           <h1 className="title is-size-1 has-text-centered">
@@ -32,7 +32,7 @@ const Home = () => {
         </div>
         </div>
       </div>
-      </div>
+     
     </section>
   )
 }
