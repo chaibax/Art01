@@ -1,5 +1,6 @@
 import React from 'react'
-import NavBar from "./NavBar";
+import Typewriter from 'typewriter-effect';
+import {Link} from "react-router-dom";
 
 const Home = () => {
     return (
@@ -11,15 +12,38 @@ const Home = () => {
                     <div className="container">
 
                         <h1 className="title is-size-1 has-text-centered shadowed">
-                            ART01
-                        </h1>
-                        <h2 className="subtitle is-size-3 has-text-centered shadowed" >
-                            First massively participatory art project
-                        </h2>
 
-                        <h2 className="subtitle is-size-3 has-text-centered">
-                            <NavBar/>
-                        </h2>
+                        <Typewriter
+                        options={{
+                          loop: true,
+                          cursor: '<big>▮</big>'
+                        }}
+  onInit={(typewriter) => {
+    typewriter.typeString('<big>ART01</big>')
+    .pauseFor(2000)
+      .callFunction(() => {
+
+      })
+      .pauseFor(1000)
+      .callFunction(() => {
+        console.log('All strings were deleted');
+      })
+      .typeString('<br/>')
+      .pauseFor(1000)
+      .typeString('<br/>first massively participatory art project')
+      .pauseFor(3500)
+      .typeString('<br/>')
+      .pauseFor(500)
+      .typeString('<br/>')
+      .typeString('>> ')
+      .typeString('participate')
+      .pauseFor(8000)
+      .start();
+  }}
+/>
+                            
+                        </h1>
+                    
                     </div>
                 </div>
             </div>
