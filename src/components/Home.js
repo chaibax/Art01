@@ -10,44 +10,10 @@ const Home = () => {
 
                     <div className="container">
 
-                        <h1 className="title is-size-1 has-text-centered">
-                            <span
-                                style={{
-                                    textShadow: "1px 1px 1px #ccc",
-                                    color: "rgba(255,12,59,1)"
-                                }}>
-                                A
-                            </span>
-                            <span
-                                style={{
-                                    textShadow: "1px 1px 1px #ccc",
-                                    color: "rgba(12,255,12,1)"
-                                }}>
-                                R
-                            </span>
-                            <span
-                                style={{
-                                    textShadow: "1px 1px 1px #ccc",
-                                    color: "rgba(12,12,255,1)"
-                                }}>
-                                T
-                            </span>
-                            <span
-                                style={{
-                                    textShadow: "1px 1px 1px #ccc",
-                                    color: "rgba(1,1,1,1)"
-                                }}>
-                                0
-                            </span>
-                            <span
-                                style={{
-                                    textShadow: "1px 1px 1px #ccc",
-                                    color: "rgba(1,1,1,1)"
-                                }}>
-                                1
-                            </span>
+                        <h1 className="title is-size-1 has-text-centered shadowed">
+                            ART01
                         </h1>
-                        <h2 className="subtitle is-size-3 has-text-centered" style={{textShadow:"0 0 3px #80ffc0, 0 0 10px #00ff66, 0 0 20px #00ff66, 0 0 30px #00ff66", fontSize:"30px",color:"#f0fff8"}}>
+                        <h2 className="subtitle is-size-3 has-text-centered shadowed" >
                             First massively participatory art project
                         </h2>
 

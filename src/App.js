@@ -9,6 +9,7 @@ import Start from "./components/Start";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
 import './App.sass';
+import './App.css'; 
 import NavBar from "./components/NavBar";
 
 function App() {

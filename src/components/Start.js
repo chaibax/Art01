@@ -9,9 +9,9 @@ const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
         <section className="hero is-large">
             <div className="hero-body">
                 <div className="columns is-centered">
-                    <div className="container">
+                    <div className="container shadowed">
 
-                        <h2 className="title is-size-2 has-text-centered">
+                        <h2 className="title is-size-2 has-text-centered shadowed">
                         THIS PAINTING REQUIRES A BILLION PARTICIPANTS TO BE COMPLETED
 
                         </h2>
@@ -22,10 +22,10 @@ const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
 </p>
                         <p>At this rate, ART01 will be finished in 1014 years ie Friday, March 9, 3032
 </p>
-<p className="has-text-centered ">     <button className="button is-primary is-medium has-margin-top-20" onClick={() => loginWithRedirect({})}>
-                        Participate
-                 </button>
-                 </p>
+<h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({})}>
+                        >> Participate
+                 </h2>
+        
                 </div>
                 </div>
       

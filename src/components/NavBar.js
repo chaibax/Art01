@@ -10,7 +10,9 @@ const NavBar = () => {
             {
                 !isAuthenticated && (
                     
-                  <Link to="/start"><button className="button is-primary is-medium">Participate</button></Link>
+                  <Link to="/start">
+                    <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">>> Participate</h2>
+                   </Link>
                     
                   //  <button className="button is-primary" onClick={() => loginWithRedirect({})}>
                     //</div>    Participate
