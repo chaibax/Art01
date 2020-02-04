@@ -1,8 +1,22 @@
 import React from 'react'
 import Typewriter from 'typewriter-effect';
-import {Link} from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
+
 
 const Home = () => {
+
+  const history = useHistory();
+
+
+  document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 13) {
+        history.push("/start");
+
+    }
+};
+
     return (
         <section className="hero is-large">
             <div className="hero-body">
@@ -26,7 +40,7 @@ const Home = () => {
       })
       .pauseFor(1000)
       .callFunction(() => {
-        console.log('All strings were deleted');
+        console.log('This is ART01 👋');
       })
       .typeString('<br/>')
       .pauseFor(1000)
