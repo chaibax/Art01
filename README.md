@@ -33,7 +33,7 @@ This rectangular painting is only an example of representation. The artwork is m
 
 ## Co-create the biggest piece of art in history.
 
-![Screen Capture](front/public/images/Capture2.png)
+![Screen Capture](public/Capture2.png)
 
 
 Did you say "participatory Art" ? 👉 https://en.wikipedia.org/wiki/Participatory_art
