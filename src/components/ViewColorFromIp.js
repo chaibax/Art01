@@ -13,9 +13,12 @@ const opacity = Math.round((color[3]/255) * 100) / 100;
 
 
   return (
-    <div>
+    <div >
       RGBa : Red({red}), Green({green}), Blue({blue}), Opacity({opacity})  <br/><br/>
-      <div style={{ width: "5vw", height: "5vw", margin: "auto", backgroundColor: `rgba(${red}, ${green}, ${blue}, ${opacity})` }}>
+      <div style={{ backgroundColor: "#ffffff", width: "5vw", height: "5vw", margin: "auto", }}>
+
+      <div style={{  width: "5vw", height: "5vw", margin: "auto",  backgroundColor: `rgba(${red}, ${green}, ${blue}, ${opacity})` }}>
+        </div>
         </div>
     </div>
   );
