@@ -6,3 +6,7 @@
 .cursor {
     cursor: pointer;
 }
+
+.blackbackground {
+    background-color: black;
+}
