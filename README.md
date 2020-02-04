@@ -31,6 +31,14 @@ Final RGB color with opacity : rgba(78,234,74,0.32) :
 
 This rectangular painting is only an example of representation. The artwork is made up of data provided by people over time, not its appearance
 
+## Co-create the biggest piece of art in history.
+
+![Screen Capture](front/public/images/Capture2.png)
+
+
+Did you say "participatory Art" ? 👉 https://en.wikipedia.org/wiki/Participatory_art
+
+
 For the moment, 0 people have participated to this project since its beginning, 0 days ago. 0.00000% of the painting is complete
 
 At this rate, ART01 will never be finished.
