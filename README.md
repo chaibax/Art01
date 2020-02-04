@@ -4,7 +4,7 @@
 
 Dev in progress. Take a look here : https://art0x.herokuapp.com/
 
-## first massively participatory art project
+## First massively participatory art project
 
 Art01 is a painting, Its size will be 40,000 px wide by 25,000 pixel high. That is a 1 000 000 000 pixels.
 

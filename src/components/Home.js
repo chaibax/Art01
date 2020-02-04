@@ -36,8 +36,8 @@ const Home = () => {
       .pauseFor(500)
       .typeString('<br/>')
       .typeString('>> ')
-      .typeString('participate')
-      .pauseFor(8000)
+      .typeString('<a href="/start" style="text-deconration:none;color:#f0fff8">'+'participate'+'</a>')
+      .pauseFor(9100)
       .start();
   }}
 />
