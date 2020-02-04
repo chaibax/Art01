@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import {useAuth0} from "../react-auth0-wrapper";
 import ViewColorFromIp from "./ViewColorFromIp"; // a degager
+import NavBar from "./NavBar";
 
 const Paint = () => {
     const {loading, user} = useAuth0();
@@ -12,8 +13,8 @@ const Paint = () => {
             </div>
         );
     }
-    return (<h2>Hello {user.given_name}, yout IP is ==> {FirstIP}
-        ==
+    return (<h2>Hello {user.given_name}, yout IP : ==> {FirstIP}
+
 
         <Fragment>
             <div>
@@ -31,8 +32,12 @@ const Paint = () => {
                 </p>
             </div>
         </Fragment>
-
+        ===
+        <NavBar/>
+      =====
     </h2>
+
+    
 
     );
 };

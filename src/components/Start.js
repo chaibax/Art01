@@ -2,8 +2,10 @@ import React from "react";
 import {useAuth0} from "../react-auth0-wrapper";
 import { useHistory } from "react-router-dom";
 
+
 const Start = () => {
-const loginWithRedirect = useAuth0();
+    
+const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
 const history = useHistory();
 
 document.onkeydown = function(evt) {

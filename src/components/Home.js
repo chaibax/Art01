@@ -1,11 +1,13 @@
 import React from 'react'
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
+import {useAuth0} from "../react-auth0-wrapper";
+
 
 
 
 const Home = () => {
-
+  const isAuthenticated= useAuth0();
   const history = useHistory();
 
 
@@ -13,9 +15,14 @@ const Home = () => {
     evt = evt || window.event;
     if (evt.keyCode === 13) {
         history.push("/start");
-
+        
     }
 };
+
+if (isAuthenticated) {
+  //history.push("/paint");
+  console.log('isAuthenticated > Paint');
+}
 
     return (
         <section className="hero is-large">
@@ -24,6 +31,9 @@ const Home = () => {
                 <div className="columns is-centered">
 
                     <div className="container">
+
+
+
 
                         <h1 className="title is-size-1 has-text-centered shadowed">
 
