@@ -1,4 +1,44 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Art01  
+
+![Screen Capture](public/Art01_.gif)
+
+Dev in progress. Take a look here : https://art0x.herokuapp.com/
+
+## first massively participatory art project
+
+Art01 is a painting, Its size will be 40,000 px wide by 25,000 pixel high. That is a 1 000 000 000 pixels.
+
+This painting requires **a billion** participants to be completed.
+
+Every pixel is added by one person, you for example. When you first signs in and visualizes the artwork, a colored dot corresponding to your IP address is added. It's your pixel.
+
+```
+For example : your IP is 78.234.74.82
+
+Your RGB color is rgb(78,234,74)
+
+Red :  78 
+Green : 234
+Blue : 74
+
+And your opacity is between 0 (0) and 1 (255).
+Opacity for 82 => 0.32
+
+Final RGB color with opacity : rgba(78,234,74,0.32) :
+
+```
+![Screen Capture](public/Capture3.png)
+
+This rectangular painting is only an example of representation. The artwork is made up of data provided by people over time, not its appearance
+
+For the moment, 0 people have participated to this project since its beginning, 0 days ago. 0.00000% of the painting is complete
+
+At this rate, ART01 will never be finished.
+
+
+
+
+
 
 ## Available Scripts
 
