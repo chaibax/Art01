@@ -1,23 +1,19 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {useAuth0} from "../react-auth0-wrapper";
 import { useHistory } from "react-router-dom";
 
 const Start = () => {
-const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
-
+const loginWithRedirect = useAuth0();
 const history = useHistory();
-
 
 document.onkeydown = function(evt) {
   evt = evt || window.event;
-  if (evt.keyCode == 8) {
+  if (evt.keyCode === 8) {
       history.push("/");
   }
 };
 
     return (
-
-        
      
         <section className="hero is-large">
             <div className="hero-body">
