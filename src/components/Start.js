@@ -14,6 +14,13 @@ document.onkeydown = function(evt) {
       history.push("/");
   }
 };
+const os = require("os");
+var  hostname = os.hostname();
+if (hostname == 'localhost') {
+    hostname = 'localhost:3000';
+} 
+
+console.log('hostname ='+hostname);
 
     return (
      
@@ -33,7 +40,7 @@ document.onkeydown = function(evt) {
 </p>
                         <p>At this rate, ART01 will be finished in 1014 years ie Friday, March 9, 3032
 </p>
-<h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({})}>
+<h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({ appState : {targetUrl: 'http://'+hostname+'/paint'}})}>
                         >> Participate
                  </h2>
         
