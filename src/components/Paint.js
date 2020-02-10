@@ -1,15 +1,14 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {useAuth0} from "../react-auth0-wrapper";
 import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import Typewriter from 'typewriter-effect';
-import { useHistory } from "react-router-dom";
+
 
 
 const Paint = () => {
     const {loading, user} = useAuth0();
     const FirstIP = user['https://art01/FirstIP'];
     const given_name =  user.given_name;
-    const history = useHistory();
 
    
 
@@ -55,7 +54,6 @@ const Paint = () => {
        
             <div id="mypixel" className="is-hidden">   
                 <ViewColorFromIp ip={FirstIP}/>
-       
                     <br/>
                     <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
                         >> Add my pixel to the paint

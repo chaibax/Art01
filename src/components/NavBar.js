@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const NavBar = () => {
                 <Link className="navbar-item has-text-centered" to="/paint">
                 > paint
                 </Link>
-                <a className="navbar-item has-text-centered" href="https://en.wikipedia.org/wiki/Participatory_art" target="_blank" >
+                <a className="navbar-item has-text-centered" href="https://en.wikipedia.org/wiki/Participatory_art" target="_blank" rel="noopener noreferrer" >
                 > what is participatory art ?
                 </a>
                 <a className="navbar-item has-text-centered" onClick={() => logout()}>

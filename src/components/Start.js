@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const Start = () => {
     
-const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
+const {loginWithRedirect} = useAuth0();
 const history = useHistory();
 
 document.onkeydown = function(evt) {
@@ -16,7 +16,7 @@ document.onkeydown = function(evt) {
 };
 const os = require("os");
 var  hostname = os.hostname();
-if (hostname == 'localhost') {
+if (hostname === 'localhost') {
     hostname = 'localhost:3000';
 } 
 
