@@ -3,12 +3,17 @@ import {useAuth0} from "../react-auth0-wrapper";
 import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import NavBar from "./NavBar";
 import Typewriter from 'typewriter-effect';
+import { useHistory } from "react-router-dom";
+
 
 const Paint = () => {
     const {loading, user} = useAuth0();
     const FirstIP = user['https://art01/FirstIP'];
     const given_name =  user.given_name;
-    
+    const history = useHistory();
+
+   
+
     if (loading || !user) {
         return (
             <div className="pageloader is-active">
@@ -18,11 +23,11 @@ const Paint = () => {
     }
     return (
     
-        <section className="hero is-medium">
+        <section className="hero fullheight">
         <div className="hero-body">
           <div className="columns is-centered">
             <div className="container">
-            <h1 className="title is-size-1 has-text-centered shadowed">
+            <h2 className="title is-size-2 has-text-centered shadowed">
 
     <Typewriter
                 options={{
@@ -32,18 +37,11 @@ const Paint = () => {
                 onInit={(typewriter) => {
                   typewriter.typeString('<big>Hello '+given_name+' </big>')
                     .pauseFor(2000)
-                    .callFunction(() => {
-
-                    })
                     .pauseFor(1000)
-                    .callFunction(() => {
-                      console.log('Bonjour '+given_name+' 👋');
-                    })
                     .typeString('<br/>')
                     .pauseFor(1000)
-                    .typeString('<br/>your IP is: '+FirstIP)
+                    .typeString('your IP is: '+FirstIP)
                     .pauseFor(3500)
-                    .typeString('<br/>')
                     .pauseFor(500)
                     .typeString('<br/>')
                     .typeString(' So, your pixel color is : ')
@@ -56,9 +54,8 @@ const Paint = () => {
                 }}
               />
 
-        <Fragment>
-            <div id="mypixel" className="is-hidden">
-            
+       
+            <div id="mypixel" className="is-hidden">   
                 <ViewColorFromIp ip={FirstIP}/>
 
                 <p> 
@@ -68,8 +65,8 @@ const Paint = () => {
                     <button className="button">Paint my pixel</button>
                 </p>
             </div>
-        </Fragment>
-    </h1>
+       
+    </h2>
         <NavBar/>
       =====
 
