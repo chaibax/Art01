@@ -11,13 +11,17 @@ const NavBar = () => {
       {
         isAuthenticated && (
           <div className="navbar-menu is-active shadowed blackbackground">
-            <div className="navbar-end">
-              <a className="navbar-item has-text-centered	 " onClick={() => logout()}>
+            <div className="navbar-end"> 
+                <Link className="navbar-item has-text-centered" to="/paint">
+                > paint
+                </Link>
+                <a className="navbar-item has-text-centered" href="https://en.wikipedia.org/wiki/Participatory_art" target="_blank" >
+                > what is participatory art ?
+                </a>
+                <a className="navbar-item has-text-centered" onClick={() => logout()}>
                 > logout
                 </a>
-                <a className="navbar-item has-text-centered	" onClick={() => logout()}>
-                > paint
-                </a> 
+
             </div>
           </div>
         )

@@ -9,4 +9,13 @@
 
 .blackbackground {
     background-color: black;
+
+}
+
+.blackbackground a:hover {
+    background-color: black;
+    text-decoration: none;
+    text-shadow: 0 0 3px rgb(128, 255, 192), 0 0 10px rgb(0, 255, 102);
+    color: #f0fff8;
+
 }
