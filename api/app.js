@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -20,3 +21,4 @@ app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 
 module.exports = app;
+console.log('>>> '+process.env.MONGODB_URI);
