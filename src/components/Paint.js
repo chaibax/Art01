@@ -35,17 +35,16 @@ const Paint = () => {
                   cursor: '<big>▮</big>'
                 }}
                 onInit={(typewriter) => {
-                  typewriter.typeString('<big>Hello '+given_name+' </big>')
+                  typewriter.typeString('<big>Hello '+given_name+'</big>')
                     .pauseFor(2000)
                     .pauseFor(1000)
                     .typeString('<br/>')
                     .pauseFor(1000)
                     .typeString('your IP is: '+FirstIP)
-                    .pauseFor(3500)
-                    .pauseFor(500)
+                    .pauseFor(2500)
                     .typeString('<br/>')
                     .typeString(' So, your pixel color is : ')
-                    .pauseFor(5100)
+                    .pauseFor(2500)
                     .callFunction(() => {
                         const element = document.getElementById("mypixel");
                         element.classList.remove("is-hidden");
@@ -57,18 +56,14 @@ const Paint = () => {
        
             <div id="mypixel" className="is-hidden">   
                 <ViewColorFromIp ip={FirstIP}/>
-
                 <p> 
                     <br/>
-                    <br/>
-                    <br/>
-                    <button className="button">Paint my pixel</button>
+                    <button className="button">Add my pixel to the paint</button>
                 </p>
             </div>
        
     </h2>
         <NavBar/>
-      =====
 
 </div>
 </div>
