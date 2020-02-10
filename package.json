@@ -8,6 +8,7 @@
     "bulma": "^0.8.0",
     "bulma-helpers": "^0.3.8",
     "bulma-pageloader": "^0.3.0",
+    "express-generator": "^4.16.1",
     "node-sass": "^4.13.0",
     "public-ip": "^4.0.0",
     "react": "^16.10.1",
