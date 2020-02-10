@@ -55,10 +55,12 @@ const Paint = () => {
        
             <div id="mypixel" className="is-hidden">   
                 <ViewColorFromIp ip={FirstIP}/>
-                <p> 
+       
                     <br/>
-                    <button className="button">Add my pixel to the paint</button>
-                </p>
+                    <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
+                        >> Add my pixel to the paint
+                 </h2>
+           
             </div>
        
     </h2>
