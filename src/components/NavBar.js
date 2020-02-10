@@ -3,43 +3,26 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, logout } = useAuth0();
 
   return (
-    <div>
-      {
-        //   !isAuthenticated && (
-
-        //  <Link to="/start">
-        //    <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">>> Participate</h2>
-        //   </Link>
-
-        //  <button className="button is-primary" onClick={() => loginWithRedirect({})}>
-        //</div>    Participate
-        // </button>
-        //   )
-      }
+    <nav className="navbar is-fixed-bottom shadowed blackbackground" role="navigation" aria-label="main navigation">
 
       {
         isAuthenticated && (
-  
-
-            <div class="navbar-menu">
-              
-             
-              <div class="navbar-end">
-                <a class="navbar-item" onClick={() => logout()}>
-                  logout
+          <div className="navbar-menu is-active shadowed blackbackground">
+            <div className="navbar-end">
+              <a className="navbar-item has-text-centered	 " onClick={() => logout()}>
+                > logout
                 </a>
-              </div>
-
+                <a className="navbar-item has-text-centered	" onClick={() => logout()}>
+                > paint
+                </a> 
             </div>
-
-
+          </div>
         )
       }
-
-    </div>
+    </nav>
   );
 };
 
