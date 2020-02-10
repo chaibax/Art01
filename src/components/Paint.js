@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import {useAuth0} from "../react-auth0-wrapper";
 import ViewColorFromIp from "./ViewColorFromIp"; // a degager
-import NavBar from "./NavBar";
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
 
@@ -63,7 +62,7 @@ const Paint = () => {
             </div>
        
     </h2>
-        <NavBar/>
+
 
 </div>
 </div>

@@ -6,6 +6,7 @@ import Paint from "./components/Paint";
 import Start from "./components/Start";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
+import NavBar from "./components/NavBar";
 import './App.sass';
 import './App.css'; 
 
@@ -28,7 +29,10 @@ function App() {
                     <Route path="/" exact="exact" component={Home}/>
                     <Route path="/start" exact="exact" component={Start}/>
                     <PrivateRoute path="/profile" component={Profile} />
-                    <PrivateRoute path="/paint" component={Paint}/>
+                    <PrivateRoute path="/paint" >
+                        <NavBar/>
+                        <Paint/>
+                    </PrivateRoute>
                 </Switch>
             </BrowserRouter>
         </div>

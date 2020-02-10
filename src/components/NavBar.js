@@ -20,37 +20,22 @@ const NavBar = () => {
         //   )
       }
 
-      {isAuthenticated && <button className="button" onClick={() => logout()}>Log out</button>}
       {
         isAuthenticated && (
-          <Fragment>
+  
 
             <div class="navbar-menu">
-              <div class="navbar-start">
-                <a class="navbar-item">
-                  <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="Bulma" />
+              
+             
+              <div class="navbar-end">
+                <a class="navbar-item" onClick={() => logout()}>
+                  logout
                 </a>
               </div>
 
-              <div class="navbar-end">
-                <a class="navbar-item">
-                  Home
-                </a>
-                <a class="navbar-item">
-                  Home
-                </a>
-              </div>
             </div>
 
 
-
-
-            <span>
-              <Link to="/"><button className="button">Home</button></Link>
-              <Link to="/profile"><button className="button">Vieux my Profile</button></Link>
-              <Link to="/paint"><button className="button">Paint</button></Link>
-            </span>
-          </Fragment>
         )
       }
 
