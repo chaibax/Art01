@@ -21,10 +21,7 @@ const Paint = () => {
     }
     return (
     
-        <section className="hero fullheight">
-        <div className="hero-body">
-          <div className="columns is-centered">
-            <div className="container">
+
             <h2 className="title is-size-2 has-text-centered shadowed">
 
     <Typewriter
@@ -64,10 +61,7 @@ const Paint = () => {
     </h2>
 
 
-</div>
-</div>
-</div>
-</section>
+
 
     );
 };

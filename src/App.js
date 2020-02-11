@@ -22,8 +22,18 @@ function App() {
         );
     }
 
+    const NoMatch = ({ location }) => (
+        <div>
+          <h3>404 No match for <code>{location.pathname}</code></h3>
+        </div>
+      )
+
     return (
         <div className="App">
+    <section className="hero fullheight">
+        <div className="hero-body">
+          <div className="columns is-centered">
+            <div className="container">
             <BrowserRouter>
                 <Switch>
                     <Route path="/" exact="exact" component={Home}/>
@@ -31,10 +41,15 @@ function App() {
                     <PrivateRoute path="/profile" component={Profile} />
                     <PrivateRoute path="/paint" >
                         <NavBar/>
-                        <Paint/>
+                    <Paint/>
                     </PrivateRoute>
+                    <Route component={NoMatch} />
                 </Switch>
             </BrowserRouter>
+            </div>
+            </div>
+            </div>
+            </section>
         </div>
     );
 }
