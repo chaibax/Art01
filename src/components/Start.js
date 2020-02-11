@@ -30,7 +30,7 @@ console.log('hostname ='+hostname);
 
                         </h2>
                         <span className="shadowed">
-                        <p>Art01 will be a painting having for size: 40,000 pixels wide and 25,000 pixels high.</p>
+                        <p>Art01 will be a painting. Its size will be 40,000 px wide by 25,000 pixel high. That is a 1 000 000 000 pixels.</p>
                         <p>Every pixel is added by one person, you for example. When you first signs in a colored dot corresponding to your IP address is added. </p>
                         <p>It's your pixel.</p>
                         <p>For the moment, -O- people have participated to this project since its beginning, 99999 days ago. 0.000000000% of the painting is complete
