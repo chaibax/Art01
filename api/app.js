@@ -7,9 +7,11 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var eventstore = require('eventstore');
+var debug = require('debug');
 
 var app = express();
-
+var es = eventstore();
 
 
 app.use(logger('dev'));

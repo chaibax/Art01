@@ -1,0 +1,10 @@
+{ "name": "jsondate"
+, "description": "Date deserialization for JSON.parse"
+, "version": "0.0.1"
+, "author": "George Stagas <gstagas@gmail.com> (http://stagas.com/)"
+, "repository": 
+  { "type": "git"
+  , "url": "git://github.com/stagas/jsondate.git"
+  }
+, "main": "./jsondate.js"
+}

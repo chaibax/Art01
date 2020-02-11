@@ -1,0 +1,47 @@
+{
+  "name": "tolerance",
+  "version": "1.0.0",
+  "description": "This module wraps a function with retry functionality by passing a timeout. So the function will be more tolerant.",
+  "private": false,
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.6.x",
+    "npm": ">=1.1.x"
+  },
+  "directories": {
+  },
+  "dependencies": {
+    "retry": ">=0.6.0"
+  },
+  "devDependencies": {
+    "mocha": ">=1.0.1",
+    "expect.js": ">=0.1.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:adrai/tolerance.git"
+  },
+  "keywords": [
+    "tolerance",
+    "tolerate",
+    "retry",
+    "timeout",
+    "wrap"
+  ],
+  "author": "adrai",
+  "maintainers":[ {
+     "name": "adrai",
+     "email": "adriano@raiano.ch"
+  }],
+  "homepage": "https://github.com/adrai/tolerance",
+  "bugs": {
+    "url": "https://github.com/adrai/tolerance/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://raw.github.com/adrai/tolerance/master/licence"
+  }
+}
