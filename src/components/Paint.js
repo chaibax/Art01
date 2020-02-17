@@ -16,7 +16,10 @@ const Paint = () => {
 
     axios.get('http://localhost:3001/api/pixels/add', {
       params: {
-        pixel: 12345
+        pixel: FirstIP,
+        email: email,
+        auth0Id: auth0Id
+
       }
     })
     .then(function (response) {
@@ -35,9 +38,6 @@ const Paint = () => {
     const given_name =  user.given_name;
     const email =  user.email;
     const auth0Id =  user['https://art01/user_id'];
-    console.log('user =>>>>>');
-    console.log(email+ ' '+ auth0Id);
-  
 
     if (loading || !user) {
         return (

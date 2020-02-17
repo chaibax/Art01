@@ -1,6 +1,7 @@
 require('dotenv').config();
 var express = require('express');
 var path = require('path');
+const helmet = require('helmet')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
@@ -9,6 +10,23 @@ var usersRouter = require('./routes/users');
 var pixelsRouter = require('./routes/pixels');
 var eventstore = require('eventstore');
 var debug = require('debug')('api');
+
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://art0x.eu.auth0.com/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: '<API_IDENTIFIER>',
+  issuer: `https://art0x.eu.auth0.com/`,
+  algorithms: ['RS256']
+});
 
 var app = express();
 var es = eventstore();
@@ -69,7 +87,9 @@ var corsOptions = {
 
 
 app.use(logger('dev'));
+app.use(helmet());
 app.use(cors(corsOptions));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

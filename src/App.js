@@ -42,10 +42,7 @@ function App() {
                                     <Route path="/" exact="exact" component={Home} />
                                     <Route path="/start" exact="exact" component={Start} />
                                     <PrivateRoute path="/profile" component={Profile} />
-                                    <PrivateRoute path="/paint" >
-                                        <NavBar />
-                                        <Paint />
-                                    </PrivateRoute>
+                                    <PrivateRoute path="/paint" component={Paint} />
                                     <Route component={NoMatch} />
                                 </Switch>
                             </BrowserRouter>
@@ -54,7 +51,10 @@ function App() {
                 </div>
             </section>
         </div>
+        
     );
+
+    // bar de navigation ici au besoin : <NavBar />
 }
 
 export default App;

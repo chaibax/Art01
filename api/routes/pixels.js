@@ -12,7 +12,10 @@ router.get('/', function(req, res, next) {
 
 /* GET users listing. */
 router.get('/add', function(req, res, next) {
-  res.send('respond with a resource');
+
+  
+
+  res.send('le pixel a bien été ajouté: '+req.query.pixel + req.query.email + req.query.auth0Id);
   console.log(' GET calling with req.pixel=');
   console.log(req.query.pixel);
 

@@ -3,8 +3,7 @@ import React from "react";
 
 const ViewColorFromIp = (props) => {
   
-const color = props.ip.split('.');
-console.log(color[0]);   
+const color = props.ip.split('.');  
 const red = color[0];
 const green = color[1];
 const blue = color[2];
