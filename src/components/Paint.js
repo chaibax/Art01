@@ -5,12 +5,39 @@ import Typewriter from 'typewriter-effect';
 
 
 
+
+
+
 const Paint = () => {
+
+  function sendpixel () {
+
+    const axios = require('axios');
+
+    axios.get('http://localhost:3001/api/pixels/add', {
+      params: {
+        pixel: 12345
+      }
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+    
+    };
     const {loading, user} = useAuth0();
     const FirstIP = user['https://art01/FirstIP'];
     const given_name =  user.given_name;
-
-   
+    const email =  user.email;
+    const auth0Id =  user['https://art01/user_id'];
+    console.log('user =>>>>>');
+    console.log(email+ ' '+ auth0Id);
+  
 
     if (loading || !user) {
         return (
@@ -31,15 +58,15 @@ const Paint = () => {
                 }}
                 onInit={(typewriter) => {
                   typewriter.typeString('<big>Hello '+given_name+'</big>')
-                    .pauseFor(2000)
-                    .pauseFor(1000)
+                    .pauseFor(2)
+                    .pauseFor(1)
                     .typeString('<br/>')
-                    .pauseFor(1000)
+                    .pauseFor(1)
                     .typeString('your IP is: '+FirstIP)
-                    .pauseFor(2500)
+                    .pauseFor(2)
                     .typeString('<br/>')
                     .typeString(' So, your pixel color is : ')
-                    .pauseFor(2500)
+                    .pauseFor(2)
                     .callFunction(() => {
                         const element = document.getElementById("mypixel");
                         element.classList.remove("is-hidden");
@@ -49,7 +76,7 @@ const Paint = () => {
               />
             <div id="mypixel" className="is-hidden">   
                 <ViewColorFromIp ip={FirstIP}/>
-                    <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
+                    <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
                         >> Add my pixel to the paint
                  </h2>
            

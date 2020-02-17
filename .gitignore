@@ -23,3 +23,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+api/node_modules/mongodb/lib/cmap/connection.js
+api/node_modules/mongodb/lib/cmap/connection.js
+api/node_modules/mongodb/lib/cmap/connection.js
+api/node_modules/mongodb/lib/cmap/message_stream.js
+api/node_modules/mongodb/lib/cmap/connection.js
+api/node_modules/mongodb/lib/cmap/connection.js
+api/node_modules/mongodb/lib/cmap/message_stream.js
+api/node_modules/mongodb/lib/core/error.js
+api/node_modules/mongodb/lib/core/sdam/server.js
