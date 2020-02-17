@@ -12,9 +12,6 @@ const NavBar = () => {
         isAuthenticated && (
           <div className="navbar-menu is-active shadowed blackbackground">
             <div className="navbar-end"> 
-                <Link className="navbar-item has-text-centered" to="/paint">
-                > paint
-                </Link>
                 <a className="navbar-item has-text-centered" href="https://en.wikipedia.org/wiki/Participatory_art" target="_blank" rel="noopener noreferrer" >
                 > what is participatory art ?
                 </a>

@@ -22,7 +22,7 @@ const Paint = () => {
     return (
     
 
-            <h2 className="title is-size-2 has-text-centered shadowed">
+            <h2 className="title is-size-3 has-text-centered shadowed">
 
     <Typewriter
                 options={{
@@ -47,11 +47,8 @@ const Paint = () => {
                     .start();
                 }}
               />
-
-       
             <div id="mypixel" className="is-hidden">   
                 <ViewColorFromIp ip={FirstIP}/>
-                    <br/>
                     <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
                         >> Add my pixel to the paint
                  </h2>
