@@ -1,6 +1,8 @@
 require('dotenv').config();
+var auth0 = require('./auth0');
 var express = require('express');
 var path = require('path');
+var bodyParser = require("body-parser");
 const helmet = require('helmet')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -11,33 +13,13 @@ var pixelsRouter = require('./routes/pixels');
 var eventstore = require('eventstore');
 var debug = require('debug')('api');
 
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
 
-const authConfig = {
-  domain: "art0x.eu.auth0.com",
-  audience: "Uhf8ALnvXm47mrdaQgVvlB3acQPbb55D"
-};
 
 var app = express();
 app.use(cors(corsOptions));
-// Define middleware that validates incoming bearer tokens
-// using JWKS from art0x.eu.auth0.com
-const checkJwt = jwt({
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
-  }),
-
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
-  algorithm: ["RS256"]
-});
 
 // Define an endpoint that must be called with an access token
-app.get("/api/external", checkJwt, (req, res) => {
+app.get("/api/external", auth0.checkJwt, (req, res) => {
   res.send({
     msg: "Your Access Token was successfully validated!"
   });
@@ -106,7 +88,8 @@ app.use(logger('dev'));
 app.use(helmet());
 
 
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -116,7 +99,7 @@ app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/pixels', pixelsRouter);
-
+ 
 module.exports = app;
 
 

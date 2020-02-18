@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import Paint from "./components/Paint";
 import Start from "./components/Start";
+import ExternalApi from "./components/ExternalApi";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
@@ -41,10 +42,12 @@ function App() {
                                 <Switch>
                                     <Route path="/" exact="exact" component={Home} />
                                     <Route path="/start" exact="exact" component={Start} />
+                                    <Route path="/ExternalApi" exact="exact" component={ExternalApi} />
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
                                     <Route component={NoMatch} />
                                 </Switch>
+                                <NavBar />
                             </BrowserRouter>
                         </div>
                     </div>
