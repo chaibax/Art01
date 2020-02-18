@@ -11,7 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var pixelsRouter = require('./routes/pixels');
 
-require('./eventstore');
+
  
 var app = express();
 app.use(cors(corsOptions));
