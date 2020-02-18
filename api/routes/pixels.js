@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var auth0 = require('../auth0');
-var bodyParser  =  require("body-parser");
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -10,8 +10,6 @@ router.get('/', function(req, res, next) {
   console.log(req.query.pixel);
 
 });
-
-
 
 router.post('/add', auth0.checkJwt, function(req, res, next) {
 
