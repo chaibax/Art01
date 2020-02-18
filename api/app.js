@@ -14,21 +14,37 @@ var debug = require('debug')('api');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
+const authConfig = {
+  domain: "art0x.eu.auth0.com",
+  audience: "Uhf8ALnvXm47mrdaQgVvlB3acQPbb55D"
+};
+
+var app = express();
+app.use(cors(corsOptions));
+// Define middleware that validates incoming bearer tokens
+// using JWKS from art0x.eu.auth0.com
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://art0x.eu.auth0.com/.well-known/jwks.json`
+    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
   }),
 
-  // Validate the audience and the issuer.
-  audience: '<API_IDENTIFIER>',
-  issuer: `https://art0x.eu.auth0.com/`,
-  algorithms: ['RS256']
+  audience: authConfig.audience,
+  issuer: `https://${authConfig.domain}/`,
+  algorithm: ["RS256"]
 });
 
-var app = express();
+// Define an endpoint that must be called with an access token
+app.get("/api/external", checkJwt, (req, res) => {
+  res.send({
+    msg: "Your Access Token was successfully validated!"
+  });
+});
+
+
+
 var es = eventstore();
 
 
@@ -88,7 +104,7 @@ var corsOptions = {
 
 app.use(logger('dev'));
 app.use(helmet());
-app.use(cors(corsOptions));
+
 
 
 app.use(express.json());
