@@ -37,7 +37,7 @@ console.log('hostname ='+hostname);
 </p>
                         <p>At this rate, ART01 will never be finished.
 </p></span>
-<h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({ appState : {targetUrl: 'http://'+hostname+'/paint'}})}>
+<h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({ appState : {targetUrl: 'https://'+hostname+'/paint'}})}>
                         >> Participate
                  </h2>
         
