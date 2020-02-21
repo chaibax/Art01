@@ -16,8 +16,10 @@ document.onkeydown = function(evt) {
 };
 const os = require("os");
 var  hostname = os.hostname();
+var protocol = 'https';
 if (hostname === 'localhost') {
     hostname = 'localhost:3000';
+    protocol = 'http';
 } 
 
 console.log('hostname ='+hostname);
@@ -37,7 +39,7 @@ console.log('hostname ='+hostname);
 </p>
                         <p>At this rate, ART01 will never be finished.
 </p></span>
-<h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({ appState : {targetUrl: 'https://'+hostname+'/paint'}})}>
+<h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({ appState : {targetUrl: protocol+'://'+hostname+'/paint'}})}>
                         >> Participate
                  </h2>
         
