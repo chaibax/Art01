@@ -11,53 +11,11 @@ var auth0 = new ManagementClient({
   domain: process.env.AUTH0_DOMAIN,
   clientId: process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET
+ 
 
   
 }); 
 
-var gettoken = auth0.getAccessToken( function (err, token) {
-
-  console.log('dans token');
-  if (err) {
-    // Handle error.
-    console.log(err);
-  }
-  console.log('token=');
-  console.log(token);
-  return token;
-});
-
-console.log("????Token?????");
-console.log(gettoken.then());
-//scope: 'read:users update:users read:current_user_metadata update:current_user_metadata'
-
-
-auth0.getUsersByEmail('chaibax@gmail.com', function (err, users) {
- 
-  console.log(users[0]);
-
- /* console.log(users[0].user_metadata);
-  console.log(users[0].given_name);
-  console.log(users[0].user_id);
-*/
-console.log(users[0].user_id);
-  var params = { id: users[0].user_id };
-var metadata = {
-  bue: '666',
-  TEST: 'HOP'
-};
-
-auth0.updateUserMetadata(params, metadata, function (err, user) {
-  if (err) {
-    // Handle error.
-  }
-
-  // Updated user.
-  console.log('dans updateUserMetadata');
-  console.log(user);
-});
-  return  users[0].user_id;
-});
 
 const mongoose = require('mongoose'), Schema = mongoose.Schema;
 mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true });
@@ -144,6 +102,26 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
           //var id_event = stream.eventsToDispatch[0]['id']; // Identidiant de l'event 
           res.send('le pixel a bien été ajouté: ' + req.body.pixel + req.body.email + req.body.auth0Id + ' a la position :' + position);
           //enregistrer la position dans les metadata Auth0 de l'user 
+
+
+auth0.getUsersByEmail(req.body.email, function (err, users) {
+  //  console.log(users[0]);
+  //console.log(users[0].user_id);
+    var params = { id: users[0].user_id };
+    var metadata = {
+    pixel_added: 1,
+    pixel_position: position
+    
+  };
+  auth0.updateUserMetadata(params, metadata, function (err, user) {
+    if (err) {
+      // Handle error.
+    }
+    // Updated user.
+  });
+    
+  });
+
         });
       });
     }
