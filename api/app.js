@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var pixelsRouter = require('./routes/pixels');
 
 
+
  
 var app = express();
 app.use(cors(corsOptions));
@@ -47,8 +48,9 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'public')));
+console.log('>>W'+path.join(__dirname, 'public'));
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/users', usersRouter);
