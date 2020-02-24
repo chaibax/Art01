@@ -10,7 +10,7 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var pixelsRouter = require('./routes/pixels');
-
+var debug = require('debug');
 
 
  
@@ -27,7 +27,7 @@ app.get("/api/external", auth0.checkJwt, (req, res) => {
 
 
 // Set up a whitelist and check against it:
-var whitelist = ['http://localhost:3000', 'http://localhost', 'https://art0x.herokuapp.com']
+var whitelist = ['http://localhost:3000', 'http://localhost', 'https://art0x.herokuapp.com', 'https://art0x.eu.auth0.com/']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
