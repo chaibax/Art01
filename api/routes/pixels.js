@@ -10,10 +10,7 @@ var ManagementClient = require('auth0').ManagementClient;
 var auth0 = new ManagementClient({
   domain: process.env.AUTH0_DOMAIN,
   clientId: process.env.AUTH0_CLIENT_ID,
-  clientSecret: process.env.AUTH0_CLIENT_SECRET
- 
-
-  
+  clientSecret: process.env.AUTH0_CLIENT_SECRET  
 }); 
 
 
@@ -104,10 +101,10 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
           //enregistrer la position dans les metadata Auth0 de l'user 
 
 
-auth0.getUsersByEmail(req.body.email, function (err, users) {
+
   //  console.log(users[0]);
   //console.log(users[0].user_id);
-    var params = { id: users[0].user_id };
+    var params = { id: req.body.auth0Id };
     var metadata = {
     pixel_added: 1,
     pixel_position: position
@@ -120,7 +117,7 @@ auth0.getUsersByEmail(req.body.email, function (err, users) {
     // Updated user.
   });
     
-  });
+
 
         });
       });
