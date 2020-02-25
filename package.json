@@ -19,6 +19,7 @@
     "typewriter-effect": "^2.12.2"
   },
   "scripts": {
+    "dev" : "REACT_APP_API_BASE_URL=http://localhost:3001/api react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

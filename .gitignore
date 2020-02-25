@@ -23,16 +23,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-api/node_modules/mongodb/lib/cmap/connection.js
-api/node_modules/mongodb/lib/cmap/connection.js
-api/node_modules/mongodb/lib/cmap/connection.js
-api/node_modules/mongodb/lib/cmap/message_stream.js
-api/node_modules/mongodb/lib/cmap/connection.js
-api/node_modules/mongodb/lib/cmap/connection.js
-api/node_modules/mongodb/lib/cmap/message_stream.js
-api/node_modules/mongodb/lib/core/error.js
-api/node_modules/mongodb/lib/core/sdam/server.js
-api/node_modules/mongodb/HISTORY.md
-api/node_modules/safe-buffer/README.md
-api/node_modules/safe-buffer/package.json
-api/node_modules/safe-buffer/index.js
+**/node_modules

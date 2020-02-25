@@ -1,5 +1,6 @@
 {
     "domain": "art0x.eu.auth0.com",
-    "clientId": "Ybm23Tisf6e2gahE61v0E4wL107VrGXP"
+    "clientId": "Ybm23Tisf6e2gahE61v0E4wL107VrGXP",
+    "audience": "https://art01/"
 
   }

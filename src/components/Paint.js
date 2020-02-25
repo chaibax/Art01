@@ -2,21 +2,20 @@ import React from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import Typewriter from 'typewriter-effect';
-import View from "./View";
+import { useHistory } from "react-router-dom";
+
 
 
 const Paint = () => {
-  const { getTokenSilently } = useAuth0();
-  const token = getTokenSilently();
+  const { getTokenSilently, loading, user } = useAuth0();
+  const history = useHistory();
 
   function sendpixel() {
 
     const axios = require('axios');
-
     const callApi = async () => {
-
       const token = await getTokenSilently();
-      axios.post('http://localhost:3001/api/pixels/add', {
+    axios.post(process.env.REACT_APP_API_BASE_URL+'/pixels/add', {
         pixel: FirstIP,
         email: email,
         auth0Id: auth0Id
@@ -37,7 +36,7 @@ const Paint = () => {
     };
     callApi();
   };
-  const { loading, user } = useAuth0();
+  
   const FirstIP = user['https://art01/FirstIP'];
   const given_name = user.given_name;
   const email = user.email;
@@ -56,9 +55,7 @@ const Paint = () => {
 
 //si le pixel a déja été déposé, on affiche pas cette page
   if( pixel_added){
-    return (
-      <View />
-    );
+    history.push("/view");
   }
   
   return (
