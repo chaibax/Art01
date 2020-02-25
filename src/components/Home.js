@@ -16,7 +16,7 @@ const Home = () => {
 
   if (isAuthenticated) {
     //history.push("/paint");
-    console.log('isAuthenticated > Paint');
+    console.log('isAuthenticated > Paint !');
   }
 
   return (
