@@ -40,9 +40,9 @@ function App() {
                         <div className="container">
                             <BrowserRouter>
                                 <Switch>
-                                    <Route path="/" exact="exact" component={Home} />
-                                    <Route path="/start" exact="exact" component={Start} />
-                                    <Route path="/ExternalApi" exact="exact" component={ExternalApi} />
+                                    <Route path="/" exact={true} component={Home} />
+                                    <Route path="/start" exact={true} component={Start} />
+                                    <Route path="/ExternalApi" exact={true} component={ExternalApi} />
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
                                     <Route component={NoMatch} />
