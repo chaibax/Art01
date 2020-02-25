@@ -10,6 +10,7 @@
     "bulma-helpers": "^0.3.8",
     "bulma-pageloader": "^0.3.0",
     "express-generator": "^4.16.1",
+    "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "public-ip": "^4.0.0",
     "react": "^16.10.1",
@@ -19,7 +20,7 @@
     "typewriter-effect": "^2.12.2"
   },
   "scripts": {
-    "dev" : "REACT_APP_API_BASE_URL=http://localhost:3001/api react-scripts start",
+    "dev": "REACT_APP_API_BASE_URL=http://localhost:3001/api react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
