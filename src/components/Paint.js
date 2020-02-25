@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import Typewriter from 'typewriter-effect';
+import View from "./View";
 
 
 const Paint = () => {
@@ -56,9 +57,7 @@ const Paint = () => {
 //si le pixel a déja été déposé, on affiche pas cette page
   if( pixel_added){
     return (
-      <div className="pageloader is-active">
-          <span className="title">Pixel deja ajouté</span>
-        </div>
+      <View />
     );
   }
   
@@ -91,7 +90,7 @@ const Paint = () => {
         }}
       />
 
-      <div id="mypixel" className="">
+      <div id="mypixel" className="is-hidden">
         <ViewColorFromIp ip={FirstIP} />
         <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
           >> Add my pixel to the paint
