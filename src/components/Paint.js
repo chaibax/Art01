@@ -56,6 +56,7 @@ const Paint = () => {
 //si le pixel a déja été déposé, on affiche pas cette page
   if( pixel_added){
     history.push("/view");
+    console.log('pixel added yet');
   }
   
   return (

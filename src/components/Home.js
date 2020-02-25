@@ -4,12 +4,14 @@ import { useHistory } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 
 const Home = () => {
-  const isAuthenticated = useAuth0();
+  const {isAuthenticated, loading, user} = useAuth0();
+
+
   const history = useHistory();
 
  
 
-  if (isAuthenticated) {
+  if (isAuthenticated ) {
     document.onkeydown = function (evt) {
       evt = evt || window.event;
       if (evt.keyCode === 13) {
