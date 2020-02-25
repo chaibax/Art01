@@ -38,14 +38,7 @@ function App() {
 
 
     
-    if(isAuthenticated){
-
-        const pixel_added = user['https://art01/pixel_added'];
-        console.log('authentifié avec pixel_added '+pixel_added);
-        if(pixel_added ) {
-          //  history.push("/view");
-        }
-    }
+  
 
     return (
         <div className="App">

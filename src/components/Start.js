@@ -22,8 +22,6 @@ if (hostname === 'localhost') {
     protocol = 'http';
 } 
 
-console.log('hostname ='+hostname);
-
     return (
      
        <Fragment>

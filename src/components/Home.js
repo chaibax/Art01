@@ -7,18 +7,56 @@ const Home = () => {
   const isAuthenticated = useAuth0();
   const history = useHistory();
 
-  document.onkeydown = function (evt) {
-    evt = evt || window.event;
-    if (evt.keyCode === 13) {
-      history.push("/start");
-    }
-  };
+ 
 
   if (isAuthenticated) {
-    //history.push("/paint");
-    console.log('isAuthenticated > Paint !');
-  }
+    document.onkeydown = function (evt) {
+      evt = evt || window.event;
+      if (evt.keyCode === 13) {
+        history.push("/view");
+      }
+    };
+    return (
+       <h1 className="title is-size-1 has-text-centered shadowed">
+              <Typewriter
+                options={{
+                  loop: false,
+                  cursor: '<big>▮</big>',
+                  delay: 75
+                }}
+                onInit={(typewriter) => {
+                  typewriter.typeString('<big>ART01</big>')
+                    .pauseFor(1000)
+                    .callFunction(() => {
+                      console.log('This is ART01 👋');
+                    })
+                    .typeString('<br/>')
+                    .pauseFor(50)
+                    .typeString('<br/>')
+                    .pauseFor(50)
+                    .typeString('first massively participatory art project')
+                    .pauseFor(200)
+                    .typeString('<br/>')
+                    .pauseFor(50)
+                    .typeString('<br/>')
+                    .pauseFor(50)
+                    .typeString('>> ')
+                    .typeString('<a href="/view" style="text-deconration:none;color:#f0fff8">' + 'View' + '</a>')
+                    .start();
+                }}
+              />
+            </h1>
+    )
+  } else {
 
+    document.onkeydown = function (evt) {
+      evt = evt || window.event;
+      if (evt.keyCode === 13) {
+        history.push("/start");
+      }
+    };
+   
+  
   return (
 
             <h1 className="title is-size-1 has-text-centered shadowed">
@@ -52,6 +90,7 @@ const Home = () => {
             </h1>
          
   )
+}
 }
 
 export default Home
