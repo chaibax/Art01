@@ -12,9 +12,7 @@ import './App.sass';
 import './App.css';
 
 function App() {
-
     const { loading } = useAuth0();
-
     if (loading) {
         return (
             <div className="pageloader is-active shadowed blackbackground">
@@ -31,7 +29,6 @@ function App() {
             <a href="/" style={{ textDeconration: 'none', color: '#f0fff8' }}> >> go to home page</a>
         </h1>
     )
-
     return (
         <div className="App">
             <section className="hero fullheight">
@@ -54,7 +51,6 @@ function App() {
                 </div>
             </section>
         </div>
-        
     );
 
     // bar de navigation ici au besoin : <NavBar />

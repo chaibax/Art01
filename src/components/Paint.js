@@ -40,7 +40,10 @@ const Paint = () => {
   const FirstIP = user['https://art01/FirstIP'];
   const given_name = user.given_name;
   const email = user.email;
+  const pixel_added = user['https://art01/pixel_added'];
   const auth0Id = user['https://art01/user_id'];
+
+
 
   if (loading || !user) {
     return (
@@ -49,6 +52,16 @@ const Paint = () => {
       </div>
     );
   }
+
+//si le pixel a déja été déposé, on affiche pas cette page
+  if( pixel_added){
+    return (
+      <div className="pageloader is-active">
+          <span className="title">Pixel deja ajouté</span>
+        </div>
+    );
+  }
+  
   return (
 
 
