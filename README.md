@@ -27,7 +27,7 @@ Opacity for 82 => 0.32
 Final RGB color with opacity : rgba(78,234,74,0.32) :
 
 ```
-![Screen Capture](public/Capture3.png)
+![Screen Capture](public/Capture3.png){:height="125px" width="125"}
 
 This rectangular painting is only an example of representation. The artwork is made up of data provided by people over time, not its appearance
 
@@ -45,6 +45,11 @@ At this rate, ART01 will never be finished.
 
 
 
+## How are pixels added ?
+
+I use a [Ulam spiral](ttps://en.wikipedia.org/wiki/Ulam_spiral)  to add each pixels, the first one the first being in the center :
+
+![Ulam spiral](public/800px-Ulam_spiral_howto_all_numbers.svg.png)
 
 
 
