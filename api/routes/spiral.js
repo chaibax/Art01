@@ -18,4 +18,15 @@ router.get('/getSpiralIndexForCoordinates/:x/:y',  function (req, res, next) {
 });
 
 
+router.get('/getSquareSize/:position',  function (req, res, next) {
+
+    //renvoi la taille d'un coté du carré dans lequel est inclus un pixel selon sa position/. Ex : pour la position 31, le pixel  
+    // a pour position > [2, 3] . Il est inclus dans un carré ayant 7 de coté (3*2)+1
+
+    let result = spiral.getLatticeCoordinatesFor(req.params.position);   
+    let size = Math.max(Math.abs(result[0]),Math.abs(result[1]));
+    res.send({"square_size" : ((2*size)+1)});
+
+});
+
 module.exports = router;
