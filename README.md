@@ -27,7 +27,8 @@ Opacity for 82 => 0.32
 Final RGB color with opacity : rgba(78,234,74,0.32) :
 
 ```
-[[public/Capture3.png | width=175px ]]
+
+![Art01](public/Capture3.png | width=175)
 
 
 This rectangular painting is only an example of representation. The artwork is made up of data provided by people over time, not its appearance
