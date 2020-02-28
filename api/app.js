@@ -10,6 +10,7 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var pixelsRouter = require('./routes/pixels');
+var spiralRouter = require('./routes/spiral');
 var debug = require('debug');
 
 
@@ -53,8 +54,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 console.log('>>W'+path.join(__dirname, 'public'));
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/users', usersRouter);
 app.use('/api/pixels', pixelsRouter);
+app.use('/api/spiral', spiralRouter);
 
 module.exports = app;
 

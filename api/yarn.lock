@@ -1835,6 +1835,11 @@ tough-cookie@~2.5.0:
     psl "^1.1.28"
     punycode "^2.1.1"
 
+triangular-numbers@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/triangular-numbers/-/triangular-numbers-0.0.1.tgz#08aa382b61f316d8d3d6514876fccb52dbb45f49"
+  integrity sha512-9urcTFpjS5a8jTNDYBwRcJg68B8ujl4mFw8Nxcv84tCLWIDYOxSfc7Wu2zqUI7gMcrmv0uXDzOI35D6m0Mh+Xg==
+
 tunnel-agent@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
@@ -1944,3 +1949,10 @@ yallist@^3.0.2:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.1.1.tgz#dbb7daf9bfd8bac9ab45ebf602b8cbad0d5d08fd"
   integrity sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
+
+zero-indexed-ulam-spiral@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/zero-indexed-ulam-spiral/-/zero-indexed-ulam-spiral-0.0.1.tgz#03e7681f8893eaa89322d39f29f4c60d81b75d8a"
+  integrity sha512-/GstZaVrZpC1nqCehtu4QPc5kvCqfXYZPVqHhuapzpGgr1CRtlv1EzpzeIoYla/JusBJ2QG57Ds8kvYgCkdOmg==
+  dependencies:
+    triangular-numbers "^0.0.1"
