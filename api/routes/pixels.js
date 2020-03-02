@@ -69,11 +69,8 @@ router.all('/count', function (req, res, next) {
   es.getLastEvent('pixels', function (err, evt) {
     evt_to_send = { "count": evt.position };
     res.send(evt_to_send);
-
     console.log('test=');
     //console.log(es.store);
-
-
   });
 });
 

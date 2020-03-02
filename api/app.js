@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var pixelsRouter = require('./routes/pixels');
 var spiralRouter = require('./routes/spiral');
+var imagesRouter = require('./routes/images');
 var debug = require('debug');
 
 
@@ -56,6 +57,7 @@ app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/pixels', pixelsRouter);
 app.use('/api/spiral', spiralRouter);
+app.use('/api/images', imagesRouter);
 
 module.exports = app;
 
