@@ -16,6 +16,7 @@
     "express": "~4.16.1",
     "express-jwt": "^5.3.1",
     "helmet": "^3.21.2",
+    "jimp": "^0.9.3",
     "jwks-rsa": "^1.6.2",
     "mongodb": "^3.5.2",
     "mongoose": "^5.9.2",
