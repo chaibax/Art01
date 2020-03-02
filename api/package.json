@@ -21,6 +21,7 @@
     "mongodb": "^3.5.2",
     "mongoose": "^5.9.2",
     "morgan": "~1.9.1",
+    "mquery": "^3.2.2",
     "uuid": "^3.4.0",
     "zero-indexed-ulam-spiral": "^0.0.1"
   }

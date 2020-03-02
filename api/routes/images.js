@@ -1,57 +1,62 @@
 var express = require('express');
 var router = express.Router();
 var Jimp = require('jimp');
+var utils = require('../utils/functions');
+const eventdata = require('../utils/eventsdata');
+const fs = require('fs');
 
-
-
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-
-
-// Create a new MongoClient
-const client = new MongoClient(process.env.MONGODB_URI);
-
-// Use connect method to connect to the Server
-client.connect(function(err) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
-  const db = client.db(process.env.MONGO_DB);
-  //client.close();
-});
-
-
-const findDocuments = function(db, callback) {
-    // Get the documents collection
-    const collection = db.collection('positions');
-    // Find some documents
-    collection.find({_id : 'events'}).toArray(function(err, docs) {
-      assert.equal(err, null);
-      console.log("Found the following records");
-      console.log(docs[0].position);
-      if(callback) {callback(docs[0].position); 
-         client.close();
-        } 
-      else {return docs[0].position;  
-        client.close();
-    }
-    });
-
-  }
-
-
-const mongoose = require('mongoose'), Schema = mongoose.Schema;
-mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true });
-var Positions = mongoose.model('Positions', new Schema(), 'positions');
+  
 
 router.all('/', function (req, res, next) {
 
-   // console.log(Positions.find({ _id : 'events'}));
-  findDocuments(client.db(process.env.MONGO_DB, function retour(pos){
-   }));
-  res.send('ok'+pos);
-  });
+    eventdata.lastposition(function(msg){
+        //console.log(msg);
+        res.send({last : msg});
+    });
+
+   });
+
+   router.all('/filexists/:position', function (req, res, next) {
+//req.params.position
+const path = __dirname + '/../public/images/'+req.params.position+'.png';
+utils.filexists(path,function(msg){
+        //console.log(msg);
+        res.send('{"'+path+'" : '+msg+'}');
+    });
+
+   });
 
 
+   router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
+    //req.params.position
+
+const path = __dirname + '/../public/images/art01.png';
+utils.filexists(path,function(msg){
+        //console.log(msg);
+        res.send('{"'+path+'" : '+msg+'}');
+        if(!msg){
+            //art01.png don't exist, create a blank file
+            console.log('msg='+msg);
+            fs.createReadStream(__dirname + '/../public/images/empty.png').pipe(fs.createWriteStream(path));
+        } else {
+            console.log('le fichier exist');
+            Jimp.read(path, (err, art01) => {
+                if (err) throw err;
+                art01
+                  .resize(256, 256) // resize
+                  .quality(60) // set JPEG quality
+                  .greyscale() // set greyscale
+                  .write(path); // save
+              });
+        }
+    });
+
+
+ 
+
+
+    
+       });
 
 
 
