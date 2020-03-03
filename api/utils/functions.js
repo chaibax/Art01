@@ -1,5 +1,5 @@
 const fs = require('fs')
-
+var async = require("async");
 
 
 
@@ -9,9 +9,9 @@ const filexists = function(path, callback){
     fs.access(path, fs.F_OK, (err) => {
         if (err) {
           //console.error(err)
-          callback(0);
+          callback(null,0);
         } else {
-            callback(1);
+            callback(null,1);
         }
       
 

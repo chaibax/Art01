@@ -4,59 +4,108 @@ var Jimp = require('jimp');
 var utils = require('../utils/functions');
 const eventdata = require('../utils/eventsdata');
 const fs = require('fs');
+var async = require("async");
 
-  
+
 
 router.all('/', function (req, res, next) {
 
-    eventdata.lastposition(function(msg){
-        //console.log(msg);
-        res.send({last : msg});
-    });
+  eventdata.lastposition(function (msg) {
+    //console.log(msg);
+    res.send({ last: msg });
+  });
 
-   });
+});
 
-   router.all('/filexists/:position', function (req, res, next) {
-//req.params.position
-const path = __dirname + '/../public/images/'+req.params.position+'.png';
-utils.filexists(path,function(msg){
-        //console.log(msg);
-        res.send('{"'+path+'" : '+msg+'}');
-    });
+router.all('/filexists/:position', function (req, res, next) {
+  //req.params.position
+  const path = __dirname + '/../public/images/' + req.params.position + '.png';
+  utils.filexists(path, function (msg) {
+    //console.log(msg);
+    res.send('{"' + path + '" : ' + msg + '}');
+  });
 
-   });
-
-
-   router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
-    //req.params.position
-
-const path = __dirname + '/../public/images/art01.png';
-utils.filexists(path,function(msg){
-        //console.log(msg);
-        res.send('{"'+path+'" : '+msg+'}');
-        if(!msg){
-            //art01.png don't exist, create a blank file
-            console.log('msg='+msg);
-            fs.createReadStream(__dirname + '/../public/images/empty.png').pipe(fs.createWriteStream(path));
-        } else {
-            console.log('le fichier exist');
-            Jimp.read(path, (err, art01) => {
-                if (err) throw err;
-                art01
-                  .resize(256, 256) // resize
-                  .quality(60) // set JPEG quality
-                  .greyscale() // set greyscale
-                  .write(path); // save
-              });
-        }
-    });
+});
 
 
- 
+router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
+  //req.params.position
 
+  const path = __dirname + '/../public/images/art01.png';
 
+  function filexists(pathfile,callback) {
+    console.log('dans filexists2 avec pathfile=' + pathfile);
     
-       });
+    fs.access(pathfile, fs.F_OK, (err) => {
+      if (err) {
+        console.error(err)
+        callback(null,0);
+      } else {
+        console.log('dans filexists2 avec retour 1');
+        callback(null,1);
+      }
+    })
+  };
+
+  function newimage(fileexist, callback) {
+    console.log('dans newimage');
+    if (!fileexist) {
+      fs.createReadStream(__dirname + '/../public/images/empty.png').pipe(fs.createWriteStream(path));
+      console.log('dans newimage > creation nouvelle image');
+      callback(null, 1);
+    } else {
+      console.log('dans newimage > image existe deja');
+      callback(null, 2);
+    }
+  }
+
+  function Jimpread(fileexist, callback) {
+    console.log('dans Jimpread');
+    if (fileexist) {
+      Jimp.read(path, (err, art01) => {
+        if (err) throw err;
+        art01
+          .resize(1256, 1256) // resize
+          .quality(90) // set JPEG quality
+          .greyscale() // set greyscale
+          .write(path); // save
+
+        // arg1 now equals 'Task 1' and arg2 now equals 'Task 2'
+        let arg3 = fileexist + ' and nouveau fichier ok';
+        console.log(arg3);
+        callback(null, arg3);
+
+      });
+
+
+    }
+    else {
+
+      callback(null, 'Erreur JIMP : pas de fichier ');
+    }
+
+  }
+
+
+  async.waterfall([
+    async.constant(path),
+    filexists, //utils.filexists
+    newimage,
+    Jimpread // Jimp.read
+
+  ], function (err, result) {
+    // see https://medium.com/velotio-perspectives/understanding-node-js-async-flows-parallel-serial-waterfall-and-queues-6f9c4badbc17
+    console.log(result);
+    res.send(result);
+  });
+
+
+
+
+
+
+
+});
 
 
 
@@ -126,4 +175,4 @@ Jimp.read(imgRaw)
 
 
 
- module.exports = router;
+module.exports = router;
