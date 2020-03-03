@@ -5,7 +5,8 @@ var utils = require('../utils/functions');
 const eventdata = require('../utils/eventsdata');
 const fs = require('fs');
 var async = require("async");
-
+var ulam = require('../utils/ulam');
+const rgbHex = require('rgb-hex');
 
 
 router.all('/', function (req, res, next) {
@@ -30,50 +31,92 @@ router.all('/filexists/:position', function (req, res, next) {
 
 router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
   //req.params.position
+  const path = __dirname + '/../public/images/art'+req.params.position+'-ok.png';
 
-  const path = __dirname + '/../public/images/art01.png';
+  function checklastposition(callback){
+    console.log('checklastposition');
+    eventdata.lastposition(function (lastp) {
+  
+      console.log('checklastposition 2');
+      if (lastp > req.params.position) {
+        console.log('last position='+lastp);
+        callback(null,lastp);
+      } else {
+        res.send({ error: "position not in eventstore" });
+        return;
+      }
 
-  function filexists(pathfile,callback) {
+    });
+    
+  }
+
+
+  function filexists(lastp,callback) {
+    let pathfile = __dirname + '/../public/images/art'+req.params.position+'-ok.png';
     console.log('dans filexists2 avec pathfile=' + pathfile);
     
     fs.access(pathfile, fs.F_OK, (err) => {
       if (err) {
         console.error(err)
-        callback(null,0);
+        callback(null,0,lastp);
       } else {
-        console.log('dans filexists2 avec retour 1');
-        callback(null,1);
+        console.log('dans filexists2 avec retour 1 et lastp='+lastp);
+        callback(null,1,lastp);
       }
     })
   };
 
-  function newimage(fileexist, callback) {
+  function newimage(fileexist, lastp,callback) {
     console.log('dans newimage');
     if (!fileexist) {
-      fs.createReadStream(__dirname + '/../public/images/empty.png').pipe(fs.createWriteStream(path));
-      console.log('dans newimage > creation nouvelle image');
-      callback(null, 1);
+      let pathtmp = __dirname + '/../public/images/art'+req.params.position+'.png';
+      fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
+        if (err) throw err;
+        console.log('dans newimage > creation nouvelle image :'+pathtmp);
+      callback(null, pathtmp,lastp);
+      });
     } else {
       console.log('dans newimage > image existe deja');
-      callback(null, 2);
+      res.send({error : "file exist"});
+      return;
     }
   }
 
-  function Jimpread(fileexist, callback) {
-    console.log('dans Jimpread');
-    if (fileexist) {
-      Jimp.read(path, (err, art01) => {
+  function Jimpread(tmpimage,lastp, callback) {
+    console.log('dans Jimpread avec lastp = '+lastp);
+    if (tmpimage) {
+      
+      console.log('Jimp va ecrire dans '+tmpimage);
+      //on prend la position du dernier pixel : ex : 123. Et on va en deduire la taille du carré max. 
+      let size = ulam.getSquareSize(lastp);
+      let coordinate = ulam.getNewLatticeCoordinatesFor(lastp);
+      Jimp.read(tmpimage, (err, art01) => {
         if (err) throw err;
+        console.log(typeof(req.params.r)+' '+req.params.g+' '+ req.params.b+' ' +req.params.alpha+' '+coordinate[0]+' '+coordinate[1])
+        let r = parseInt(req.params.r);
+        let g = parseInt(req.params.g);
+        let b = parseInt(req.params.b);
+        let alpha = parseFloat(req.params.alpha);
         art01
-          .resize(1256, 1256) // resize
-          .quality(90) // set JPEG quality
-          .greyscale() // set greyscale
-          .write(path); // save
+          .resize(size, size) // resize
+          .rgba(true)
+          .setPixelColor(rgbHex(r, g, b, alpha), coordinate[0], coordinate[1])
+          .write(tmpimage)
+        // image.setPixelColor(hex, x, y); // sets the colour of that pixel
+
+
 
         // arg1 now equals 'Task 1' and arg2 now equals 'Task 2'
-        let arg3 = fileexist + ' and nouveau fichier ok';
+        let arg3 = tmpimage + ' and nouveau fichier ok la hauteur du fichier est : '+art01.bitmap.height+ ' est sa longeur est :'+art01.bitmap.width;
         console.log(arg3);
-        callback(null, arg3);
+
+        fs.copyFile(tmpimage, __dirname + '/../public/images/art'+req.params.position+'-ok.png', (err) => {
+          if (err) throw err;
+          console.log('>>>>>dans jimp copy de image :'+tmpimage+' vers '+__dirname + '/../public/images/art'+req.params.position+'-ok.png');
+          callback(null, arg3);
+
+        });
+
 
       });
 
@@ -87,8 +130,12 @@ router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
   }
 
 
+  // P = position du pixel a ajouté.
+  // si P > que la derniere position dans le store : on a un soucis, on arrète. En effet, le pixel n'est peut etre pas encore ajouté, ou c'est une erreur 
+
+
   async.waterfall([
-    async.constant(path),
+    checklastposition,
     filexists, //utils.filexists
     newimage,
     Jimpread // Jimp.read
@@ -98,12 +145,6 @@ router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
     console.log(result);
     res.send(result);
   });
-
-
-
-
-
-
 
 });
 

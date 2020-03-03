@@ -23,6 +23,7 @@
     "mongoose": "^5.9.2",
     "morgan": "~1.9.1",
     "mquery": "^3.2.2",
+    "rgb-hex": "^3.0.0",
     "uuid": "^3.4.0",
     "zero-indexed-ulam-spiral": "^0.0.1"
   }

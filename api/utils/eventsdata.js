@@ -9,7 +9,7 @@ const lastposition = function(callback){
     // Use connect method to connect to the server
     require('mongodb').connect(process.env.MONGODB_URI, function (err, client) {
         assert.equal(null, err);
-        console.log("Connected successfully to server");
+        console.log("Connected successfully to server depuis lastposition");
         var db2 = client.db(process.env.MONGO_DB);
         if (err) return handleError(err);     
         // get a collection
