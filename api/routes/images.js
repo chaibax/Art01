@@ -8,6 +8,8 @@ var async = require("async");
 var ulam = require('../utils/ulam');
 const rgbHex = require('rgb-hex');
 
+var mergeImages =  require('merge-images');
+
 
 router.all('/', function (req, res, next) {
 
@@ -33,13 +35,14 @@ router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
   //req.params.position
   const path = __dirname + '/../public/images/art'+req.params.position+'-ok.png';
 
+
   function checklastposition(callback){
-    console.log('checklastposition');
+    //console.log('checklastposition');
     eventdata.lastposition(function (lastp) {
   
-      console.log('checklastposition 2');
+      //console.log('checklastposition 2');
       if (lastp > req.params.position) {
-        console.log('last position='+lastp);
+       // console.log('last position='+lastp);
         callback(null,lastp);
       } else {
         res.send({ error: "position not in eventstore" });
@@ -53,83 +56,102 @@ router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
 
   function filexists(lastp,callback) {
     let pathfile = __dirname + '/../public/images/art'+req.params.position+'-ok.png';
-    console.log('dans filexists2 avec pathfile=' + pathfile);
+   // console.log('dans filexists2 avec pathfile=' + pathfile);
     
     fs.access(pathfile, fs.F_OK, (err) => {
       if (err) {
-        console.error(err)
+       // console.error(err)
         callback(null,0,lastp);
       } else {
-        console.log('dans filexists2 avec retour 1 et lastp='+lastp);
+       // console.log('dans filexists2 avec retour 1 et lastp='+lastp);
         callback(null,1,lastp);
       }
     })
   };
 
   function newimage(fileexist, lastp,callback) {
-    console.log('dans newimage');
+    //console.log('dans newimage');
     if (!fileexist) {
       let pathtmp = __dirname + '/../public/images/art'+req.params.position+'.png';
       fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
         if (err) throw err;
-        console.log('dans newimage > creation nouvelle image :'+pathtmp);
+        //console.log('dans newimage > creation nouvelle image :'+pathtmp);
       callback(null, pathtmp,lastp);
       });
     } else {
-      console.log('dans newimage > image existe deja');
+      //console.log('dans newimage > image existe deja');
       res.send({error : "file exist"});
       return;
     }
   }
 
   function Jimpread(tmpimage,lastp, callback) {
-    console.log('dans Jimpread avec lastp = '+lastp);
+   console.log('>>>>>>>>>>>>>> dans Jimpread avec lastp = '+lastp+'<<<<<<<<<<<<<<<<<<<<<<<<<');
     if (tmpimage) {
       
-      console.log('Jimp va ecrire dans '+tmpimage);
+     // console.log('Jimp va ecrire dans '+tmpimage);
       //on prend la position du dernier pixel : ex : 123. Et on va en deduire la taille du carré max. 
+      console.log('SquareSize ======');
       let size = ulam.getSquareSize(lastp);
-      let coordinate = ulam.getNewLatticeCoordinatesFor(lastp);
-      Jimp.read(tmpimage, (err, art01) => {
+      console.log(size);
+
+      let coordinate = ulam.getNewLatticeCoordinatesFor(req.params.position,size);
+      console.log('nouvelle position avec 0,0 en au a gauche ======');
+      console.log(coordinate);
+
+
+    var jimptmpimage =  Jimp.read(tmpimage, (err, art01) => {
         if (err) throw err;
-        console.log(typeof(req.params.r)+' '+req.params.g+' '+ req.params.b+' ' +req.params.alpha+' '+coordinate[0]+' '+coordinate[1])
+        //console.log(typeof(req.params.r)+' '+req.params.g+' '+ req.params.b+' ' +req.params.alpha+' '+typeof(coordinate[0])+' '+coordinate[1])
         let r = parseInt(req.params.r);
         let g = parseInt(req.params.g);
         let b = parseInt(req.params.b);
-        let alpha = parseFloat(req.params.alpha);
+        let alpha = parseInt(req.params.alpha);
+       // console.log("========"+typeof(Jimp.rgbaToInt(r, g, b, alpha))+' >>>>>'+Jimp.rgbaToInt(r, g, b, alpha));
+       console.log('nouvelle position = '+ req.params.position + ' avec x = '+coordinate[0]+ ' y ='+coordinate[1]);
         art01
-          .resize(size, size) // resize
+          .contain(size, size,Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE) // resize
           .rgba(true)
-          .setPixelColor(rgbHex(r, g, b, alpha), coordinate[0], coordinate[1])
+          .setPixelColor(Jimp.rgbaToInt(r, g, b, alpha), coordinate[0], coordinate[1])
           .write(tmpimage)
         // image.setPixelColor(hex, x, y); // sets the colour of that pixel
 
-
-
         // arg1 now equals 'Task 1' and arg2 now equals 'Task 2'
-        let arg3 = tmpimage + ' and nouveau fichier ok la hauteur du fichier est : '+art01.bitmap.height+ ' est sa longeur est :'+art01.bitmap.width;
-        console.log(arg3);
+       // let arg3 = tmpimage + ' and nouveau fichier ok la hauteur du fichier est : '+art01.bitmap.height+ ' est sa longeur est :'+art01.bitmap.width;
+        callback(null, tmpimage, jimptmpimage, lastp);
 
+        //console.log(arg3);
+/*
         fs.copyFile(tmpimage, __dirname + '/../public/images/art'+req.params.position+'-ok.png', (err) => {
           if (err) throw err;
           console.log('>>>>>dans jimp copy de image :'+tmpimage+' vers '+__dirname + '/../public/images/art'+req.params.position+'-ok.png');
           callback(null, arg3);
 
         });
-
-
+*/
       });
-
 
     }
     else {
-
       callback(null, 'Erreur JIMP : pas de fichier ');
     }
-
   }
 
 
+  const Masterimg = new Jimp( __dirname + '/../public/images/Art0X.png', function (err, img) {
+    err ? console.log('logo err' + err) : console.log('logo created and ready for use');
+    return img;
+});
+
+  function Jimpmerge(tmpimage,jimptmpimage,lastp, callback) {
+    console.log("JimpmergeJimpmergeJimpmergeJimpmerge");
+    console.log(tmpimage);
+    console.log(lastp);
+    console.log(typeof(tmpimage));
+ 
+    
+
+  }
   // P = position du pixel a ajouté.
   // si P > que la derniere position dans le store : on a un soucis, on arrète. En effet, le pixel n'est peut etre pas encore ajouté, ou c'est une erreur 
 
@@ -138,8 +160,8 @@ router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
     checklastposition,
     filexists, //utils.filexists
     newimage,
-    Jimpread // Jimp.read
-
+    Jimpread, // Jimp.rea
+    Jimpmerge
   ], function (err, result) {
     // see https://medium.com/velotio-perspectives/understanding-node-js-async-flows-parallel-serial-waterfall-and-queues-6f9c4badbc17
     console.log(result);

@@ -19,6 +19,7 @@
     "helmet": "^3.21.2",
     "jimp": "^0.9.3",
     "jwks-rsa": "^1.6.2",
+    "merge-images": "^1.1.0",
     "mongodb": "^3.5.2",
     "mongoose": "^5.9.2",
     "morgan": "~1.9.1",
