@@ -94,7 +94,9 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
           console.log(stream.eventsToDispatch); // this is an array containing all added events in this commit.
           var position = stream.eventsToDispatch[0]['position']; // N° de pixel 
           //var id_event = stream.eventsToDispatch[0]['id']; // Identidiant de l'event 
-          res.send('le pixel a bien été ajouté: ' + req.body.pixel + req.body.email + req.body.auth0Id + ' a la position :' + position);
+          //res.send('le pixel a bien été ajouté: ' + req.body.pixel + req.body.email + req.body.auth0Id + ' a la position :' + position);
+          res.send({'position': position});
+
           //enregistrer la position dans les metadata Auth0 de l'user 
 
 
