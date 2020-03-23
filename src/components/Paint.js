@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom";
 
 
 const Paint = () => {
+
+
   const { getTokenSilently, loading, user } = useAuth0();
   const history = useHistory();
 
@@ -25,6 +27,13 @@ const Paint = () => {
       )
         .then(function (response) {
           console.log(response);
+          if(response.data.position){
+            console.log(response.data.position);
+            history.push("/view/"+response.data.position);
+
+          } else {
+            console.log("error adding pixel :( ");
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -59,6 +68,8 @@ const Paint = () => {
     console.log('pixel added yet');
   }
   
+
+
   return (
 
 
