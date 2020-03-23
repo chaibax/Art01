@@ -1,0 +1,37 @@
+
+.imageblink {
+  position: relative;
+
+}
+
+.imageblink img {
+	position: absolute;
+	left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
+
+
+}
+.imagetop {
+	animation-name: fade;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 4;
+	animation-duration: 2s;
+	animation-direction: alternate;
+}
+
+@keyframes fade {
+	0% {
+		opacity: 1;
+	}
+	25% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}

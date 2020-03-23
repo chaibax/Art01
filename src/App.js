@@ -53,7 +53,7 @@ function App() {
                                     <Route path="/ExternalApi" exact={true} component={ExternalApi} />
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
-                                    <PrivateRoute path="/view" component={View} />
+                                    <PrivateRoute path="/view/:id" component={View} />
                                     <Route component={NoMatch} />
                                 </Switch>
                                 <NavBar />
