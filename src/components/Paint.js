@@ -27,7 +27,7 @@ const Paint = () => {
       )
         .then(function (response) {
           console.log(response);
-          if(response.data.position){
+          if(response.data.position>-1){
             console.log(response.data.position);
             history.push("/view/"+response.data.position);
 

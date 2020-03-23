@@ -60,7 +60,7 @@ app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/pixels', pixelsRouter);
 app.use('/api/spiral', spiralRouter);
-app.use('/api/images', imagesRouter);
+app.use('/api/images', imagesRouter.router);
 
 module.exports = app;
 

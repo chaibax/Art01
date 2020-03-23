@@ -91,6 +91,8 @@ function Jimpread(tmpimage, lastp, req, callback) {
       let alpha = parseInt(req.alpha);
       // console.log("========"+typeof(Jimp.rgbaToInt(r, g, b, alpha))+' >>>>>'+Jimp.rgbaToInt(r, g, b, alpha));
       console.log('nouvelle position = ' + req.position + ' avec x = ' + coordinate[0] + ' y =' + coordinate[1]);
+      console.log('a ajoute le pixel ayant pour couleur = ' + r + ' . ' + g + ' . ' + b + ' . '+ alpha);
+
       art01
         .contain(size, size, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE) // resize
         .rgba(true)
@@ -225,4 +227,11 @@ res.send('pngtosvg');
 
 
 
-module.exports = router;
+module.exports = {
+  router:router,
+  generateimage: generateimage
+
+
+};
+
+//module.exports = router;
