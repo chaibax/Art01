@@ -124,6 +124,18 @@ function Jimpmerge(tmpimage, lastp, callback) {
     jimps.push(Jimp.read(images[i]));
   }
 
+
+  fs.access(__dirname + '/../public/images/Art0X.png', fs.F_OK, (err) => {
+    if (err) {
+      console.log("Pas de image ici = "+__dirname + "/../public/images/Art0X.png");
+      console.log(err);
+      return
+    }
+    console.log("image existe  = "+__dirname + "/../public/images/Art0X.png");
+      
+    //file exists
+  })
+
   Promise.all(jimps).then(function (data) {
     return Promise.all(jimps);
   }).then(function (data) {
