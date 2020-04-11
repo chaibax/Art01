@@ -18,9 +18,20 @@ var debug = require('debug');
  
 var app = express();
 
+// Set up a whitelist and check against it:
+var whitelist = ['http://localhost:3000', 'http://localhost', 'https://art0x.herokuapp.com', 'https://art0x.eu.auth0.com/']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Define an endpoint that must be called with an access token
 app.get("/api/external", auth0.checkJwt, (req, res) => {
