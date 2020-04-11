@@ -11,8 +11,6 @@ var ulam = require('../utils/ulam');
 const debug = 1;
 
 function checklastposition(req,callback) {
-  console.log('>>>>>>>> checklastposition');
-  console.log(req.position);
   eventdata.lastposition(function (lastp) {
 
     if(debug){
