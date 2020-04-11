@@ -17,16 +17,6 @@ var debug = require('debug');
 
  
 var app = express();
-app.use(cors(corsOptions));
-
-// Define an endpoint that must be called with an access token
-app.get("/api/external", auth0.checkJwt, (req, res) => {
-  res.send({
-    msg: "Your Access Token was successfully validated!"
-  });
-});
-
-
 
 // Set up a whitelist and check against it:
 var whitelist = ['http://localhost:3000', 'http://localhost', 'https://art0x.herokuapp.com', 'https://art0x.eu.auth0.com/']
@@ -39,6 +29,19 @@ var corsOptions = {
     }
   }
 }
+
+
+app.use(cors(corsOptions));
+
+// Define an endpoint that must be called with an access token
+app.get("/api/external", auth0.checkJwt, (req, res) => {
+  res.send({
+    msg: "Your Access Token was successfully validated!"
+  });
+});
+
+
+
 
 
 app.use(logger('dev'));
