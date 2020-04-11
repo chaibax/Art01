@@ -4,7 +4,7 @@ import '../images.css';
 
 const View = (props) => {
     let link = process.env.REACT_APP_API_BASE_URL+"/../images/Art0x.png";
-    let position = props.match.params.id -1;
+    let position = parseInt(props.match.params.id);
     let pixeladded_image = process.env.REACT_APP_API_BASE_URL+"/../images/Art"+position+".png";
     return (
         <Fragment>
