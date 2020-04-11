@@ -50,7 +50,11 @@ const Paint = () => {
   const given_name = user.given_name;
   const email = user.email;
   const pixel_added = user['https://art01/pixel_added'];
+  const pixel_position  = user['https://art01/pixel_position'];
   const auth0Id = user['https://art01/user_id'];
+
+  console.log('pixel_added = '+pixel_added+' position ='+pixel_position+ ' given_name='+given_name+ 'FirstIP = '+FirstIP);
+
 
 
 
@@ -64,7 +68,7 @@ const Paint = () => {
 
 //si le pixel a déja été déposé, on affiche pas cette page
   if( pixel_added){
-    history.push("/view");
+    history.push("/view/"+pixel_position);
     console.log('pixel added yet');
   }
   

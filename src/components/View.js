@@ -9,7 +9,7 @@ const View = (props) => {
     return (
         <Fragment>
             <h1 className="title is-size-2 has-text-centered shadowed">
-                ART01 now. Your are the painter #{position}
+                ART01 now. Your are the painter #{position+1}
             </h1>
            
         <div className="imageblink ">
