@@ -122,7 +122,7 @@ function Jimpmerge(tmpimage, lastp, callback) {
 
     fs.access(process.env.HEROKU_API_PATH+ '/public/images/Art0X.png', fs.F_OK, (err) => {
       if (err) {
-        console.log("Pas de image ici = "+process.env.HEROKU_API_PATH+ '/public/images/Art0X.png');
+        console.log("Pas de image ici h = "+process.env.HEROKU_API_PATH+ '/public/images/Art0X.png');
         console.log(err);
         return
       }
