@@ -118,11 +118,11 @@ function Jimpmerge(tmpimage, lastp, callback) {
 
   if(process.env.HEROKU_API_PATH ) {
     let app_root_path = process.env.HEROKU_API_PATH; 
-    var images = [ process.env.HEROKU_API_PATH+'/public/images/Art0X.png', tmpimage];
+    var images = [ process.env.HEROKU_API_PATH+'/public/images/Art0x.png', tmpimage];
 
-    fs.access(process.env.HEROKU_API_PATH+ '/public/images/Art0X.png', fs.F_OK, (err) => {
+    fs.access(process.env.HEROKU_API_PATH+ '/public/images/Art0x.png', fs.F_OK, (err) => {
       if (err) {
-        console.log("Pas de image ici h = "+process.env.HEROKU_API_PATH+ '/public/images/Art0X.png');
+        console.log("Pas de image ici h = "+process.env.HEROKU_API_PATH+ '/public/images/Art0x.png');
         console.log(err);
         return
       }
@@ -132,15 +132,15 @@ function Jimpmerge(tmpimage, lastp, callback) {
   } else {
     //not in heroku env
 
-    var images = [__dirname + '/../public/images/Art0X.png', tmpimage];
+    var images = [__dirname + '/../public/images/Art0x.png', tmpimage];
 
-    fs.access(__dirname + '/../public/images/Art0X.png', fs.F_OK, (err) => {
+    fs.access(__dirname + '/../public/images/Art0x.png', fs.F_OK, (err) => {
       if (err) {
-        console.log("Pas de image ici = "+__dirname + "/../public/images/Art0X.png");
+        console.log("Pas de image ici = "+__dirname + "/../public/images/Art0x.png");
         console.log(err);
         return
       }
-      console.log("image existe  = "+__dirname + "/../public/images/Art0X.png");
+      console.log("image existe  = "+__dirname + "/../public/images/Art0x.png");
     })
 
 
@@ -163,7 +163,7 @@ function Jimpmerge(tmpimage, lastp, callback) {
     return Promise.all(jimps);
   }).then(function (data) {
     data[1].composite(data[0], 0, 0);
-    data[1].write(__dirname + '/../public/images/Art0X.png', function () {
+    data[1].write(__dirname + '/../public/images/Art0x.png', function () {
       console.log("> wrote the image");
       callback(null,'wrote the image');
     });
