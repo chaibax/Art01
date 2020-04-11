@@ -117,7 +117,7 @@ function Jimpmerge(tmpimage, lastp, callback) {
   console.log(typeof (tmpimage));
   //Art0X.png => image source 
   console.log('heroku diname = '+__dirname);
-  var images = [__dirname + '/../public/images/Art0X.png', tmpimage];
+  var images = [__dirname + '/public/images/Art0X.png', tmpimage];
   var jimps = [];
 
   for (var i = 0; i < images.length; i++) {
@@ -125,13 +125,13 @@ function Jimpmerge(tmpimage, lastp, callback) {
   }
 
 
-  fs.access(__dirname + '/../public/images/Art0X.png', fs.F_OK, (err) => {
+  fs.access(__dirname + '/public/images/Art0X.png', fs.F_OK, (err) => {
     if (err) {
-      console.log("Pas de image ici = "+__dirname + "/../public/images/Art0X.png");
+      console.log("Pas de image ici = "+__dirname + "/public/images/Art0X.png");
       console.log(err);
       return
     }
-    console.log("image existe  = "+__dirname + "/../public/images/Art0X.png");
+    console.log("image existe  = "+__dirname + "/public/images/Art0X.png");
       
     //file exists
   })
@@ -140,7 +140,7 @@ function Jimpmerge(tmpimage, lastp, callback) {
     return Promise.all(jimps);
   }).then(function (data) {
     data[1].composite(data[0], 0, 0);
-    data[1].write(__dirname + '/../public/images/Art0X.png', function () {
+    data[1].write(__dirname + '/public/images/Art0X.png', function () {
       console.log("> wrote the image");
       callback(null,'wrote the image');
     });
