@@ -112,10 +112,11 @@ function Jimpread(tmpimage, lastp, req, callback) {
 
 
 function Jimpmerge(tmpimage, lastp, callback) {
-  console.log("JimpmergeJimpmergeJimpmergeJimpmerge");
+  console.log("JimpmergeJimpmergeJimpmergeJimpmerge heroku");
   console.log(tmpimage);
   console.log(typeof (tmpimage));
   //Art0X.png => image source 
+  console.log('heroku diname = '+__dirname);
   var images = [__dirname + '/../public/images/Art0X.png', tmpimage];
   var jimps = [];
 
