@@ -29,7 +29,7 @@ const Paint = () => {
           console.log(response);
           if(response.data.position>-1){
             console.log(response.data.position);
-            history.push("/view?id="+response.data.position);
+            history.push("/view/"+response.data.position);
 
           } else {
             console.log("error adding pixel :( ");

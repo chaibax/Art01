@@ -57,6 +57,8 @@ function newimage(fileexist, lastp,  req, callback) {
       console.log('dans newimage > creation nouvelle image avec  req:'+req.position);
       callback(null, pathtmp, lastp,req);
     });
+
+
   } else {
     console.log('dans newimage > image existe deja');
     res.send({ error: "file exist" });
@@ -126,8 +128,11 @@ function Jimpmerge(tmpimage, lastp, callback) {
         console.log("Pas de image ici h = "+process.env.HEROKU_API_PATH+ '/public/images/Art0x.png');
         console.log(err);
         let pathtmp = process.env.HEROKU_API_PATH+ '/public/images/Art0x.png';
-        fs.copyFile(process.env.HEROKU_API_PATH+ '/public/images/empty.png', pathtmp)
-        return
+        fs.copyFile(process.env.HEROKU_API_PATH+ '/public/images/empty.png', pathtmp, (err) => {
+          if (err) throw err;
+         
+          
+        });
       }
       console.log("image existe");
     })
@@ -142,8 +147,12 @@ function Jimpmerge(tmpimage, lastp, callback) {
         console.log("Pas de image ici = "+__dirname + "/../public/images/Art0x.png");
         console.log(err);
         let pathtmp =__dirname + '/../public/images/Art0x.png';
-        fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp)
-        return
+        fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
+      if (err) throw err;
+    
+     
+    });
+   
       }
       console.log("image existe  = "+__dirname + "/../public/images/Art0x.png");
     })
