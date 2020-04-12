@@ -122,8 +122,11 @@ function Jimpmerge(tmpimage, lastp, callback) {
 
     fs.access(process.env.HEROKU_API_PATH+ '/public/images/Art0x.png', fs.F_OK, (err) => {
       if (err) {
+        //pas d'image Art0x.png, on va donc la crée car c'est peut être Lui. 
         console.log("Pas de image ici h = "+process.env.HEROKU_API_PATH+ '/public/images/Art0x.png');
         console.log(err);
+        let pathtmp = process.env.HEROKU_API_PATH+ '/public/images/Art0x.png';
+        fs.copyFile(process.env.HEROKU_API_PATH+ '/public/images/empty.png', pathtmp)
         return
       }
       console.log("image existe");
@@ -138,6 +141,8 @@ function Jimpmerge(tmpimage, lastp, callback) {
       if (err) {
         console.log("Pas de image ici = "+__dirname + "/../public/images/Art0x.png");
         console.log(err);
+        let pathtmp =__dirname + '/../public/images/Art0x.png';
+        fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp)
         return
       }
       console.log("image existe  = "+__dirname + "/../public/images/Art0x.png");
