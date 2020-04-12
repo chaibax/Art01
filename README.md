@@ -49,19 +49,22 @@ At this rate, ART01 will never be finished.
 
 ## How are pixels added ?
 
-I use a [Ulam spiral](ttps://en.wikipedia.org/wiki/Ulam_spiral)  to add each pixels, the first one the first being in the center :
+I use a [Ulam spiral](https://en.wikipedia.org/wiki/Ulam_spiral)  to add each pixels, the first one the first being in the center :
 
 ![Ulam spiral](public/800px-Ulam_spiral_howto_all_numbers.svg.png)
 
+## How are pixels stored ?
+
+I use eventsourcing pattern. Take a look : [eventstore](https://eventstore.js.org/)  
 
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn dev`
 
-Runs the app in the development mode.<br />
+Runs the front react app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
@@ -92,32 +95,11 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Launch Node express back/api
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+cd /api
+nodemon
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+See it at http://localhost:3001/
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
