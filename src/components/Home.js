@@ -12,10 +12,12 @@ const Home = () => {
  
 
   if (isAuthenticated ) {
+    console.log('isAuthenticated');
+    const pixel_position  = user['https://art01/pixel_position'];
     document.onkeydown = function (evt) {
       evt = evt || window.event;
       if (evt.keyCode === 13) {
-        history.push("/view");
+        history.push("/view/"+pixel_position);
       }
     };
     return (
@@ -43,7 +45,7 @@ const Home = () => {
                     .typeString('<br/>')
                     .pauseFor(50)
                     .typeString('>> ')
-                    .typeString('<a href="/view" style="text-deconration:none;color:#f0fff8">' + 'View' + '</a>')
+                    .typeString('<a href="/view/' +pixel_position+ '" style="text-deconration:none;color:#f0fff8">' + 'View' + '</a>')
                     .start();
                 }}
               />
