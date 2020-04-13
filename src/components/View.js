@@ -43,10 +43,10 @@ class View  extends Component  {
 
 
                     <a href={this.state.link} download="Art01.png" target="_blank">
-                        <img src={this.state.pixeladded_image} className="bottom" style={{ imageRendering: 'pixelated', backgroundColor: 'rgba(255, 255, 255, 1)', height: '80vmin', width: '80vim', zIndex: 1 }} />
+                        <img src={this.state.pixeladded_image} className="bottom piximagerendering" style={{ backgroundColor: 'rgba(255, 255, 255, 1)', height: '80vmin', width: '80vim', zIndex: 1 }} />
                     </a>
                     <a href={this.state.link} download="Art01.png" target="_blank">
-                        <img src={this.state.link} className="imagetop" style={{ imageRendering: 'pixelated', backgroundColor: 'rgba(255, 255, 255, 1)', height: '80vmin', width: '80vim', zIndex: 1 }} />
+                        <img src={this.state.link} className="imagetop piximagerendering" style={{  backgroundColor: 'rgba(255, 255, 255, 1)', height: '80vmin', width: '80vim', zIndex: 1 }} />
                     </a>
 
 

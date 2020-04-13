@@ -1,12 +1,27 @@
 
+
+@-moz-document url-prefix() {
+    .piximagerendering {
+        image-rendering : crisp-edges;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+    .piximagerendering {
+        image-rendering : pixelated;
+    }
+}
+
+
+
 .imageblink {
   position: relative;
 
 }
 
 .imageblink img {
-	position: absolute;
-	left: 0; 
+  position: absolute;
+  left: 0; 
   right: 0; 
   margin-left: auto; 
   margin-right: auto;
