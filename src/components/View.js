@@ -24,7 +24,7 @@ class View  extends Component  {
       }
       componentDidMount(){
        console.log('mounted');
-       this.interval = setInterval(() => this.refresh(), 3000);
+       this.interval = setInterval(() => this.refresh(), 1000);
       }
 
       componentWillUnmount() {
