@@ -3,8 +3,6 @@ var spiral = require('zero-indexed-ulam-spiral');
 //retourne, en donnant des coordonnés x,y, la position, dans le sens numero de pixel (ex : pixel 129). Refentiel : 0,0 au centre 
 var getLatticeCoordinatesFor = function(position) {
     let result = spiral.getLatticeCoordinatesFor(position);   
-    console.log('👉👉👉👉 getLatticeCoordinatesFor('+position+')');
-    console.log('👉👉👉👉 result='+result[0]+'/'+result[1]);
     return result;
 };
 
@@ -35,7 +33,7 @@ var getNewLatticeCoordinatesFor  = function(position, squaresize) {
     } else if (result_old[1] <0){
         var  newy = Math.abs(result_old[1]) + Math.floor(size/2);
     } else {
-        var  newy = Math.abs(result_old[1]) - Math.floor(size/2);
+        var  newy = Math.abs(result_old[1] - Math.floor(size/2));
 
     }
     
