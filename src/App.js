@@ -11,7 +11,7 @@ import View from "./components/View";
 import NavBar from "./components/NavBar";
 import './App.sass';
 import './App.css';
-
+require('dotenv').config();
 
 function App() {
     const { loading, user, isAuthenticated } = useAuth0();

@@ -88,11 +88,11 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
 
   let event = [{ pixel: req.body.pixel }, { email: req.body.email }, { auth0Id: req.body.auth0Id }];
   Events.countDocuments({ 'payload.email': req.body.email }, function (err, count) {
-    if (count > 0) {
+    if ( (count > 0) && !(process.env.DEBUG_MODE=='1')) {
       console.log('il exsite deja ' + count + ' pixel avec cet email');
       res.send('le pixel a DEJA été ajouté par : ' + req.body.email);
     } else {
-      console.log('il exsite ' + count + ' pixel avec cet email');
+      console.log('il exsite ' + count + ' pixel avec cet email et  debug_mode= '+process.env.DEBUG_MODE);
       es.getEventStream('pixels', function (err, stream) {
         //verification que l'user n'a pas déjà deposé un pixel dans le store. Si non : 
         stream.addEvent(event);
