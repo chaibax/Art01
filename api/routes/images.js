@@ -91,9 +91,9 @@ function Jimpread(tmpimage, lastp, req, callback) {
       let b = parseInt(req.b);
       let alpha = parseInt(req.alpha);
       // console.log("========"+typeof(Jimp.rgbaToInt(r, g, b, alpha))+' >>>>>'+Jimp.rgbaToInt(r, g, b, alpha));
-      console.log('nouvelle position = ' + req.position + ' avec x = ' + coordinate[0] + ' y =' + coordinate[1]);
-      console.log('a ajoute le pixel ayant pour couleur = ' + r + ' . ' + g + ' . ' + b + ' . ' + alpha);
+      
 
+      console.log('👉 ecriture de limage temporaire '+tmpimage);
       //fix heroku ?
       art01
         .contain(size, size, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE) // resize
