@@ -179,10 +179,6 @@ function Jimpmerge(tmpimage, req, callback) {
   }).then(function (data) {
 
     // il faudrait, au niveau du merge, verifier qu'on ne change pas de taille de carré. 
-    console.log('💄💄');
-    console.log(typeof req.position);
-    console.log(req.position);
-    console.log('💄💄');
 
 
     if (req.position) {
