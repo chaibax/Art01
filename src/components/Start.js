@@ -38,6 +38,8 @@ document.onkeydown = function(evt) {
   }
 };
 const os = require("os");
+console.log('👉 hostname = '+hostname);
+console.log('redirect url = targetUrl: '+protocol+'://'+hostname+'/paint');
 var  hostname = os.hostname();
 var protocol = 'https';
 if (hostname === 'localhost') {
