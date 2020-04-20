@@ -38,14 +38,16 @@ document.onkeydown = function(evt) {
   }
 };
 const os = require("os");
-console.log('👉 hostname = '+hostname);
-console.log('redirect url = targetUrl: '+protocol+'://'+hostname+'/paint');
+
 var  hostname = os.hostname();
 var protocol = 'https';
 if (hostname === 'localhost') {
     hostname = 'localhost:3000';
     protocol = 'http';
 } 
+
+console.log('👉 hostname = '+hostname);
+console.log('redirect url = targetUrl: '+protocol+'://'+hostname+'/paint');
 
     return (
      
