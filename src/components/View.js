@@ -10,7 +10,7 @@ class View  extends Component  {
         this.state = {
             link: process.env.REACT_APP_API_BASE_URL + "/../images/Art0x.png",
             position : parseInt(props.match.params.id),
-            pixeladded_image : process.env.REACT_APP_API_BASE_URL + "/../images/Art" + parseInt(props.match.params.id) + ".png",
+            pixeladded_image : process.env.REACT_APP_API_BASE_URL + "/../images/art" + parseInt(props.match.params.id) + ".png",
             compteur : 0
           }
        
