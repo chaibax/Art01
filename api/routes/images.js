@@ -94,13 +94,12 @@ function Jimpread(tmpimage, lastp, req, callback) {
       console.log('nouvelle position = ' + req.position + ' avec x = ' + coordinate[0] + ' y =' + coordinate[1]);
       console.log('a ajoute le pixel ayant pour couleur = ' + r + ' . ' + g + ' . ' + b + ' . ' + alpha);
 
+      //fix heroku ?
       art01
         .contain(size, size, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE) // resize
         .rgba(true)
         .setPixelColor(Jimp.rgbaToInt(r, g, b, alpha), coordinate[0], coordinate[1])
-        .write(tmpimage)
-
-      callback(null, tmpimage, req);
+        .write(tmpimage,  callback(null, tmpimage, req));
 
 
     });
@@ -184,10 +183,10 @@ function Jimpmerge(tmpimage, req, callback) {
     if (req.position) {
       console.log('ulam.getSquareSize('+req.position+') = '+ulam.getSquareSize(req.position) )
       if ( ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
-        console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
+        //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
         data[1].composite(data[0], 1, 1);
       } else {
-        console.log('💄 pas de changement de square size');
+        //console.log('💄 pas de changement de square size');
         data[1].composite(data[0], 0, 0);
       }
     }
@@ -197,8 +196,8 @@ function Jimpmerge(tmpimage, req, callback) {
 
 
     data[1].write(__dirname + '/../public/images/Art0x.png', function () {
-      console.log("> wrote the image");
-      callback(null, 'wrote the image');
+      console.log("> wrote the new image Art0x.png");
+      callback(null, 'wrote the new image Art0x.png');
     });
   });
 
