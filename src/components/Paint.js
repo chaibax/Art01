@@ -59,7 +59,7 @@ const Paint = () => {
 
 
 
-  var FirstIP = getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256);
+  var FirstIP = getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(150, 256);
   console.log('FirstIP==');
   console.log(FirstIP);
 

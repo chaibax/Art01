@@ -10,23 +10,23 @@ var ulam = require('../utils/ulam');
 
 const debug = 1;
 
-function checklastposition(req,callback) {
+function checklastposition(req, callback) {
   eventdata.lastposition(function (lastp) {
 
-    if(debug){
-      callback(null, lastp,req);
+    if (debug) {
+      callback(null, lastp, req);
     } else {
 
-    //console.log('checklastposition 2');
-    if (lastp > req.position) {
-      // console.log('last position='+lastp);
-      callback(null, lastp,req);
-    } else {
-      console.log("Erreur : position not in eventstore" )
-      callback("position not in eventstore" );
-      return;
+      //console.log('checklastposition 2');
+      if (lastp > req.position) {
+        // console.log('last position='+lastp);
+        callback(null, lastp, req);
+      } else {
+        console.log("Erreur : position not in eventstore")
+        callback("position not in eventstore");
+        return;
+      }
     }
-  }
 
   });
 
@@ -40,22 +40,22 @@ function filexists(lastp, req, callback) {
   fs.access(pathfile, fs.F_OK, (err) => {
     if (err) {
       // console.error(err)
-      callback(null, 0, lastp,req);
+      callback(null, 0, lastp, req);
     } else {
       // console.log('dans filexists2 avec retour 1 et lastp='+lastp);
-      callback(null, 1, lastp,req);
+      callback(null, 1, lastp, req);
     }
   })
 };
 
-function newimage(fileexist, lastp,  req, callback) {
+function newimage(fileexist, lastp, req, callback) {
   console.log('dans newimage');
   if (!fileexist) {
     let pathtmp = __dirname + '/../public/images/art' + req.position + '.png';
     fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
       if (err) throw err;
-      console.log('dans newimage > creation nouvelle image avec  req:'+req.position);
-      callback(null, pathtmp, lastp,req);
+      console.log('dans newimage > creation nouvelle image avec  req:' + req.position);
+      callback(null, pathtmp, lastp, req);
     });
 
 
@@ -73,10 +73,11 @@ function Jimpread(tmpimage, lastp, req, callback) {
     // console.log('Jimp va ecrire dans '+tmpimage);
     //on prend la position du dernier pixel : ex : 123. Et on va en deduire la taille du carré max. 
     console.log('SquareSize ======');
-    let size = ulam.getSquareSize(lastp);
+    console.log('lulam.getSquareSize(astp')
+    let size = ulam.getSquareSize(req.position);
     console.log(size);
 
-    console.log('Jimpread position : '+req.position);
+    console.log('Jimpread position : ' + req.position);
     let coordinate = ulam.getNewLatticeCoordinatesFor(req.position, size);
     console.log('nouvelle position avec 0,0 en au a gauche ======');
     console.log(coordinate);
@@ -91,17 +92,17 @@ function Jimpread(tmpimage, lastp, req, callback) {
       let alpha = parseInt(req.alpha);
       // console.log("========"+typeof(Jimp.rgbaToInt(r, g, b, alpha))+' >>>>>'+Jimp.rgbaToInt(r, g, b, alpha));
       console.log('nouvelle position = ' + req.position + ' avec x = ' + coordinate[0] + ' y =' + coordinate[1]);
-      console.log('a ajoute le pixel ayant pour couleur = ' + r + ' . ' + g + ' . ' + b + ' . '+ alpha);
+      console.log('a ajoute le pixel ayant pour couleur = ' + r + ' . ' + g + ' . ' + b + ' . ' + alpha);
 
       art01
         .contain(size, size, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE) // resize
         .rgba(true)
         .setPixelColor(Jimp.rgbaToInt(r, g, b, alpha), coordinate[0], coordinate[1])
         .write(tmpimage)
-     
-      callback(null, tmpimage, lastp);
 
-    
+      callback(null, tmpimage, req);
+
+
     });
 
   }
@@ -113,25 +114,25 @@ function Jimpread(tmpimage, lastp, req, callback) {
 
 
 
-function Jimpmerge(tmpimage, lastp, callback) {
+function Jimpmerge(tmpimage, req, callback) {
   console.log("JimpmergeJimpmergeJimpmergeJimpmerge heroku");
   console.log(tmpimage);
   console.log(typeof (tmpimage));
 
-  if(process.env.HEROKU_API_PATH ) {
-    let app_root_path = process.env.HEROKU_API_PATH; 
-    var images = [ process.env.HEROKU_API_PATH+'/public/images/Art0x.png', tmpimage];
+  if (process.env.HEROKU_API_PATH) {
+    let app_root_path = process.env.HEROKU_API_PATH;
+    var images = [process.env.HEROKU_API_PATH + '/public/images/Art0x.png', tmpimage];
 
-    fs.access(process.env.HEROKU_API_PATH+ '/public/images/Art0x.png', fs.F_OK, (err) => {
+    fs.access(process.env.HEROKU_API_PATH + '/public/images/Art0x.png', fs.F_OK, (err) => {
       if (err) {
         //pas d'image Art0x.png, on va donc la crée car c'est peut être Lui. 
-        console.log("Pas de image ici h = "+process.env.HEROKU_API_PATH+ '/public/images/Art0x.png');
+        console.log("Pas de image ici h = " + process.env.HEROKU_API_PATH + '/public/images/Art0x.png');
         console.log(err);
-        let pathtmp = process.env.HEROKU_API_PATH+ '/public/images/Art0x.png';
-        fs.copyFile(process.env.HEROKU_API_PATH+ '/public/images/empty.png', pathtmp, (err) => {
+        let pathtmp = process.env.HEROKU_API_PATH + '/public/images/Art0x.png';
+        fs.copyFile(process.env.HEROKU_API_PATH + '/public/images/empty.png', pathtmp, (err) => {
           if (err) throw err;
-         
-          
+
+
         });
       }
       console.log("image existe");
@@ -144,26 +145,26 @@ function Jimpmerge(tmpimage, lastp, callback) {
 
     fs.access(__dirname + '/../public/images/Art0x.png', fs.F_OK, (err) => {
       if (err) {
-        console.log("Pas de image ici = "+__dirname + "/../public/images/Art0x.png");
+        console.log("Pas de image ici = " + __dirname + "/../public/images/Art0x.png");
         console.log(err);
-        let pathtmp =__dirname + '/../public/images/Art0x.png';
+        let pathtmp = __dirname + '/../public/images/Art0x.png';
         fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
-      if (err) throw err;
-    
-     
-    });
-   
+          if (err) throw err;
+
+
+        });
+
       }
-      console.log("image existe  = "+__dirname + "/../public/images/Art0x.png");
+      console.log("image existe  = " + __dirname + "/../public/images/Art0x.png");
     })
 
 
   }
 
 
-  
+
   //Art0X.png => image source 
-  console.log('heroku diname = '+__dirname);
+  console.log('heroku diname = ' + __dirname);
   var jimps = [];
 
   for (var i = 0; i < images.length; i++) {
@@ -176,17 +177,39 @@ function Jimpmerge(tmpimage, lastp, callback) {
   Promise.all(jimps).then(function (data) {
     return Promise.all(jimps);
   }).then(function (data) {
-    data[1].composite(data[0], 0, 0);
+
+    // il faudrait, au niveau du merge, verifier qu'on ne change pas de taille de carré. 
+    console.log('💄💄');
+    console.log(typeof req.position);
+    console.log(req.position);
+    console.log('💄💄');
+
+
+    if (req.position) {
+      console.log('ulam.getSquareSize('+req.position+') = '+ulam.getSquareSize(req.position) )
+      if ( ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
+        console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
+        data[1].composite(data[0], 1, 1);
+      } else {
+        console.log('💄 pas de changement de square size');
+        data[1].composite(data[0], 0, 0);
+      }
+    }
+    else {
+      data[1].composite(data[0], 0, 0);
+    }
+
+
     data[1].write(__dirname + '/../public/images/Art0x.png', function () {
       console.log("> wrote the image");
-      callback(null,'wrote the image');
+      callback(null, 'wrote the image');
     });
   });
 
 };
 
 //fonction qui va créer une images et la mergé avec l'image de base 
-function generateimage(params,callback){
+function generateimage(params, callback) {
 
   async.waterfall([
     async.constant(params),
@@ -240,25 +263,25 @@ router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
   console.log('params dans pixeladd=  ');
   console.log(req.params);
 
-  generateimage(req.params, function(res1){
+  generateimage(req.params, function (res1) {
     res.send(res1);
   });
 
 });
 
 router.all('/randompixeladd/:number', function (req, res, next) {
- 
-  for(let i=0;i<req.params.number;i++){
-    console.log('generation image n° '+i);
+
+  for (let i = 0; i < req.params.number; i++) {
+    console.log('generation image n° ' + i);
     let params = { position: i, r: getRandomArbitrary(0, 256), g: getRandomArbitrary(0, 256), b: getRandomArbitrary(0, 256), alpha: getRandomArbitrary(0, 100) };
 
 
     console.log('params dans randompixeladd=  ');
     console.log(params);
-   
-    generateimage(params, function(res1){
-      
-      if(i == (req.params.number-1)) res.send('generation de '+i+' images OK');
+
+    generateimage(params, function (res1) {
+
+      if (i == (req.params.number - 1)) res.send('generation de ' + i + ' images OK');
     });
   }
 
@@ -267,8 +290,8 @@ router.all('/randompixeladd/:number', function (req, res, next) {
 
 
 router.all('/pngtosvg', function (req, res, next) {
- 
-res.send('pngtosvg');
+
+  res.send('pngtosvg');
 
 });
 
@@ -276,7 +299,7 @@ res.send('pngtosvg');
 
 
 module.exports = {
-  router:router,
+  router: router,
   generateimage: generateimage
 
 

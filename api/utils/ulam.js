@@ -3,6 +3,8 @@ var spiral = require('zero-indexed-ulam-spiral');
 //retourne, en donnant des coordonnés x,y, la position, dans le sens numero de pixel (ex : pixel 129). Refentiel : 0,0 au centre 
 var getLatticeCoordinatesFor = function(position) {
     let result = spiral.getLatticeCoordinatesFor(position);   
+    console.log('👉👉👉👉 getLatticeCoordinatesFor('+position+')');
+    console.log('👉👉👉👉 result='+result[0]+'/'+result[1]);
     return result;
 };
 
@@ -45,8 +47,11 @@ var getSquareSize = function(position){
     //renvoi la taille d'un coté du carré dans lequel est inclus un pixel selon sa position/. Ex : pour la position 31, le pixel  
     // a pour position > [2, 3] . Il est inclus dans un carré ayant 7 de coté (3*2)+1 .
     // Refentiel : tous
-    let result = spiral.getLatticeCoordinatesFor(position);   
+
+    
+    let result = getLatticeCoordinatesFor(position);   
     let size = Math.max(Math.abs(result[0]),Math.abs(result[1]));
+    console.log('👉👉 getSquareSize('+position+') = '+((2*size)+1)+ ' result='+result[0]+'/'+result[1])
     return (2*size)+1;
 }
 
