@@ -37,7 +37,7 @@ const Paint = () => {
             history.push("/view/"+response.data.position);
 
           } else {
-            console.log("error adding pixel :( ");
+            console.log("error adding pixel :( or debug mode  ");
             history.push("/paint");
           }
         })
