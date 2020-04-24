@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import Typewriter from 'typewriter-effect';
@@ -19,15 +19,34 @@ const Paint = () => {
   function sendpixel() {
 
     const axios = require('axios');
+    
+    const mypixelid = document.getElementById('mypixel');
+    const pixelwaitid = document.getElementById('pixelwait');
+    const waittext = document.getElementById('waittext');
+
     const callApi = async () => {
       const token = await getTokenSilently();
-      
+    
+      axios.interceptors.request.use(config => {
+        // perform a task before the request is sent
+        console.log('Request was sent...');
+        mypixelid.classList.add("is-hidden");
+        pixelwaitid.classList.remove("is-hidden");
+
+        return config;
+      }, error => {
+        // handle the error
+        return Promise.reject(error);
+      });
+
+
     axios.post(process.env.REACT_APP_API_BASE_URL+'/pixels/add', {
         pixel: FirstIP,
         email: email,
         auth0Id: auth0Id
       }, {
-        headers: { 'Authorization': `Bearer ${token}` }
+        headers: { 'Authorization': `Bearer ${token}` },
+        timeout: 10000,
       }
       )
         .then(function (response) {
@@ -35,17 +54,25 @@ const Paint = () => {
           if( (response.data.position>-1) && !(process.env.REACT_APP_DEBUG_MODE=='1') ){
             console.log(response.data.position);
             history.push("/view/"+response.data.position);
+            
 
           } else {
-            console.log("error adding pixel :( or debug mode  ");
+            console.log("error adding pixel :( ");
             history.push("/paint");
+            pixelwaitid.classList.add("is-hidden");
+            mypixelid.classList.remove("is-hidden");
           }
         })
         .catch(function (error) {
+          console.log('Error calling '+process.env.REACT_APP_API_BASE_URL+'/pixels/add');
           console.log(error);
+          waittext.innerHTML = error+ ' : please refresh or retry';
+
         })
         .then(function () {
           // always executed
+         
+          console.log('request finished');
         });
 
     };
@@ -97,13 +124,20 @@ const Paint = () => {
   if((process.env.REACT_APP_DEBUG_MODE=='1')) {
 
     return (
+      <Fragment>
       <div id="mypixel" >
       <ViewColorFromIp ip={FirstIP} />
       <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
         >> Add my pixel to the paint
                </h2>
-
     </div>
+    <div id="pixelwait" className="is-hidden" >
+      <ViewColorFromIp ip={FirstIP} />
+      <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
+        >> Adding pixel: please wait...
+               </h2>
+    </div>
+    </Fragment>
     )
     
   } else {
@@ -136,13 +170,20 @@ const Paint = () => {
           }}
         />
   
-        <div id="mypixel" className="is-hidden">
-          <ViewColorFromIp ip={FirstIP} />
-          <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-            >> Add my pixel to the paint
-                   </h2>
-  
-        </div>
+  <Fragment>
+      <div id="mypixel" >
+      <ViewColorFromIp ip={FirstIP} />
+      <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
+        >> Add my pixel to the paint
+               </h2>
+    </div>
+    <div id="pixelwait" className="is-hidden" >
+      <ViewColorFromIp ip={FirstIP} />
+      <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
+        >> Adding pixel: please wait...
+               </h2>
+    </div>
+    </Fragment>
   
       </h2>
   
