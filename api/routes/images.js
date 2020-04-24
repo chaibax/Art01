@@ -6,7 +6,15 @@ const eventdata = require('../utils/eventsdata');
 const fs = require('fs');
 var async = require("async");
 var ulam = require('../utils/ulam');
+const AWS = require('aws-sdk');
+const path = require('path');
 
+AWS.config.update({
+  accessKeyId: process.env.AWS_S3_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_S3_SECRET
+});
+
+var s3 = new AWS.S3();
 
 const debug = 1;
 
@@ -91,17 +99,15 @@ function Jimpread(tmpimage, lastp, req, callback) {
       let b = parseInt(req.b);
       let alpha = parseInt(req.alpha);
       // console.log("========"+typeof(Jimp.rgbaToInt(r, g, b, alpha))+' >>>>>'+Jimp.rgbaToInt(r, g, b, alpha));
-      
 
-      console.log('👉 ecriture de limage temporaire '+tmpimage);
+
+      console.log('👉 ecriture de limage temporaire ' + tmpimage);
       //fix heroku ?
       art01
         .contain(size, size, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE) // resize
         .rgba(true)
         .setPixelColor(Jimp.rgbaToInt(r, g, b, alpha), coordinate[0], coordinate[1])
-        .write(tmpimage,  callback(null, tmpimage, req));
-
-
+        .write(tmpimage, callback(null, tmpimage, req));
     });
 
   }
@@ -109,8 +115,6 @@ function Jimpread(tmpimage, lastp, req, callback) {
     callback(null, 'Erreur JIMP : pas de fichier ');
   }
 }
-
-
 
 
 function Jimpmerge(tmpimage, req, callback) {
@@ -160,29 +164,22 @@ function Jimpmerge(tmpimage, req, callback) {
 
   }
 
-
-
   //Art0X.png => image source 
   console.log('heroku diname = ' + __dirname);
+
   var jimps = [];
 
   for (var i = 0; i < images.length; i++) {
     jimps.push(Jimp.read(images[i]));
   }
-
-
-
-
   Promise.all(jimps).then(function (data) {
     return Promise.all(jimps);
   }).then(function (data) {
 
     // il faudrait, au niveau du merge, verifier qu'on ne change pas de taille de carré. 
-
-
     if (req.position) {
-      console.log('ulam.getSquareSize('+req.position+') = '+ulam.getSquareSize(req.position) )
-      if ( ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
+      console.log('ulam.getSquareSize(' + req.position + ') = ' + ulam.getSquareSize(req.position))
+      if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
         //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
         data[1].composite(data[0], 1, 1);
       } else {
@@ -197,11 +194,41 @@ function Jimpmerge(tmpimage, req, callback) {
 
     data[1].write(__dirname + '/../public/images/Art0x.png', function () {
       console.log("> wrote the new image Art0x.png");
-      callback(null, 'wrote the new image Art0x.png');
+      callback(null, tmpimage, req);
     });
   });
 
 };
+
+
+function save_on_the_cloud(tmpimage, req, callback) {
+
+  var pixeladdedimage = tmpimage;
+  var Art01imagetosave =  __dirname + "/../public/images/Art0x.png"; 
+
+  var params = {
+    Bucket: 'art01-images',
+    Body: fs.createReadStream(Art01imagetosave),
+    Key: path.basename(Art01imagetosave)
+  };
+
+  s3.upload(params, function (err, data) {
+    //handle error
+    if (err) {
+      console.log("Error", err);
+    }
+    //success
+    if (data) {
+      console.log("Uploaded in:", data.Location);
+      callback(null, 'wrote  Art0x.png on amazon!'+data.Location);
+    }
+  });
+
+
+  
+
+}
+
 
 //fonction qui va créer une images et la mergé avec l'image de base 
 function generateimage(params, callback) {
@@ -212,7 +239,8 @@ function generateimage(params, callback) {
     filexists, //utils.filexists
     newimage,
     Jimpread, // Jimp.rea
-    Jimpmerge
+    Jimpmerge,
+    save_on_the_cloud
   ], function (err, result) {
     // see https://medium.com/velotio-perspectives/understanding-node-js-async-flows-parallel-serial-waterfall-and-queues-6f9c4badbc17
     console.log('fin du traitement');
