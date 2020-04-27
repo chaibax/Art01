@@ -13,7 +13,7 @@ const axios = require('axios');
 axios.get(process.env.REACT_APP_API_BASE_URL+'/pixels/count')
   .then(function (response) {
     // handle success
-    var given = moment("2020-01-°1", "YYYY-MM-DD");
+    var given = moment("2020-04-01", "YYYY-MM-DD");
     var current = moment().startOf('day');
     
     //Difference in number of days
