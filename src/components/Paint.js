@@ -171,7 +171,7 @@ const Paint = () => {
         />
   
   <Fragment>
-      <div id="mypixel" >
+      <div id="mypixel"  className="is-hidden" >
       <ViewColorFromIp ip={FirstIP} />
       <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
         >> Add my pixel to the paint
