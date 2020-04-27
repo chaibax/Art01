@@ -9,11 +9,11 @@ class View  extends Component  {
     constructor(props){
         super(props);
 
-        
+        console.log('REACT_APP_AWS_S3_ROOT_URL = '+process.env.REACT_APP_AWS_S3_ROOT_URL);
         this.state = {
-            link: process.env.REACT_APP_API_BASE_URL + "/../images/Art0x.png",
+            link: process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png",
             position : parseInt(props.match.params.id),
-            pixeladded_image : process.env.REACT_APP_API_BASE_URL + "/../images/art" + parseInt(props.match.params.id) + ".png", 
+            pixeladded_image : process.env.REACT_APP_AWS_S3_ROOT_URL + "/art" + parseInt(props.match.params.id) + ".png", 
             compteur : 0
           }
       }
@@ -22,7 +22,7 @@ class View  extends Component  {
       refresh(){
         console.log('refresh!');
         this.setState(state => ({
-            link: process.env.REACT_APP_API_BASE_URL + "/../images/Art0x.png?t="+Date.now()
+            link: process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png?t="+Date.now()
           }));
       }
       componentDidMount(){

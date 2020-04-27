@@ -108,6 +108,10 @@ function Jimpread(tmpimage, lastp, req, callback) {
         .rgba(true)
         .setPixelColor(Jimp.rgbaToInt(r, g, b, alpha), coordinate[0], coordinate[1])
         .write(tmpimage, callback(null, tmpimage, req));
+
+        // save on AWS3         
+
+
     });
 
   }
@@ -201,17 +205,13 @@ function Jimpmerge(tmpimage, req, callback) {
 };
 
 
-function save_on_the_cloud(tmpimage, req, callback) {
-
-  var pixeladdedimage = tmpimage;
-  var Art01imagetosave =  __dirname + "/../public/images/Art0x.png"; 
+function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
 
   var params = {
     Bucket: 'art01-images',
-    Body: fs.createReadStream(Art01imagetosave),
-    Key: path.basename(Art01imagetosave)
+    Body: fs.createReadStream(pathtouse),
+    Key: path.basename(pathtouse)
   };
-
   s3.upload(params, function (err, data) {
     //handle error
     if (err) {
@@ -220,14 +220,32 @@ function save_on_the_cloud(tmpimage, req, callback) {
     //success
     if (data) {
       console.log("Uploaded in:", data.Location);
-      callback(null, 'wrote  Art0x.png on amazon!'+data.Location);
+      callback(null, 'wrote '+pathtouse+' on amazon!'+data.Location);
     }
   });
-
-
-  
-
 }
+
+
+function save_on_the_cloud_art0x( req, callback) {
+  const pathtouse = __dirname + "/../public/images/Art0x.png";
+  var params = {
+    Bucket: 'art01-images',
+    Body: fs.createReadStream(pathtouse),
+    Key: path.basename(pathtouse)
+  };
+  s3.upload(params, function (err, data) {
+    //handle error
+    if (err) {
+      console.log("Error", err);
+    }
+    //success
+    if (data) {
+      console.log("Uploaded in:", data.Location);
+      callback(null, 'wrote '+pathtouse+' on amazon!'+data.Location);
+    }
+  });
+}
+
 
 
 //fonction qui va créer une images et la mergé avec l'image de base 
@@ -240,7 +258,8 @@ function generateimage(params, callback) {
     newimage,
     Jimpread, // Jimp.rea
     Jimpmerge,
-    save_on_the_cloud
+    save_on_the_cloud_tmpimage,
+    save_on_the_cloud_art0x
   ], function (err, result) {
     // see https://medium.com/velotio-perspectives/understanding-node-js-async-flows-parallel-serial-waterfall-and-queues-6f9c4badbc17
     console.log('fin du traitement');
@@ -248,6 +267,9 @@ function generateimage(params, callback) {
     callback(result);
   });
 }
+
+
+
 
 
 // On renvoie un nombre aléatoire entre une valeur min (incluse) 
