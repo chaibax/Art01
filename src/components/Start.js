@@ -19,7 +19,7 @@ axios.get(process.env.REACT_APP_API_BASE_URL+'/pixels/count')
     //Difference in number of days
     var dif = moment.duration(given.diff(current)).asDays();
     document.getElementById("count").innerHTML=response.data.count;
-    document.getElementById("since").innerHTML = moment("20200101", "YYYYMMDD").fromNow();
+    document.getElementById("since").innerHTML = moment("20200401", "YYYYMMDD").fromNow();
     let pourcentage = (response.data.count*100)/1000000000;
     document.getElementById("pourcentage").innerHTML = pourcentage.toFixed(7);
 
