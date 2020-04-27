@@ -99,19 +99,12 @@ function Jimpread(tmpimage, lastp, req, callback) {
       let b = parseInt(req.b);
       let alpha = parseInt(req.alpha);
       // console.log("========"+typeof(Jimp.rgbaToInt(r, g, b, alpha))+' >>>>>'+Jimp.rgbaToInt(r, g, b, alpha));
-
-
-      console.log('👉 ecriture de limage temporaire ' + tmpimage);
       //fix heroku ?
       art01
         .contain(size, size, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE) // resize
         .rgba(true)
         .setPixelColor(Jimp.rgbaToInt(r, g, b, alpha), coordinate[0], coordinate[1])
         .write(tmpimage, callback(null, tmpimage, req));
-
-        // save on AWS3         
-
-
     });
 
   }
@@ -138,8 +131,6 @@ function Jimpmerge(tmpimage, req, callback) {
         let pathtmp = process.env.HEROKU_API_PATH + '/public/images/Art0x.png';
         fs.copyFile(process.env.HEROKU_API_PATH + '/public/images/empty.png', pathtmp, (err) => {
           if (err) throw err;
-
-
         });
       }
       console.log("image existe");
@@ -157,22 +148,16 @@ function Jimpmerge(tmpimage, req, callback) {
         let pathtmp = __dirname + '/../public/images/Art0x.png';
         fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
           if (err) throw err;
-
-
         });
 
       }
       console.log("image existe  = " + __dirname + "/../public/images/Art0x.png");
     })
-
-
   }
 
   //Art0X.png => image source 
-  console.log('heroku diname = ' + __dirname);
-
   var jimps = [];
-
+//????? 
   for (var i = 0; i < images.length; i++) {
     jimps.push(Jimp.read(images[i]));
   }
@@ -182,7 +167,6 @@ function Jimpmerge(tmpimage, req, callback) {
 
     // il faudrait, au niveau du merge, verifier qu'on ne change pas de taille de carré. 
     if (req.position) {
-      console.log('ulam.getSquareSize(' + req.position + ') = ' + ulam.getSquareSize(req.position))
       if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
         //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
         data[1].composite(data[0], 1, 1);
@@ -195,18 +179,46 @@ function Jimpmerge(tmpimage, req, callback) {
       data[1].composite(data[0], 0, 0);
     }
 
+//faire un save avant ?
 
-    data[1].write(__dirname + '/../public/images/Art0x.png', function () {
-      console.log("> wrote the new image Art0x.png");
-      callback(null, tmpimage, req);
-    });
+
+fs.copyFile( __dirname + '/../public/images/Art0x.png',  __dirname + '/../public/images/Art0x-'+req.position+'.png', (err) => {
+  if (err) throw err;
+
+  data[1].write(__dirname + '/../public/images/Art0x.png', function () {
+    console.log("> wrote the new image Art0x.png");
+    callback(null, tmpimage, req);
+  });
+
+});
   });
 
 };
 
 
-function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
+function save_on_the_cloud_old_art0x(tmpimage,req, callback) {
+  var tmp_url = __dirname + '/../public/images/Art0x-'+req.position+'.png';
+  var params = {
+    Bucket: 'art01-images',
+    Body: fs.createReadStream(tmp_url),
+    Key: path.basename(tmp_url)
+  };
+  s3.upload(params, function (err, data) {
+    //handle error
+    if (err) {
+      console.log("Error in save_on_the_cloud_old_art0x", err);
+    }
+    //success
+    if (data) {
+      console.log("👉 save_on_the_cloud_old_art0x Uploaded in:", data.Location);
+      callback(null,tmpimage, req);
+    }
+  });
+}
 
+function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
+  console.log('👊 dans save_on_the_cloud_tmpimage');
+  var tmpimage=pathtouse;
   var params = {
     Bucket: 'art01-images',
     Body: fs.createReadStream(pathtouse),
@@ -215,19 +227,20 @@ function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
   s3.upload(params, function (err, data) {
     //handle error
     if (err) {
-      console.log("Error", err);
+      console.log("Error in save_on_the_cloud_tmpimage", err);
     }
     //success
     if (data) {
-      console.log("Uploaded in:", data.Location);
-      callback(null, 'wrote '+pathtouse+' on amazon!'+data.Location);
+      console.log("👉 save_on_the_cloud_tmpimage Uploaded in:", data.Location);
+      callback(null, tmpimage, req);
     }
   });
 }
 
 
-function save_on_the_cloud_art0x( req, callback) {
-  const pathtouse = __dirname + "/../public/images/Art0x.png";
+function save_on_the_cloud_art0x(pathtouse, req, callback) {
+  console.log('👊 dans save_on_the_cloud_art0x');
+  var pathtouse = __dirname + "/../public/images/Art0x.png";
   var params = {
     Bucket: 'art01-images',
     Body: fs.createReadStream(pathtouse),
@@ -236,12 +249,12 @@ function save_on_the_cloud_art0x( req, callback) {
   s3.upload(params, function (err, data) {
     //handle error
     if (err) {
-      console.log("Error", err);
+      console.log("Error in save_on_the_cloud_art0x", err);
     }
     //success
     if (data) {
-      console.log("Uploaded in:", data.Location);
-      callback(null, 'wrote '+pathtouse+' on amazon!'+data.Location);
+      console.log("👉👉 save_on_the_cloud_art0x  Uploaded in:", data.Location);
+      callback(null, pathtouse, req);
     }
   });
 }
@@ -258,11 +271,12 @@ function generateimage(params, callback) {
     newimage,
     Jimpread, // Jimp.rea
     Jimpmerge,
+    save_on_the_cloud_old_art0x,
     save_on_the_cloud_tmpimage,
     save_on_the_cloud_art0x
   ], function (err, result) {
     // see https://medium.com/velotio-perspectives/understanding-node-js-async-flows-parallel-serial-waterfall-and-queues-6f9c4badbc17
-    console.log('fin du traitement');
+    console.log('💚fin du traitement');
     console.log(result);
     callback(result);
   });
@@ -287,7 +301,6 @@ router.all('/', function (req, res, next) {
     //console.log(msg);
     res.send({ last: msg });
   });
-
 });
 
 router.all('/filexists/:position', function (req, res, next) {
@@ -304,10 +317,8 @@ router.all('/filexists/:position', function (req, res, next) {
 router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
   //req.params.position
   //const path = __dirname + '/../public/images/art' + req.params.position + '-ok.png';
-
   console.log('params dans pixeladd=  ');
   console.log(req.params);
-
   generateimage(req.params, function (res1) {
     res.send(res1);
   });
@@ -319,11 +330,8 @@ router.all('/randompixeladd/:number', function (req, res, next) {
   for (let i = 0; i < req.params.number; i++) {
     console.log('generation image n° ' + i);
     let params = { position: i, r: getRandomArbitrary(0, 256), g: getRandomArbitrary(0, 256), b: getRandomArbitrary(0, 256), alpha: getRandomArbitrary(0, 100) };
-
-
     console.log('params dans randompixeladd=  ');
     console.log(params);
-
     generateimage(params, function (res1) {
 
       if (i == (req.params.number - 1)) res.send('generation de ' + i + ' images OK');
@@ -335,7 +343,6 @@ router.all('/randompixeladd/:number', function (req, res, next) {
 
 
 router.all('/pngtosvg', function (req, res, next) {
-
   res.send('pngtosvg');
 
 });

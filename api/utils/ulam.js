@@ -49,7 +49,6 @@ var getSquareSize = function(position){
     
     let result = getLatticeCoordinatesFor(position);   
     let size = Math.max(Math.abs(result[0]),Math.abs(result[1]));
-    console.log('👉👉 getSquareSize('+position+') = '+((2*size)+1)+ ' result='+result[0]+'/'+result[1])
     return (2*size)+1;
 }
 
