@@ -178,25 +178,37 @@ function Jimpmerge(tmpimage, req, callback) {
     else {
       data[1].composite(data[0], 0, 0);
     }
+    //faire un save avant ?
+    fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
+      if (err) throw err;
 
-//faire un save avant ?
+      data[1].write(__dirname + '/../public/images/Art0x.png', function () {
+        console.log("> wrote the new image Art0x.png");
+        callback(null, tmpimage, req);
+      });
 
-
-fs.copyFile( __dirname + '/../public/images/Art0x.png',  __dirname + '/../public/images/Art0x-'+req.position+'.png', (err) => {
-  if (err) throw err;
-
-  data[1].write(__dirname + '/../public/images/Art0x.png', function () {
-    console.log("> wrote the new image Art0x.png");
-    callback(null, tmpimage, req);
+    });
+  })
+  .catch((error) => {
+    //Code si la promesse a échoué
+    console.log(error)
+    console.log('🔥');
+  
+    callback(true);
+    
   });
-
-});
-  });
+  
+  
+  ;
 
 };
 
 
 function save_on_the_cloud_old_art0x(tmpimage,req, callback) {
+
+  if(!tmpimage){    console.log('🔥🔥'); callback(true);
+}
+
   var tmp_url = __dirname + '/../public/images/Art0x-'+req.position+'.png';
   var params = {
     Bucket: 'art01-images',
@@ -217,6 +229,9 @@ function save_on_the_cloud_old_art0x(tmpimage,req, callback) {
 }
 
 function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
+  if(!pathtouse){    console.log('🔥🔥🔥'); callback(true);
+}
+
   console.log('👊 dans save_on_the_cloud_tmpimage');
   var tmpimage=pathtouse;
   var params = {
@@ -239,6 +254,9 @@ function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
 
 
 function save_on_the_cloud_art0x(pathtouse, req, callback) {
+
+  if(!pathtouse){    console.log('🔥🔥🔥🔥');  callback(true);
+  }
   console.log('👊 dans save_on_the_cloud_art0x');
   var pathtouse = __dirname + "/../public/images/Art0x.png";
   var params = {
@@ -275,6 +293,7 @@ function generateimage(params, callback) {
     save_on_the_cloud_tmpimage,
     save_on_the_cloud_art0x
   ], function (err, result) {
+    if(err) callback(0);
     // see https://medium.com/velotio-perspectives/understanding-node-js-async-flows-parallel-serial-waterfall-and-queues-6f9c4badbc17
     console.log('💚fin du traitement');
     console.log(result);
