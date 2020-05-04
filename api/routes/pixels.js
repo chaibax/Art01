@@ -5,6 +5,8 @@ var eventstore = require('eventstore');
 var debug = require('debug')('api');
 var image = require('./images');
 
+
+
 //pour pourvoir maj la metadata auth0  de l'user avec le numero de pixel 
 var ManagementClient = require('auth0').ManagementClient;
 
@@ -45,6 +47,9 @@ es.on('connect', function () {
 es.on('disconnect', function () {
   console.log('connection to storage is gone');
 });
+
+
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -76,14 +81,14 @@ router.all('/count', function (req, res, next) {
 });
 
 router.post('/add', auth1.checkJwt, function (req, res, next) {
-
+  var io = req.app.get('socketio');
   let event = [{ pixel: req.body.pixel }, { email: req.body.email }, { auth0Id: req.body.auth0Id }];
   Events.countDocuments({ 'payload.email': req.body.email }, function (err, count) {
     if ((count > 0) && !(process.env.DEBUG_MODE == '1')) {
       console.log('il exsite deja ' + count + ' pixel avec cet email');
       res.send('le pixel a DEJA été ajouté par : ' + req.body.email);
     } else {
-      console.log('il exsite ' + count + ' pixel avec cet email et  debug_mode= ' + process.env.DEBUG_MODE);
+      console.log('il exsite ' + count + ' pixel avec cet email et  debug_mode= ' + process.env.DEBUG_MODE);      
       es.getEventStream('pixels', function (err, stream) {
         //verification que l'user n'a pas déjà deposé un pixel dans le store. Si non : 
         stream.addEvent(event);
@@ -114,7 +119,7 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
               //soucis avec la génération de l'image. Il faudrait : soit ne pas enregistrer le pixel, soit créer un event d'erreur?
               console.log('🔥🔥');
             }
-     
+            io.emit('newpixel', { 'newpixel' : pixelparams});
             res.send({ 'position': position_added });
           });
           //enregistrer la position dans les metadata Auth0 de l'user 

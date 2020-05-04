@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "./react-auth0-wrapper";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import socketIOClient from "socket.io-client";
 import Profile from "./components/Profile";
 import Paint from "./components/Paint";
 import Start from "./components/Start";
@@ -13,9 +14,23 @@ import './App.sass';
 import './App.css';
 require('dotenv').config();
 
+
+
 function App() {
     const { loading, user, isAuthenticated } = useAuth0();
 
+    console.log('>>'+process.env.REACT_APP_API_BASE_URL);
+    const socket = socketIOClient.connect('http://localhost:3002/');
+    socket.on('news', (data) => {
+    console.log(data);
+    socket.emit('my other event', { my: 'data  from front :)' });
+    });
+
+    socket.on('newpixel', (data) => {
+        console.log(data);
+        });
+
+   
 
 
     if (loading) {
