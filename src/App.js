@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth0 } from "./react-auth0-wrapper";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import socketIOClient from "socket.io-client";
+import {socket} from "./components/Socket";
 import Profile from "./components/Profile";
 import Paint from "./components/Paint";
 import Start from "./components/Start";
@@ -16,19 +16,28 @@ require('dotenv').config();
 
 
 
+
+
+
+
+socket.on('newpixel', (data) => {
+    document.getElementById('card').innerHTML = data.given_name+' added pixel #'+data.newpixel.position+ ' now';
+    console.log(data);
+
+    });
+
+
 function App() {
     const { loading, user, isAuthenticated } = useAuth0();
 
     console.log('>>'+process.env.REACT_APP_API_BASE_URL);
-    const socket = socketIOClient.connect('http://localhost:3002/');
-    socket.on('news', (data) => {
-    console.log(data);
-    socket.emit('my other event', { my: 'data  from front :)' });
-    });
+    
+    
+  //  socket.on('news', (data) => {
+  //  console.log(data);
+  //  socket.emit('my other event', { my: 'data  from front :)' });
+  //  });
 
-    socket.on('newpixel', (data) => {
-        console.log(data);
-        });
 
    
 
@@ -77,8 +86,9 @@ function App() {
                     </div>
                 </div>
             </section>
-            <a className="auth0badge"  width="150" height="50" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width="150" height="50" alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-dark.png"/></a>
-
+            <div id="card" className="auth0badge">
+        <a width={150} height={50} href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width={150} height={50} alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-dark.png" /></a>
+      </div>
         </div>
     );
 

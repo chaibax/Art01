@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import {useAuth0} from "../react-auth0-wrapper";
+import {socket} from "./Socket";
 import { useHistory } from "react-router-dom";
+import socketIOClient from "socket.io-client";
 var moment = require('moment');
 
 
@@ -9,6 +11,13 @@ const Start = () => {
 const {loginWithRedirect} = useAuth0();
 const history = useHistory();
 const axios = require('axios');
+
+
+socket.on('newpixel', (data) => {
+    console.log('+1');
+    });
+
+
 
 axios.get(process.env.REACT_APP_API_BASE_URL+'/pixels/count')
   .then(function (response) {

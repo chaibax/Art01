@@ -82,7 +82,7 @@ router.all('/count', function (req, res, next) {
 
 router.post('/add', auth1.checkJwt, function (req, res, next) {
   var io = req.app.get('socketio');
-  let event = [{ pixel: req.body.pixel }, { email: req.body.email }, { auth0Id: req.body.auth0Id }];
+  let event = [{ pixel: req.body.pixel }, { email: req.body.email }, { auth0Id: req.body.auth0Id }, {given_name : req.body.given_name}, {picture_large : req.body.picture_large}];
   Events.countDocuments({ 'payload.email': req.body.email }, function (err, count) {
     if ((count > 0) && !(process.env.DEBUG_MODE == '1')) {
       console.log('il exsite deja ' + count + ' pixel avec cet email');
@@ -119,7 +119,7 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
               //soucis avec la génération de l'image. Il faudrait : soit ne pas enregistrer le pixel, soit créer un event d'erreur?
               console.log('🔥🔥');
             }
-            io.emit('newpixel', { 'newpixel' : pixelparams});
+            io.emit('newpixel', { 'newpixel' : pixelparams, 'given_name' : req.body.given_name, 'picture' : req.body.picture_large, 'date' : stream.eventsToDispatch[0]['commitStamp'] });
             res.send({ 'position': position_added });
           });
           //enregistrer la position dans les metadata Auth0 de l'user 

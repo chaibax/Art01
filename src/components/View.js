@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import '../images.css';
-
+import {socket} from "./Socket";
 
 
 class View  extends Component  {
@@ -21,17 +21,28 @@ class View  extends Component  {
 
       refresh(){
         console.log('refresh!');
+       
         this.setState(state => ({
             link: process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png?t="+Date.now()
           }));
       }
       componentDidMount(){
        console.log('mounted');
-       this.interval = setInterval(() => this.refresh(), 10000);
+      // this.interval = setInterval(() => this.refresh(), 10000);
+      
+
+socket.on('newpixel', (data) => {
+  //document.getElementById('card').innerHTML = data.given_name+' added pixel #'+data.newpixel.position+ ' now';
+  //console.log(data);
+  this.refresh();
+
+  });
+      
+      
       }
 
       componentWillUnmount() {
-        clearInterval(this.interval);
+      //  clearInterval(this.interval);
       }
 
     render() {

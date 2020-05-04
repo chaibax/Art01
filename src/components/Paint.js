@@ -40,10 +40,15 @@ const Paint = () => {
       });
 
 
+
+
     axios.post(process.env.REACT_APP_API_BASE_URL+'/pixels/add', {
         pixel: FirstIP,
         email: email,
-        auth0Id: auth0Id
+        auth0Id: auth0Id,
+        given_name : given_name,
+        picture_large : picture_large
+
       }, {
         headers: { 'Authorization': `Bearer ${token}` },
         timeout: 10000,
@@ -87,19 +92,24 @@ const Paint = () => {
 
 
   var FirstIP = getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(150, 256);
-  console.log('FirstIP==');
-  console.log(FirstIP);
+  //console.log('FirstIP==');
+  //console.log(FirstIP);
 
 }
 
 
-  const given_name = user.given_name;
+
   const email = user.email;
   const pixel_added = user['https://art01/pixel_added'];
   const pixel_position  = user['https://art01/pixel_position'];
   const auth0Id = user['https://art01/user_id'];
+  const given_name = user.given_name;
+  const picture_large = user.picture;
+  console.log('given_name = '+given_name+' picture = '+picture_large);
 
-  console.log('pixel_added = '+pixel_added+' position ='+pixel_position+ ' given_name='+given_name+ 'FirstIP = '+FirstIP);
+
+
+  //console.log('pixel_added = '+pixel_added+' position ='+pixel_position+ ' given_name='+given_name+ 'FirstIP = '+FirstIP);
 
 
 
@@ -112,12 +122,13 @@ const Paint = () => {
     );
   }
 
+
 //si le pixel a déja été déposé et qu'on est pas en mode debug, on affiche pas cette page
   if( pixel_added  && !(process.env.REACT_APP_DEBUG_MODE=='1')){
-    console.log('toto======'+process.env.REACT_APP_DEBUG_MODE);
-    console.log(process.env);
+  //  console.log('toto======'+process.env.REACT_APP_DEBUG_MODE);
+  //  console.log(process.env);
     history.push("/view/"+pixel_position);
-    console.log('pixel added yet');
+  //  console.log('pixel added yet');
   }
   
 

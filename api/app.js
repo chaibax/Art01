@@ -48,10 +48,10 @@ app.use(cors());
 
 
 io.on('connection', (socket) => {
-  socket.emit('news', { hello: 'from back' });
-  socket.on('my other event', (data) => {
-    console.log(data);
-  });
+  //socket.emit('news', { hello: 'from back' });
+  //socket.on('my other event', (data) => {
+  //  console.log(data);
+  //});
 });
 
 
