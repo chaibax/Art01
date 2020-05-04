@@ -18,9 +18,6 @@ var spiralRouter = require('./routes/spiral');
 var imagesRouter = require('./routes/images');
 var debug = require('debug');
 
-
-
- 
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
