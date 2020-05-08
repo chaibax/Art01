@@ -7,6 +7,13 @@ import config from "./auth_config.json";
 import history from "./utils/history";
 
 
+if(window.location.hostname != 'localhost'){
+  if(window.location.protocol != 'https:') {
+    window.location.href = window.location.href.replace("http://", "https://");
+  }
+}
+
+
 
 // A function that routes the user to the right place
 // after login
