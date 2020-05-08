@@ -2,7 +2,7 @@
 
 ![Screen Capture](public/Art01_.gif)
 
-Dev in progress. Take a look here : https://art0x.herokuapp.com/
+Dev in progress. Take a look here : [1000000000.art](https://www.1000000000.art)
 
 ## First massively participatory art project
 
