@@ -15,11 +15,6 @@ import './App.css';
 require('dotenv').config();
 
 
-
-
-
-
-
 socket.on('newpixel', (data) => {
     document.getElementById('card').innerHTML = data.given_name+' added pixel #'+data.newpixel.position+ ' now';
     console.log(data);
@@ -30,17 +25,11 @@ socket.on('newpixel', (data) => {
 function App() {
     const { loading, user, isAuthenticated } = useAuth0();
 
-    console.log('>>'+process.env.REACT_APP_API_BASE_URL);
-    
-    
+  //  console.log('>>'+process.env.REACT_APP_API_BASE_URL);
   //  socket.on('news', (data) => {
   //  console.log(data);
   //  socket.emit('my other event', { my: 'data  from front :)' });
   //  });
-
-
-   
-
 
     if (loading) {
         return (
