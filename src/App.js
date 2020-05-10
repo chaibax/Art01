@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import View from "./components/View";
 import NavBar from "./components/NavBar";
 import Privacy from "./components/Privacy";
+import TermsOfService from "./components/TermsOfService";
 import './App.sass';
 import './App.css';
 require('dotenv').config();
@@ -66,7 +67,7 @@ function App() {
                                     <Route path="/start" exact={true} component={Start} />
                                     <Route path="/ExternalApi" exact={true} component={ExternalApi} />
                                     <Route path="/privacy-policy" component={Privacy} />
-
+                                    <Route path="/terms-of-service" component={TermsOfService} />
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
                                     <PrivateRoute path="/view/:id" component={View} />
