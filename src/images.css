@@ -57,5 +57,9 @@
 	position:absolute;
 	bottom:0;
 	left:0px;
-    margin-left: 5px;
+	margin-left: 5px;
+}
+
+.auth0badge img {
+	opacity: 0.5;
 }

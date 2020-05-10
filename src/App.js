@@ -10,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
 import View from "./components/View";
 import NavBar from "./components/NavBar";
+import Privacy from "./components/Privacy";
 import './App.sass';
 import './App.css';
 require('dotenv').config();
@@ -64,6 +65,8 @@ function App() {
                                     <Route path="/" exact={true} component={Home} />
                                     <Route path="/start" exact={true} component={Start} />
                                     <Route path="/ExternalApi" exact={true} component={ExternalApi} />
+                                    <Route path="/privacy-policy" component={Privacy} />
+
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
                                     <PrivateRoute path="/view/:id" component={View} />
