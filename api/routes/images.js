@@ -47,7 +47,7 @@ function filexists(lastp, req, callback) {
 
   //https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png?t=1589131066273
   //let pathfile = __dirname + '/../public/images/art' + req.position + '-ok.png';
-  let pathfile = 'https://art01-images.s3.eu-west-3.amazonaws.com/art'+ req.position + '-ok.png';
+  let pathfile = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '-ok.png';
   // console.log('dans filexists2 avec pathfile=' + pathfile);
 
   fs.access(pathfile, fs.F_OK, (err) => {
@@ -62,21 +62,18 @@ function filexists(lastp, req, callback) {
 };
 
 function newimage(fileexist, lastp, req, callback) {
-  console.log('dans newimage');
   if (!fileexist) {
     let pathtmp = __dirname + '/../public/images/art' + req.position + '.png';
-   //let pathtmp = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '.png';
+    //let pathtmp = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '.png';
 
-   
+
     fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
       if (err) throw err;
-      console.log('dans newimage > creation nouvelle image avec  req:' + req.position);
       callback(null, pathtmp, lastp, req);
     });
 
 
   } else {
-    console.log('dans newimage > image existe deja');
     res.send({ error: "file exist" });
     return;
   }
@@ -88,15 +85,9 @@ function Jimpread(tmpimage, lastp, req, callback) {
 
     // console.log('Jimp va ecrire dans '+tmpimage);
     //on prend la position du dernier pixel : ex : 123. Et on va en deduire la taille du carré max. 
-    console.log('SquareSize ======');
-    console.log('lulam.getSquareSize(astp')
     let size = ulam.getSquareSize(req.position);
     console.log(size);
-
-    console.log('Jimpread position : ' + req.position);
     let coordinate = ulam.getNewLatticeCoordinatesFor(req.position, size);
-    console.log('nouvelle position avec 0,0 en au a gauche ======');
-    console.log(coordinate);
 
 
     var jimptmpimage = Jimp.read(tmpimage, (err, art01) => {
@@ -123,157 +114,84 @@ function Jimpread(tmpimage, lastp, req, callback) {
 
 
 function Jimpmerge(tmpimage, req, callback) {
-  console.log("JimpmergeJimpmergeJimpmergeJimpmerge heroku");
-  console.log(tmpimage);
-  console.log(typeof (tmpimage));
-
   if (process.env.HEROKU_API_PATH) {
-    
-    console.log('in heroku env with tmpimage process.env.HEROKU_API_PATH='+process.env.HEROKU_API_PATH);
+
     var file = fs.createWriteStream(process.env.HEROKU_API_PATH + '/public/images/Art0x.png');
-    var localArt0xpath = process.env.HEROKU_API_PATH + '/public/images/Art0x.png'; 
+    var localArt0xpath = process.env.HEROKU_API_PATH + '/public/images/Art0x.png';
     var localEmptyImagexpath = process.env.HEROKU_API_PATH + '/public/images/empty.png';
 
   } else {
     //not in heroku env
 
     var file = fs.createWriteStream(__dirname + '/../public/images/Art0x.png');
-    var localArt0xpath = __dirname + '/../public/images/Art0x.png'; 
+    var localArt0xpath = __dirname + '/../public/images/Art0x.png';
     var localEmptyImagexpath = __dirname + '/../public/images/empty.png';
   }
-
-  console.log('AAA with AWS_S3_ROOT_URL = '+process.env.AWS_S3_ROOT_URL);
-  const request = https.get(process.env.AWS_S3_ROOT_URL + '/Art0x.png', function(response) {
-  response.pipe(file);
-  console.log('BBB');
-  var images = [localArt0xpath, tmpimage];
-  console.log('CCC');
-  fs.access(localArt0xpath, fs.F_OK, (err) => {
-    console.log('CCC');
-    if (err) {
-      console.log('DDD');
-      console.log("Pas de image ici = " + __dirname + "/../public/images/Art0x.png");
-      console.log(err);
-      let pathtmp = localArt0xpath;
-      fs.copyFile(localEmptyImagexpath, pathtmp, (err) => {
-        if (err) throw err;
-      });
-
-    }
-    console.log("image existe  = ici :"+localArt0xpath);
-    console.log('CEEECC');
-  })
-  //Art0X.png => image source 
-//  var jimps = [];
-//????? 
-
-var images = [localArt0xpath, tmpimage];
-console.log('tmpimage = '+tmpimage);
-Jimp.read(tmpimage, function(err, image) { 
-  console.log('FFFF avec tmpimage ='+tmpimage);
-  if (err) {
-    console.log(err);
-    //throw err;
-
-  }
-  Jimp.read(localArt0xpath, function(err2, image2) { 
-    console.log('GGGG localArt0xpath='+localArt0xpath);
-    if (err2) {
-      console.log('HHHHHH');
-      console.log(err2);
-    }
-    console.log('IIIIII');
-    if (req.position) {
-      if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
-        //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
-        image.composite(image2, 1, 1);
-      } else {
-        //console.log('💄 pas de changement de square size');
-        image.composite(image2, 0, 0);
-      }
-    }
-    else {
-      image.composite(image2, 0, 0);
-    }
-  
-    fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
+  const request = https.get(process.env.AWS_S3_ROOT_URL + '/Art0x.png', function (response) {
+    response.pipe(file);
+    var images = [localArt0xpath, tmpimage];
+    fs.access(localArt0xpath, fs.F_OK, (err) => {
       if (err) {
-        console.log.log('🍿? Erreur ici ?')
-        throw err;
+        console.log(err);
+        let pathtmp = localArt0xpath;
+        fs.copyFile(localEmptyImagexpath, pathtmp, (err) => {
+          if (err) throw err;
+        });
+
       }
-      image.write(__dirname + '/../public/images/Art0x.png', function () {
-        console.log("> wrote the new image Art0x.png");
-        callback(null, tmpimage, req);
-      });
+    })
+
+
+    var images = [localArt0xpath, tmpimage];
+    Jimp.read(tmpimage, function (err, image) {
+      if (err) {
+        console.log(err);
+        //throw err;
+
+      }
+      Jimp.read(localArt0xpath, function (err2, image2) {
+        console.log('GGGG localArt0xpath=' + localArt0xpath);
+        if (err2) {
+          console.log(err2);
+        }
+        if (req.position) {
+          if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
+            //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
+            image.composite(image2, 1, 1);
+          } else {
+            //console.log('💄 pas de changement de square size');
+            image.composite(image2, 0, 0);
+          }
+        }
+        else {
+          image.composite(image2, 0, 0);
+        }
+
+        fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
+          if (err) {
+            throw err;
+          }
+          image.write(__dirname + '/../public/images/Art0x.png', function () {
+            console.log("> wrote the new image Art0x.png");
+            callback(null, tmpimage, req);
+          });
+        });
+      })
     });
-  })
 
   });
-
- 
-  
-
-  /*
-
-  for (var i = 0; i < images.length; i++) {
-    console.log('💄 dans boucle avec i ='+i);
-    jimps.push(Jimp.read(images[i]));
-  }
-  Promise.all(jimps).then(function (data) {
-    return Promise.all(jimps);
-  }).then(function (data) {
-    // il faudrait, au niveau du merge, verifier qu'on ne change pas de taille de carré. 
-    if (req.position) {
-      if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
-        //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
-        data[1].composite(data[0], 1, 1);
-      } else {
-        //console.log('💄 pas de changement de square size');
-        data[1].composite(data[0], 0, 0);
-      }
-    }
-    else {
-      data[1].composite(data[0], 0, 0);
-    }
-    //faire un save avant ?
-    fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
-      if (err) {
-        console.log.log('🍿? Erreur ici ?')
-        throw err;
-      }
-      data[1].write(__dirname + '/../public/images/Art0x.png', function () {
-        console.log("> wrote the new image Art0x.png");
-        callback(null, tmpimage, req);
-      });
-    });
-  })
-  .catch((error) => {
-    //Code si la promesse a échoué
-    console.log('🔥!!!!🔥');
-    console.log(error)
-    console.log('>🔥<');
-    callback(true);
-    
-  });
-*/
-
-});
-  
-  
-
-  
-  
   ;
 
 };
 
 
-function save_on_the_cloud_old_art0x(tmpimage,req, callback) {
+function save_on_the_cloud_old_art0x(tmpimage, req, callback) {
 
-  if(!tmpimage){    console.log('🔥🔥'); callback(true);
-}
+  if (!tmpimage) {
+    callback(true);
+  }
 
-  var tmp_url = __dirname + '/../public/images/Art0x-'+req.position+'.png';
+  var tmp_url = __dirname + '/../public/images/Art0x-' + req.position + '.png';
   var params = {
     Bucket: 'art01-images',
     Body: fs.createReadStream(tmp_url),
@@ -286,18 +204,17 @@ function save_on_the_cloud_old_art0x(tmpimage,req, callback) {
     }
     //success
     if (data) {
-      console.log("👉 save_on_the_cloud_old_art0x Uploaded in:", data.Location);
-      callback(null,tmpimage, req);
+      callback(null, tmpimage, req);
     }
   });
 }
 
 function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
-  if(!pathtouse){    console.log('🔥🔥🔥'); callback(true);
-}
+  if (!pathtouse) {
+     callback(true);
+  }
 
-  console.log('👊 dans save_on_the_cloud_tmpimage');
-  var tmpimage=pathtouse;
+  var tmpimage = pathtouse;
   var params = {
     Bucket: 'art01-images',
     Body: fs.createReadStream(pathtouse),
@@ -310,7 +227,6 @@ function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
     }
     //success
     if (data) {
-      console.log("👉 save_on_the_cloud_tmpimage Uploaded in:", data.Location);
       callback(null, tmpimage, req);
     }
   });
@@ -319,9 +235,9 @@ function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
 
 function save_on_the_cloud_art0x(pathtouse, req, callback) {
 
-  if(!pathtouse){    console.log('🔥🔥🔥🔥');  callback(true);
+  if (!pathtouse) {
+    callback(true);
   }
-  console.log('👊 dans save_on_the_cloud_art0x');
   var pathtouse = __dirname + "/../public/images/Art0x.png";
   var params = {
     Bucket: 'art01-images',
@@ -335,7 +251,6 @@ function save_on_the_cloud_art0x(pathtouse, req, callback) {
     }
     //success
     if (data) {
-      console.log("👉👉 save_on_the_cloud_art0x  Uploaded in:", data.Location);
       callback(null, pathtouse, req);
     }
   });
@@ -357,16 +272,12 @@ function generateimage(params, callback) {
     save_on_the_cloud_tmpimage,
     save_on_the_cloud_art0x
   ], function (err, result) {
-    if(err) callback(0);
+    if (err) callback(0);
     // see https://medium.com/velotio-perspectives/understanding-node-js-async-flows-parallel-serial-waterfall-and-queues-6f9c4badbc17
     console.log('💚fin du traitement');
-    console.log(result);
     callback(result);
   });
 }
-
-
-
 
 
 // On renvoie un nombre aléatoire entre une valeur min (incluse) 
@@ -376,7 +287,6 @@ function getRandomArbitrary(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
 
 router.all('/', function (req, res, next) {
 

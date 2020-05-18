@@ -72,7 +72,6 @@ router.all('/count', function (req, res, next) {
     if (evt) {
       evt_to_send = { "count": evt.position };
       res.send(evt_to_send);
-      console.log('test=');
       //console.log(es.store);
     } else {
       res.send({ "count": 0 });
@@ -85,29 +84,26 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
   let event = [{ pixel: req.body.pixel }, { email: req.body.email }, { auth0Id: req.body.auth0Id }, {given_name : req.body.given_name}, {picture_large : req.body.picture_large}];
   Events.countDocuments({ 'payload.email': req.body.email }, function (err, count) {
     if ((count > 0) && !(process.env.DEBUG_MODE == '1')) {
-      console.log('il exsite deja ' + count + ' pixel avec cet email');
+      //console.log('il exsite deja ' + count + ' pixel avec cet email');
       res.send('le pixel a DEJA été ajouté par : ' + req.body.email);
     } else {
-      console.log('il exsite ' + count + ' pixel avec cet email et  debug_mode= ' + process.env.DEBUG_MODE);      
+      //console.log('il exsite ' + count + ' pixel avec cet email et  debug_mode= ' + process.env.DEBUG_MODE);      
       es.getEventStream('pixels', function (err, stream) {
         //verification que l'user n'a pas déjà deposé un pixel dans le store. Si non : 
         stream.addEvent(event);
         stream.commit(function (err, stream) {
-          console.log(stream.eventsToDispatch); // this is an array containing all added events in this commit.
           var position_added = stream.eventsToDispatch[0]['position'] - 1; // N° de pixel     
           //var id_event = stream.eventsToDispatch[0]['id']; // Identidiant de l'event 
           //res.send('le pixel a bien été ajouté: ' + req.body.pixel + req.body.email + req.body.auth0Id + ' a la position :' + position);
           //il faut générer l'image ici : 
           let datatoadd = stream.eventsToDispatch[0]['payload'];
-          console.log('pixel a ajouter a l image :');
-          console.log(datatoadd[0].pixel);
+
           let usercolor = datatoadd[0].pixel;
           const color = usercolor.split('.');
           const red = color[0];
           const green = color[1];
           const blue = color[2];
           const opacity = Math.round((color[3] / 255) * 100); // a voir ce qui est attendu 
-          console.log('ALPHA = ' + opacity);
           //:position/:r/:g/:b/:alpha
           let pixelparams = { position: position_added, r: red, g: green, b: blue, alpha: opacity };
           
@@ -117,7 +113,6 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
 
             if( !res1 ) {
               //soucis avec la génération de l'image. Il faudrait : soit ne pas enregistrer le pixel, soit créer un event d'erreur?
-              console.log('🔥🔥');
             }
             io.emit('newpixel', { 'newpixel' : pixelparams, 'given_name' : req.body.given_name, 'picture' : req.body.picture_large, 'date' : stream.eventsToDispatch[0]['commitStamp'] });
             res.send({ 'position': position_added });
