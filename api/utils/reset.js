@@ -39,10 +39,14 @@ fs.unlink(path, (err) => {
   })
 
 // destination.txt will be created or overwritten by default.
+
+
 fs.copyFile(emptypath,path, (err) => {
     if (err) throw err;
     console.log(emptypath+' was copied to '+path);
   });
+
+// il faudrait que je copie un Art0x.png vide sur AWS S3..
 
   glob('../public/images/art*.png', function(err, files) {
     

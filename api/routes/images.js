@@ -160,21 +160,29 @@ function Jimpmerge(tmpimage, req, callback) {
       });
 
     }
-    console.log("image existe  = " +process.env.AWS_S3_ROOT_URL + '/Art0x.png');
+    console.log("image existe  = ici :"+localArt0xpath);
     console.log('CEEECC');
   })
   //Art0X.png => image source 
-  var jimps = [];
+//  var jimps = [];
 //????? 
 
 var images = [localArt0xpath, tmpimage];
-
+console.log('tmpimage = '+tmpimage);
 Jimp.read(tmpimage, function(err, image) { 
-  if (err) throw err;
+  console.log('FFFF avec tmpimage ='+tmpimage);
+  if (err) {
+    console.log(err);
+    //throw err;
 
-  Jimp.read(localArt0xpath, function(err, image2) { 
-    if (err) throw err;
-
+  }
+  Jimp.read(localArt0xpath, function(err2, image2) { 
+    console.log('GGGG localArt0xpath='+localArt0xpath);
+    if (err2) {
+      console.log('HHHHHH');
+      console.log(err2);
+    }
+    console.log('IIIIII');
     if (req.position) {
       if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
         //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
