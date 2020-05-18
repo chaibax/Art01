@@ -166,6 +166,47 @@ function Jimpmerge(tmpimage, req, callback) {
   //Art0X.png => image source 
   var jimps = [];
 //????? 
+
+var images = [localArt0xpath, tmpimage];
+
+Jimp.read(tmpimage, function(err, image) { 
+  if (err) throw err;
+
+  Jimp.read(localArt0xpath, function(err, image2) { 
+    if (err) throw err;
+
+    if (req.position) {
+      if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
+        //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
+        image.composite(image2, 1, 1);
+      } else {
+        //console.log('💄 pas de changement de square size');
+        image.composite(image2, 0, 0);
+      }
+    }
+    else {
+      image.composite(image2, 0, 0);
+    }
+  
+    fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
+      if (err) {
+        console.log.log('🍿? Erreur ici ?')
+        throw err;
+      }
+      image.write(__dirname + '/../public/images/Art0x.png', function () {
+        console.log("> wrote the new image Art0x.png");
+        callback(null, tmpimage, req);
+      });
+    });
+  })
+
+  });
+
+ 
+  
+
+  /*
+
   for (var i = 0; i < images.length; i++) {
     console.log('💄 dans boucle avec i ='+i);
     jimps.push(Jimp.read(images[i]));
@@ -173,7 +214,6 @@ function Jimpmerge(tmpimage, req, callback) {
   Promise.all(jimps).then(function (data) {
     return Promise.all(jimps);
   }).then(function (data) {
-
     // il faudrait, au niveau du merge, verifier qu'on ne change pas de taille de carré. 
     if (req.position) {
       if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
@@ -197,7 +237,6 @@ function Jimpmerge(tmpimage, req, callback) {
         console.log("> wrote the new image Art0x.png");
         callback(null, tmpimage, req);
       });
-
     });
   })
   .catch((error) => {
@@ -208,7 +247,7 @@ function Jimpmerge(tmpimage, req, callback) {
     callback(true);
     
   });
-
+*/
 
 });
   
