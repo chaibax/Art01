@@ -142,7 +142,7 @@ function Jimpmerge(tmpimage, req, callback) {
     var localEmptyImagexpath = __dirname + '/../public/images/empty.png';
   }
 
-  console.log('AAA');
+  console.log('AAA with AWS_S3_ROOT_URL = '+process.env.AWS_S3_ROOT_URL);
   const request = https.get(process.env.AWS_S3_ROOT_URL + '/Art0x.png', function(response) {
   response.pipe(file);
   console.log('BBB');
