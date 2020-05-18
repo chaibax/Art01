@@ -128,7 +128,8 @@ function Jimpmerge(tmpimage, req, callback) {
   console.log(typeof (tmpimage));
 
   if (process.env.HEROKU_API_PATH) {
- 
+    
+    console.log('in heroku env with tmpimage process.env.HEROKU_API_PATH='+process.env.HEROKU_API_PATH);
     var file = fs.createWriteStream(process.env.HEROKU_API_PATH + '/public/images/Art0x.png');
     var localArt0xpath = process.env.HEROKU_API_PATH + '/public/images/Art0x.png'; 
     var localEmptyImagexpath = process.env.HEROKU_API_PATH + '/public/images/empty.png';
@@ -141,13 +142,16 @@ function Jimpmerge(tmpimage, req, callback) {
     var localEmptyImagexpath = __dirname + '/../public/images/empty.png';
   }
 
-    const request = https.get(process.env.AWS_S3_ROOT_URL + '/Art0x.png', function(response) {
+  console.log('AAA');
+  const request = https.get(process.env.AWS_S3_ROOT_URL + '/Art0x.png', function(response) {
   response.pipe(file);
-
+  console.log('BBB');
   var images = [localArt0xpath, tmpimage];
-
+  console.log('CCC');
   fs.access(localArt0xpath, fs.F_OK, (err) => {
+    console.log('CCC');
     if (err) {
+      console.log('DDD');
       console.log("Pas de image ici = " + __dirname + "/../public/images/Art0x.png");
       console.log(err);
       let pathtmp = localArt0xpath;
@@ -157,6 +161,7 @@ function Jimpmerge(tmpimage, req, callback) {
 
     }
     console.log("image existe  = " +process.env.AWS_S3_ROOT_URL + '/Art0x.png');
+    console.log('CEEECC');
   })
   //Art0X.png => image source 
   var jimps = [];
