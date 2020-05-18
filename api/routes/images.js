@@ -129,9 +129,9 @@ function Jimpmerge(tmpimage, req, callback) {
 
   if (process.env.HEROKU_API_PATH) {
  
-    var file = fs.createWriteStream(process.env.HEROKU_API_PATH + '/../public/images/Art0x.png');
-    var localArt0xpath = process.env.HEROKU_API_PATH + '/../public/images/Art0x.png'; 
-    var localEmptyImagexpath = process.env.HEROKU_API_PATH + '/../public/images/empty.png';
+    var file = fs.createWriteStream(process.env.HEROKU_API_PATH + '/public/images/Art0x.png');
+    var localArt0xpath = process.env.HEROKU_API_PATH + '/public/images/Art0x.png'; 
+    var localEmptyImagexpath = process.env.HEROKU_API_PATH + '/public/images/empty.png';
 
   } else {
     //not in heroku env
