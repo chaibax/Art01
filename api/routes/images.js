@@ -80,13 +80,11 @@ function newimage(fileexist, lastp, req, callback) {
 }
 
 function Jimpread(tmpimage, lastp, req, callback) {
-  console.log('>>>>>>>>>>>>>> dans Jimpread avec lastp = ' + lastp + '<<<<<<<<<<<<<<<<<<<<<<<<<');
   if (tmpimage) {
 
     // console.log('Jimp va ecrire dans '+tmpimage);
     //on prend la position du dernier pixel : ex : 123. Et on va en deduire la taille du carré max. 
     let size = ulam.getSquareSize(req.position);
-    console.log(size);
     let coordinate = ulam.getNewLatticeCoordinatesFor(req.position, size);
 
 
@@ -150,7 +148,6 @@ function Jimpmerge(tmpimage, req, callback) {
 
       }
       Jimp.read(localArt0xpath, function (err2, image2) {
-        console.log('GGGG localArt0xpath=' + localArt0xpath);
         if (err2) {
           console.log(err2);
         }

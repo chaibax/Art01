@@ -21,8 +21,6 @@ var getNewLatticeCoordinatesFor  = function(position, squaresize) {
     //coordonnée dans le referentien avec 0,0 au centre  :
     let result_old = spiral.getLatticeCoordinatesFor(position);   
     //res.send({"x" : result_old[0], "y" : result_old[1]});
-    console.log('ancienne position avec 0,0 au centre :');
-    console.log(result_old);
     let result = spiral.getLatticeCoordinatesFor(position);   
     let size = squaresize ; //Math.max(Math.abs(result[0]),Math.abs(result[1]));
     //coordonné dans le nouveau referentiel
