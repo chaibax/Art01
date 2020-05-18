@@ -8,6 +8,7 @@ var async = require("async");
 var ulam = require('../utils/ulam');
 const AWS = require('aws-sdk');
 const path = require('path');
+const https = require('https');
 
 AWS.config.update({
   accessKeyId: process.env.AWS_S3_ACCESS_KEY,
@@ -42,7 +43,11 @@ function checklastposition(req, callback) {
 
 
 function filexists(lastp, req, callback) {
-  let pathfile = __dirname + '/../public/images/art' + req.position + '-ok.png';
+
+
+  //https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png?t=1589131066273
+  //let pathfile = __dirname + '/../public/images/art' + req.position + '-ok.png';
+  let pathfile = 'https://art01-images.s3.eu-west-3.amazonaws.com/art'+ req.position + '-ok.png';
   // console.log('dans filexists2 avec pathfile=' + pathfile);
 
   fs.access(pathfile, fs.F_OK, (err) => {
@@ -60,6 +65,9 @@ function newimage(fileexist, lastp, req, callback) {
   console.log('dans newimage');
   if (!fileexist) {
     let pathtmp = __dirname + '/../public/images/art' + req.position + '.png';
+   //let pathtmp = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '.png';
+
+   
     fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
       if (err) throw err;
       console.log('dans newimage > creation nouvelle image avec  req:' + req.position);
@@ -120,45 +128,41 @@ function Jimpmerge(tmpimage, req, callback) {
   console.log(typeof (tmpimage));
 
   if (process.env.HEROKU_API_PATH) {
-    let app_root_path = process.env.HEROKU_API_PATH;
-    var images = [process.env.HEROKU_API_PATH + '/public/images/Art0x.png', tmpimage];
-
-    fs.access(process.env.HEROKU_API_PATH + '/public/images/Art0x.png', fs.F_OK, (err) => {
-      if (err) {
-        //pas d'image Art0x.png, on va donc la crée car c'est peut être Lui. 
-        console.log("Pas de image ici h = " + process.env.HEROKU_API_PATH + '/public/images/Art0x.png');
-        console.log(err);
-        let pathtmp = process.env.HEROKU_API_PATH + '/public/images/Art0x.png';
-        fs.copyFile(process.env.HEROKU_API_PATH + '/public/images/empty.png', pathtmp, (err) => {
-          if (err) throw err;
-        });
-      }
-      console.log("image existe");
-    })
+ 
+    var file = fs.createWriteStream(process.env.HEROKU_API_PATH + '/../public/images/Art0x.png');
+    var localArt0xpath = process.env.HEROKU_API_PATH + '/../public/images/Art0x.png'; 
+    var localEmptyImagexpath = process.env.HEROKU_API_PATH + '/../public/images/empty.png';
 
   } else {
     //not in heroku env
 
-    var images = [__dirname + '/../public/images/Art0x.png', tmpimage];
-
-    fs.access(__dirname + '/../public/images/Art0x.png', fs.F_OK, (err) => {
-      if (err) {
-        console.log("Pas de image ici = " + __dirname + "/../public/images/Art0x.png");
-        console.log(err);
-        let pathtmp = __dirname + '/../public/images/Art0x.png';
-        fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
-          if (err) throw err;
-        });
-
-      }
-      console.log("image existe  = " + __dirname + "/../public/images/Art0x.png");
-    })
+    var file = fs.createWriteStream(__dirname + '/../public/images/Art0x.png');
+    var localArt0xpath = __dirname + '/../public/images/Art0x.png'; 
+    var localEmptyImagexpath = __dirname + '/../public/images/empty.png';
   }
 
+    const request = https.get(process.env.AWS_S3_ROOT_URL + '/Art0x.png', function(response) {
+  response.pipe(file);
+
+  var images = [localArt0xpath, tmpimage];
+
+  fs.access(localArt0xpath, fs.F_OK, (err) => {
+    if (err) {
+      console.log("Pas de image ici = " + __dirname + "/../public/images/Art0x.png");
+      console.log(err);
+      let pathtmp = localArt0xpath;
+      fs.copyFile(localEmptyImagexpath, pathtmp, (err) => {
+        if (err) throw err;
+      });
+
+    }
+    console.log("image existe  = " +process.env.AWS_S3_ROOT_URL + '/Art0x.png');
+  })
   //Art0X.png => image source 
   var jimps = [];
 //????? 
   for (var i = 0; i < images.length; i++) {
+    console.log('💄 dans boucle avec i ='+i);
     jimps.push(Jimp.read(images[i]));
   }
   Promise.all(jimps).then(function (data) {
@@ -180,8 +184,10 @@ function Jimpmerge(tmpimage, req, callback) {
     }
     //faire un save avant ?
     fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
-      if (err) throw err;
-
+      if (err) {
+        console.log.log('🍿? Erreur ici ?')
+        throw err;
+      }
       data[1].write(__dirname + '/../public/images/Art0x.png', function () {
         console.log("> wrote the new image Art0x.png");
         callback(null, tmpimage, req);
@@ -191,12 +197,18 @@ function Jimpmerge(tmpimage, req, callback) {
   })
   .catch((error) => {
     //Code si la promesse a échoué
+    console.log('🔥!!!!🔥');
     console.log(error)
-    console.log('🔥');
-  
+    console.log('>🔥<');
     callback(true);
     
   });
+
+
+});
+  
+  
+
   
   
   ;
