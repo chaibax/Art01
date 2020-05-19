@@ -23,10 +23,11 @@
   },
   "scripts": {
     "dev": "REACT_APP_API_BASE_URL=http://localhost:3001/api REACT_APP_AWS_S3_ROOT_URL=https://art01-images.s3.eu-west-3.amazonaws.com REACT_APP_SOCKET_URL=http://localhost:3001 react-scripts start",
-    "start": "react-scripts start",
+     "start": "serve -s build",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
