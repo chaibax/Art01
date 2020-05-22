@@ -12,7 +12,10 @@
     }
 }
 
+.pastel {
+background-color: white;
 
+}
 
 .imageblink {
   position: relative;
@@ -31,8 +34,8 @@
 .imagetop {
 	animation-name: fade;
 	animation-timing-function: ease-in-out;
-	animation-iteration-count: 4;
-	animation-duration: 2s;
+	animation-iteration-count: 5;
+	animation-duration: 3s;
 	animation-direction: alternate;
 }
 
