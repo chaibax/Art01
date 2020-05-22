@@ -4,6 +4,7 @@ var auth1 = require('../auth0');
 var eventstore = require('eventstore');
 var debug = require('debug')('api');
 var image = require('./images');
+var ulam = require('../utils/ulam');
 
 
 
@@ -66,8 +67,21 @@ router.all('/last', function (req, res, next) {
   });
 });
 
-/* GET  pixels count */
-router.all('/count', function (req, res, next) {
+/* GET  image size */
+router.all('/squaresize', function (req, res, next) {
+  es.getLastEvent('pixels', function (err, evt) {
+    if (evt) {
+      let size = ulam.getSquareSize(evt.position);
+      evt_to_send = { "square": evt.size };
+      res.send(evt_to_send);
+      //console.log(es.store);
+    } else {
+      res.send({ "square": 0 });
+    }
+  });
+});
+
+router.all('/squaresize', function (req, res, next) {
   es.getLastEvent('pixels', function (err, evt) {
     if (evt) {
       evt_to_send = { "count": evt.position };
