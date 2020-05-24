@@ -86,6 +86,7 @@ class View extends Component {
             var coordonne = self.getNewLatticeCoordinatesFor(self.state.position, size);
             ctx.drawImage(image, 0, 0);
             ctx.fillRect(coordonne[0], coordonne[1], 1, 1);
+           
         }
         image.src = process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png?t=" + Date.now();
     }
@@ -118,7 +119,7 @@ class View extends Component {
         return (
 
             <Fragment>
-                <h1 className="title is-size-2 has-text-centered shadowed">
+                <h1 className="title is-size-3 has-text-centered shadowed">
                     ART01 now. Your are the painter #{this.state.position + 1}
                 </h1>
                 <div className="imageblink ">
