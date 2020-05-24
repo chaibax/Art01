@@ -67,13 +67,12 @@ function App() {
                                     <Route path="/view/:id?" component={View}  />
                                     <Route component={NoMatch} />
                                 </Switch>
-                                
                             </BrowserRouter>
                         </div>
                     </div>
                 </div>
             </section>
-            
+            <div id="card" ></div>
         </div>
     );
 

@@ -147,10 +147,11 @@ class View extends Component {
                     </div>
 
                     <h2 className="title is-size-3 has-text-centered shadowed">  This is ART01 right now</h2>
+                     <NavBar />
                 </div>
 
 
-                <NavBar />
+               
 
             </Fragment>
         )

@@ -8,7 +8,7 @@ const NavBar = () => {
 
 
   return (
-    <nav className="navbar is-fixed-bottom shadowed blackbackground" role="navigation" aria-label="main navigation" style={{zIndex: 0}}>
+    <nav className="navbar is-fixed-bottom shadowed blackbackground" role="navigation" aria-label="main navigation" style={{zIndex: -1}}>
 
       {
         isAuthenticated && (
