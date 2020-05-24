@@ -10,24 +10,29 @@ function getRandomArbitrary(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const Paint = () => {
+const PaintDev = () => {
 
 
   const { getTokenSilently, loading, user } = useAuth0();
   const history = useHistory();
 
   function sendpixel() {
+
     const axios = require('axios');
+    
     const mypixelid = document.getElementById('mypixel');
     const pixelwaitid = document.getElementById('pixelwait');
     const waittext = document.getElementById('waittext');
+
     const callApi = async () => {
       const token = await getTokenSilently();
+    
       axios.interceptors.request.use(config => {
         // perform a task before the request is sent
         console.log('Request was sent...');
         mypixelid.classList.add("is-hidden");
         pixelwaitid.classList.remove("is-hidden");
+
         return config;
       }, error => {
         // handle the error
@@ -37,12 +42,12 @@ const Paint = () => {
 
 
 
-      axios.post(process.env.REACT_APP_API_BASE_URL + '/pixels/add', {
+    axios.post(process.env.REACT_APP_API_BASE_URL+'/pixels/add', {
         pixel: FirstIP,
         email: email,
         auth0Id: auth0Id,
-        given_name: given_name,
-        picture_large: picture_large
+        given_name : given_name,
+        picture_large : picture_large
 
       }, {
         headers: { 'Authorization': `Bearer ${token}` },
@@ -51,10 +56,10 @@ const Paint = () => {
       )
         .then(function (response) {
           console.log(response);
-          if ((response.data.position > -1) && !(process.env.REACT_APP_DEBUG_MODE == '1')) {
+          if( (response.data.position>-1) && !(process.env.REACT_APP_DEBUG_MODE=='1') ){
             console.log(response.data.position);
-            history.push("/view/" + response.data.position);
-
+            history.push("/view/"+response.data.position);
+            
 
           } else {
             console.log("error adding pixel :( ");
@@ -64,34 +69,43 @@ const Paint = () => {
           }
         })
         .catch(function (error) {
-          console.log('Error calling ' + process.env.REACT_APP_API_BASE_URL + '/pixels/add');
+          console.log('Error calling '+process.env.REACT_APP_API_BASE_URL+'/pixels/add');
           console.log(error);
-          waittext.innerHTML = error + ' : please refresh or retry';
+          waittext.innerHTML = error+ ' : please refresh or retry';
 
         })
         .then(function () {
           // always executed
-
+         
           console.log('request finished');
         });
 
     };
     callApi();
   };
+  
+  if(!(process.env.REACT_APP_DEBUG_MODE=='1')) {
+  var FirstIP = user['https://art01/FirstIP'];
+} else {
+  //mode debug
 
 
-    var FirstIP = user['https://art01/FirstIP'];
- 
+
+  var FirstIP = getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(0, 256)+'.'+getRandomArbitrary(150, 256);
+  //console.log('FirstIP==');
+  //console.log(FirstIP);
+
+}
 
 
 
   const email = user.email;
   const pixel_added = user['https://art01/pixel_added'];
-  const pixel_position = user['https://art01/pixel_position'];
+  const pixel_position  = user['https://art01/pixel_position'];
   const auth0Id = user['https://art01/user_id'];
   const given_name = user.given_name;
   const picture_large = user.picture;
-  console.log('given_name = ' + given_name + ' picture = ' + picture_large);
+  console.log('given_name = '+given_name+' picture = '+picture_large);
 
 
 
@@ -109,20 +123,40 @@ const Paint = () => {
   }
 
 
-  //si le pixel a déja été déposé et qu'on est pas en mode debug, on affiche pas cette page
-  if (pixel_added) {
-    //  console.log('toto======'+process.env.REACT_APP_DEBUG_MODE);
-    //  console.log(process.env);
-    history.push("/view/" + pixel_position);
-    //  console.log('pixel added yet');
+//si le pixel a déja été déposé et qu'on est pas en mode debug, on affiche pas cette page
+  if( pixel_added  && !(process.env.REACT_APP_DEBUG_MODE=='1')){
+  //  console.log('toto======'+process.env.REACT_APP_DEBUG_MODE);
+  //  console.log(process.env);
+    history.push("/view/"+pixel_position);
+  //  console.log('pixel added yet');
   }
+  
 
+  if((process.env.REACT_APP_DEBUG_MODE=='1')) {
 
+    return (
+      <Fragment>
+      <div id="mypixel" >
+      <ViewColorFromIp ip={FirstIP} />
+      <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
+        >> Add my pixel to the paint
+               </h2>
+    </div>
+    <div id="pixelwait" className="is-hidden" >
+      <ViewColorFromIp ip={FirstIP} />
+      <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
+        >> Adding pixel: please wait...
+               </h2>
+    </div>
+    </Fragment>
+    )
+    
+  } else {
     return (
 
 
       <h2 className="title is-size-3 has-text-centered shadowed">
-
+  
         <Typewriter
           options={{
             loop: false,
@@ -146,23 +180,30 @@ const Paint = () => {
               .start();
           }}
         />
-
-        <Fragment>
-          <div id="mypixel" className="is-hidden" >
-            <ViewColorFromIp ip={FirstIP} />
-            <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-              >> Add my pixel to the paint
+  
+  <Fragment>
+      <div id="mypixel"  className="is-hidden" >
+      <ViewColorFromIp ip={FirstIP} />
+      <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
+        >> Add my pixel to the paint
                </h2>
-          </div>
-          <div id="pixelwait" className="is-hidden" >
-            <ViewColorFromIp ip={FirstIP} />
-            <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
-              >> Adding pixel: please wait...
+    </div>
+    <div id="pixelwait" className="is-hidden" >
+      <ViewColorFromIp ip={FirstIP} />
+      <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
+        >> Adding pixel: please wait...
                </h2>
-          </div>
-        </Fragment>
+    </div>
+    </Fragment>
+  
       </h2>
+  
+  
+  
+  
     );
+  } 
+  
 };
 
-export default Paint;
+export default PaintDev;

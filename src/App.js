@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {socket} from "./components/Socket";
 import Profile from "./components/Profile";
 import Paint from "./components/Paint";
+import PaintDev from "./components/PaintDev";
 import Start from "./components/Start";
 import ExternalApi from "./components/ExternalApi";
 import PrivateRoute from "./components/PrivateRoute";
@@ -64,6 +65,7 @@ function App() {
                                     <Route path="/terms-of-service" component={TermsOfService} />
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
+                                    <PrivateRoute path="/paintdev" component={PaintDev} />
                                     <Route path="/view/:id?" component={View}  />
                                     <Route component={NoMatch} />
                                 </Switch>
