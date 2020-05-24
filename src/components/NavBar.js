@@ -14,6 +14,9 @@ const NavBar = () => {
         isAuthenticated && (
           <div className="navbar-menu is-active shadowed blackbackground"  >
             <div className="navbar-end"> 
+            <a className="navbar-item has-text-centered" target="_blank" href={`${process.env.REACT_APP_AWS_S3_ROOT_URL}/Art0x.png`}
+                > > download paiting &nbsp;
+                </a>
                 <a className="navbar-item has-text-centered" onClick={() => logout({returnTo: window.location.origin})}>
                 > logout &nbsp;
                 </a>

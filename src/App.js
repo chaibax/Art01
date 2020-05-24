@@ -9,7 +9,6 @@ import ExternalApi from "./components/ExternalApi";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
 import View from "./components/View";
-import NavBar from "./components/NavBar";
 import Privacy from "./components/Privacy";
 import TermsOfService from "./components/TermsOfService";
 import './App.sass';
@@ -52,9 +51,9 @@ function App() {
   
     return (
         <div className="App">
-            <section className="hero fullheight">
-                <div className="hero-body">
-                    <div className="columns is-centered">
+            <section className="hero is-fullheight ">
+                <div className="hero-body ">
+                    <div className="column is-centered is-vcentered">
                         <div className="container">
                             <BrowserRouter>
                                 <Switch>
@@ -68,7 +67,7 @@ function App() {
                                     <Route path="/view/:id?" component={View}  />
                                     <Route component={NoMatch} />
                                 </Switch>
-                                <NavBar />
+                                
                             </BrowserRouter>
                         </div>
                     </div>
