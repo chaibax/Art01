@@ -81,7 +81,7 @@ router.all('/squaresize', function (req, res, next) {
   });
 });
 
-router.all('/squaresize', function (req, res, next) {
+router.all('/count', function (req, res, next) {
   es.getLastEvent('pixels', function (err, evt) {
     if (evt) {
       evt_to_send = { "count": evt.position };
