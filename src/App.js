@@ -12,15 +12,22 @@ import Home from "./components/Home";
 import View from "./components/View";
 import Privacy from "./components/Privacy";
 import TermsOfService from "./components/TermsOfService";
+import Livestamp from 'kuende-livestamp';
+
 import './App.sass';
 import './App.css';
 require('dotenv').config();
 
+ 
+
 
 socket.on('newpixel', (data) => {
-    document.getElementById('card').innerHTML = data.given_name+' added pixel #'+data.newpixel.position+ ' now';
+
+
+    document.getElementById('notif').innerHTML = '> '+data.given_name+' added pixel #'+data.newpixel.position+ ' <span data-livestamp='+data.date+'></span> '   
     console.log(data);
 
+    
     });
 
 
@@ -51,6 +58,7 @@ function App() {
     )
   
     return (
+        
         <div className="App">
             <section className="hero is-fullheight ">
                 <div className="hero-body ">
@@ -73,8 +81,9 @@ function App() {
                         </div>
                     </div>
                 </div>
+                <div id="notif" className="has-margin-left-5"></div>
             </section>
-            <div id="card" ></div>
+        
         </div>
     );
 

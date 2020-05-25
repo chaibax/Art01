@@ -58,12 +58,12 @@ const PaintDev = () => {
           console.log(response);
           if( (response.data.position>-1) && !(process.env.REACT_APP_DEBUG_MODE=='1') ){
             console.log(response.data.position);
-            history.push("/view/"+response.data.position);
+            //history.push("/view/"+response.data.position);
             
 
           } else {
             console.log("error adding pixel :( ");
-            history.push("/paint");
+            history.push("/paintdev");
             pixelwaitid.classList.add("is-hidden");
             mypixelid.classList.remove("is-hidden");
           }
@@ -127,7 +127,7 @@ const PaintDev = () => {
   if( pixel_added  && !(process.env.REACT_APP_DEBUG_MODE=='1')){
   //  console.log('toto======'+process.env.REACT_APP_DEBUG_MODE);
   //  console.log(process.env);
-    history.push("/view/"+pixel_position);
+    //history.push("/view/"+pixel_position);
   //  console.log('pixel added yet');
   }
   
@@ -136,6 +136,7 @@ const PaintDev = () => {
 
     return (
       <Fragment>
+          <h1>PAINT DEV</h1>
       <div id="mypixel" >
       <ViewColorFromIp ip={FirstIP} />
       <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
