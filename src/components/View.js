@@ -54,12 +54,11 @@ class View extends Component {
         //coordonnée dans le referentien avec 0,0 au centre  :
         let result_old = spiral.getLatticeCoordinatesFor(position);
         //res.send({"x" : result_old[0], "y" : result_old[1]});
-        let result = spiral.getLatticeCoordinatesFor(position);
         let size = squaresize; //Math.max(Math.abs(result[0]),Math.abs(result[1]));
         //coordonné dans le nouveau referentiel
 
         let modifx = Math.floor(size / 2);
-        if (result_old[1] == 0) {
+        if (result_old[1] === 0) {
             var newy = result_old[1] + Math.floor(size / 2);
         } else if (result_old[1] < 0) {
             var newy = Math.abs(result_old[1]) + Math.floor(size / 2);
