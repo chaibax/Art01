@@ -47,9 +47,6 @@ document.onkeydown = function(evt) {
   }
 };
 
-console.log('👉 hostname = '+window.location.origin);
-console.log('redirect url = targetUrl: '+window.location.origin+'/paint');
-
     return (
      
        <Fragment>

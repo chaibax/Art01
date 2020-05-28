@@ -11,6 +11,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
 import View from "./components/View";
 import Privacy from "./components/Privacy";
+import Share from "./components/Share";
+import About from "./components/About";
+
 import TermsOfService from "./components/TermsOfService";
 import Livestamp from 'kuende-livestamp';
 
@@ -43,7 +46,7 @@ function App() {
     if (loading) {
         return (
             <div className="pageloader is-active shadowed blackbackground">
-                <span className="title">Loading Art01 App.js</span>
+                <span className="title">Loading 1000000000.art App.js</span>
             </div>
         );
     }
@@ -75,6 +78,9 @@ function App() {
                                     <PrivateRoute path="/paint" component={Paint} />
                                     <PrivateRoute path="/paintdev" component={PaintDev} />
                                     <Route path="/view/:id?" component={View}  />
+                                    <PrivateRoute path="/share/:id?" component={Share}  />
+                                    <Route path="/about" component={About}  />
+
                                     <Route component={NoMatch} />
                                 </Switch>
                             </BrowserRouter>
