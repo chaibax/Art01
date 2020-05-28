@@ -62,13 +62,11 @@ router.get('/', function (req, res, next) {
 /* GET last pixel added. */
 router.all('/last', function (req, res, next) {
   es.getLastEvent('pixels', function (err, evt) {
-    console.log(evt);
     const color = evt.payload[0].pixel.split('.');  
     const red = color[0];
     const green = color[1];
     const blue = color[2];
     const opacity = Math.round((color[3]/255) * 100) / 100;
-
     evt_to_send = { "position": evt.position, "commitStamp": evt.commitStamp, "eventId": evt.id, "r": color[0],"g": color[1],"b": color[2],"alpha": opacity, "given_name" : evt.payload[3].given_name, "avatar" : evt.payload[4].picture_large };
     res.send(evt_to_send);
   });
