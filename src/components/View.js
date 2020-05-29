@@ -117,7 +117,7 @@ class View extends Component {
                         </a>
                     </div>
                     <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>Next >> </a></h2>
-                    <NavBar />
+                   {/*  <NavBar />*/}  
                 </div>
             </Fragment>
         )

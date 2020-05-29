@@ -13,6 +13,7 @@ const Home = () => {
 
   if (isAuthenticated ) {
     console.log('isAuthenticated');
+    console.log(user);
     const pixel_position  = user['https://art01/pixel_position'];
     document.onkeydown = function (evt) {
       evt = evt || window.event;
@@ -29,7 +30,7 @@ const Home = () => {
                   delay: 75
                 }}
                 onInit={(typewriter) => {
-                  typewriter.typeString('<big>ART01</big>')
+                  typewriter.typeString('<big>1000000000.art</big>')
                     .pauseFor(1000)
                     .callFunction(() => {
                       console.log('This is ART01 👋');
@@ -42,10 +43,13 @@ const Home = () => {
                     .pauseFor(200)
                     .typeString('<br/>')
                     .pauseFor(50)
+                    .typeString('welcome back painter #')
+                    .typeString('<br/>')
+                    .pauseFor(50)
                     .typeString('<br/>')
                     .pauseFor(50)
                     .typeString('>> ')
-                    .typeString('<a href="/view/' +pixel_position+ '" style="text-deconration:none;color:#f0fff8">' + 'View' + '</a>')
+                    .typeString('<a href="/view/' +pixel_position+ '" style="text-deconration:none;color:#f0fff8">' + 'View paiting' + '</a>')
                     .start();
                 }}
               />
@@ -70,7 +74,7 @@ const Home = () => {
                   cursor: '<big>▮</big>'
                 }}
                 onInit={(typewriter) => {
-                  typewriter.typeString('<big>ART01</big>')
+                  typewriter.typeString('<big>1000000000.art</big>')
                     .pauseFor(2000)
                     .callFunction(() => {
                       console.log('This is ART01 👋');

@@ -54,7 +54,7 @@ document.onkeydown = function(evt) {
                         THIS PAINTING REQUIRES A BILLION PARTICIPANTS TO BE COMPLETED
 
                         </h2>
-                        <span className="shadowed">
+                        <span className="shadowed is-size-4">
                         <p>Art01 will be a painting. Its size will be 40,000 px wide by 25,000 pixel high. That is a 1 000 000 000 pixels.</p>
                         <p>Every pixel is added by one person, you for example. When you first signs in a colored dot corresponding to your IP address is added. </p>
                         <p>It's your pixel.</p>
