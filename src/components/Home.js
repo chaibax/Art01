@@ -18,6 +18,8 @@ const Home = () => {
     };
     return (
        <h1 className="title is-size-1 has-text-centered shadowed">
+
+<big>1000000000.art</big>
               <Typewriter
                 options={{
                   loop: false,
@@ -25,11 +27,7 @@ const Home = () => {
                   delay: 75
                 }}
                 onInit={(typewriter) => {
-                  typewriter.typeString('<big>1000000000.art</big>')
-                    .pauseFor(1000)
-                    .callFunction(() => {
-                      console.log('This is ART01 👋');
-                    })
+                  typewriter
                     .typeString('<br/>')
                     .pauseFor(50)
                     .typeString('<br/>')
@@ -63,17 +61,14 @@ const Home = () => {
   return (
           <Fragment>
             <h1 className="title is-size-1 has-text-centered shadowed">
+            <big>1000000000.art</big>
               <Typewriter
                 options={{
                   loop: true,
                   cursor: '<big>▮</big>'
                 }}
                 onInit={(typewriter) => {
-                  typewriter.typeString('<big>1000000000.art</big>')
-                    .pauseFor(2000)
-                    .callFunction(() => {
-                      console.log('This is ART01 👋');
-                    })
+                  typewriter
                     .typeString('<br/>')
                     .pauseFor(500)
                     .typeString('<br/>')

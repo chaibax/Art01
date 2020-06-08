@@ -14,13 +14,9 @@ import Privacy from "./components/Privacy";
 import Share from "./components/Share";
 import About from "./components/About";
 import TermsOfService from "./components/TermsOfService";
-
 import './App.sass';
 import './App.css';
 require('dotenv').config();
-
- 
-
 
 socket.on('newpixel', (data) => {
 
