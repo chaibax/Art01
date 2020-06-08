@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 
 const Home = () => {
-  const {isAuthenticated, loading, user} = useAuth0();
+  const {isAuthenticated, user} = useAuth0();
   const history = useHistory();
   if (isAuthenticated ) {
     console.log('isAuthenticated');
@@ -64,7 +64,7 @@ const Home = () => {
             <big>1000000000.art</big>
               <Typewriter
                 options={{
-                  loop: true,
+                  loop: false,
                   cursor: '<big>▮</big>'
                 }}
                 onInit={(typewriter) => {
