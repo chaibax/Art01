@@ -3,17 +3,17 @@ import '../images.css';
 import { socket } from "./Socket";
 import { useAuth0 } from "../react-auth0-wrapper";
 import Typewriter from 'typewriter-effect';
-import { FacebookShareButton, TwitterShareButton, WhatsappShareButton} from "react-share";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
 
 
-const Share  = ({ match }) =>    {
+const Share = ({ match }) => {
 
-    const { logout, loading, user } = useAuth0();
-    const given_name = user.given_name;
-    console.log(match.params.id);
-    const shareUrl = 'https://www.1000000000.art';
-    const title = '1000000000.art first massively participatory art project';
-    const art01url = process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png";
+  const { logout, loading, user } = useAuth0();
+  const given_name = user.given_name;
+  console.log(match.params.id);
+  const shareUrl = 'https://www.1000000000.art';
+  const title = '1000000000.art first massively participatory art project';
+  const art01url = process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png";
 
   if (loading || !user) {
     return (
@@ -22,76 +22,69 @@ const Share  = ({ match }) =>    {
       </div>
     );
   }
-
-
-        return (
-            <Fragment>
-                
-
-               <h1 className="title is-size-2 has-text-centered shadowed">
-              <Typewriter
-                options={{
-                  loop: false,
-                  cursor: '<big>▮</big>',
-                  delay: 150
-                }}
-                onInit={(typewriter) => {
-                  typewriter.typeString('<big>'+given_name+', you are now painter number '+match.params.id+' in a billion</big>')
-                    .pauseFor(1000)
-                    .typeString('<br/>')
-                    .typeString('<br/>')
-                    .pauseFor(500)
-                    .typeString('> ')
-                    .typeString('<a style="text-deconration:none;color:#f0fff8" target="_blank" href="'+art01url+'">Download painting</a>')
-                    .typeString('<br/>')
-                    .pauseFor(500)
-                    .typeString('> ')
-                    .typeString('<a style="text-deconration:none;color:#f0fff8"  href="mailto:weareart0x@gmail.com">Feedback</a>')
-                    .typeString('<br/>')
-                    .pauseFor(500)
-                    .typeString('> ')
-                    .typeString('<a style="text-deconration:none;color:#f0fff8" target="_blank" href="https://github.com/chaibax/Art01">About</a>')
-                    .typeString('<br/>')
-                    .pauseFor(500)
-                    
-                    .typeString('>> ')
-                    .typeString('<a style="text-deconration:none;color:#f0fff8" href="/view/'+match.params.id+'">Back to painting</a>')
-                    .callFunction(() => {
-                        const element = document.getElementById("share");
-                        element.classList.remove("is-hidden");
-                      })
-                    .start();
-                }}
-              />
-           <br/><br/>
-            <div id="share" className="is-hidden title is-size-2 has-text-centered shadowed" >
-            <FacebookShareButton
+  return (
+    <Fragment>
+      <h1 className="title is-size-2 has-text-centered shadowed">
+        <Typewriter
+          options={{
+            loop: false,
+            cursor: '<big>▮</big>',
+            delay: 150
+          }}
+          onInit={(typewriter) => {
+            typewriter.typeString('<big>' + given_name + ', you are now painter number ' + match.params.id + ' in a billion</big>')
+              .pauseFor(1000)
+              .typeString('<br/>')
+              .typeString('<br/>')
+              .pauseFor(500)
+              .typeString('> ')
+              .typeString('<a style="text-deconration:none;color:#f0fff8" target="_blank" href="' + art01url + '">Download painting</a>')
+              .typeString('<br/>')
+              .pauseFor(500)
+              .typeString('> ')
+              .typeString('<a style="text-deconration:none;color:#f0fff8"  href="mailto:weareart0x@gmail.com">Feedback/Contact</a>')
+              .typeString('<br/>')
+              .pauseFor(500)
+              .typeString('> ')
+              .typeString('<a style="text-deconration:none;color:#f0fff8" target="_blank" href="https://github.com/chaibax/Art01">About</a>')
+              .typeString('<br/>')
+              .pauseFor(500)
+              .typeString('>> ')
+              .typeString('<a style="text-deconration:none;color:#f0fff8" href="/view/' + match.params.id + '">Back to painting</a>')
+              .callFunction(() => {
+                const element = document.getElementById("share");
+                element.classList.remove("is-hidden");
+              })
+              .start();
+          }}
+        />
+        <br /><br />
+        <div id="share" className="is-hidden title is-size-2 has-text-centered shadowed" >
+          <FacebookShareButton
             url={shareUrl}
             quote={title}
             className="link shadowed"
-            >
-                > Share on Facebook 
+          >
+            > Share on Facebook
             </FacebookShareButton>
-            | 
+            |
             <TwitterShareButton
             url={shareUrl}
             quote={title}
             className="link shadowed"
-            > Twitter
+          > Twitter
             </TwitterShareButton>
 
-            <br/><br/>
-                    
-            <a style={{textDeconration: 'none', color: '#f0fff8'}} onClick={() => logout({returnTo: window.location.origin})}>
-                > logout &nbsp;
+          <br /><br />
+
+          <a style={{ textDeconration: 'none', color: '#f0fff8' }} onClick={() => logout({ returnTo: window.location.origin })}>
+            > logout &nbsp;
                 </a>
-            </div>
+        </div>
+      </h1>
 
-
-            </h1>
-
-            </Fragment>
-        )
-    };
+    </Fragment>
+  )
+};
 
 export default Share;
