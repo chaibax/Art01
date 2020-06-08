@@ -13,10 +13,6 @@ var usersRouter = require('./routes/users');
 var pixelsRouter = require('./routes/pixels');
 var spiralRouter = require('./routes/spiral');
 var imagesRouter = require('./routes/images');
-
-var debug = require('debug');
-
-
 const port = process.env.PORT || 3001;
 
 var app = require('express')();

@@ -13,9 +13,7 @@ import View from "./components/View";
 import Privacy from "./components/Privacy";
 import Share from "./components/Share";
 import About from "./components/About";
-
 import TermsOfService from "./components/TermsOfService";
-import Livestamp from 'kuende-livestamp';
 
 import './App.sass';
 import './App.css';
@@ -35,7 +33,7 @@ socket.on('newpixel', (data) => {
 
 
 function App() {
-    const { loading, user, isAuthenticated } = useAuth0();
+    const { loading } = useAuth0();
 
   //  console.log('>>'+process.env.REACT_APP_API_BASE_URL);
   //  socket.on('news', (data) => {

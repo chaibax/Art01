@@ -6,9 +6,6 @@ import { useAuth0 } from "../react-auth0-wrapper";
 const Home = () => {
   const {isAuthenticated, loading, user} = useAuth0();
   const history = useHistory();
-
- 
-
   if (isAuthenticated ) {
     console.log('isAuthenticated');
     console.log(user);
