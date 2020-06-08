@@ -143,18 +143,18 @@ function Jimpmerge(tmpimage, req, callback) {
         console.log(err);
         let pathtmp = localArt0xpath;
         fs.copyFile(localEmptyImagexpath, pathtmp, (err) => {
-          if (err) throw err;
+          if (err){ throw err;}
         });
 
       }
     })
 
-    Jimp.read(localArt0xpath, function (err, image2) {
+    Jimp.read(localArt0xpath, function (err, image) {
       if (err) {
         console.log("👉2 : impossible de lire tmpimage "+tmpimage)
         console.error(err);
       }
-      Jimp.read(tmpimage, function (err2, image) {
+      Jimp.read(tmpimage, function (err2, image2) {
         if (err2) {
           console.log("👉3 erruer jimp.read du fichier "+localArt0xpath)
           console.log(err2);
