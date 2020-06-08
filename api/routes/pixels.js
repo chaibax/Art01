@@ -1,11 +1,9 @@
-var express = require('express');
-var router = express.Router();
 var auth1 = require('../auth0');
 var eventstore = require('eventstore');
-var debug = require('debug')('api');
 var image = require('./images');
 var ulam = require('../utils/ulam');
-
+var express = require('express');
+var router = express.Router();
 
 
 //pour pourvoir maj la metadata auth0  de l'user avec le numero de pixel 
@@ -99,6 +97,9 @@ router.all('/count', function (req, res, next) {
 });
 
 router.post('/add', auth1.checkJwt, function (req, res, next) {
+  console.log('pixels/add');
+  console.log(req.body);
+
   var io = req.app.get('socketio');
   let event = [{ pixel: req.body.pixel }, { email: req.body.email }, { auth0Id: req.body.auth0Id }, {given_name : req.body.given_name}, {picture_large : req.body.picture_large}];
   Events.countDocuments({ 'payload.email': req.body.email }, function (err, count) {
@@ -115,6 +116,7 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
           //var id_event = stream.eventsToDispatch[0]['id']; // Identidiant de l'event 
           //res.send('le pixel a bien été ajouté: ' + req.body.pixel + req.body.email + req.body.auth0Id + ' a la position :' + position);
           //il faut générer l'image ici : 
+          console.log('tream.addEvent(event)');
           let datatoadd = stream.eventsToDispatch[0]['payload'];
 
           let usercolor = datatoadd[0].pixel;

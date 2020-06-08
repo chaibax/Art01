@@ -8,7 +8,7 @@ var async = require("async");
 var ulam = require('../utils/ulam');
 const AWS = require('aws-sdk');
 const path = require('path');
-const https = require('https');
+
 
 AWS.config.update({
   accessKeyId: process.env.AWS_S3_ACCESS_KEY,
@@ -149,16 +149,14 @@ function Jimpmerge(tmpimage, req, callback) {
       }
     })
 
-
-    Jimp.read(tmpimage, function (err, image) {
+    Jimp.read(localArt0xpath, function (err, image2) {
       if (err) {
         console.log("👉2 : impossible de lire tmpimage "+tmpimage)
         console.error(err);
-        throw err;
       }
-      Jimp.read(localArt0xpath, function (err2, image2) {
+      Jimp.read(tmpimage, function (err2, image) {
         if (err2) {
-          console.log("👉3")
+          console.log("👉3 erruer jimp.read du fichier "+localArt0xpath)
           console.log(err2);
         }
         if (req.position) {

@@ -51,7 +51,7 @@ const PaintDev = () => {
 
       }, {
         headers: { 'Authorization': `Bearer ${token}` },
-        timeout: 10000,
+        timeout: 100000,
       }
       )
         .then(function (response) {
