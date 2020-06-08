@@ -8,12 +8,12 @@ import { FacebookShareButton, TwitterShareButton, WhatsappShareButton} from "rea
 
 const Share  = ({ match }) =>    {
 
-    const { getTokenSilently, loading, user } = useAuth0();
+    const { logout, loading, user } = useAuth0();
     const given_name = user.given_name;
     console.log(match.params.id);
     const shareUrl = 'https://www.1000000000.art';
     const title = '1000000000.art first massively participatory art project';
-
+    const art01url = process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png";
 
   if (loading || !user) {
     return (
@@ -42,6 +42,10 @@ const Share  = ({ match }) =>    {
                     .typeString('<br/>')
                     .pauseFor(500)
                     .typeString('> ')
+                    .typeString('<a style="text-deconration:none;color:#f0fff8" target="_blank" href="'+art01url+'">Download painting</a>')
+                    .typeString('<br/>')
+                    .pauseFor(500)
+                    .typeString('> ')
                     .typeString('<a style="text-deconration:none;color:#f0fff8"  href="mailto:weareart0x@gmail.com">Feedback</a>')
                     .typeString('<br/>')
                     .pauseFor(500)
@@ -49,6 +53,7 @@ const Share  = ({ match }) =>    {
                     .typeString('<a style="text-deconration:none;color:#f0fff8" target="_blank" href="https://github.com/chaibax/Art01">About</a>')
                     .typeString('<br/>')
                     .pauseFor(500)
+                    
                     .typeString('>> ')
                     .typeString('<a style="text-deconration:none;color:#f0fff8" href="/view/'+match.params.id+'">Back to painting</a>')
                     .callFunction(() => {
@@ -74,7 +79,15 @@ const Share  = ({ match }) =>    {
             className="link shadowed"
             > Twitter
             </TwitterShareButton>
+
+            <br/><br/>
+                    
+            <a style={{textDeconration: 'none', color: '#f0fff8'}} onClick={() => logout({returnTo: window.location.origin})}>
+                > logout &nbsp;
+                </a>
             </div>
+
+
             </h1>
 
             </Fragment>
