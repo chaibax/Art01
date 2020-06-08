@@ -46,13 +46,20 @@ function filexists(lastp, req, callback) {
 
 
   //https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png?t=1589131066273
-  //let pathfile = __dirname + '/../public/images/art' + req.position + '-ok.png';
-  let pathfile = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '-ok.png';
+  
+  
+  let pathfile = __dirname + '/../public/data/images/art' + req.position + '-ok.png';
+  
+ // let pathfile = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '-ok.png';
+
+
+
   // console.log('dans filexists2 avec pathfile=' + pathfile);
 
   fs.access(pathfile, fs.F_OK, (err) => {
     if (err) {
-      // console.error(err)
+      console.log('😥😥😥');
+       console.error(err)
       callback(null, 0, lastp, req);
     } else {
       // console.log('dans filexists2 avec retour 1 et lastp='+lastp);
@@ -63,12 +70,16 @@ function filexists(lastp, req, callback) {
 
 function newimage(fileexist, lastp, req, callback) {
   if (!fileexist) {
-    let pathtmp = __dirname + '/../public/images/art' + req.position + '.png';
+    console.log("👉 le fichier nexiste pas");
+    let pathtmp = __dirname + '/../public/data/images/art' + req.position + '.png';
     //let pathtmp = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '.png';
 
 
     fs.copyFile(__dirname + '/../public/images/empty.png', pathtmp, (err) => {
-      if (err) throw err;
+      if (err) {
+      console.log('😥');
+      throw err;}
+      console.log('OK💚 ')
       callback(null, pathtmp, lastp, req);
     });
 
@@ -114,22 +125,21 @@ function Jimpread(tmpimage, lastp, req, callback) {
 function Jimpmerge(tmpimage, req, callback) {
   if (process.env.HEROKU_API_PATH) {
 
-    var file = fs.createWriteStream(process.env.HEROKU_API_PATH + '/public/images/Art0x.png');
     var localArt0xpath = process.env.HEROKU_API_PATH + '/public/images/Art0x.png';
     var localEmptyImagexpath = process.env.HEROKU_API_PATH + '/public/images/empty.png';
 
   } else {
     //not in heroku env
 
-    var file = fs.createWriteStream(__dirname + '/../public/images/Art0x.png');
-    var localArt0xpath = __dirname + '/../public/images/Art0x.png';
+    var localArt0xpath = __dirname + '/../public/data/images/Art0x.png';
     var localEmptyImagexpath = __dirname + '/../public/images/empty.png';
   }
-  const request = https.get(process.env.AWS_S3_ROOT_URL + '/Art0x.png', function (response) {
-    response.pipe(file);
-    var images = [localArt0xpath, tmpimage];
+
+  console.log("👉👉 le fichier nexiste pas");
+
     fs.access(localArt0xpath, fs.F_OK, (err) => {
       if (err) {
+        console.log("👉1");
         console.log(err);
         let pathtmp = localArt0xpath;
         fs.copyFile(localEmptyImagexpath, pathtmp, (err) => {
@@ -140,15 +150,15 @@ function Jimpmerge(tmpimage, req, callback) {
     })
 
 
-    var images = [localArt0xpath, tmpimage];
     Jimp.read(tmpimage, function (err, image) {
       if (err) {
-        console.log(err);
-        //throw err;
-
+        console.log("👉2 : impossible de lire tmpimage "+tmpimage)
+        console.error(err);
+        throw err;
       }
       Jimp.read(localArt0xpath, function (err2, image2) {
         if (err2) {
+          console.log("👉3")
           console.log(err2);
         }
         if (req.position) {
@@ -164,11 +174,12 @@ function Jimpmerge(tmpimage, req, callback) {
           image.composite(image2, 0, 0);
         }
 
-        fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
+        fs.copyFile(__dirname + '/../public/data/images/Art0x.png', __dirname + '/../public/data/images/Art0x-' + req.position + '.png', (err) => {
           if (err) {
+            console.log("👉4")
             throw err;
           }
-          image.write(__dirname + '/../public/images/Art0x.png', function () {
+          image.write(__dirname + '/../public/data/images/Art0x.png', function () {
             console.log("> wrote the new image Art0x.png");
             callback(null, tmpimage, req);
           });
@@ -176,8 +187,8 @@ function Jimpmerge(tmpimage, req, callback) {
       })
     });
 
-  });
-  ;
+
+  ///#####
 
 };
 
@@ -188,7 +199,7 @@ function save_on_the_cloud_old_art0x(tmpimage, req, callback) {
     callback(true);
   }
 
-  var tmp_url = __dirname + '/../public/images/Art0x-' + req.position + '.png';
+  var tmp_url = __dirname + '/../public/data/images/Art0x-' + req.position + '.png';
   var params = {
     Bucket: 'art01-images',
     Body: fs.createReadStream(tmp_url),
@@ -264,10 +275,7 @@ function generateimage(params, callback) {
     filexists, //utils.filexists
     newimage,
     Jimpread, // Jimp.rea
-    Jimpmerge,
-    save_on_the_cloud_old_art0x,
-    save_on_the_cloud_tmpimage,
-    save_on_the_cloud_art0x
+    Jimpmerge
   ], function (err, result) {
     if (err) callback(0);
     // see https://medium.com/velotio-perspectives/understanding-node-js-async-flows-parallel-serial-waterfall-and-queues-6f9c4badbc17
@@ -295,7 +303,7 @@ router.all('/', function (req, res, next) {
 
 router.all('/filexists/:position', function (req, res, next) {
   //req.params.position
-  const path = __dirname + '/../public/images/' + req.params.position + '.png';
+  const path = __dirname + '/../public/data/images/' + req.params.position + '.png';
   utils.filexists(path, function (msg) {
     //console.log(msg);
     res.send('{"' + path + '" : ' + msg + '}');

@@ -152,7 +152,7 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
             }
             // Updated user.
             console.log('maj updateUserMetadata OK ')
-            console.log(user);
+          //  console.log(user);
           });
         });
       //end commit 

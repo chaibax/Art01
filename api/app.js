@@ -53,14 +53,7 @@ var corsOptions = {
 //app.use(cors(corsOptions));
 
 app.use(cors());
-
-
-
-
 app.use(scout.expressMiddleware());
-
-
-
 // Define an endpoint that must be called with an access token
 app.get("/api/external", auth0.checkJwt, (req, res) => {
   res.send({
@@ -68,24 +61,14 @@ app.get("/api/external", auth0.checkJwt, (req, res) => {
   });
 });
 
-
-
-
-
 app.use(logger('dev'));
 app.use(helmet());
-
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
 console.log('>>W'+path.join(__dirname, 'public'));
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
@@ -102,8 +85,6 @@ io.on('connection', (socket) => {
 http.listen(port, () => {
   console.log('listening on '+port);
 });
-
-
 
 app.set('socketio', io);
 

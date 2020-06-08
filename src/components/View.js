@@ -11,7 +11,7 @@ class View extends Component {
     constructor(props) {
 
         super(props);
-        //console.log('REACT_APP_AWS_S3_ROOT_URL = '+process.env.REACT_APP_AWS_S3_ROOT_URL);    
+        console.log('REACT_APP_AWS_S3_ROOT_URL = '+process.env.REACT_APP_AWS_S3_ROOT_URL);    
         this.canvasRef = React.createRef();
         this.state = {
             link: process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png",
