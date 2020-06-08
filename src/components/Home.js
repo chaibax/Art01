@@ -16,10 +16,10 @@ const Home = () => {
         history.push("/view/"+pixel_position);
       }
     };
-    return (
+    return (          <Fragment>
        <h1 className="title is-size-1 has-text-centered shadowed">
 
-<big>1000000000.art</big>
+1000000000.art</h1><h2 className="title is-size-2 has-text-centered shadowed">
               <Typewriter
                 options={{
                   loop: false,
@@ -28,8 +28,6 @@ const Home = () => {
                 }}
                 onInit={(typewriter) => {
                   typewriter
-                    .typeString('<br/>')
-                    .pauseFor(50)
                     .typeString('<br/>')
                     .pauseFor(50)
                     .typeString('first massively participatory art project')
@@ -46,7 +44,8 @@ const Home = () => {
                     .start();
                 }}
               />
-            </h1>
+            </h2>
+            </Fragment>
     )
   } else {
 
@@ -61,7 +60,9 @@ const Home = () => {
   return (
           <Fragment>
             <h1 className="title is-size-1 has-text-centered shadowed">
-            <big>1000000000.art</big>
+            1000000000.art</h1>
+            <h2 className="title is-size-2 has-text-centered shadowed">
+
               <Typewriter
                 options={{
                   loop: false,
@@ -75,15 +76,13 @@ const Home = () => {
                     .pauseFor(2000)
                     .typeString('<br/>')
                     .pauseFor(500)
-                    .typeString('<br/>')
-                    .pauseFor(500)
                     .typeString('>> ')
                     .typeString('<a href="/start" style="text-deconration:none;color:#f0fff8">' + 'participate' + '</a>')
                     .pauseFor(9100)
                     .start();
                 }}
               />
-            </h1>
+            </h2>
             <nav className="navbar is-fixed-bottom shadowed blackbackground" role="navigation" aria-label="main navigation" style={{zIndex: 0}}>
           
             <div id="card" className="auth0badge">
