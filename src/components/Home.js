@@ -36,7 +36,7 @@ const Home = () => {
                     .pauseFor(200)
                     .typeString('<br/>')
                     .pauseFor(50)
-                    .typeString('welcome back painter #')
+                    .typeString('welcome back painter')
                     .typeString('<br/>')
                     .pauseFor(50)
                     .typeString('<br/>')
@@ -70,9 +70,7 @@ const Home = () => {
                 onInit={(typewriter) => {
                   typewriter
                     .typeString('<br/>')
-                    .pauseFor(500)
-                    .typeString('<br/>')
-                    .pauseFor(500)
+                    .pauseFor(100)
                     .typeString('first massively participatory art project')
                     .pauseFor(2000)
                     .typeString('<br/>')
