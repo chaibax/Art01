@@ -3,7 +3,8 @@ var auth0 = require('./auth0');
 var express = require('express');
 var path = require('path');
 var bodyParser = require("body-parser");
-const helmet = require('helmet')
+const helmet = require('helmet');
+const scout = require("@scout_apm/scout-apm");
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
@@ -12,6 +13,7 @@ var usersRouter = require('./routes/users');
 var pixelsRouter = require('./routes/pixels');
 var spiralRouter = require('./routes/spiral');
 var imagesRouter = require('./routes/images');
+
 var debug = require('debug');
 
 
@@ -59,6 +61,7 @@ app.use(cors());
 
 
 
+app.use(scout.expressMiddleware());
 
 
 
