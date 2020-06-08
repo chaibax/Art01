@@ -125,8 +125,10 @@ function Jimpread(tmpimage, lastp, req, callback) {
 function Jimpmerge(tmpimage, req, callback) {
   if (process.env.HEROKU_API_PATH) {
 
-    var localArt0xpath = process.env.HEROKU_API_PATH + '/public/images/Art0x.png';
+    var localArt0xpath = process.env.HEROKU_API_PATH + '/public/data/images/Art0x.png';
     var localEmptyImagexpath = process.env.HEROKU_API_PATH + '/public/images/empty.png';
+
+    console.log('heroku app : localArt0xpath = '+localArt0xpath)
 
   } else {
     //not in heroku env
@@ -149,12 +151,12 @@ function Jimpmerge(tmpimage, req, callback) {
       }
     })
 
-    Jimp.read(localArt0xpath, function (err, image) {
+    Jimp.read(localArt0xpath, function (err, image2) {
       if (err) {
         console.log("👉2 : impossible de lire tmpimage "+tmpimage)
         console.error(err);
       }
-      Jimp.read(tmpimage, function (err2, image2) {
+      Jimp.read(tmpimage, function (err2, image) {
         if (err2) {
           console.log("👉3 erruer jimp.read du fichier "+localArt0xpath)
           console.log(err2);
