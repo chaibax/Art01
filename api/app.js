@@ -6,7 +6,6 @@ var bodyParser = require("body-parser");
 const helmet = require('helmet');
 const scout = require("@scout_apm/scout-apm");
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -53,7 +52,8 @@ var corsOptions = {
 //app.use(cors(corsOptions));
 
 app.use(cors());
-app.use(scout.expressMiddleware());
+
+
 // Define an endpoint that must be called with an access token
 app.get("/api/external", auth0.checkJwt, (req, res) => {
   res.send({
@@ -61,7 +61,7 @@ app.get("/api/external", auth0.checkJwt, (req, res) => {
   });
 });
 
-app.use(logger('dev'));
+
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -85,6 +85,10 @@ io.on('connection', (socket) => {
 http.listen(port, () => {
   console.log('listening on '+port);
 });
+
+//app.use(scout.expressMiddleware());
+//fait planter /pixels/add avec un pending infini
+
 
 app.set('socketio', io);
 
