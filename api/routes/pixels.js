@@ -147,8 +147,12 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
           auth0.updateUserMetadata(params, metadata, function (err, user) {
             if (err) {
               // Handle error.
+              console.log('MAJ updateUserMetadata')
+              console.log(err);
             }
             // Updated user.
+            console.log('maj updateUserMetadata OK ')
+            console.log(user);
           });
         });
       //end commit 
