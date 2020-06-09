@@ -52,10 +52,10 @@ function filexists(lastp, req, callback) {
 
   fs.access(pathfile, fs.F_OK, (err) => {
     if (err) {
-      // console.error(err)
+       console.error(err)
       callback(null, 0, lastp, req);
     } else {
-      // console.log('dans filexists2 avec retour 1 et lastp='+lastp);
+      console.log('dans filexists2 avec retour 1 et lastp='+lastp);
       callback(null, 1, lastp, req);
     }
   })
@@ -82,13 +82,14 @@ function newimage(fileexist, lastp, req, callback) {
 function Jimpread(tmpimage, lastp, req, callback) {
   if (tmpimage) {
 
-    // console.log('Jimp va ecrire dans '+tmpimage);
+     console.log('Jimp va ecrire dans '+tmpimage);
     //on prend la position du dernier pixel : ex : 123. Et on va en deduire la taille du carré max. 
     let size = ulam.getSquareSize(req.position);
     let coordinate = ulam.getNewLatticeCoordinatesFor(req.position, size);
 
 
     var jimptmpimage = Jimp.read(tmpimage, (err, art01) => {
+      console.log('>>1');
       if (err) throw err;
       //console.log(typeof(req.params.r)+' '+req.params.g+' '+ req.params.b+' ' +req.params.alpha+' '+typeof(coordinate[0])+' '+coordinate[1])
       let r = parseInt(req.r);
@@ -112,6 +113,7 @@ function Jimpread(tmpimage, lastp, req, callback) {
 
 
 function Jimpmerge(tmpimage, req, callback) {
+
   if (process.env.HEROKU_API_PATH) {
 
     var file = fs.createWriteStream(process.env.HEROKU_API_PATH + '/public/images/Art0x.png');
@@ -142,26 +144,32 @@ function Jimpmerge(tmpimage, req, callback) {
 
     var images = [localArt0xpath, tmpimage];
     Jimp.read(tmpimage, function (err, image) {
+      console.log('>>2');
       if (err) {
+        console.log('>>3');
         console.log(err);
         //throw err;
 
       }
       Jimp.read(localArt0xpath, function (err2, image2) {
         if (err2) {
+          console.log('>>4'+localArt0xpath);
           console.log(err2);
         }
         if (req.position) {
+          console.log('>>4é');
           if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
             //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
             image.composite(image2, 1, 1);
           } else {
             //console.log('💄 pas de changement de square size');
             image.composite(image2, 0, 0);
+            console.log('>>5');
           }
         }
         else {
           image.composite(image2, 0, 0);
+          console.log('>>6');
         }
 
         fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
