@@ -65,7 +65,7 @@ document.onkeydown = function(evt) {
                         <p>At this rate, ART01 be finished in <span id="date_fin"></span> years.
 </p></span>
 <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({ appState : {targetUrl: window.location.origin+'/paint'}})}>
-                        >> Participate<big className="blink">▮</big>
+<big> Participate</big><big className="blink">▮</big>
 
                  </h2>
                  </div>

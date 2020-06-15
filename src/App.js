@@ -31,6 +31,7 @@ socket.on('newpixel', (data) => {
 function App() {
     const { loading } = useAuth0();
 
+
   //  console.log('>>'+process.env.REACT_APP_API_BASE_URL);
   //  socket.on('news', (data) => {
   //  console.log(data);

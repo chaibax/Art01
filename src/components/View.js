@@ -12,10 +12,18 @@ class View extends Component {
         super(props);
         console.log('REACT_APP_AWS_S3_ROOT_URL = '+process.env.REACT_APP_AWS_S3_ROOT_URL);    
         this.canvasRef = React.createRef();
+        
+        var tmp_position = 1;
+        if(parseInt(props.match.params.id)) {
+            window.current_position = props.match.params.id;
+            
+            tmp_position = parseInt(props.match.params.id);
+        };
+
         this.state = {
             link: process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png",
-            position: parseInt(props.match.params.id),
-            pixeladded_image: process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x-" + parseInt(props.match.params.id) + ".png",
+            position: tmp_position,
+            pixeladded_image: process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x-" + tmp_position + ".png",
             compteur: 0,
             squaresize: null
         }
@@ -46,6 +54,7 @@ class View extends Component {
         //C'est beaucoup plus pratique pour manipuler une image
         //coordonnée dans le referentien avec 0,0 au centre  :
         let result_old = spiral.getLatticeCoordinatesFor(position);
+        
         //res.send({"x" : result_old[0], "y" : result_old[1]});
         let size = squaresize; //Math.max(Math.abs(result[0]),Math.abs(result[1]));
         //coordonné dans le nouveau referentiel
@@ -103,8 +112,9 @@ class View extends Component {
             <Fragment>
                 <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>
                 <h1 className="title is-size-3 has-text-centered shadowed blackbackground">
-                    You added your pixel. Next<big className="blink">▮</big>>>
+                    You added your pixel. Next<big className="blink">▮</big>
                 </h1>
+                </a>
                 <div className="imageblink ">
                     <div className="has-text-centered" >
                     </div></div>
@@ -116,10 +126,10 @@ class View extends Component {
                             <img id="art01" src={this.state.link} className="imagetop piximagerendering" style={{ backgroundColor: 'rgba(255, 255, 255, 1)', height: '85vmin', width: '85vmin', zIndex: 1 }} />
                         </a>
                     </div>
-                    <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>Next<big className="blink">▮</big>>> </a></h2>
+                    <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>Next<big className="blink">▮</big> </a></h2>
                    {/*  <NavBar />*/}  
                 </div>
-                </a>
+             
             </Fragment>
         )
     };

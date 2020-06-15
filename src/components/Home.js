@@ -9,7 +9,19 @@ const Home = () => {
   if (isAuthenticated ) {
     console.log('isAuthenticated');
     console.log(user);
-    const pixel_position  = user['https://art01/pixel_position'];
+    var pixel_position  = user['https://art01/pixel_position'];
+console.log('>>>'+pixel_position);
+
+console.log('👉');
+
+    if(pixel_position === undefined) {
+      if(window.current_position) {
+        pixel_position = window.current_position ;
+      console.log(window.current_position );
+      }
+    }
+
+
     document.onkeydown = function (evt) {
       evt = evt || window.event;
       if (evt.keyCode === 13) {
@@ -19,7 +31,7 @@ const Home = () => {
     return (          <Fragment>
        <h1 className="title is-size-1 has-text-centered shadowed">
 
-1000000000.art</h1><h2 className="title is-size-2 has-text-centered shadowed">
+
               <Typewriter
                 options={{
                   loop: false,
@@ -29,12 +41,14 @@ const Home = () => {
                 onInit={(typewriter) => {
                   typewriter
                     .typeString('<br/>')
+                    .typeString('<big>1000000000.art</big>')  
+                    .typeString('<br/>')
                     .pauseFor(50)
                     .typeString('first massively participatory art project')
                     .pauseFor(200)
                     .typeString('<br/>')
                     .pauseFor(50)
-                    .typeString('welcome back painter')
+                    .typeString('welcome back painter #'+pixel_position)
                     .typeString('<br/>')
                     .pauseFor(50)
                     .typeString('<br/>')
@@ -44,7 +58,7 @@ const Home = () => {
                     .start();
                 }}
               />
-            </h2>
+            </h1>
             </Fragment>
     )
   } else {
@@ -69,22 +83,23 @@ const Home = () => {
                 onInit={(typewriter) => {
                   typewriter
                     .typeString('<br/>')
-                    .typeString('<big><a href="/start" style="text-deconration:none;color:#f0fff8">1000000000.art</big></a>')
+                    .typeString('<big>1000000000.art</big>')
                     .typeString('<br/>')
                     .typeString('<br/>')
                     .pauseFor(100)
-                    .typeString('<a href="/start" style="text-deconration:none;color:#f0fff8">first massively participatory art project</a>')
+                    .typeString('first massively participatory art project')
                     .pauseFor(2000)
                     .typeString('<br/>')
                     .pauseFor(500)
                     .typeString('<br/>')
                     .typeString('>> ')
-                    .typeString('<a href="/start" style="text-deconration:none;color:#f0fff8"><big>' + 'participate' + '</big></a>')
+                    .typeString('<big>' + 'participate' + '</big>')
                     .pauseFor(9100)
                     .start();
                 }}
               />
            </h1>
+           </a>
             <nav className="navbar is-fixed-bottom shadowed blackbackground" role="navigation" aria-label="main navigation" style={{zIndex: 0}}>
           
             <div id="card" className="auth0badge">
@@ -93,7 +108,7 @@ const Home = () => {
 
           
             </nav>
-            </a>
+           
             </Fragment>  
   )
 }

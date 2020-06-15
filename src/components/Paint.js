@@ -4,6 +4,7 @@ import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
 
+
 function getRandomArbitrary(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -50,6 +51,9 @@ const Paint = () => {
           console.log(response);
           if (response.data.position > -1) {
             console.log(response.data.position);
+
+            
+
             history.push("/view/" + response.data.position);
           } else {
             console.log("error adding pixel :( ");
