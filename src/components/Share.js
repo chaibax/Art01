@@ -28,7 +28,7 @@ const Share = ({ match }) => {
         <Typewriter
           options={{
             loop: false,
-            cursor: '<big>▮</big>',
+            cursor: '<big id="curs">▮</big>',
             delay: 150
           }}
           onInit={(typewriter) => {

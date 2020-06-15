@@ -82,6 +82,15 @@ const Paint = () => {
   const auth0Id = user['https://art01/user_id'];
   const given_name = user.given_name;
   const picture_large = user.picture;
+
+
+const color = FirstIP.split('.');  
+const red = color[0];
+const green = color[1];
+const blue = color[2];
+const opacity = Math.round((color[3]/255) * 100) / 100;
+
+
   console.log('given_name = ' + given_name + ' picture = ' + picture_large);
 
   if (loading || !user) {
@@ -99,27 +108,36 @@ const Paint = () => {
   }
 
   return (
-    <h2 className="title is-size-3 has-text-centered shadowed">
+    <h2 className="title is-size-3 has-text-centered shadowed cursor"  onClick={sendpixel}  >
 
       <Typewriter
         options={{
           loop: false,
-          cursor: '<big>▮</big>'
+          cursor: '<big id="curs">▮</big>'
         }}
         onInit={(typewriter) => {
-          typewriter.typeString('<big>Hello ' + given_name + '</big>')
-            .pauseFor(2)
-            .pauseFor(1)
+          typewriter .typeString('<br/>')
+            .typeString('<big>Hello ' + given_name + '</big>')
+            .pauseFor(200)
             .typeString('<br/>')
-            .pauseFor(1)
+            .typeString('<br/>')
+            .pauseFor(200)
             .typeString('your IP is: ' + FirstIP)
-            .pauseFor(2)
-            .typeString('<br/>')
             .typeString(' So, your pixel color is : ')
-            .pauseFor(2)
+            .typeString('<br/>')
+            .typeString('Red('+red+'), Green('+green+'), Blue('+blue+'), Opacity('+opacity+')')
+            .pauseFor(1000)
             .callFunction(() => {
               const element = document.getElementById("mypixel");
               element.classList.remove("is-hidden");
+              const cursor = document.getElementById("curs");
+              cursor.classList.add("is-hidden");
+            })
+            .pauseFor(13500)
+            .callFunction(() => {
+              const addpixel = document.getElementById("addpixel");
+              addpixel.classList.remove("is-hidden");
+              
             })
             .start();
         }}
@@ -128,10 +146,13 @@ const Paint = () => {
       <Fragment>
         <div id="mypixel" className="is-hidden" >
           <ViewColorFromIp ip={FirstIP} />
+          </div>
+          <div id="addpixel" className="is-hidden" >
           <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-            >> Add my pixel to the paint
+            >> Add my pixel to the paint<big className="blink">▮</big>
                </h2>
-        </div>
+               </div>
+        
         <div id="pixelwait" className="is-hidden" >
           <ViewColorFromIp ip={FirstIP} />
           <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">

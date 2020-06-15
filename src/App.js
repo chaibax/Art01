@@ -50,17 +50,17 @@ function App() {
             Error 404<br />page not found :(
               <br />
             <br />
-            <a href="/" style={{ textDeconration: 'none', color: '#f0fff8' }}> >> go to home page</a>
+            <a href="/" style={{ textDeconration: 'none', color: '#f0fff8' }}>  go to home page</a>
         </h1>
     )
   
     return (
         
         <div className="App">
-            <section className="hero is-fullheight ">
-                <div className="hero-body ">
-                    <div className="column is-centered is-vcentered">
+            <section className=" is-fullheight ">
+                <div className=" ">
                         <div className="container">
+                        <div className="column is-centered">
                             <BrowserRouter>
                                 <Switch>
                                     <Route path="/" exact={true} component={Home} />

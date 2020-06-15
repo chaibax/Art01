@@ -59,10 +59,8 @@ const Home = () => {
   
   return (
           <Fragment>
+             <a href="/start" style={{ textDeconration: 'none', color: '#f0fff8' }}>
             <h1 className="title is-size-1 has-text-centered shadowed">
-            1000000000.art</h1>
-            <h2 className="title is-size-2 has-text-centered shadowed">
-
               <Typewriter
                 options={{
                   loop: false,
@@ -71,18 +69,22 @@ const Home = () => {
                 onInit={(typewriter) => {
                   typewriter
                     .typeString('<br/>')
+                    .typeString('<big><a href="/start" style="text-deconration:none;color:#f0fff8">1000000000.art</big></a>')
+                    .typeString('<br/>')
+                    .typeString('<br/>')
                     .pauseFor(100)
-                    .typeString('first massively participatory art project')
+                    .typeString('<a href="/start" style="text-deconration:none;color:#f0fff8">first massively participatory art project</a>')
                     .pauseFor(2000)
                     .typeString('<br/>')
                     .pauseFor(500)
+                    .typeString('<br/>')
                     .typeString('>> ')
-                    .typeString('<a href="/start" style="text-deconration:none;color:#f0fff8">' + 'participate' + '</a>')
+                    .typeString('<a href="/start" style="text-deconration:none;color:#f0fff8"><big>' + 'participate' + '</big></a>')
                     .pauseFor(9100)
                     .start();
                 }}
               />
-            </h2>
+           </h1>
             <nav className="navbar is-fixed-bottom shadowed blackbackground" role="navigation" aria-label="main navigation" style={{zIndex: 0}}>
           
             <div id="card" className="auth0badge">
@@ -91,6 +93,7 @@ const Home = () => {
 
           
             </nav>
+            </a>
             </Fragment>  
   )
 }

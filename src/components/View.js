@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import '../images.css';
 import { socket } from "./Socket";
 import axios from 'axios';
-import NavBar from "./NavBar";
 
 var spiral = require('zero-indexed-ulam-spiral');
 
@@ -102,8 +101,9 @@ class View extends Component {
         return (
 
             <Fragment>
+                <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>
                 <h1 className="title is-size-3 has-text-centered shadowed blackbackground">
-                    You added your pixel. <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>Next >></a>
+                    You added your pixel. Next<big className="blink">▮</big>>>
                 </h1>
                 <div className="imageblink ">
                     <div className="has-text-centered" >
@@ -116,9 +116,10 @@ class View extends Component {
                             <img id="art01" src={this.state.link} className="imagetop piximagerendering" style={{ backgroundColor: 'rgba(255, 255, 255, 1)', height: '85vmin', width: '85vmin', zIndex: 1 }} />
                         </a>
                     </div>
-                    <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>Next >> </a></h2>
+                    <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>Next<big className="blink">▮</big>>> </a></h2>
                    {/*  <NavBar />*/}  
                 </div>
+                </a>
             </Fragment>
         )
     };

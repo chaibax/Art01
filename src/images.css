@@ -39,6 +39,14 @@ background-color: white;
 	animation-direction: alternate;
 }
 
+.imagepaintpixel {
+	animation-name: fade;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 3;
+	animation-duration: 4s;
+	animation-direction: alternate;
+}
+
 @keyframes fade {
 	0% {
 		opacity: 1;

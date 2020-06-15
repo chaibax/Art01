@@ -1,4 +1,5 @@
 import React from "react";
+import Typewriter from 'typewriter-effect';
 
 
 const ViewColorFromIp = (props) => {
@@ -12,9 +13,9 @@ const opacity = Math.round((color[3]/255) * 100) / 100;
 
 
   return (
-    <div >
-      Red({red}), Green({green}), Blue({blue}), Opacity({opacity})<br/><br/>
-      <div  style={{ backgroundColor: "#ffffff", width: "15vw", height: "15vw", margin: "auto" }}>
+    <div >  
+      <br/>
+      <div  className="imagepaintpixel" style={{ backgroundColor: "#ffffff", width: "15vw", height: "15vw", margin: "auto" }}>
       <div style={{  width: "15vw", height: "15vw", margin: "auto",  backgroundColor: `rgba(${red}, ${green}, ${blue}, ${opacity})` }}>
         </div>
         </div>
