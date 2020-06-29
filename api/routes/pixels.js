@@ -16,7 +16,16 @@ var auth0 = new ManagementClient({
 });
 
 const mongoose = require('mongoose'), Schema = mongoose.Schema;
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true ,ssl:true }, function(err, db) {
+  if (err) {
+      console.log('Unable to connect to the server. Please start the server. Error:', err);
+  } else {
+      console.log('Connected to Server successfully!');
+  }
+});
+
+
 var Events = mongoose.model('Events', new Schema(), 'events');
 
 var es = eventstore();
@@ -104,10 +113,10 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
   let event = [{ pixel: req.body.pixel }, { email: req.body.email }, { auth0Id: req.body.auth0Id }, {given_name : req.body.given_name}, {picture_large : req.body.picture_large}];
   Events.countDocuments({ 'payload.email': req.body.email }, function (err, count) {
     if ((count > 0) && !(process.env.DEBUG_MODE == '1')) {
-      //console.log('il exsite deja ' + count + ' pixel avec cet email');
+      console.log('il exsite deja ' + count + ' pixel avec cet email');
       res.send('le pixel a DEJA été ajouté par : ' + req.body.email);
     } else {
-      //console.log('il exsite ' + count + ' pixel avec cet email et  debug_mode= ' + process.env.DEBUG_MODE);      
+      console.log('il exsite ' + count + ' pixel avec cet email et  debug_mode= ' + process.env.DEBUG_MODE);      
       es.getEventStream('pixels', function (err, stream) {
         //verification que l'user n'a pas déjà deposé un pixel dans le store. Si non : 
         stream.addEvent(event);

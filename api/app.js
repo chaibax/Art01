@@ -92,7 +92,7 @@ app.use('/api/images', imagesRouter.router);
 
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  //console.log('a user connected');
 });
 
 http.listen(port, () => {
