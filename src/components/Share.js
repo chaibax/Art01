@@ -42,7 +42,7 @@ const Share = ({ match }) => {
               .typeString('<br/>')
               .pauseFor(500)
               .typeString('> ')
-              .typeString('<a style="text-deconration:none;color:#f0fff8"  href="mailto:weareart0x@gmail.com">Feedback/Contact</a>')
+              .typeString('<a style="text-deconration:none;color:#f0fff8"  href="mailto:hello@1000000000.art">Feedback/Contact</a>')
               .typeString('<br/>')
               .pauseFor(500)
               .typeString('> ')

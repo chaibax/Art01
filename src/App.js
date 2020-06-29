@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth0 } from "./react-auth0-wrapper";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import {socket} from "./components/Socket";
+import { socket } from "./components/Socket";
 import Profile from "./components/Profile";
 import Paint from "./components/Paint";
 import PaintDev from "./components/PaintDev";
@@ -21,23 +21,13 @@ require('dotenv').config();
 
 socket.on('newpixel', (data) => {
 
-
-    document.getElementById('notif').innerHTML = '> '+data.given_name+' added pixel #'+data.newpixel.position+ ' <span style=""><span style="background-color:rgba(255, 255, 255, 1);color:rgba('+data.newpixel.r+', '+data.newpixel.g+', '+data.newpixel.b+', '+data.newpixel.alpha+')">█</span> </span><span data-livestamp='+data.date+'></span> '   
-    console.log(data);
-
-    
-    });
+    const opacity = Math.round((data.newpixel.alpha / 255) * 100) / 100;
+    document.getElementById('notif').innerHTML = '> ' + data.given_name + ' added pixel #' + data.newpixel.position + ' <span style=""><span style="background-color:rgba(255, 255, 255, 1);color:rgba(' + data.newpixel.r + ', ' + data.newpixel.g + ', ' + data.newpixel.b + ', ' + opacity + ')">█</span> </span><span data-livestamp=' + data.date + '></span> '
+});
 
 
 function App() {
     const { loading } = useAuth0();
-
-
-  //  console.log('>>'+process.env.REACT_APP_API_BASE_URL);
-  //  socket.on('news', (data) => {
-  //  console.log(data);
-  //  socket.emit('my other event', { my: 'data  from front :)' });
-  //  });
 
     if (loading) {
         return (
@@ -50,19 +40,19 @@ function App() {
     const NoMatch = () => (
         <h1 className="title is-size-1 has-text-centered shadowed">
             Error 404<br />page not found :(
-              <br />
+            <br />
             <br />
             <a href="/" style={{ textDeconration: 'none', color: '#f0fff8' }}>  go to home page</a>
         </h1>
     )
 
-  
+
     return (
-        
+
         <div className="App">
             <section className=" is-fullheight ">
                 <div className=" ">
-                        <div className="container">
+                    <div className="container">
                         <div className="column is-centered">
                             <BrowserRouter>
                                 <Switch>
@@ -74,9 +64,9 @@ function App() {
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
                                     <PrivateRoute path="/paintdev" component={PaintDev} />
-                                    <Route path="/view/:id?" component={View}  />
-                                    <PrivateRoute path="/share/:id?" component={Share}  />
-                                    <Route path="/about" component={About}  />
+                                    <Route path="/view/:id?" component={View} />
+                                    <PrivateRoute path="/share/:id?" component={Share} />
+                                    <Route path="/about" component={About} />
 
                                     <Route component={NoMatch} />
                                 </Switch>
@@ -86,7 +76,7 @@ function App() {
                 </div>
                 <div id="notif" className="has-margin-left-5"></div>
             </section>
-        
+
         </div>
     );
 
