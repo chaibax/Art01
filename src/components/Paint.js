@@ -126,7 +126,7 @@ const opacity = Math.round((color[3]/255) * 100) / 100;
             .typeString('<br/>')
             .typeString('<br/>')
             .pauseFor(200)
-            .typeString('your IP is: ' + FirstIP)
+            .typeString('your Internet address (IP) is: ' + FirstIP)
             .typeString(' So, your pixel color is : ')
             .typeString('<br/>')
             .typeString('Red('+red+'), Green('+green+'), Blue('+blue+'), Opacity('+opacity+')')
