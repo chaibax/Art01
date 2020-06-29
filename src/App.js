@@ -18,6 +18,7 @@ import './App.sass';
 import './App.css';
 require('dotenv').config();
 
+
 socket.on('newpixel', (data) => {
 
 
@@ -54,6 +55,7 @@ function App() {
             <a href="/" style={{ textDeconration: 'none', color: '#f0fff8' }}>  go to home page</a>
         </h1>
     )
+
   
     return (
         
