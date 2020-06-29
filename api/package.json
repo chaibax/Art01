@@ -15,7 +15,6 @@
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
-    "eventstore": "^1.15.2",
     "express": "~4.16.1",
     "express-jwt": "^5.3.1",
     "glob": "^7.1.6",
