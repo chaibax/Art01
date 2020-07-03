@@ -57,7 +57,7 @@ const Start = () => {
               loop: false,
               initialText: 'toto',
               cursor: '<big id="curs">▮</big>',
-              delay: 'natural'
+              delay: 120
             }}
             onInit={(typewriter) => {
               typewriter.typeString('<big>LET\'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED</big>')
@@ -71,6 +71,7 @@ const Start = () => {
                 .typeString('<br/>')
                 .pauseFor(500)
                 .pauseFor(500)
+                .changeDelay(90)
                 .typeString('Every colored dot (pixel) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added to the painting. ')
                 .typeString('<br/>')
                 .pauseFor(500)
