@@ -29,11 +29,12 @@ const Share = ({ match }) => {
           options={{
             loop: false,
             cursor: '<big id="curs">▮</big>',
-            delay: 150
+            delay: 120
           }}
           onInit={(typewriter) => {
-            typewriter.typeString('<big>' + given_name + ', you are now painter number ' + match.params.id + ' in a billion</big>')
+            typewriter.typeString('<big>' + given_name + ', you are painter number ' + match.params.id + ' in a billion</big>')
               .pauseFor(1000)
+              .changeDelay(90)
               .typeString('<br/>')
               .typeString('<br/>')
               .pauseFor(500)
