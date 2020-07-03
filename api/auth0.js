@@ -1,5 +1,6 @@
 
 const authConfig = {
+    domain: "login.1000000000.art",
     audience: "https://art01/"
   };
 
