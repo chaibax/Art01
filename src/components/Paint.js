@@ -152,7 +152,7 @@ const opacity = Math.round((color[3]/255) * 100) / 100;
           <ViewColorFromIp ip={FirstIP} />
           </div>
           <div id="addpixel" className="is-hidden" >
-          <h2 onClick={sendpixel} className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
+          <h2  className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
             >> Add my pixel to the paint<big className="blink">▮</big>
                </h2>
                </div>
