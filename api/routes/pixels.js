@@ -17,7 +17,7 @@ var auth0 = new ManagementClient({
 
 const mongoose = require('mongoose'), Schema = mongoose.Schema;
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true ,ssl:true }, function(err, db) {
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function(err, db) {
   if (err) {
       console.log('Unable to connect to the server. Please start the server. Error:', err);
   } else {
