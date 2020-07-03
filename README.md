@@ -1,6 +1,8 @@
 # 1000000000.art  
 
-![Screen Capture](public/Art01_.gif)
+👉 ![Art0x](https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png)
+
+![Screen Capture](public/1000000000.art.gif)
 
 Dev in progress. Take a look here : [1000000000.art](https://www.1000000000.art)
 
