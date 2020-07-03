@@ -37,7 +37,8 @@ This rectangular painting is only an example of representation. The artwork is m
 
 ## Co-create the biggest piece of art in history.
 
-![Screen Capture](public/Capture2.png)
+
+[![Screen Capture](public/Capture2.png)]
 
 
 Did you say "participatory Art" ? 👉 https://en.wikipedia.org/wiki/Participatory_art
@@ -58,6 +59,10 @@ I use a [Ulam spiral](https://en.wikipedia.org/wiki/Ulam_spiral)  to add each pi
 ## How are pixels stored ?
 
 I use eventsourcing pattern. Take a look : [eventstore](https://eventstore.js.org/)  
+
+## How to donwload the painting ?
+
+[Here](https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png)  
 
 
 ## Available Scripts
