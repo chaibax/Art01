@@ -36,7 +36,7 @@ console.log('👉');
                 options={{
                   loop: false,
                   cursor: '<big>▮</big>',
-                  delay: 75
+                  delay: '75'
                 }}
                 onInit={(typewriter) => {
                   typewriter
@@ -78,7 +78,8 @@ console.log('👉');
               <Typewriter
                 options={{
                   loop: false,
-                  cursor: '<big>▮</big>'
+                  cursor: '<big>▮</big>',
+                  delay: 200
                 }}
                 onInit={(typewriter) => {
                   typewriter
