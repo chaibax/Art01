@@ -84,7 +84,8 @@ const Paint = () => {
   const pixel_added = user['https://art01/pixel_added'];
   const pixel_position = user['https://art01/pixel_position'];
   const auth0Id = user['https://art01/user_id'];
-  const given_name = user.given_name;
+  var given_name = user.given_name;
+  if(given_name   === undefined) {given_name = user.nickname}
   const picture_large = user.picture;
 
 

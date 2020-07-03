@@ -9,8 +9,8 @@ import { FacebookShareButton, TwitterShareButton } from "react-share";
 const Share = ({ match }) => {
 
   const { logout, loading, user } = useAuth0();
-  const given_name = user.given_name;
-  console.log(match.params.id);
+  var given_name = user.given_name;
+  if(given_name   === undefined) {given_name = user.nickname}
   const shareUrl = 'https://www.1000000000.art';
   const title = '1000000000.art first massively participatory art project';
   const art01url = process.env.REACT_APP_AWS_S3_ROOT_URL + "/Art0x.png";
