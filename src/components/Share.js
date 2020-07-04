@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import '../images.css';
-import { socket } from "./Socket";
 import { useAuth0 } from "../react-auth0-wrapper";
 import Typewriter from 'typewriter-effect';
 import { FacebookShareButton, TwitterShareButton } from "react-share";

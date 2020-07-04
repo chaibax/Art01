@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { socket } from "./Socket";
 import { useHistory } from "react-router-dom";
-import socketIOClient from "socket.io-client";
 import Typewriter from 'typewriter-effect';
 
 var moment = require('moment');
