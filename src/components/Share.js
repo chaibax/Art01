@@ -66,7 +66,7 @@ const Share = ({ match }) => {
             quote={title}
             className="link shadowed"
           >
-            > Share on Facebook
+            {'>'} Share on Facebook
             </FacebookShareButton>
             |
             <TwitterShareButton
@@ -79,7 +79,7 @@ const Share = ({ match }) => {
           <br /><br />
 
           <a style={{ textDeconration: 'none', color: '#f0fff8' }} onClick={() => logout({ returnTo: window.location.origin })}>
-            > logout &nbsp;
+          {'>'} logout &nbsp;
                 </a>
         </div>
       </h1>

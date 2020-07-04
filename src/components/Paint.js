@@ -154,14 +154,14 @@ const opct = color[3];
           </div>
           <div id="addpixel" className="is-hidden" >
           <h2  className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-            >> Add my pixel to the paint<big className="blink">▮</big>
+          {'>>'} Add my pixel to the paint<big className="blink">▮</big>
                </h2>
                </div>
         
         <div id="pixelwait" className="is-hidden" >
           <ViewColorFromIp ip={FirstIP} />
           <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
-            >> Adding pixel: please wait...
+          {'>>'} Adding pixel: please wait...
                </h2>
         </div>
       </Fragment>
