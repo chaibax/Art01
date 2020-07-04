@@ -22,11 +22,13 @@ const Paint = () => {
     const mypixelid = document.getElementById('mypixel');
     const pixelwaitid = document.getElementById('pixelwait');
     const waittext = document.getElementById('waittext');
+    const addpixelid = document.getElementById('addpixel');
     const callApi = async () => {
       const token = await getTokenSilently();
       axios.interceptors.request.use(config => {
         // perform a task before the request is sent
         console.log('Request was sent...');
+        addpixelid.classList.add("is-hidden");
         mypixelid.classList.add("is-hidden");
         pixelwaitid.classList.remove("is-hidden");
         return config;
@@ -51,9 +53,6 @@ const Paint = () => {
           console.log(response);
           if (response.data.position > -1) {
             console.log(response.data.position);
-
-            
-
             history.push("/view/" + response.data.position);
           } else {
             console.log("error adding pixel :( ");
@@ -94,6 +93,7 @@ const red = color[0];
 const green = color[1];
 const blue = color[2];
 const opacity = Math.round((color[3]/255) * 100) / 100;
+const opct = color[3];
 
 
   console.log('given_name = ' + given_name + ' picture = ' + picture_large);
@@ -130,7 +130,7 @@ const opacity = Math.round((color[3]/255) * 100) / 100;
             .typeString('your Internet address (IP) is: ' + FirstIP)
             .typeString(' So, your pixel color is : ')
             .typeString('<br/>')
-            .typeString('Red('+red+'), Green('+green+'), Blue('+blue+'), Opacity('+opacity+')')
+            .typeString('Red('+red+'), Green('+green+'), Blue('+blue+'), Opacity('+opct+'/ 255= '+opacity+')')
             .pauseFor(1000)
             .callFunction(() => {
               const element = document.getElementById("mypixel");
