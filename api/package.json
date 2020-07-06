@@ -7,7 +7,6 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@scout_apm/scout-apm": "^0.1.9",
     "async": "^3.2.0",
     "auth0": "^2.22.0",
     "aws-sdk": "^2.662.0",
