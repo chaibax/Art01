@@ -4,7 +4,6 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require("body-parser");
 const helmet = require('helmet');
-const scout = require("@scout_apm/scout-apm");
 const process = require("process");
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
@@ -16,18 +15,9 @@ var imagesRouter = require('./routes/images');
 const port = process.env.PORT || 3001;
 
 
-scout.install(
-  {
-    allowShutdown: true, // allow shutting down spawned scout-agent processes from this program
-    monitor: true, // enable monitoring
-    name: "Art01",
-    key: "kqdsVi5KDduqNOkRdV5Q",
-  },
-);
+
 
 var app = require('express')();
-app.use(scout.expressMiddleware());
-
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
@@ -105,12 +95,6 @@ http.listen(port, () => {
 
 app.set('socketio', io);
 
-// Shut down the core-agent when this program exits
-process.on('exit', () => {
-  if (app && app.scout) {
-    app.scout.shutdown();
-  }
-});
 
 module.exports = app;
 
