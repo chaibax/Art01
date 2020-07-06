@@ -1,0 +1,13 @@
+diff --git a/node_modules/eventstore/lib/databases/mongodb.js b/node_modules/eventstore/lib/databases/mongodb.js
+index f1c73a7..bda344e 100644
+--- a/node_modules/eventstore/lib/databases/mongodb.js
++++ b/node_modules/eventstore/lib/databases/mongodb.js
+@@ -88,7 +88,7 @@ function Mongo(options) {
+   _.defaults(options, defaults);
+ 
+   var defaultOpt = {
+-    ssl: false
++    ssl: true
+   };
+ 
+   options.options = options.options || {};
