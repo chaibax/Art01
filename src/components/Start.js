@@ -71,7 +71,7 @@ const Start = () => {
                 .pauseFor(500)
                 .pauseFor(500)
                 .changeDelay(90)
-                .typeString('Every colored dot (pixel) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added to the painting. ')
+                .typeString('Every colored dot (pixel) is added by one person, you for example. When you first signs in with your email, a colored dot corresponding to your Internet address is added to the painting. ')
                 .typeString('<br/>')
                 .pauseFor(500)
                 .typeString('It\'s your pixel.')
@@ -105,6 +105,14 @@ const Start = () => {
             <br /><big>  {'>>'} Participate</big><big className="blink">▮</big>
 
           </h2>
+          <br/><br/>
+          <span className="shadowed is-size-5 ">
+            <p>Your email will be requested in the next step.
+</p>
+            <p>
+            This is a free, non-commercial, open source, participatory art project. I have nothing to sell. 
+            </p>
+</span>
         </div>
       </div>
     </Fragment>
