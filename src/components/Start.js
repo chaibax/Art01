@@ -56,7 +56,7 @@ const Start = () => {
               loop: false,
               initialText: 'toto',
               cursor: '<big id="curs">▮</big>',
-              delay: 100
+              delay: 85
             }}
             onInit={(typewriter) => {
               typewriter.typeString('<big>LET\'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED</big>')
