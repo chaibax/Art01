@@ -56,11 +56,11 @@ const Start = () => {
               loop: false,
               initialText: 'toto',
               cursor: '<big id="curs">▮</big>',
-              delay: 120
+              delay: 100
             }}
             onInit={(typewriter) => {
               typewriter.typeString('<big>LET\'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED</big>')
-                .pauseFor(4000)
+                .pauseFor(3000)
                 .deleteChars(27)
                 .typeString('<big>COLORED DOT</big>')
                 .pauseFor(1000)
@@ -79,10 +79,8 @@ const Start = () => {
                 .deleteChars(6)
                 .typeString('contribution.')
                 .pauseFor(1500)
-                .typeString('<br/>')
-                .pauseFor(1000)
                 .changeDeleteSpeed(10)
-                .deleteChars(194)
+                .deleteChars(210)
                 .callFunction(() => {
                   const nexttext = document.getElementById("nexttext");
                   const curs = document.getElementById("curs");
@@ -107,8 +105,10 @@ const Start = () => {
           </h2>
           <br/><br/>
           <span className="shadowed is-size-5 ">
-            <p>Your email will be requested in the next step.
+            <p>
+Because there cannot be several particiaption per person, your email/signup will be requested in the next step.
 </p>
+
             <p>
             This is a free, non-commercial, open source, participatory art project. I have nothing to sell. 
             </p>
