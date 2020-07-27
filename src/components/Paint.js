@@ -118,7 +118,8 @@ const opct = color[3];
       <Typewriter
         options={{
           loop: false,
-          cursor: '<big id="curs">▮</big>'
+          cursor: '<big id="curs">▮</big>',
+          delay: 85
         }}
         onInit={(typewriter) => {
           typewriter .typeString('<br/>')

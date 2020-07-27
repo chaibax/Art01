@@ -79,7 +79,7 @@ console.log('👉');
                 options={{
                   loop: false,
                   cursor: '<big>▮</big>',
-                  delay: 200
+                  delay: 150
                 }}
                 onInit={(typewriter) => {
                   typewriter

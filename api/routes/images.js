@@ -198,7 +198,7 @@ function save_on_the_cloud_old_art0x(tmpimage, req, callback) {
 
   var tmp_url = __dirname + '/../public/images/Art0x-' + req.position + '.png';
   var params = {
-    Bucket: 'art01-images',
+    Bucket: process.env.AWS_S3_BUCKET,
     Body: fs.createReadStream(tmp_url),
     Key: path.basename(tmp_url)
   };
@@ -221,7 +221,7 @@ function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
 
   var tmpimage = pathtouse;
   var params = {
-    Bucket: 'art01-images',
+    Bucket: process.env.AWS_S3_BUCKET,
     Body: fs.createReadStream(pathtouse),
     Key: path.basename(pathtouse)
   };
@@ -245,7 +245,7 @@ function save_on_the_cloud_art0x(pathtouse, req, callback) {
   }
   var pathtouse = __dirname + "/../public/images/Art0x.png";
   var params = {
-    Bucket: 'art01-images',
+    Bucket:  process.env.AWS_S3_BUCKET,
     Body: fs.createReadStream(pathtouse),
     Key: path.basename(pathtouse)
   };

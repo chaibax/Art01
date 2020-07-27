@@ -56,11 +56,11 @@ const Start = () => {
               loop: false,
               initialText: 'toto',
               cursor: '<big id="curs">▮</big>',
-              delay: 120
+              delay: 85
             }}
             onInit={(typewriter) => {
               typewriter.typeString('<big>LET\'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED</big>')
-                .pauseFor(4000)
+                .pauseFor(3000)
                 .deleteChars(27)
                 .typeString('<big>COLORED DOT</big>')
                 .pauseFor(1000)
@@ -71,7 +71,7 @@ const Start = () => {
                 .pauseFor(500)
                 .pauseFor(500)
                 .changeDelay(90)
-                .typeString('Every colored dot (pixel) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added to the painting. ')
+                .typeString('Every colored dot (pixel) is added by one person, you for example. When you first signs in with your email, a colored dot corresponding to your Internet address is added to the painting. ')
                 .typeString('<br/>')
                 .pauseFor(500)
                 .typeString('It\'s your pixel.')
@@ -79,10 +79,8 @@ const Start = () => {
                 .deleteChars(6)
                 .typeString('contribution.')
                 .pauseFor(1500)
-                .typeString('<br/>')
-                .pauseFor(1000)
                 .changeDeleteSpeed(10)
-                .deleteChars(194)
+                .deleteChars(210)
                 .callFunction(() => {
                   const nexttext = document.getElementById("nexttext");
                   const curs = document.getElementById("curs");
@@ -105,6 +103,16 @@ const Start = () => {
             <br /><big>  {'>>'} Participate</big><big className="blink">▮</big>
 
           </h2>
+          <br/><br/>
+          <span className="shadowed is-size-5 ">
+            <p>
+Because there cannot be several particiaption per person, your email/signup will be requested in the next step.
+</p>
+
+            <p>
+            This is a free, non-commercial, open source, participatory art project. I have nothing to sell. 
+            </p>
+</span>
         </div>
       </div>
     </Fragment>

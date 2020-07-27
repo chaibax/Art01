@@ -1,3 +1,8 @@
+var atatus = require("atatus-nodejs");
+atatus.start({
+  licenseKey: "lic_apm_0cb2802290d34ac0a378db3fb255da92",
+  appName: "Art01-API",
+});
 require('dotenv').config();
 var auth0 = require('./auth0');
 var express = require('express');
