@@ -8,7 +8,6 @@ var router = express.Router();
 
 //pour pourvoir maj la metadata auth0  de l'user avec le numero de pixel 
 var ManagementClient = require('auth0').ManagementClient;
-
 var auth0 = new ManagementClient({
   domain: process.env.AUTH0_DOMAIN,
   clientId: process.env.AUTH0_CLIENT_ID,
