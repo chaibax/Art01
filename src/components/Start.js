@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
-import { socket } from "./Socket";
+
 import { useHistory } from "react-router-dom";
 import Typewriter from 'typewriter-effect';
 
@@ -12,9 +12,7 @@ const Start = () => {
   const { loginWithRedirect } = useAuth0();
   const history = useHistory();
   const axios = require('axios');
-  socket.on('newpixel', (data) => {
-    console.log('+1');
-  });
+
 
   var count2 = 0;
 

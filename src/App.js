@@ -1,7 +1,6 @@
 import React from "react";
 import { useAuth0 } from "./react-auth0-wrapper";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { socket } from "./components/Socket";
 import Profile from "./components/Profile";
 import Paint from "./components/Paint";
 import PaintDev from "./components/PaintDev";
@@ -19,11 +18,7 @@ import './App.css';
 require('dotenv').config();
 
 
-socket.on('newpixel', (data) => {
 
-    const opacity = Math.round((data.newpixel.alpha / 255) * 100) / 100;
-    document.getElementById('notif').innerHTML = '> ' + data.given_name + ' added pixel #' + data.newpixel.position + ' <span style=""><span style="background-color:rgba(255, 255, 255, 1);color:rgba(' + data.newpixel.r + ', ' + data.newpixel.g + ', ' + data.newpixel.b + ', ' + opacity + ')">█</span> </span><span data-livestamp=' + data.date + '></span> '
-});
 
 
 function App() {
