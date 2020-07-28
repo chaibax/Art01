@@ -1,15 +1,15 @@
 var atatus = require("atatus-nodejs");
-atatus.start({
-  licenseKey: "lic_apm_0cb2802290d34ac0a378db3fb255da92",
-  appName: "Art01-API",
-});
+const process = require("process");
 require('dotenv').config();
+atatus.start({
+  licenseKey: process.env.ATATUS_LICENSE_KEY,
+  appName: process.env.ATATUS_APP_NAME,
+});
 var auth0 = require('./auth0');
 var express = require('express');
 var path = require('path');
 var bodyParser = require("body-parser");
 const helmet = require('helmet');
-const process = require("process");
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
 var indexRouter = require('./routes/index');
