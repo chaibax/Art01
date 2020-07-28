@@ -57,7 +57,7 @@ function App() {
                             <BrowserRouter>
                                 <Switch>
                                     <Route path="/" exact={true} component={Home} />
-                                    <Route path="/start" exact={true} component={Start} />
+                                    <Route path="/start" exact={false} component={Start} />
                                     <Route path="/ExternalApi" exact={true} component={ExternalApi} />
                                     <Route path="/privacy-policy" component={Privacy} />
                                     <Route path="/terms-of-service" component={TermsOfService} />
