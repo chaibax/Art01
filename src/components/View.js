@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import '../images.css';
+import { socket } from "./Socket";
 import axios from 'axios';
 
 var spiral = require('zero-indexed-ulam-spiral');
@@ -94,7 +95,11 @@ class View extends Component {
 
     componentDidMount() {
         this.imgSize();
-       
+        socket.on('newpixel', (data) => {
+            let result = spiral.getLatticeCoordinatesFor(data.newpixel.position);
+            let size = Math.max(Math.abs(result[0]), Math.abs(result[1]));
+            this.refresh((2 * size) + 1);
+        });
     }
 
     componentWillUnmount() {
