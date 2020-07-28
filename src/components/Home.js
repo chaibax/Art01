@@ -66,14 +66,14 @@ console.log('👉');
     document.onkeydown = function (evt) {
       evt = evt || window.event;
       if (evt.keyCode === 13) {
-        history.push("/start");
+        history.push("/start/");
       }
     };
    
   
   return (
           <Fragment>
-             <a href="/start" style={{ textDeconration: 'none', color: '#f0fff8' }}>
+             <a href="/start/" style={{ textDeconration: 'none', color: '#f0fff8' }}>
             <h1 className="title is-size-1 has-text-centered shadowed">
               <Typewriter
                 options={{
