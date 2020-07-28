@@ -29,14 +29,4 @@ yarn-error.log*
 
 /node_modules
 
-/api/node_modules/*
-!/api/node_modules/eventstore/
-
-/api/node_modules/eventstore/*
-!/api/node_modules/eventstore/lib/
-
-/api/node_modules/eventstore/lib/*
-!/api/node_modules/eventstore/lib/databases/
-
-/api/node_modules/eventstore/lib/databases/*
-!/api/node_modules/eventstore/lib/databases/mongodb.js
+/api/node_modules
