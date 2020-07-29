@@ -7,6 +7,12 @@ var router = express.Router();
 
 
 //pour pourvoir maj la metadata auth0  de l'user avec le numero de pixel 
+var ManagementClient = require('auth0').ManagementClient;
+var auth0 = new ManagementClient({
+  domain: process.env.AUTH0_DOMAIN,
+  clientId: process.env.AUTH0_CLIENT_ID,
+  clientSecret: process.env.AUTH0_CLIENT_SECRET
+});
 
 const mongoose = require('mongoose'), Schema = mongoose.Schema;
 
@@ -148,7 +154,16 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
             pixel_added: 1,
             pixel_position: position_added
           };
-       
+          auth0.updateUserMetadata(params, metadata, function (err, user) {
+            if (err) {
+              // Handle error.
+              console.log('MAJ updateUserMetadata')
+              console.log(err);
+            }
+            // Updated user.
+            console.log('maj updateUserMetadata OK ')
+          //  console.log(user);
+          });
         });
       //end commit 
 
