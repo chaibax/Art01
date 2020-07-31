@@ -1,6 +1,7 @@
 # 1000000000.art  
 
-👉 ![Art0x](https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png)
+👉 ![Art0x](https://1000000000.s3.amazonaws.com/Art0x.png)
+https://1000000000.s3.amazonaws.com/Art0x.png
 
 ![Screen Capture](public/1000000000.art.gif)
 
@@ -44,7 +45,7 @@ This rectangular painting is only an example of representation. The artwork is m
 Did you say "participatory Art" ? 👉 https://en.wikipedia.org/wiki/Participatory_art
 
 
-For the moment, 0 people have participated to this project since its beginning, 0 days ago. 0.00000% of the painting is complete
+For the moment, 1 people have participated to this project since its beginning, 3 days ago. 0.00000% of the painting is complete
 
 At this rate, ART01 will never be finished.
 
