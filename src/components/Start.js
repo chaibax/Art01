@@ -28,7 +28,7 @@ const Start = () => {
       count2 = response.data.count;
 
       document.getElementById("count").innerHTML = response.data.count;
-      document.getElementById("since").innerHTML = moment("20200501", "YYYYMMDD").fromNow();
+      document.getElementById("since").innerHTML = moment("20200727", "YYYYMMDD").fromNow();
       let pourcentage = (response.data.count * 100) / 1000000000;
       document.getElementById("pourcentage").innerHTML = pourcentage.toFixed(7);
 
