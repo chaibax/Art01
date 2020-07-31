@@ -55,7 +55,6 @@ function filexists(lastp, req, callback) {
        console.error(err)
       callback(null, 0, lastp, req);
     } else {
-      console.log('dans filexists2 avec retour 1 et lastp='+lastp);
       callback(null, 1, lastp, req);
     }
   })
@@ -89,7 +88,6 @@ function Jimpread(tmpimage, lastp, req, callback) {
 
 
     var jimptmpimage = Jimp.read(tmpimage, (err, art01) => {
-      console.log('>>1');
       if (err) throw err;
       //console.log(typeof(req.params.r)+' '+req.params.g+' '+ req.params.b+' ' +req.params.alpha+' '+typeof(coordinate[0])+' '+coordinate[1])
       let r = parseInt(req.r);
@@ -144,32 +142,27 @@ function Jimpmerge(tmpimage, req, callback) {
 
     var images = [localArt0xpath, tmpimage];
     Jimp.read(tmpimage, function (err, image) {
-      console.log('>>2');
       if (err) {
-        console.log('>>3');
         console.log(err);
         //throw err;
 
       }
       Jimp.read(localArt0xpath, function (err2, image2) {
         if (err2) {
-          console.log('>>4'+localArt0xpath);
           console.log(err2);
         }
         if (req.position) {
-          console.log('>>4é');
           if (ulam.getSquareSize(req.position) > ulam.getSquareSize(req.position - 1)) {
             //console.log('💄 changement de square size. On passe de ' + ulam.getSquareSize(req.position - 1) + ' a ' + ulam.getSquareSize(req.position - 1));
             image.composite(image2, 1, 1);
           } else {
             //console.log('💄 pas de changement de square size');
             image.composite(image2, 0, 0);
-            console.log('>>5');
           }
         }
         else {
           image.composite(image2, 0, 0);
-          console.log('>>6');
+
         }
 
         fs.copyFile(__dirname + '/../public/images/Art0x.png', __dirname + '/../public/images/Art0x-' + req.position + '.png', (err) => {
@@ -191,11 +184,9 @@ function Jimpmerge(tmpimage, req, callback) {
 
 
 function save_on_the_cloud_old_art0x(tmpimage, req, callback) {
-
   if (!tmpimage) {
     callback(true);
   }
-
   var tmp_url = __dirname + '/../public/images/Art0x-' + req.position + '.png';
   var params = {
     Bucket: process.env.AWS_S3_BUCKET,
@@ -215,10 +206,10 @@ function save_on_the_cloud_old_art0x(tmpimage, req, callback) {
 }
 
 function save_on_the_cloud_tmpimage(pathtouse, req, callback) {
+
   if (!pathtouse) {
      callback(true);
   }
-
   var tmpimage = pathtouse;
   var params = {
     Bucket: process.env.AWS_S3_BUCKET,
@@ -315,8 +306,6 @@ router.all('/filexists/:position', function (req, res, next) {
 router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
   //req.params.position
   //const path = __dirname + '/../public/images/art' + req.params.position + '-ok.png';
-  console.log('params dans pixeladd=  ');
-  console.log(req.params);
   generateimage(req.params, function (res1) {
     res.send(res1);
   });
@@ -326,10 +315,7 @@ router.all('/pixeladd/:position/:r/:g/:b/:alpha', function (req, res, next) {
 router.all('/randompixeladd/:number', function (req, res, next) {
 
   for (let i = 0; i < req.params.number; i++) {
-    console.log('generation image n° ' + i);
     let params = { position: i, r: getRandomArbitrary(0, 256), g: getRandomArbitrary(0, 256), b: getRandomArbitrary(0, 256), alpha: getRandomArbitrary(0, 100) };
-    console.log('params dans randompixeladd=  ');
-    console.log(params);
     generateimage(params, function (res1) {
 
       if (i == (req.params.number - 1)) res.send('generation de ' + i + ' images OK');
