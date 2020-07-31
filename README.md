@@ -1,11 +1,13 @@
 # 1000000000.art  
 
 👉 ![Art0x](https://1000000000.s3.amazonaws.com/Art0x.png)
+
+Download last image: 
 https://1000000000.s3.amazonaws.com/Art0x.png
 
 ![Screen Capture](public/1000000000.art.gif)
 
-Dev in progress. Take a look here : [1000000000.art](https://www.1000000000.art)
+Participate : [1000000000.art](https://www.1000000000.art)
 
 ## First massively participatory art project
 
@@ -64,6 +66,11 @@ I use eventsourcing pattern. Take a look : [eventstore](https://eventstore.js.or
 ## How to donwload the painting ?
 
 [Here](https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png)  
+
+## API
+
+Number of pixels : https://api.1000000000.art/api/pixels/count
+
 
 
 ## Available Scripts
