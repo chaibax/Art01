@@ -74,3 +74,13 @@ background-color: white;
 .auth0badge img {
 	opacity: 0.5;
 }
+
+
+
+.githubbadge {
+	position:absolute;
+	bottom:0;
+	right:0px;
+	margin-right: 5px;
+}
+
