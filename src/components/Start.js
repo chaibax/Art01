@@ -97,7 +97,7 @@ const Start = () => {
           <span className="shadowed is-size-4 ">
             <p>For the moment, <span id='count'>0</span> people have participated to this project since its beginning, <span id='since'>0</span>. <span id="pourcentage"></span>% of the painting is complete
 </p>
-            <p>At this rate, ART01 be finished in <span id="date_fin"></span> years.
+            <p>At this rate, 1000000000.art be finished in <span id="date_fin"></span> years.
 </p></span>
           <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({ appState: { targetUrl: window.location.origin + '/paint' } })}>
             <br /><big>  {'>>'} Participate</big><big className="blink">▮</big>
