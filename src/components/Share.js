@@ -50,7 +50,7 @@ const Share = ({ match }) => {
               .typeString('<br/>')
               .pauseFor(500)
               .typeString('>> ')
-              .typeString('<a style="text-deconration:none;color:#f0fff8" href="/view/' + match.params.id + '">Back to painting</a>')
+              .typeString('<a style="text-deconration:none;color:#f0fff8" href="/view/' + (match.params.id-1) + '">Back to painting</a>')
               .callFunction(() => {
                 const element = document.getElementById("share");
                 element.classList.remove("is-hidden");
