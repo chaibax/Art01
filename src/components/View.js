@@ -14,7 +14,7 @@ class View extends Component {
         this.canvasRef = React.createRef();
         
         var tmp_position = 1;
-        if(parseInt(props.match.params.id)) {
+        if(parseInt(props.match.params.id)>-1) {
             window.current_position = props.match.params.id;
             
             tmp_position = parseInt(props.match.params.id);

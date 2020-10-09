@@ -47,19 +47,21 @@ function filexists(lastp, req, callback) {
 
   //https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png?t=1589131066273
   //let pathfile = __dirname + '/../public/images/art' + req.position + '-ok.png';
-  let pathfile = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '-ok.png';
+  //let pathfile = 'https://art01-images.s3.eu-west-3.amazonaws.com/art' + req.position + '-ok.png';
+  let pathfile = process.env.AWS_S3_ROOT_URL+'/art' + req.position + '-ok.png';
+ 
   // console.log('dans filexists2 avec pathfile=' + pathfile);
 
   fs.access(pathfile, fs.F_OK, (err) => {
     if (err) {
-       console.error(err)
+       //console.error(err);
+       
       callback(null, 0, lastp, req);
     } else {
       callback(null, 1, lastp, req);
     }
   })
 };
-
 function newimage(fileexist, lastp, req, callback) {
   if (!fileexist) {
     let pathtmp = __dirname + '/../public/images/art' + req.position + '.png';

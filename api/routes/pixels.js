@@ -104,6 +104,9 @@ router.all('/count', function (req, res, next) {
   });
 });
 
+
+
+
 router.post('/add', auth1.checkJwt, function (req, res, next) {
   console.log('pixels/add');
   console.log(req.body);
