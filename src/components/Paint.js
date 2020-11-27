@@ -119,7 +119,7 @@ const opct = color[3];
         options={{
           loop: false,
           cursor: '<big id="curs">▮</big>',
-          delay: 85
+          delay: 20
         }}
         onInit={(typewriter) => {
           typewriter .typeString('<br/>')
@@ -132,7 +132,7 @@ const opct = color[3];
             .typeString(' So, your pixel color is : ')
             .typeString('<br/>')
             .typeString('Red('+red+'), Green('+green+'), Blue('+blue+'), Opacity('+opct+'/ 255= '+opacity+')')
-            .pauseFor(1000)
+            .pauseFor(800)
             .callFunction(() => {
               const element = document.getElementById("mypixel");
               element.classList.remove("is-hidden");
