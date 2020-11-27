@@ -56,21 +56,21 @@ const Start = () => {
               loop: false,
               initialText: 'toto',
               cursor: '<big id="curs">▮</big>',
-              delay: 85
+              delay: 20
             }}
             onInit={(typewriter) => {
               typewriter.typeString('<big>LET\'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED</big>')
-                .pauseFor(3000)
+                .pauseFor(2000)
                 .deleteChars(27)
                 .typeString('<big>COLORED DOT</big>')
-                .pauseFor(1000)
+                .pauseFor(800)
                 .deleteChars(11)
                 .typeString('<big>PIXEL TO BE COMPLETED</big>')
-                .pauseFor(1000)
+                .pauseFor(800)
                 .typeString('<br/>')
                 .pauseFor(500)
                 .pauseFor(500)
-                .changeDelay(90)
+                .changeDelay(15)
                 .typeString('Every colored dot (pixel) is added by one person, you for example. When you first signs in with your email, a colored dot corresponding to your Internet address is added to the painting. ')
                 .typeString('<br/>')
                 .pauseFor(500)
@@ -78,8 +78,8 @@ const Start = () => {
                 .pauseFor(500)
                 .deleteChars(6)
                 .typeString('contribution.')
-                .pauseFor(1500)
-                .changeDeleteSpeed(10)
+                .pauseFor(1000)
+                .changeDeleteSpeed(2)
                 .deleteChars(210)
                 .callFunction(() => {
                   const nexttext = document.getElementById("nexttext");
