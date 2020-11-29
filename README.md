@@ -7,7 +7,7 @@ https://1000000000.s3.amazonaws.com/Art0x.png
 
 ![Screen Capture](public/1000000000.art.gif)
 
-Participate : [1000000000.art](https://www.1000000000.art)
+Participate : [1000000000.art](https://1000000000.art)
 
 ## First massively participatory art project
 
@@ -41,7 +41,7 @@ This rectangular painting is only an example of representation. The artwork is m
 ## Co-create the biggest piece of art in history.
 
 
-[![Screen Capture](public/Capture2.png)]
+![Screen Capture](public/Capture2.png)]
 
 
 Did you say "participatory Art" ? 👉 https://en.wikipedia.org/wiki/Participatory_art
