@@ -46,9 +46,9 @@ This rectangular painting is only an example of representation. The artwork is m
 Did you say "participatory Art" ? 👉 https://en.wikipedia.org/wiki/Participatory_art
 
 
-For the moment, 1 people have participated to this project since its beginning, 3 days ago. 0.00000% of the painting is complete
+For the moment (Sunday, November 29, 2020 ), 573 people have participated to this project since its beginning, 4 months ago. 0.0000573% of the painting is complete
 
-At this rate, ART01 will never be finished.
+At this rate, 1000000000.art be finished in 1 157 291 years.
 
 
 
