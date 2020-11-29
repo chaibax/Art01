@@ -1,14 +1,11 @@
 # 1000000000.art  
 
 
-  The painting now : 
+  The painting right now : 
 
   <img src="https://1000000000.s3.amazonaws.com/Art0x.png" title="1000000000.art">
 
-
-
-<br/>Download last image: 
-https://1000000000.s3.amazonaws.com/Art0x.png
+<br/>[Download last image here :](https://1000000000.s3.amazonaws.com/Art0x.png) [https://1000000000.s3.amazonaws.com/Art0x.png](https://1000000000.s3.amazonaws.com/Art0x.png)
 
 ![Screen Capture](public/1000000000.art.gif)
 
