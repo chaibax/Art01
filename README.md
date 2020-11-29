@@ -1,11 +1,8 @@
 # 1000000000.art  
 
+[The painting right now (big size)](https://api.1000000000.art)
+<br/>[Download the painting (reale tiny size)](https://1000000000.s3.amazonaws.com/Art0x.png) 
 
-  The painting right now : 
-
-  <img src="https://1000000000.s3.amazonaws.com/Art0x.png" title="1000000000.art" />
-
-<br/>[Download lastest image here :](https://1000000000.s3.amazonaws.com/Art0x.png) [https://1000000000.s3.amazonaws.com/Art0x.png](https://1000000000.s3.amazonaws.com/Art0x.png)
 
 ![Screen Capture](public/1000000000.art.gif)
 
