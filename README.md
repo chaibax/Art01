@@ -1,8 +1,13 @@
 # 1000000000.art  
 
-👉 ![Art0x](https://1000000000.s3.amazonaws.com/Art0x.png)
 
-Download last image: 
+  The painting now : 
+
+  <img src="https://1000000000.s3.amazonaws.com/Art0x.png" title="1000000000.art">
+
+
+
+<br/>Download last image: 
 https://1000000000.s3.amazonaws.com/Art0x.png
 
 ![Screen Capture](public/1000000000.art.gif)
