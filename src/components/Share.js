@@ -20,7 +20,6 @@ const Share = ({ match }) => {
       console.log("count2="+count2)
 
       document.getElementById("count").innerHTML = response.data.count;
-      document.getElementById("since").innerHTML = moment("20200727", "YYYYMMDD").fromNow();
       let pourcentage = (response.data.count * 100) / 1000000000;
       document.getElementById("pourcentage").innerHTML = pourcentage.toFixed(7);
 
