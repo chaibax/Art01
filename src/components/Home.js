@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import {InlineReactionButtons} from 'sharethis-reactjs';
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth0();
