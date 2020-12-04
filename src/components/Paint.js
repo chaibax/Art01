@@ -119,7 +119,7 @@ const opct = color[3];
         options={{
           loop: false,
           cursor: '<big id="curs">▮</big>',
-          delay: 20
+          delay: 35
         }}
         onInit={(typewriter) => {
           typewriter .typeString('<br/>')
@@ -139,7 +139,7 @@ const opct = color[3];
               const cursor = document.getElementById("curs");
               cursor.classList.add("is-hidden");
             })
-            .pauseFor(13500)
+            .pauseFor(2500)
             .callFunction(() => {
               const addpixel = document.getElementById("addpixel");
               addpixel.classList.remove("is-hidden");
@@ -155,7 +155,7 @@ const opct = color[3];
           </div>
           <div id="addpixel" className="is-hidden" >
           <h2  className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-          {'>>'} Add my pixel to the paint<big className="blink">▮</big>
+          {'>>'} Add my pixel to the painting<big className="blink">▮</big>
                </h2>
                </div>
         
