@@ -2,22 +2,17 @@ import React, { Fragment } from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { socket } from "./Socket";
 import { useHistory } from "react-router-dom";
-import Typewriter from 'typewriter-effect';
+
 
 var moment = require('moment');
-
-
 const Start = () => {
-
   const { loginWithRedirect } = useAuth0();
   const history = useHistory();
   const axios = require('axios');
   socket.on('newpixel', (data) => {
     console.log('+1');
   });
-
   var count2 = 0;
-
   axios.get(process.env.REACT_APP_API_BASE_URL + '/pixels/count')
     .then(function (response) {
       // handle success
@@ -46,52 +41,27 @@ const Start = () => {
       history.push("/");
     }
   };
-
   return (
     <Fragment>
+      <div className="shadowed is-size-4" id="start1" onClick={() => {
+        const nexttext = document.getElementById("nexttext");
+        const curs = document.getElementById("start1");
+        nexttext.classList.remove("is-hidden");
+        curs.classList.add("is-hidden");
+      }
+      }
+      >
+        <big>LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED</big>
+        <br />
+        <br />
+        <p>This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added</p>
+        <p>It's your pixel, your contribution</p>
+        <br />
+        <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
+        <big >{'>>'} NEXT<big className='blink'>▮</big></big>
+        </h2>
+      </div>
       <div className="cursor" onClick={() => loginWithRedirect({ appState: { targetUrl: window.location.origin + '/paint' } })}>
-        <span className="shadowed is-size-4">
-          <Typewriter
-            options={{
-              loop: false,
-              initialText: 'toto',
-              cursor: '<big id="curs">▮</big>',
-              delay: 20
-            }}
-            onInit={(typewriter) => {
-              typewriter.typeString('<big>LET\'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED</big>')
-                .pauseFor(2000)
-                .deleteChars(27)
-                .typeString('<big>COLORED DOT</big>')
-                .pauseFor(800)
-                .deleteChars(11)
-                .typeString('<big>PIXEL TO BE COMPLETED</big>')
-                .pauseFor(800)
-                .typeString('<br/>')
-                .pauseFor(500)
-                .pauseFor(500)
-                .changeDelay(15)
-                .typeString('Every colored dot (pixel) is added by one person, you for example. When you first signs in with your email, a colored dot corresponding to your Internet address is added to the painting. ')
-                .typeString('<br/>')
-                .pauseFor(500)
-                .typeString('It\'s your pixel.')
-                .pauseFor(500)
-                .deleteChars(6)
-                .typeString('contribution.')
-                .pauseFor(1000)
-                .changeDeleteSpeed(2)
-                .deleteChars(210)
-                .callFunction(() => {
-                  const nexttext = document.getElementById("nexttext");
-                  const curs = document.getElementById("curs");
-                  nexttext.classList.remove("is-hidden");
-                  curs.classList.add("is-hidden");
-                })
-                .start()
-            }}
-          />
-
-        </span>
         <div className="is-hidden" id="nexttext">
 
           <span className="shadowed is-size-4 ">
@@ -103,16 +73,16 @@ const Start = () => {
             <br /><big>  {'>>'} Participate</big><big className="blink">▮</big>
 
           </h2>
-          <br/><br/>
-          <span className="shadowed is-size-5 ">
+          <br /><br />
+          <span className="shadowed is-size-6 ">
             <p>
-Because there cannot be several particiaption per person, your email/signup will be requested in the next step.
+              Because there cannot be several particiaption per person, your email/signup will be requested in the next step.
 </p>
 
             <p>
-            This is a free, non-commercial, open source, participatory art project. I have nothing to sell. 
+              This is a free, non-commercial, open source, participatory art project. I have nothing to sell.
             </p>
-</span>
+          </span>
         </div>
       </div>
     </Fragment>
