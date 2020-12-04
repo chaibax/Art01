@@ -4,9 +4,34 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import Typewriter from 'typewriter-effect';
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 
-
+var moment = require('moment');
 const Share = ({ match }) => {
 
+  const axios = require('axios');
+
+  var count2 = 0;
+  axios.get(process.env.REACT_APP_API_BASE_URL + '/pixels/count')
+    .then(function (response) {
+      // handle success
+      var given = moment("2020-04-01", "YYYY-MM-DD");
+      var current = moment().startOf('day');
+      //Difference in number of days
+      var dif = moment.duration(given.diff(current)).asDays();
+      count2 = response.data.count;
+
+      document.getElementById("count").innerHTML = response.data.count;
+      document.getElementById("since").innerHTML = moment("20200727", "YYYYMMDD").fromNow();
+      let pourcentage = (response.data.count * 100) / 1000000000;
+      document.getElementById("pourcentage").innerHTML = pourcentage.toFixed(7);
+
+      let date_fin = ((-100 * dif) / pourcentage.toFixed(7)) / 365;
+      document.getElementById("date_fin").innerHTML = date_fin.toFixed(0);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    
   const { logout, loading, user } = useAuth0();
   var given_name = user.given_name;
   if(given_name   === undefined) {given_name = user.nickname}
@@ -24,42 +49,37 @@ const Share = ({ match }) => {
   return (
     <Fragment>
       <h1 className="title is-size-2 has-text-centered shadowed">
-        <Typewriter
-          options={{
-            loop: false,
-            cursor: '<big id="curs">▮</big>',
-            delay: 30
-          }}
-          onInit={(typewriter) => {
-            typewriter.typeString('<big>' + given_name + ', you are painter number ' + match.params.id + ' in a billion</big>')
-              .pauseFor(1000)
-              .changeDelay(20)
-              .typeString('<br/>')
-              .typeString('<br/>')
-              .pauseFor(500)
-              .typeString('> ')
-              .typeString('<a style="text-deconration:none;color:#f0fff8" target="_blank" href="' + art01url + '">Download painting</a>')
-              .typeString('<br/>')
-              .pauseFor(500)
-              .typeString('> ')
-              .typeString('<a style="text-deconration:none;color:#f0fff8"  href="mailto:hello@1000000000.art">Feedback/Contact</a>')
-              .typeString('<br/>')
-              .pauseFor(500)
-              .typeString('> ')
-              .typeString('<a style="text-deconration:none;color:#f0fff8" target="_blank" href="https://github.com/chaibax/Art01">About</a>')
-              .typeString('<br/>')
-              .pauseFor(500)
-              .typeString('>> ')
-              .typeString('<a style="text-deconration:none;color:#f0fff8" href="/view/' + (match.params.id-1) + '">Back to painting</a>')
-              .callFunction(() => {
-                const element = document.getElementById("share");
-                element.classList.remove("is-hidden");
-              })
-              .start();
-          }}
-        />
-        <br /><br />
-        <div id="share" className="is-hidden title is-size-2 has-text-centered shadowed" >
+
+      <big>{given_name} you are painter number {match.params.id} in a billion</big>
+      </h1>
+    <center>
+      <div style={{height: '80vmin', width: '80vmin'}} id="image">
+        <img src="https://1000000000.s3.amazonaws.com/Art0x.png" style={{backgroundColor: 'rgb(255, 255, 255)', height: '80vmin', width: '80vmin', zIndex: 1, imageRendering: 'pixelated'}} />
+      </div>
+      </center>
+
+
+      <div id="share" className="title  has-text-centered shadowed" >
+
+            <p> <span id='count'>0</span> painters. <span id="pourcentage"></span>% of the painting is complete. At this rate, 1000000000.art be finished in <span id="date_fin"></span> years.
+</p></div>
+
+
+
+      <br/>
+      <div id="share" className="title  has-text-centered shadowed" >
+      <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="{art01url}">{'>'}  Download painting (real size)</a>
+      <br/>
+
+      
+
+      <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="mailto:hello@1000000000.art">{'>'}  Feedback</a>
+      <br/>
+      <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'}  About</a>
+        </div>
+       
+      
+        <div id="share" className="title  has-text-centered shadowed" >
           <FacebookShareButton
             url={shareUrl}
             quote={title}
@@ -75,13 +95,13 @@ const Share = ({ match }) => {
           > Twitter
             </TwitterShareButton>
 
-          <br /><br />
+          <br />
 
           <a style={{ textDeconration: 'none', color: '#f0fff8' }} onClick={() => logout({ returnTo: window.location.origin })}>
           {'>'} logout &nbsp;
                 </a>
         </div>
-      </h1>
+    
 
     </Fragment>
   )
