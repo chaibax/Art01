@@ -17,7 +17,7 @@ const Share = ({ match }) => {
       //Difference in number of days
       var dif = moment.duration(given.diff(current)).asDays();
       count2 = response.data.count;
-      console.log("count2="+count2)
+      console.log("count2!="+count2)
 
       document.getElementById("count").innerHTML = response.data.count;
       let pourcentage = (response.data.count * 100) / 1000000000;
