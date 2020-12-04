@@ -21,6 +21,9 @@ Privacy Policy</h1>
 <br/>
 <p>Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.</p>
 <br/>
+<p id="DataDeletion">
+<b>Data Deletion</b> : to delete all your data from thise site, pease send us an email to : weareart0x@gmail.com<br/>
+</p>
 <p>This policy is effective as of 10 May 2020.</p>
         </Fragment>
     );
