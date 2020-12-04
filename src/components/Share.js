@@ -67,7 +67,7 @@ const Share = ({ match }) => {
 
       <br/>
       <div id="share" className="title  has-text-centered shadowed" >
-      <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="{art01url}">{'>'}  Download painting (real size)</a>
+      <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://1000000000.s3.amazonaws.com/Art0x.png">{'>'}  Download painting (real size)</a>
       <br/>
 
       
