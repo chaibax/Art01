@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import '../images.css';
 import { useAuth0 } from "../react-auth0-wrapper";
-import Typewriter from 'typewriter-effect';
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 
 var moment = require('moment');
@@ -18,9 +17,9 @@ const Share = ({ match }) => {
       //Difference in number of days
       var dif = moment.duration(given.diff(current)).asDays();
       count2 = response.data.count;
+      console.log("count2!="+count2)
 
       document.getElementById("count").innerHTML = response.data.count;
-      document.getElementById("since").innerHTML = moment("20200727", "YYYYMMDD").fromNow();
       let pourcentage = (response.data.count * 100) / 1000000000;
       document.getElementById("pourcentage").innerHTML = pourcentage.toFixed(7);
 

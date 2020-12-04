@@ -109,7 +109,7 @@ const opct = color[3];
 
   //si le pixel a déja été déposé et qu'on est pas en mode debug, on affiche pas cette page
   if (pixel_added) {
-    history.push("/view/" + pixel_position);
+    history.push("/share/" + (pixel_position+1));
   }
 
   return (
