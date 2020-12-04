@@ -54,7 +54,7 @@ const Home = () => {
               .typeString('<br/>')
               .pauseFor(50)
               .typeString('>> ')
-              .typeString('<a href="/view/' + pixel_position + '" style="text-deconration:none;color:#f0fff8">' + 'View paiting' + '</a>')
+              .typeString('<a href="/share/' + pixel_position + '" style="text-deconration:none;color:#f0fff8">' + 'View paiting' + '</a>')
               .start();
           }}
         />
