@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
-import {InlineReactionButtons} from 'sharethis-reactjs';
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -49,13 +48,13 @@ const Home = () => {
               .pauseFor(200)
               .typeString('<br/>')
               .pauseFor(50)
-              .typeString('welcome back painter #' + pixel_position)
+              .typeString('welcome back painter #' + (pixel_position+1))
               .typeString('<br/>')
               .pauseFor(50)
               .typeString('<br/>')
               .pauseFor(50)
               .typeString('>> ')
-              .typeString('<a href="/share/' + pixel_position + '" style="text-deconration:none;color:#f0fff8">' + 'View paiting' + '</a>')
+              .typeString('<a href="/share/' + (pixel_position+1) + '" style="text-deconration:none;color:#f0fff8">' + 'View paiting' + '</a>')
               .start();
           }}
         />
