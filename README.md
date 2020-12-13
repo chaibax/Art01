@@ -64,7 +64,7 @@ I use eventsourcing pattern. Take a look : [eventstore](https://eventstore.js.or
 
 ## How to donwload the painting ?
 
-[Here](https://art01-images.s3.eu-west-3.amazonaws.com/Art0x.png)  
+[Here](https://1000000000.s3.amazonaws.com/Art0x.png)  
 
 ## API
 
