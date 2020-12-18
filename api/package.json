@@ -31,7 +31,7 @@
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.2",
     "morgan": "~1.9.1",
-    "mquery": "^3.2.2",
+    "mquery": "^3.2.3",
     "patch-package": "^6.2.2",
     "pixel": "^0.1.3",
     "pixel-to-svg": "^0.0.0",
