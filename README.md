@@ -1,5 +1,9 @@
 # 1000000000.art  
 
+The painting in real size : 
+
+👉 ![](api/public/images/Art0x.png)
+
 [The painting right now (big size)](https://api.1000000000.art)
 <br/>[Download the painting (reale tiny size)](https://1000000000.s3.amazonaws.com/Art0x.png) 
 
@@ -46,9 +50,10 @@ This rectangular painting is only an example of representation. The artwork is m
 Did you say "participatory Art" ? 👉 https://en.wikipedia.org/wiki/Participatory_art
 
 
-For the moment (Sunday, November 29, 2020 ), 573 people have participated to this project since its beginning, 4 months ago. 0.0000573% of the painting is complete
+For the moment (January 10, 2021 ),  706 people have participated to this project since its beginning, 5 months ago. 0.0000706% of the painting is complete
 
-At this rate, 1000000000.art be finished in 1 157 291 years.
+At this rate, 1000000000.art be finished in 1 102 261 years.
+
 
 
 
