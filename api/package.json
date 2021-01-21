@@ -37,7 +37,7 @@
     "pixel-to-svg": "^0.0.0",
     "postinstall-postinstall": "^2.1.0",
     "rgb-hex": "^3.0.0",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "uuid": "^3.4.0",
     "zero-indexed-ulam-spiral": "^0.0.1"
   }
