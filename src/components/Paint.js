@@ -84,16 +84,16 @@ const Paint = () => {
   const pixel_position = user['https://art01/pixel_position'];
   const auth0Id = user['https://art01/user_id'];
   var given_name = user.given_name;
-  if(given_name   === undefined) {given_name = user.nickname}
+  if (given_name === undefined) { given_name = user.nickname }
   const picture_large = user.picture;
 
 
-const color = FirstIP.split('.');  
-const red = color[0];
-const green = color[1];
-const blue = color[2];
-const opacity = Math.round((color[3]/255) * 100) / 100;
-const opct = color[3];
+  const color = FirstIP.split('.');
+  const red = color[0];
+  const green = color[1];
+  const blue = color[2];
+  const opacity = Math.round((color[3] / 255) * 100) / 100;
+  const opct = color[3];
 
 
   console.log('given_name = ' + given_name + ' picture = ' + picture_large);
@@ -109,11 +109,11 @@ const opct = color[3];
 
   //si le pixel a déja été déposé et qu'on est pas en mode debug, on affiche pas cette page
   if (pixel_added) {
-    history.push("/share/" + (pixel_position+1));
+    history.push("/share/" + (pixel_position + 1));
   }
 
   return (
-    <h2 className="title is-size-3 has-text-centered shadowed cursor"  onClick={sendpixel}  >
+    <h2 className="title is-size-3 has-text-centered shadowed cursor" onClick={sendpixel}  >
 
       <Typewriter
         options={{
@@ -122,7 +122,7 @@ const opct = color[3];
           delay: 35
         }}
         onInit={(typewriter) => {
-          typewriter .typeString('<br/>')
+          typewriter.typeString('<br/>')
             .typeString('<big>Hello ' + given_name + '</big>')
             .pauseFor(200)
             .typeString('<br/>')
@@ -131,7 +131,7 @@ const opct = color[3];
             .typeString('your Internet address (IP) is: ' + FirstIP)
             .typeString(' So, your pixel color is : ')
             .typeString('<br/>')
-            .typeString('Red('+red+'), Green('+green+'), Blue('+blue+'), Opacity('+opct+'/ 255= '+opacity+')')
+            .typeString('Red(' + red + '), Green(' + green + '), Blue(' + blue + '), Opacity(' + opct + '/ 255= ' + opacity + ')')
             .pauseFor(800)
             .callFunction(() => {
               const element = document.getElementById("mypixel");
@@ -143,7 +143,7 @@ const opct = color[3];
             .callFunction(() => {
               const addpixel = document.getElementById("addpixel");
               addpixel.classList.remove("is-hidden");
-              
+
             })
             .start();
         }}
@@ -152,17 +152,17 @@ const opct = color[3];
       <Fragment>
         <div id="mypixel" className="is-hidden" >
           <ViewColorFromIp ip={FirstIP} />
-          </div>
-          <div id="addpixel" className="is-hidden" >
-          <h2  className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-          {'>>'} Add my pixel to the painting<big className="blink">▮</big>
-               </h2>
-               </div>
-        
+        </div>
+        <div id="addpixel" className="is-hidden" >
+          <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
+            {'>>'} Add my pixel to the painting<big className="blink">▮</big>
+          </h2>
+        </div>
+
         <div id="pixelwait" className="is-hidden" >
           <ViewColorFromIp ip={FirstIP} />
           <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
-          {'>>'} Adding pixel: please wait...
+            {'>>'} Adding pixel: please wait...
                </h2>
         </div>
       </Fragment>
