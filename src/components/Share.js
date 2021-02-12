@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import '../images.css';
 import { useAuth0 } from "../react-auth0-wrapper";
+import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import { FacebookShareButton, TwitterShareButton, FacebookMessengerShareButton, WhatsappShareButton, EmailShareButton } from "react-share";
 import {
   EmailIcon,
@@ -15,6 +16,7 @@ var moment = require('moment');
 const Share = ({ match }) => {
 
   const axios = require('axios');
+
 
   var count2 = 0;
   axios.get(process.env.REACT_APP_API_BASE_URL + '/pixels/count')
@@ -40,6 +42,8 @@ const Share = ({ match }) => {
     })
 
   const { logout, loading, user } = useAuth0();
+  var FirstIP = user['https://art01/FirstIP'];
+
   var given_name = user.given_name;
   if (given_name === undefined) { given_name = user.nickname }
   const shareUrl = 'https://1000000000.art';
@@ -127,6 +131,11 @@ Help this project to grow: please invite a friend painter #{match.params.id} <br
 
       <br />
       <div id="share" className="title  has-text-centered shadowed" >
+  
+        {'>'} Your pixel (#{match.params.id}) : 
+        <br/>
+        <ViewColorFromIp ip={FirstIP} />
+        <br/>
         <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={art01url}>{'>'}  Download painting (real size)</a>
         <br />
 
@@ -134,7 +143,9 @@ Help this project to grow: please invite a friend painter #{match.params.id} <br
 
         <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="mailto:hello@1000000000.art">{'>'}  Feedback</a>
         <br />
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'}  About</a>
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'} About</a>
+        <br />
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'}  Developer? Contribute</a>
         <br />
         <a style={{ textDeconration: 'none', color: '#f0fff8' }} onClick={() => logout({ returnTo: window.location.origin })}>
           {'>'} logout &nbsp;
