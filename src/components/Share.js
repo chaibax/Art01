@@ -58,11 +58,11 @@ const Share = ({ match }) => {
     <Fragment>
       <h1 className="title is-size-2 has-text-centered shadowed">
 
-        <big>{given_name} you are painter number {match.params.id} in a billion</big>
+        <big>{given_name} you are painter number {match.params.id} in a billion </big>
       </h1>
       <center>
         <div style={{ height: '80vmin', width: '80vmin' }} id="image">
-          <img src="https://1000000000.s3.amazonaws.com/Art0x.png" style={{ backgroundColor: 'rgb(255, 255, 255)', height: '80vmin', width: '80vmin', zIndex: 1, imageRendering: 'pixelated' }} />
+          <img src={art01url} style={{ backgroundColor: 'rgb(255, 255, 255)', height: '80vmin', width: '80vmin', zIndex: 1, imageRendering: 'pixelated' }} />
         </div>
       </center>
 
@@ -127,7 +127,7 @@ Help this project to grow: please invite a friend painter #{match.params.id} <br
 
       <br />
       <div id="share" className="title  has-text-centered shadowed" >
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://1000000000.s3.amazonaws.com/Art0x.png">{'>'}  Download painting (real size)</a>
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={art01url}>{'>'}  Download painting (real size)</a>
         <br />
 
 
