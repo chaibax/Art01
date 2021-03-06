@@ -2,6 +2,12 @@ import React, { Component, Fragment } from "react";
 import '../images.css';
 import { socket } from "./Socket";
 import axios from 'axios';
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: 'GTM-MVVQ785'
+} 
+TagManager.initialize(tagManagerArgs);
 
 var spiral = require('zero-indexed-ulam-spiral');
 

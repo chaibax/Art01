@@ -4,6 +4,13 @@ import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
 
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: 'GTM-MVVQ785'
+} 
+TagManager.initialize(tagManagerArgs);
+
 
 function getRandomArbitrary(min, max) {
   min = Math.ceil(min);

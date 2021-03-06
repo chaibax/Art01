@@ -11,6 +11,13 @@ import {
   WhatsappIcon,
 } from "react-share";
 
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: 'GTM-MVVQ785'
+} 
+TagManager.initialize(tagManagerArgs);
+
 
 var moment = require('moment');
 const Share = ({ match }) => {
