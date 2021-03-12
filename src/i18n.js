@@ -38,7 +38,6 @@ const resources = {
       "in a billion":"in a billion",
       "painters":"painters",
       "of the painting is complete. At this rate, 1000000000.art be finished in":"of the painting is complete. At this rate, 1000000000.art be finished in",
-      "years":"years",
       "Help this project to grow" :"Help this project to grow",
       "please invite a friend painter":"please invite a friend painter",
       "Your pixel":"Your pixel",
@@ -83,7 +82,6 @@ const resources = {
       "in a billion":"sur un milliard",
       "painters":"peintres",
       "of the painting is complete. At this rate, 1000000000.art be finished in":"du tableau est fini. À ce rythme, 1000000000.art sera complet dans",
-      "years":"années",
       "Help this project to grow":"Aidez ce projet à grandir",
       "please invite a friend painter":"partagez-le à vos amis peintre",
       "Your pixel":"Votre pixel",
@@ -93,8 +91,51 @@ const resources = {
       "Developer? Contribute":"Developpeur? Contribuez ici",
       "logout":"déconnexion"
 
-    }
-  }
+    },
+    es: {
+        translation: {
+          "first massively participatory art project": "primer proyecto de arte masivamente participativo",
+          "participate" : "participar",
+          "welcome back painter #" : "bienvenido pintor #",
+          "View paiting" : "Ver pintura",
+          "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED" : "CREAMOS JUNTOS UNA PINTURA QUE NECESITA MIL MILLONES DE PARTICIPANTES PAR ACABARSE",
+          "This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added" : "El tamaño del cuadro será de 40.000 píxeles de ancho por 25.000 píxeles de alto (es decir, 1.000.000.000 de píxeles). Cada píxel (punto de color) lo agrega una persona, por ejemplo, usted. Cuando inicie sesión por primera vez, aparecerá un punto de color correspondiente a su dirección de Internet ",
+          "It's your pixel, your contribution" : "Es tu píxel, tu contribución",
+          "NEXT" : "SIGUIENTE",
+          "For the moment" : "DE momento",
+          "people have participated to this project since its beginning" : "personas han participado en este proyecto desde sus inicios",
+          "of the painting is complete" : "de la pintura está completa",
+          "At this rate, 1000000000.art be finished in" : "A este ritmo, 1000000000.art se terminará dentro de" ,
+          "years" : "años" ,
+          "Participate" : "Participar",
+          "Because there cannot be several particiaption per person, your email/signup will be requested in the next step." : "Debido a que no puede haber varias participaciones por persona, se solicitará su correo electrónico  en la proxima pantalla.",
+          "This is a free, non-commercial, open source, participatory art project. I have nothing to sell." : "Esto es un proyecto de arte participativo, gratuito, de código abierto. No tengo nada que vender.",  
+          "Hello" : "Hola",
+          "your Internet address (IP) is":"su dirección de Internet (IP) es",
+          "So, your pixel color is":"Entonces, su color de píxel es",
+          "Red" : "Rojo",
+          "Green" : "Verde",
+          "Blue" : "Azul",
+          "Opacity" : "Opacidad",
+          "Add my pixel to the painting" : "Agrega mi píxel a la pintura",
+          "Adding pixel: please wait..." : "Añadiendo píxel: espere ..." ,
+          "You added your pixel. Click Next" : "Agregaste tu píxel. Haga clic en Siguiente",
+          "Click Next" : "Haga clic en Siguiente",
+          "you are painter number":"eres el pintor numero",
+          "in a billion":"de mil millones",
+          "painters":"pintores",
+          "of the painting is complete. At this rate, 1000000000.art be finished in":" de la pintura está completa. A este ritmo, 1000000000.art se terminará en",
+          "Help this project to grow":"Ayuda a que este proyecto crezca",
+          "please invite a friend painter":"por favor invita a un amigo pintor",
+          "Your pixel":"Tu pixel",
+          "Download painting (real size)":"Descargar pintura (tamaño real)",
+          "Feedback":"Feedback",
+          "About":"A proposito",
+          "Developer? Contribute":"Developer? Contribuir",
+          "logout":"cerrar sesión"
+        }
+  
+    }}
 }; 
 
 i18n

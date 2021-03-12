@@ -48,7 +48,7 @@ const Home = () => {
               .typeString('<big>1000000000.art</big>')
               .typeString('<br/>')
               .pauseFor(50)
-              .typeString('first massively participatory art project')
+              .typeString(t('first massively participatory art project'))
               .pauseFor(200)
               .typeString('<br/>')
               .pauseFor(50)
