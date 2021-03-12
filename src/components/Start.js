@@ -2,10 +2,11 @@ import React, { Fragment } from "react";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { socket } from "./Socket";
 import { useHistory } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 
 var moment = require('moment');
 const Start = () => {
+  const { t, i18n } = useTranslation();
   const { loginWithRedirect } = useAuth0();
   const history = useHistory();
   const axios = require('axios');
@@ -51,36 +52,36 @@ const Start = () => {
       }
       }
       >
-        <big>LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED</big>
+        <big>{t("LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED")}</big>
         <br />
         <br />
-        <p>This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added</p>
-        <p>It's your pixel, your contribution</p>
+        <p>{t("This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added")}</p>
+        <p>{t("It's your pixel, your contribution")}</p>
         <br />
         <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-        <big >{'>>'} NEXT<big className='blink'>▮</big></big>
+        <big >{'>>'} {t('NEXT')}<big className='blink'>▮</big></big>
         </h2>
       </div>
       <div className="cursor" onClick={() => loginWithRedirect({ appState: { targetUrl: window.location.origin + '/paint' } })}>
         <div className="is-hidden" id="nexttext">
 
           <span className="shadowed is-size-4 ">
-            <p>For the moment, <span id='count'>0</span> people have participated to this project since its beginning, <span id='since'>0</span>. <span id="pourcentage"></span>% of the painting is complete
+            <p> {t('For the moment')}, <span id='count'>0</span> {t('people have participated to this project since its beginning')}, <span id='since'>0</span>. <span id="pourcentage"></span>% {t('of the painting is complete')}
 </p>
-            <p>At this rate, 1000000000.art be finished in <span id="date_fin"></span> years.
+            <p>{t('At this rate, 1000000000.art be finished in')} <span id="date_fin"></span> {t('years')}.
 </p></span>
           <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20" onClick={() => loginWithRedirect({ appState: { targetUrl: window.location.origin + '/paint' } })}>
-            <br /><big>  {'>>'} Participate</big><big className="blink">▮</big>
+            <br /><big>  {'>>'} {t('Participate')}</big><big className="blink">▮</big>
 
           </h2>
           <br /><br />
           <span className="shadowed is-size-6 ">
             <p>
-              Because there cannot be several particiaption per person, your email/signup will be requested in the next step.
+            {t('Because there cannot be several particiaption per person, your email/signup will be requested in the next step.')}
 </p>
 
             <p>
-              This is a free, non-commercial, open source, participatory art project. I have nothing to sell.
+              {t('This is a free, non-commercial, open source, participatory art project. I have nothing to sell.')}
             </p>
           </span>
         </div>
