@@ -3,6 +3,7 @@ import '../images.css';
 import { socket } from "./Socket";
 import axios from 'axios';
 import TagManager from 'react-gtm-module'
+import { Translation } from 'react-i18next';
 
 const tagManagerArgs = {
     gtmId: 'GTM-MVVQ785'
@@ -116,9 +117,15 @@ class View extends Component {
         return (
 
             <Fragment>
+
+
                 <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>
                 <h1 className="title is-size-3 has-text-centered shadowed blackbackground">
-                    You added your pixel. Next<big className="blink">▮</big>
+                <Translation>
+      {
+        (t, { i18n }) => <span>{t('You added your pixel. Click Next')}</span>
+      }
+    </Translation><big className="blink">▮</big>
                 </h1>
                 </a>
                 <div className="imageblink ">
@@ -132,7 +139,11 @@ class View extends Component {
                             <img id="art01" src={this.state.link} className="imagetop piximagerendering" style={{ backgroundColor: 'rgba(255, 255, 255, 1)', height: '85vmin', width: '85vmin', zIndex: 1 }} />
                         </a>
                     </div>
-                    <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>Next<big className="blink">▮</big> </a></h2>
+                    <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}><Translation>
+      {
+        (t, { i18n }) => <span>{t('Click Next')}</span>
+      }
+    </Translation><big className="blink">▮</big> </a></h2>
                    {/*  <NavBar />*/}  
                 </div>
              

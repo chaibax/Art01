@@ -3,14 +3,13 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 import TagManager from 'react-gtm-module'
-
 const tagManagerArgs = {
     gtmId: 'GTM-MVVQ785'
 } 
 TagManager.initialize(tagManagerArgs);
-
 
 function getRandomArbitrary(min, max) {
   min = Math.ceil(min);
@@ -20,7 +19,7 @@ function getRandomArbitrary(min, max) {
 
 const Paint = () => {
 
-
+  const { t, i18n } = useTranslation();
   const { getTokenSilently, loading, user } = useAuth0();
   const history = useHistory();
 
@@ -130,15 +129,15 @@ const Paint = () => {
         }}
         onInit={(typewriter) => {
           typewriter.typeString('<br/>')
-            .typeString('<big>Hello ' + given_name + '</big>')
+            .typeString('<big>'+t('Hello')+ ' ' + given_name + '</big>')
             .pauseFor(200)
             .typeString('<br/>')
             .typeString('<br/>')
             .pauseFor(200)
-            .typeString('your Internet address (IP) is: ' + FirstIP)
-            .typeString(' So, your pixel color is : ')
+            .typeString(t('your Internet address (IP) is') + ' '+FirstIP)
+            .typeString('. '+t('So, your pixel color is'))
             .typeString('<br/>')
-            .typeString('Red(' + red + '), Green(' + green + '), Blue(' + blue + '), Opacity(' + opct + '/ 255= ' + opacity + ')')
+            .typeString(t('Red')+'(' + red + '), '+t('Green')+'(' + green + '), '+t('Blue')+'(' + blue + '), '+t('Opacity')+'(' + opct + '/ 255= ' + opacity + ')')
             .pauseFor(800)
             .callFunction(() => {
               const element = document.getElementById("mypixel");
@@ -162,14 +161,14 @@ const Paint = () => {
         </div>
         <div id="addpixel" className="is-hidden" >
           <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-            {'>>'} Add my pixel to the painting<big className="blink">▮</big>
+            {'>>'} {t('Add my pixel to the painting')}<big className="blink">▮</big>
           </h2>
         </div>
 
         <div id="pixelwait" className="is-hidden" >
           <ViewColorFromIp ip={FirstIP} />
           <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
-            {'>>'} Adding pixel: please wait...
+            {'>>'} {t('Adding pixel: please wait...')}
                </h2>
         </div>
       </Fragment>

@@ -2,8 +2,12 @@ import React, { Fragment } from 'react'
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
+import { useTranslation } from 'react-i18next';
+
+
 
 const Home = () => {
+  const { t, i18n } = useTranslation();
   const { isAuthenticated, user } = useAuth0();
   const history = useHistory();
   if (isAuthenticated) {
@@ -48,13 +52,13 @@ const Home = () => {
               .pauseFor(200)
               .typeString('<br/>')
               .pauseFor(50)
-              .typeString('welcome back painter #' + (pixel_position+1))
+              .typeString(t('welcome back painter #') + (pixel_position+1))
               .typeString('<br/>')
               .pauseFor(50)
               .typeString('<br/>')
               .pauseFor(50)
               .typeString('>> ')
-              .typeString('<a href="/share/' + (pixel_position+1) + '" style="text-deconration:none;color:#f0fff8">' + 'View paiting' + '</a>')
+              .typeString('<a href="/share/' + (pixel_position+1) + '" style="text-deconration:none;color:#f0fff8">' + t('View paiting') + '</a>')
               .start();
           }}
         />
@@ -89,13 +93,13 @@ const Home = () => {
                   .pauseFor(250)
                   .typeString('<br/>')
                   .pauseFor(250)
-                  .typeString('first massively participatory art project')
+                  .typeString(t('first massively participatory art project'))
                   .pauseFor(2000)
                   .typeString('<br/>')
                   .pauseFor(500)
                   .typeString('<br/>')
                   .typeString('>> ')
-                  .typeString('<big>' + 'participate' + '</big>')
+                  .typeString('<big>' + t('participate') + '</big>')
                   .pauseFor(9100)
                   .start();
               }}
