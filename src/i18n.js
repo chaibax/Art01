@@ -1,8 +1,8 @@
 import i18n from "i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from "react-i18next";
-var userLang = navigator.language || navigator.userLanguage; 
-console.log("🇫🇷 The language is: " + userLang);// the translations
+//var userLang = navigator.language || navigator.userLanguage; 
+//console.log("🇫🇷 The language is: " + userLang);// the translations
 // (tip move them in a JSON file and import them)
 const resources = {
   en: {
@@ -103,7 +103,7 @@ i18n
   .init({
     fallbackLng: 'en',  
     resources,
-    debug: true,
+    debug: false,
 
     keySeparator: false, // we do not use keys in form messages.welcome
 
