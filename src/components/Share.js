@@ -10,6 +10,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
+import { useTranslation } from 'react-i18next';
 
 import TagManager from 'react-gtm-module'
 
@@ -20,9 +21,11 @@ TagManager.initialize(tagManagerArgs);
 
 
 var moment = require('moment');
+
 const Share = ({ match }) => {
 
   const axios = require('axios');
+  const { t, i18n } = useTranslation();
 
 
   var count2 = 0;
@@ -69,7 +72,7 @@ const Share = ({ match }) => {
     <Fragment>
       <h1 className="title is-size-2 has-text-centered shadowed">
 
-        <big>{given_name} you are painter number {match.params.id} in a billion </big>
+        <big>{given_name} {t('you are painter number')} {match.params.id} {t('in a billion')} </big>
       </h1>
       <center>
         <div style={{ height: '80vmin', width: '80vmin' }} id="image">
@@ -80,12 +83,12 @@ const Share = ({ match }) => {
 
       <div id="share" className="title  has-text-centered shadowed" >
 
-        <p> <span id='count'>0</span> painters. <span id="pourcentage"></span>% of the painting is complete. At this rate, 1000000000.art be finished in <span id="date_fin"></span> years.
+        <p> <span id='count'>0</span> {t('painters')}. <span id="pourcentage"></span>% {t('of the painting is complete. At this rate, 1000000000.art be finished in')} <span id="date_fin"></span> {t('years')}.
 </p></div>
 
       <div id="share" className="title  has-text-centered shadowed" >
         
-Help this project to grow: please invite a friend painter #{match.params.id} <br /><br />
+      {t('Help this project to grow')}: {t('please invite a friend painter')} #{match.params.id} <br /><br />
         <div className="Demo__some-network">
           <FacebookShareButton
             url={share_url}
@@ -139,23 +142,23 @@ Help this project to grow: please invite a friend painter #{match.params.id} <br
       <br />
       <div id="share" className="title  has-text-centered shadowed" >
   
-        {'>'} Your pixel (#{match.params.id}) : 
+        {'>'} {t('Your pixel')} (#{match.params.id}) : 
         <br/>
         <ViewColorFromIp ip={FirstIP} />
         <br/>
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={art01url}>{'>'}  Download painting (real size)</a>
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={art01url}>{'>'}   {t('Download painting (real size)')}</a>
         <br />
 
 
 
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="mailto:hello@1000000000.art">{'>'}  Feedback</a>
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="mailto:hello@1000000000.art">{'>'}   {t('Feedback')}</a>
         <br />
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'} About</a>
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'}  {t('About')}</a>
         <br />
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'}  Developer? Contribute</a>
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'}   {t('Developer? Contribute')}</a>
         <br />
         <a style={{ textDeconration: 'none', color: '#f0fff8' }} onClick={() => logout({ returnTo: window.location.origin })}>
-          {'>'} logout &nbsp;
+          {'>'}  {t('logout')} &nbsp;
                 </a>
       </div>
 

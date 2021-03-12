@@ -22,7 +22,32 @@ const resources = {
       "years" : "years",
       "Participate" : "Participate",
       "Because there cannot be several particiaption per person, your email/signup will be requested in the next step." : "              Because there cannot be several particiaption per person, your email/signup will be requested in the next step.",
-      "This is a free, non-commercial, open source, participatory art project. I have nothing to sell." : "This is a free, non-commercial, open source, participatory art project. I have nothing to sell."
+      "This is a free, non-commercial, open source, participatory art project. I have nothing to sell." : "This is a free, non-commercial, open source, participatory art project. I have nothing to sell.",
+      "Hello" : "Hello",
+      "your Internet address (IP) is":"your Internet address (IP) is",
+      "So, your pixel color is":"So, your pixel color is",
+      "Red" : "Red",
+      "Green" : "Green",
+      "Blue" : "Blue",
+      "Opacity" : "Opacity",
+      "Add my pixel to the painting" : "Add my pixel to the painting",
+      "Adding pixel: please wait..." : "Adding pixel: please wait..." ,
+      "You added your pixel. Click Next" : "You added your pixel. Click Next",
+      "Click Next" : "Click Next",
+      "you are painter number":"you are painter number",
+      "in a billion":"in a billion",
+      "painters":"painters",
+      "of the painting is complete. At this rate, 1000000000.art be finished in":"of the painting is complete. At this rate, 1000000000.art be finished in",
+      "years":"years",
+      "Help this project to grow" :"Help this project to grow",
+      "please invite a friend painter":"please invite a friend painter",
+      "Your pixel":"Your pixel",
+      "Download painting (real size)":"Download painting (real size)",
+      "Feedback":"Feedback",
+      "About":"About",
+      "Developer? Contribute":"Developer? Contribute",
+      "logout":"logout"
+
     }
   },
   fr: {
@@ -42,10 +67,35 @@ const resources = {
       "years" : "années" ,
       "Participate" : "Participer",
       "Because there cannot be several particiaption per person, your email/signup will be requested in the next step." : "Il ne peut y avoir qu'une participation par personne, c'est pourquoi votre email vous sera demandé à la prochaine étape",
-      "This is a free, non-commercial, open source, participatory art project. I have nothing to sell." : "Ce projet artistique est un travail personnel, gratuit et open source. Je n'ai rien à vous vendre."  
+      "This is a free, non-commercial, open source, participatory art project. I have nothing to sell." : "Ce projet artistique est un travail personnel, gratuit et open source. Je n'ai rien à vous vendre.",  
+      "Hello" : "Bonjour",
+      "your Internet address (IP) is":"votre adresse Internet (IP) est",
+      "So, your pixel color is":"Donc, la couleur de votre pixel est",
+      "Red" : "Rouge",
+      "Green" : "Vert",
+      "Blue" : "Bleu",
+      "Opacity" : "Opacitée",
+      "Add my pixel to the painting" : "Ajouter mon pixel au tableau",
+      "Adding pixel: please wait..." : "Ajout en cours, merci de patienter..." ,
+      "You added your pixel. Click Next" : "Pixel bien ajouté. Cliquez sur Suivant",
+      "Click Next" : "Cliquez sur Suivant",
+      "you are painter number":"vous êtes le peintre numéro",
+      "in a billion":"sur un milliard",
+      "painters":"peintres",
+      "of the painting is complete. At this rate, 1000000000.art be finished in":"du tableau est fini. À ce rythme, 1000000000.art sera complet dans",
+      "years":"années",
+      "Help this project to grow":"Aidez ce projet à grandir",
+      "please invite a friend painter":"partagez-le à vos amis peintre",
+      "Your pixel":"Votre pixel",
+      "Download painting (real size)":"Télécharger le tableau (taille réelle)",
+      "Feedback":"Feedback",
+      "About":"À propos",
+      "Developer? Contribute":"Developpeur? Contribuez ici",
+      "logout":"déconnexion"
+
     }
   }
-};
+}; 
 
 i18n
   .use(LanguageDetector)

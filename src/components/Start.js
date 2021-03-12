@@ -3,6 +3,13 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import { socket } from "./Socket";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: 'GTM-MVVQ785'
+} 
+TagManager.initialize(tagManagerArgs);
+
 
 var moment = require('moment');
 const Start = () => {
