@@ -120,7 +120,7 @@ class View extends Component {
 
 
                 <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>
-                <h1 className="title is-size-3 has-text-centered shadowed blackbackground">
+                <h1 className="title is-size-4-mobile	is-size-3-desktop has-text-centered shadowed blackbackground">
                 <Translation>
       {
         (t, { i18n }) => <span>{t('You added your pixel. Click Next')}</span>
