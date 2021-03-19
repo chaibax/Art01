@@ -119,7 +119,7 @@ const Paint = () => {
   }
 
   return (
-    <h2 className="title is-size-3 has-text-centered shadowed cursor" onClick={sendpixel}  >
+    <h2 className="title is-size-4-mobile	is-size-3-desktop  has-text-centered shadowed cursor" onClick={sendpixel}  >
 
       <Typewriter
         options={{

@@ -33,7 +33,7 @@ const Home = () => {
       }
     };
     return (<Fragment>
-      <h1 className="title is-size-1 has-text-centered shadowed">
+      <h1 className="title is-size-2-mobile	is-size-1-desktop	 has-text-centered shadowed">
 
 
         <Typewriter
@@ -78,7 +78,7 @@ const Home = () => {
     return (
       <Fragment>
         <a href="/start/" style={{ textDeconration: 'none', color: '#f0fff8' }}>
-          <h1 className="title is-size-1 has-text-centered shadowed">
+          <h1 className="title is-size-2-mobile	is-size-1-desktop		 has-text-centered shadowed">
             <Typewriter
               options={{
                 loop: false,

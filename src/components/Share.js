@@ -70,7 +70,7 @@ const Share = ({ match }) => {
   }
   return (
     <Fragment>
-      <h1 className="title is-size-2 has-text-centered shadowed">
+      <h1 className="title  is-size-3-mobile	is-size-2-desktop has-text-centered shadowed">
 
         <big>{given_name} {t('you are painter number')} {match.params.id} {t('in a billion')} </big>
       </h1>
