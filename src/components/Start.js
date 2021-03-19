@@ -51,7 +51,7 @@ const Start = () => {
   };
   return (
     <Fragment>
-      <div className="shadowed is-size-4" id="start1" onClick={() => {
+      <div className="shadowed is-size-4-desktop is-size-5-mobile	" id="start1" onClick={() => {
         const nexttext = document.getElementById("nexttext");
         const curs = document.getElementById("start1");
         nexttext.classList.remove("is-hidden");
