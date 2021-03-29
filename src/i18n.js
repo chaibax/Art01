@@ -1,8 +1,8 @@
 import i18n from "i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from "react-i18next";
-//var userLang = navigator.language || navigator.userLanguage; 
-//console.log("🇫🇷 The language is: " + userLang);// the translations
+var userLang = navigator.language || navigator.userLanguage; 
+console.log("🇫🇷 The language is: " + userLang);// the translations
 // (tip move them in a JSON file and import them)
 const resources = {
   en: {
@@ -91,7 +91,8 @@ const resources = {
       "Developer? Contribute":"Developpeur? Contribuez ici",
       "logout":"déconnexion"
 
-    },
+    }
+  },
     es: {
         translation: {
           "first massively participatory art project": "primer proyecto de arte masivamente participativo",
@@ -134,8 +135,8 @@ const resources = {
           "Developer? Contribute":"Developer? Contribuir",
           "logout":"cerrar sesión"
         }
-  
-    }}
+      
+    }
 }; 
 
 i18n
@@ -144,7 +145,7 @@ i18n
   .init({
     fallbackLng: 'en',  
     resources,
-    debug: false,
+    debug: true,
 
     keySeparator: false, // we do not use keys in form messages.welcome
 

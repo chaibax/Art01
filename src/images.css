@@ -84,3 +84,9 @@ background-color: white;
 	margin-right: 5px;
 }
 
+
+.languageselect {
+	margin-left: auto;
+    margin-right: auto;
+    width: 12em
+}
