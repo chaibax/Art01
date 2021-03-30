@@ -1,8 +1,8 @@
 import i18n from "i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from "react-i18next";
-var userLang = navigator.language || navigator.userLanguage; 
-console.log("🇫🇷 The language is: " + userLang);// the translations
+//var userLang = navigator.language || navigator.userLanguage; 
+//console.log("🇫🇷 The language is: " + userLang);// the translations
 // (tip move them in a JSON file and import them)
 const resources = {
   en: {
@@ -95,7 +95,7 @@ const resources = {
   },
     es: {
         translation: {
-          "first massively participatory art project": "primer proyecto de arte masivamente participativo",
+          "first massively participatory art project": "primera obra de arte masivamente participativa",
           "participate" : "participar",
           "welcome back painter #" : "bienvenido pintor #",
           "View paiting" : "Ver pintura",

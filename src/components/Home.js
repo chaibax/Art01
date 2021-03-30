@@ -106,17 +106,21 @@ const Home = () => {
             />
           </h1>
         </a>
-        <nav className="navbar is-fixed-bottom shadowed blackbackground" role="navigation" aria-label="main navigation" style={{ zIndex: 0 }}>
-          <div id="card" className="auth0badge">
+        <nav className="navbar is-fixed-bottom columns  blackbackground" role="navigation" aria-label="main navigation" style={{ zIndex: 0 }}>
+
+          
+          <div  className="is-hidden-mobile	 auth0badge has-text-left-desktop has-text-centered-mobile card column blackbackground">
             <a href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width={150} height={50} alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-dark.png" /></a>
           </div>
           
-          <div id="card" className="languageselect shadowed">
+          <div  className=" has-text-centered	 shadowed  card column blackbackground ">
             <a className="shadowed" style={{  opacity: "0.5", fontSize: "1em" }} href="?lng=en"  alt="in english please"> English - </a>
-            <a className="shadowed" style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=fr" alt="en Français merci">Français - </a>
-            <a className="shadowed" style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=es" alt="en Castellano porfa">Español  </a>           
+            <a className="shadowed" style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=fr" alt="en Français merci">Françcais - </a>
+            <a className="shadowed " style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=es" alt="en Castellano porfa">Español  </a>  
+            <a className="is-hidden-desktop shadowed " style={{ opacity: "0.5", fontSize: "1em" }}  href="https://github.com/chaibax/Art01" target="_blank"  alt="About">- About </a>  
+        
           </div>
-          <div id="card" className="githubbadge">
+          <div  className="is-hidden-mobile	  card column blackbackground has-text-right">
             <a style={{ color: "white", opacity: "0.5", fontSize: "1.8em" }} href="https://github.com/chaibax/Art01" target="_blank" alt="First massively participatory art project"><i className="fab fa-github"></i></a>
           </div>
         </nav>
