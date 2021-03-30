@@ -95,7 +95,7 @@ const resources = {
   },
     es: {
         translation: {
-          "first massively participatory art project": "primer proyecto de arte masivamente participativo",
+          "first massively participatory art project": "primera obra de arte masivamente participativa",
           "participate" : "participar",
           "welcome back painter #" : "bienvenido pintor #",
           "View paiting" : "Ver pintura",
