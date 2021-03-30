@@ -12,8 +12,14 @@ TagManager.initialize(tagManagerArgs);
 
 
 var moment = require('moment');
+require ('moment/locale/fr');
+require( 'moment/locale/es');
+
+
+
 const Start = () => {
   const { t, i18n } = useTranslation();
+  
   const { loginWithRedirect } = useAuth0();
   const history = useHistory();
   const axios = require('axios');
@@ -24,12 +30,13 @@ const Start = () => {
   axios.get(process.env.REACT_APP_API_BASE_URL + '/pixels/count')
     .then(function (response) {
       // handle success
+      
       var given = moment("2020-04-01", "YYYY-MM-DD");
       var current = moment().startOf('day');
       //Difference in number of days
       var dif = moment.duration(given.diff(current)).asDays();
       count2 = response.data.count;
-
+      moment.locale(i18n.language);
       document.getElementById("count").innerHTML = response.data.count;
       document.getElementById("since").innerHTML = moment("20200727", "YYYYMMDD").fromNow();
       let pourcentage = (response.data.count * 100) / 1000000000;
