@@ -79,16 +79,28 @@ const Share = ({ match }) => {
           <img src={art01url} style={{ backgroundColor: 'rgb(255, 255, 255)', height: '80vmin', width: '80vmin', zIndex: 1, imageRendering: 'pixelated' }} />
         </div>
       </center>
+      <div id="share" className="  has-text-centered shadowed" >
 
+      <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={art01url}>{'>'}   {t('Download painting (real size)')}</a>
+    </div>
 
       <div id="share" className="title  has-text-centered shadowed" >
-
+<br/>
         <p> <span id='count'>0</span> {t('painters')}. <span id="pourcentage"></span>% {t('of the painting is complete. At this rate, 1000000000.art be finished in')} <span id="date_fin"></span> {t('years')}.
 </p></div>
 
+<div id="share" className="title  has-text-centered shadowed" >
+
+{'>'} {t('Your pixel')} (#{match.params.id}) : 
+        <br/></div>
+        <ViewColorFromIp ip={FirstIP} />
+<br/>
+
+<h1 className="title  is-size-3-mobile	is-size-2-desktop has-text-centered shadowed"> {t('4 ways to participate more')} :
+</h1>
       <div id="share" className="title  has-text-centered shadowed" >
         
-      {t('Help this project to grow')}: {t('please invite a friend painter')} #{match.params.id} <br /><br />
+      1 {'>'}  {t('Help this project to grow')}: {t('please invite a friend painter')} #{match.params.id} <br /><br />
         <div className="Demo__some-network">
           <FacebookShareButton
             url={share_url}
@@ -142,21 +154,15 @@ const Share = ({ match }) => {
       <br />
       <div id="share" className="title  has-text-centered shadowed" >
   
-        {'>'} {t('Your pixel')} (#{match.params.id}) : 
-        <br/>
-        <ViewColorFromIp ip={FirstIP} />
-        <br/>
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={art01url}>{'>'}   {t('Download painting (real size)')}</a>
+      
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="mailto:hello@1000000000.art">2 {'>'}  {t('Feedback')}</a>
         <br />
-
-
-
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="mailto:hello@1000000000.art">{'>'}   {t('Feedback')}</a>
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="mailto:hello@1000000000.art">3 {'>'}   {t('Request a feature')}</a>
+        <br />
+        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">4 {'>'}   {t('Developer? Contribute')}</a>
         <br />
         <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'}  {t('About')}</a>
-        <br />
-        <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href="https://github.com/chaibax/Art01">{'>'}   {t('Developer? Contribute')}</a>
-        <br />
+        <br/>
         <a style={{ textDeconration: 'none', color: '#f0fff8' }} onClick={() => logout({ returnTo: window.location.origin })}>
           {'>'}  {t('logout')} &nbsp;
                 </a>

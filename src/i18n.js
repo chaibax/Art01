@@ -43,6 +43,7 @@ const resources = {
       "Your pixel":"Your pixel",
       "Download painting (real size)":"Download painting (real size)",
       "Feedback":"Feedback",
+      "4 ways to participate more":"4 ways to participate more",
       "About":"About",
       "Developer? Contribute":"Developer? Contribute",
       "logout":"logout"
@@ -88,6 +89,7 @@ const resources = {
       "Download painting (real size)":"Télécharger le tableau (taille réelle)",
       "Feedback":"Feedback",
       "About":"À propos",
+      "4 ways to participate more":"4 façon de participer plus",
       "Developer? Contribute":"Developpeur? Contribuez ici",
       "logout":"déconnexion"
 
@@ -131,6 +133,7 @@ const resources = {
           "Your pixel":"Tu pixel",
           "Download painting (real size)":"Descargar pintura (tamaño real)",
           "Feedback":"Feedback",
+          "4 ways to participate more":"4 formas de participar más",
           "About":"A proposito",
           "Developer? Contribute":"Developer? Contribuir",
           "logout":"cerrar sesión"
