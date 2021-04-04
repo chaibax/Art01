@@ -1,10 +1,5 @@
-var atatus = require("atatus-nodejs");
 const process = require("process");
 require('dotenv').config();
-atatus.start({
-  licenseKey: process.env.ATATUS_LICENSE_KEY,
-  appName: process.env.ATATUS_APP_NAME,
-});
 var auth0 = require('./auth0');
 var express = require('express');
 var path = require('path');
