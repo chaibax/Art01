@@ -3,10 +3,17 @@ import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import { useTranslation } from 'react-i18next';
-
+import ReactGA from 'react-ga';
 
 
 const Home = () => {
+  ReactGA.initialize('UA-179027037-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.event({
+  category: "user_"+window.location.hostname,
+  action: "view_home",
+});
+
   const { t, i18n } = useTranslation();
   const { isAuthenticated, user } = useAuth0();
   const history = useHistory();

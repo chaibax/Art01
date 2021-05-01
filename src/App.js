@@ -13,10 +13,12 @@ import View from "./components/View";
 import Privacy from "./components/Privacy";
 import Share from "./components/Share";
 import About from "./components/About";
+import Tmp from "./components/Tmp";
 import TermsOfService from "./components/TermsOfService";
-import TagManager from 'react-gtm-module'
 import './App.sass';
 import './App.css';
+import ReactGA from 'react-ga';
+
 require('dotenv').config();
 
 
@@ -26,15 +28,11 @@ socket.on('newpixel', (data) => {
     document.getElementById('notif').innerHTML = '> ' + data.given_name + ' added pixel #' + data.newpixel.position + ' <span style=""><span style="background-color:rgba(255, 255, 255, 1);color:rgba(' + data.newpixel.r + ', ' + data.newpixel.g + ', ' + data.newpixel.b + ', ' + opacity + ')">█</span> </span><span data-livestamp=' + data.date + '></span> '
 });
 
-const tagManagerArgs = {
-    gtmId: 'GTM-MVVQ785'
-} 
-TagManager.initialize(tagManagerArgs)
 
 
 function App() {
     const { loading } = useAuth0();
-
+    ReactGA.initialize('UA-179027037-1');
     if (loading) {
         return (
             <div className="pageloader is-active shadowed blackbackground">
@@ -70,6 +68,7 @@ function App() {
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
                                     <PrivateRoute path="/paintdev" component={PaintDev} />
+                                    <Route path="/tmp" component={Tmp} />
                                     <Route path="/view/:id?" component={View} />
                                     <PrivateRoute path="/share/:id?" component={Share} />
                                     <Route path="/about" component={About} />

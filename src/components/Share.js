@@ -11,18 +11,18 @@ import {
   WhatsappIcon,
 } from "react-share";
 import { useTranslation } from 'react-i18next';
-
-import TagManager from 'react-gtm-module'
-
-const tagManagerArgs = {
-    gtmId: 'GTM-MVVQ785'
-} 
-TagManager.initialize(tagManagerArgs);
-
+import ReactGA from 'react-ga';
 
 var moment = require('moment');
 
 const Share = ({ match }) => {
+
+  ReactGA.initialize('UA-179027037-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+  ReactGA.event({
+    category: "user_"+window.location.hostname,
+    action: "view_share",
+  });
 
   const axios = require('axios');
   const { t, i18n } = useTranslation();
