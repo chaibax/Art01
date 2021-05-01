@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> test1000000000.art</title>
+    
+
+    <script src="http://fabricjs.com/lib/fabric_with_gestures.js"></script>
+
+
+
+
+  </head>
+  <body>
+
+    <canvas id="c" width="500" height="500" style="
+    width: 500px;
+  height: 500px;
+    image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+   border:1px solid rgb(175, 163, 163)"></canvas> 
+
+
+    <script>
+
+var canvas = new fabric.Canvas('c');
+fabric.Image.fromURL('https://1000000000.s3.amazonaws.com/Art0x.png', function(img) {
+  img.scale(1).set({
+    left: 0,
+    top: 0,
+    angle: 0
+  });
+
+  img.scaleToHeight(500);
+  img.scaleToWidth(500);
+
+  canvas.add(img).setActiveObject(img);
+});
+
+
+    </script>
+
+<canvas id="d" width="500" height="500" style="
+    width: 500px;
+  height: 500px;
+    image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+   border:1px solid rgb(175, 163, 163)"></canvas>
+<script>
+
+var ctx = document.getElementById('d').getContext('2d');
+// load image
+var image = new Image();
+image.onload = function () {
+    // draw the image into the canvas
+            ctx.scale(10, 10);
+
+    ctx.drawImage(image, 0, 0);
+}
+image.src = '/pixel-art.svg';
+</script>
+
+<!--
+    <div style="height:500px;width:500px" id="image">
+        <img  src="https://1000000000.s3.amazonaws.com/Art0x.png" style="background-color: rgb(255, 255, 255); height: 85vmin; width: 85vmin; z-index: 1;;image-rendering: crisp-edges;image-rendering: pixelated;">
+      </div>
+-->
+
+
+  </body>
+</html>
