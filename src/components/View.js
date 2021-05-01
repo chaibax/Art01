@@ -5,11 +5,7 @@ import axios from 'axios';
 import { Translation } from 'react-i18next';
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-179027037-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
-ReactGA.event({
-  category: "user_"+window.location.hostname,
-  action: "view_view",
-});
+
 var spiral = require('zero-indexed-ulam-spiral');
 
 class View extends Component {
@@ -113,7 +109,11 @@ class View extends Component {
         //  clearInterval(this.interval);
     }
     render() {
-
+        ReactGA.pageview(window.location.pathname + window.location.search);
+        ReactGA.event({
+          category: "user_"+window.location.hostname,
+          action: "pixel_added",
+        });
         return (
 
             <Fragment>
