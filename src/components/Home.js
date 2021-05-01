@@ -121,10 +121,11 @@ ReactGA.event({
           </div>
           
           <div  className=" has-text-centered	 shadowed  card column blackbackground ">
-            <a className="shadowed" style={{  opacity: "0.5", fontSize: "1em" }} href="?lng=en"  alt="in english please"> English - </a>
-            <a className="shadowed" style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=fr" alt="en Français merci">Françcais - </a>
-            <a className="shadowed " style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=es" alt="en Castellano porfa">Español  </a>  
-            <a className="is-hidden-desktop shadowed " style={{ opacity: "0.5", fontSize: "1em" }}  href="https://github.com/chaibax/Art01" target="_blank"  alt="About">- About </a>  
+            
+            <a className="shadowed" style={{  opacity: "0.5", fontSize: "1em" }} href="?lng=en"  alt="in english please"> En - </a>
+            <a className="shadowed" style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=fr" alt="en Français merci">Fr - </a>
+            <a className="shadowed " style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=es" alt="en Castellano porfa">Es  </a>  
+            <a className=" shadowed " style={{ opacity: "0.5", fontSize: "1em" }}  href="https://twitter.com/chaibax" target="_blank"  alt="About">- About Painter #1  </a>  
         
           </div>
           <div  className="is-hidden-mobile	  card column blackbackground has-text-right">
