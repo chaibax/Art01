@@ -2,14 +2,14 @@ import React, { Component, Fragment } from "react";
 import '../images.css';
 import { socket } from "./Socket";
 import axios from 'axios';
-import TagManager from 'react-gtm-module'
 import { Translation } from 'react-i18next';
-
-const tagManagerArgs = {
-    gtmId: 'GTM-MVVQ785'
-} 
-TagManager.initialize(tagManagerArgs);
-
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-179027037-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.event({
+  category: "user_"+window.location.hostname,
+  action: "view_view",
+});
 var spiral = require('zero-indexed-ulam-spiral');
 
 class View extends Component {

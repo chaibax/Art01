@@ -3,12 +3,7 @@ import { useAuth0 } from "../react-auth0-wrapper";
 import { socket } from "./Socket";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import TagManager from 'react-gtm-module'
-
-const tagManagerArgs = {
-    gtmId: 'GTM-MVVQ785'
-} 
-TagManager.initialize(tagManagerArgs);
+import ReactGA from 'react-ga';
 
 
 var moment = require('moment');
@@ -18,6 +13,13 @@ require( 'moment/locale/es');
 
 
 const Start = () => {
+  ReactGA.initialize('UA-179027037-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+  ReactGA.event({
+    category: "user_"+window.location.hostname,
+    action: "view_start",
+  });
+
   const { t, i18n } = useTranslation();
   
   const { loginWithRedirect } = useAuth0();
@@ -63,6 +65,11 @@ const Start = () => {
         const curs = document.getElementById("start1");
         nexttext.classList.remove("is-hidden");
         curs.classList.add("is-hidden");
+        ReactGA.event({
+          category: "user_"+window.location.hostname,
+          action: "view_start2",
+        });
+
       }
       }
       >

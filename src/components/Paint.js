@@ -4,12 +4,8 @@ import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import Typewriter from 'typewriter-effect';
 import { useHistory } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import ReactGA from 'react-ga';
 
-import TagManager from 'react-gtm-module'
-const tagManagerArgs = {
-    gtmId: 'GTM-MVVQ785'
-} 
-TagManager.initialize(tagManagerArgs);
 
 function getRandomArbitrary(min, max) {
   min = Math.ceil(min);
@@ -18,7 +14,12 @@ function getRandomArbitrary(min, max) {
 }
 
 const Paint = () => {
-
+  ReactGA.initialize('UA-179027037-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+  ReactGA.event({
+    category: "user_"+window.location.hostname,
+    action: "view_paint",
+  });
   const { t, i18n } = useTranslation();
   const { getTokenSilently, loading, user } = useAuth0();
   const history = useHistory();
