@@ -22,6 +22,8 @@ async function get_pixels(res){
         //       console.log(pix);
         var i = 0;
         var tab = [];
+     
+
        await  collection.find().forEach(function (myPix) {
             let usercolor = myPix.payload[0].pixel;
             let given_name = myPix.payload[3].given_name;
@@ -31,7 +33,7 @@ async function get_pixels(res){
             const green = color[1];
             const blue = color[2];
             const opacity = color[3] / 255; // a voir ce qui est attendu 
-            console.log('position=' + myPix.position);
+           // console.log('position=' + myPix.position);
             let pixelparams = { given_name : given_name, position: myPix.position, date : commitStamp, red: red, green: green, blue: blue, alpha: opacity };
             tab[i] = pixelparams;
            // console.log('tab0 = '+tab.length);
@@ -39,12 +41,13 @@ async function get_pixels(res){
            
         });
         res.json(tab);
+        await client.close();
         //console.log('FIN')
     
       } catch (e) {
         console.error(e);
       } finally {
-        // client.close();
+       
         //        res.jsonp(tab);
        
 
@@ -56,10 +59,6 @@ router.get('/', async function(req, res, next) {
   
  await get_pixels(res);
 
-
-
-  console.log(' GET calling with req.ID=');
-  console.log(req.query.ID);
 
 });
 
