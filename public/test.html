@@ -13,54 +13,7 @@
   <body>
 
 
-    <div id="svgWrap"></div> 
-  
-    <script>
-    // a function to load the json
-      function loadJSON(URL, callback) {
-    
-      var xobj = new XMLHttpRequest();
-      xobj.overrideMimeType("application/json");
-      xobj.open('GET',URL, true); 
-      
-      xobj.onreadystatechange = function() {
-        if (xobj.readyState == 4 && xobj.status == "200") {
-          // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-          callback(xobj.responseText);
-        }
-      };
-      xobj.send(null);
-    }
-      
-      // call the loadJSON
-      loadJSON('http://localhost:3001/api/users', useJSON);  
-      
-      function useJSON(response){
-      //you have the json, use it!
-      //console.log(response);
-        let json = JSON.parse(response);
-        console.log(json);
-      //put the svg inside the divWrap
-       // svgWrap.innerHTML = json ; //json.pages[0].boxes[1].insideBox;
-        i = 0;
-       json.forEach(function(object) {
-         // svgWrap.innerHTML += object.give_name ; 
-  console.log(object['given_name']);
-  console.log(object['position']);
-  console.log(object['date']);
-  console.log(object['red']);
-  console.log(object['green']);
-  console.log(object['blue']);
-  console.log(object['alpha']);
-
-});
-
-      }
-    
-    
-      
-    </script>
-
+   <img src="http://localhost:3001/api/users/svg" style="background-color: white;" width="300"  height="300"/>
     <hr/>
     <canvas id="c" width="500" height="500" style="
     width: 500px;

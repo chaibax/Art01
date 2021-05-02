@@ -2,6 +2,8 @@ require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 const { MongoClient } = require('mongodb');
+var ulam = require('../utils/ulam');
+
 
 /* GET users listing. */
 
@@ -69,16 +71,22 @@ router.get('/svg', async function(req, res, next) {
 
  var svg_file ;
  svg_file = await get_pixels();
+ let size = ulam.getSquareSize(svg_file[1]);
  var svg = '<?xml version="1.0" encoding="utf-8" ?>';
- svg += '<svg baseProfile="full" height="29px" version="1.1" width="29px" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs />'
+ svg += '<svg baseProfile="full" height="'+size+'px" version="1.1" width="'+size+'px" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs />\r\n'
  
 console.log(svg_file[0])
-for (var i = 0; i < svg_file.length; i++){
-  console.log("<br><br>array index: " + i);
-  var obj = svg_file[i];
-  svg +='<rect fill="rgb('+obj['red']+','+obj['green']+','+obj['blue']+')" height="1px" opacity="'+obj['alpha']+'" width="1px" x="'+obj['position']+'px" y="0px" />'
+for (var i = 0; i < svg_file[0].length; i++){
+  let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
+  console.log("coordinate =" + coordinate[0] + " / "+coordinate[1]);
+  console.log(coordinate);
+ 
+  var obj = svg_file[0][i];
+  svg +='<rect fill="rgb('+obj['red']+','+obj['green']+','+obj['blue']+')"  opacity="'+obj['alpha']+'" height="1px" width="1px" x="'+ coordinate[0]+'px" y="'+ coordinate[1]+'px" />\r\n'
 }
+//mydata:position="'+obj['position']+'"  mydata:given_name="'+obj['given_name']+'"
  svg +='</svg>';
+ res.setHeader('Content-Type', 'image/svg+xml');
  res.send(svg);
  
  });
