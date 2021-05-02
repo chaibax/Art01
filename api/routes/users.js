@@ -2,6 +2,8 @@ require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 const { MongoClient } = require('mongodb');
+var ulam = require('../utils/ulam');
+
 
 /* GET users listing. */
 
@@ -34,14 +36,15 @@ async function get_pixels(res){
             const blue = color[2];
             const opacity = color[3] / 255; // a voir ce qui est attendu 
            // console.log('position=' + myPix.position);
-            let pixelparams = { given_name : given_name, position: myPix.position, date : commitStamp, red: red, green: green, blue: blue, alpha: opacity };
+            let pixelparams = { given_name : given_name, position: myPix.position, date : commitStamp, red: red, green: green, blue: blue, alpha: opacity.toFixed(4) };
             tab[i] = pixelparams;
            // console.log('tab0 = '+tab.length);
             i++;
            
         });
-        res.json(tab);
+       
         await client.close();
+        return [tab,i];
         //console.log('FIN')
     
       } catch (e) {
@@ -56,11 +59,38 @@ async function get_pixels(res){
 }
 
 router.get('/', async function(req, res, next) {
-  
- await get_pixels(res);
-
+ var tmp ;
+ tmp = await  get_pixels();
+ res.json(tmp[0]);
 
 });
+
+router.get('/svg', async function(req, res, next) {
+  
+  //await get_pixels(res);
+
+ var svg_file ;
+ svg_file = await get_pixels();
+ let size = ulam.getSquareSize(svg_file[1]);
+ var svg = '<?xml version="1.0" encoding="utf-8" ?>';
+ svg += '<svg baseProfile="full" height="'+size+'px" version="1.1" width="'+size+'px" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs />\r\n'
+ 
+console.log(svg_file[0])
+for (var i = 0; i < svg_file[0].length; i++){
+  let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
+  console.log("coordinate =" + coordinate[0] + " / "+coordinate[1]);
+  console.log(coordinate);
+ 
+  var obj = svg_file[0][i];
+  svg +='<rect fill="rgb('+obj['red']+','+obj['green']+','+obj['blue']+')"  opacity="'+obj['alpha']+'" height="1px" width="1px" x="'+ coordinate[0]+'px" y="'+ coordinate[1]+'px" />\r\n'
+}
+//mydata:position="'+obj['position']+'"  mydata:given_name="'+obj['given_name']+'"
+ svg +='</svg>';
+ res.setHeader('Content-Type', 'image/svg+xml');
+ res.send(svg);
+ 
+ });
+
 
 
 

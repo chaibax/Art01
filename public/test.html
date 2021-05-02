@@ -12,6 +12,9 @@
   </head>
   <body>
 
+
+   <img src="http://localhost:3001/api/users/svg" style="background-color: white;" width="300"  height="300"/>
+    <hr/>
     <canvas id="c" width="500" height="500" style="
     width: 500px;
   height: 500px;
@@ -25,22 +28,22 @@
     <script>
 
 var canvas = new fabric.Canvas('c');
-fabric.Image.fromURL('https://1000000000.s3.amazonaws.com/Art0x.png', function(img) {
+fabric.Image.fromURL('http://localhost:3000/Art0x61.svg', function(img) {
   img.scale(1).set({
     left: 0,
     top: 0,
     angle: 0
   });
 
-  img.scaleToHeight(500);
-  img.scaleToWidth(500);
+  img.scaleToHeight(400);
+  img.scaleToWidth(400);
 
   canvas.add(img).setActiveObject(img);
 });
 
 
     </script>
-
+<hr/>
 <canvas id="d" width="500" height="500" style="
     width: 500px;
   height: 500px;
@@ -60,7 +63,7 @@ image.onload = function () {
 
     ctx.drawImage(image, 0, 0);
 }
-image.src = '/pixel-art.svg';
+image.src = '/Art0x61.svg';
 </script>
 
 <!--
