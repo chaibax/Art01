@@ -58,7 +58,7 @@ async function get_pixel(pos) {
     const collection = database.collection('events');
     var position = 0;
     position = pos;
-    const query = { 'position': parseInt(position) };
+    const query = { 'position': eval(parseInt(position)+1) };
 
     var mypix;
     await collection.findOne(query, function (err, result) {
