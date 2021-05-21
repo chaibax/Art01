@@ -123,7 +123,7 @@ class View extends Component {
                 <h1 className="title is-size-4-mobile	is-size-3-desktop has-text-centered shadowed blackbackground">
                 <Translation>
       {
-        (t, { i18n }) => <span>{t('You added your pixel. Click Next')}!!!</span>
+        (t, { i18n }) => <span>{t('You added your pixel. Click Next')}</span>
       }
     </Translation><big className="blink">▮</big>
                 </h1>
@@ -132,7 +132,7 @@ class View extends Component {
                 <div >
                     <div className="has-text-centered">
                     <a className="link shadowed" href={"/share/"+ (this.state.position )} >
-                     <img style={{ height: '80vmin', width: '80vmin' , backgroundColor: 'white' }} src={process.env.REACT_APP_SOCKET_URL +"/api/users/svg?id="+eval(this.state.position - 1)} />
+                     <img style={{ height: '80vmin', width: '80vmin' , backgroundColor: 'white' }} src={process.env.REACT_APP_SOCKET_URL +"/api/users/svg?id="+eval(this.state.position)} />
                    </a>
                     </div>
                     <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position)}>
