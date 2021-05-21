@@ -119,27 +119,24 @@ class View extends Component {
             <Fragment>
 
 
-                <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}>
+                <a className="link shadowed" href={"/share/"+ (this.state.position )} >
                 <h1 className="title is-size-4-mobile	is-size-3-desktop has-text-centered shadowed blackbackground">
                 <Translation>
       {
-        (t, { i18n }) => <span>{t('You added your pixel. Click Next')}</span>
+        (t, { i18n }) => <span>{t('You added your pixel. Click Next')}!!!</span>
       }
     </Translation><big className="blink">▮</big>
                 </h1>
                 </a>
-                <div className="imageblink ">
-                    <div className="has-text-centered" >
-                    </div></div>
-                <div className="imageblink ">
+              
+                <div >
                     <div className="has-text-centered">
-                        <canvas ref={this.canvasRef} className="piximagerendering pastel bottom" id="canvart" style={{ backgroundColor: 'rgba(255, 255, 255, 1)', height: '85vmin', width: '85vmin', zIndex: 1 }}
-                            width={this.state.squaresize} height={this.state.squaresize}></canvas>
-                        <a href={this.state.link} download="Art01.png" target="_blank">
-                            <img id="art01" src={this.state.link} className="imagetop piximagerendering" style={{ backgroundColor: 'rgba(255, 255, 255, 1)', height: '85vmin', width: '85vmin', zIndex: 1 }} />
-                        </a>
+                    <a className="link shadowed" href={"/share/"+ (this.state.position )} >
+                     <img style={{ height: '80vmin', width: '80vmin' , backgroundColor: 'white' }} src={process.env.REACT_APP_SOCKET_URL +"/api/users/svg?id="+eval(this.state.position - 1)} />
+                   </a>
                     </div>
-                    <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position + 1)}><Translation>
+                    <h2 className="title is-size-3 has-text-centered shadowed blackbackground">  <a className="link shadowed" href={"/share/"+ (this.state.position)}>
+                        <Translation>
       {
         (t, { i18n }) => <span>{t('Click Next')}</span>
       }
