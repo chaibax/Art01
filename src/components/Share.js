@@ -76,12 +76,14 @@ const Share = ({ match }) => {
       </h1>
       <center>
         <div style={{ height: '80vmin', width: '80vmin' }} id="image">
-          <img src={art01url} style={{ backgroundColor: 'rgb(255, 255, 255)', height: '80vmin', width: '80vmin', zIndex: 1, imageRendering: 'pixelated' }} />
+        <img style={{ backgroundColor: 'rgb(255, 255, 255)', height: '80vmin', width: '80vmin', zIndex: 1 }} src={process.env.REACT_APP_SOCKET_URL +"/api/users/svg?id="+eval(match.params.id - 1)} />
+
+         
         </div>
       </center>
       <div id="share" className="  has-text-centered shadowed" >
 
-      <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={art01url}>{'>'}   {t('Download painting (real size)')}</a>
+      <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={process.env.REACT_APP_SOCKET_URL +"/api/users/svg"} >{'>'}   {t('Download painting (real size)')}</a>
     </div>
 
       <div id="share" className="title  has-text-centered shadowed" >
