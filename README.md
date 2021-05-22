@@ -74,7 +74,7 @@ I use eventsourcing pattern. Take a look : [eventstore](https://eventstore.js.or
 ## API
 
 Number of pixels : https://api.1000000000.art/api/pixels/count
-
+Painters and their pixels (json) : https://api.1000000000.art/api/users/
 
 
 ## Available Scripts
