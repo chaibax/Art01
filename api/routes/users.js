@@ -30,7 +30,7 @@ async function get_pixels(res) {
       const blue = color[2];
       const opacity = color[3] / 255; // a voir ce qui est attendu 
       // console.log('position=' + myPix.position);
-      let pixelparams = { given_name: given_name, position: myPix.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity };
+      let pixelparams = { given_name: given_name, position: myPix.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity.toFixed(8) };
       tab[i] = pixelparams;
       // console.log('tab0 = '+tab.length);
       i++;
@@ -72,7 +72,7 @@ async function get_pixel(pos) {
       const blue = color[2];
       const opacity = color[3] / 255; // a voir ce qui est attendu 
       // console.log('position=' + myPix.position);
-      let pixelparams = { given_name: given_name, position: result.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity };
+      let pixelparams = { given_name: given_name, position: result.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity.toFixed(8) };
       // console.log('tab0 = '+tab.length);
 
       mypix = pixelparams;
