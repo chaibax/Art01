@@ -114,9 +114,15 @@ router.get('/svg', async function (req, res) {
       if (req.query.id == i) {
       
       
-        svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" >\r\n'
-        svg += '<animate attributeName="opacity" from="0" to="1" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
-    //    svg += '<animate attributeName="width" from="0" to="10" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
+        svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"   opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" >\r\n'
+       svg += '<animate attributeName="opacity" from="0" to="1" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
+       svg +=  '<animate attributeName="fill" values="red;green;blue" dur="3" begin=".1s" fill="remove" repeatCount="4" />'
+
+       
+     //  svg +=  '<animate attributeName="stroke" values="red;blue;red" dur="3" begin=".1s" fill="remove" repeatCount="4" />'
+      // svg +=  '<animate attributeName="stroke-opacity" from="0" to="1" dur="3" begin=".1s" fill="remove" repeatCount="4"/>'
+     
+       //    svg += '<animate attributeName="width" from="0" to="10" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
     //    svg += '<animate attributeName="height" from="0" to="10" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
     //svg +='<animateTransform attributeName="transform" type="rotate" from="0 190 50" to="360 190 50" dur="4s" repeatCount="indefinite" />';
         svg += '</rect>\r\n';

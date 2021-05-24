@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import '../images.css';
 import { useAuth0 } from "../react-auth0-wrapper";
-import ViewColorFromIp from "./ViewColorFromIp"; // a degager
+//import ViewColorFromIp from "./ViewColorFromIp"; // a degager
 import { FacebookShareButton, TwitterShareButton, FacebookMessengerShareButton, WhatsappShareButton, EmailShareButton } from "react-share";
 import {
   EmailIcon,
@@ -25,7 +25,7 @@ const Share = ({ match }) => {
   });
 
   const axios = require('axios');
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
 
   var count2 = 0;
