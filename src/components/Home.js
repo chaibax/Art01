@@ -14,16 +14,16 @@ ReactGA.event({
   action: "view_home",
 });
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { isAuthenticated, user } = useAuth0();
   const history = useHistory();
   if (isAuthenticated) {
-    console.log('isAuthenticated');
-    console.log(user);
+    //console.log('isAuthenticated');
+    //console.log(user);
     var pixel_position = user['https://art01/pixel_position'];
-    console.log('>>>' + pixel_position);
+    //console.log('>>>' + pixel_position);
 
-    console.log('👉');
+    //console.log('👉');
 
     if (pixel_position === undefined) {
       if (window.current_position) {
