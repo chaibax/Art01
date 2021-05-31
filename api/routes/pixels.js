@@ -4,6 +4,13 @@ var image = require('./images');
 var ulam = require('../utils/ulam');
 var express = require('express');
 var router = express.Router();
+const twitter = require('twitter-lite');
+const client = new twitter({  
+  consumer_key: process.env.TWITTER_CONSUMER_KEY ,  
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,  
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,  
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET  
+});
 
 
 //pour pourvoir maj la metadata auth0  de l'user avec le numero de pixel 
@@ -139,7 +146,7 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
           //:position/:r/:g/:b/:alpha
           let pixelparams = { position: position_added, r: red, g: green, b: blue, alpha: opacity };
           
-          image.generateimage(pixelparams, function (res1) {
+         image.generateimage(pixelparams, function (res1) {
        
             console.log('🌈 génération de image ok avec resulta = ' + res1);
 
@@ -149,6 +156,17 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
             io.emit('newpixel', { 'newpixel' : pixelparams, 'given_name' : req.body.given_name, 'picture' : req.body.picture_large, 'date' : stream.eventsToDispatch[0]['commitStamp'] });
             res.send({ 'position': position_added });
           });
+       
+          io.emit('newpixel', { 'newpixel' : pixelparams, 'given_name' : req.body.given_name, 'picture' : req.body.picture_large, 'date' : stream.eventsToDispatch[0]['commitStamp'] });
+          res.send({ 'position': position_added });
+          if(!(process.env.DEBUG_MODE == '1')){
+          var newstatus = req.body.given_name + ' add a new pixel and become painter number '+position_added + ' in a billion  #generativeArt #ParticipatoryArt #PxielArt  #Art Participate 👉 https://1000000000.art ';
+          client.post('statuses/update', { status: newstatus }).then(result => {
+            console.log('You successfully tweeted this : "' + result.text + '"');
+            //res.send('You successfully tweeted this : "' + result.text + '"')
+          }).catch(console.error);
+        }
+
           //enregistrer la position dans les metadata Auth0 de l'user 
           //  console.log(users[0]);
           //console.log(users[0].user_id);
