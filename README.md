@@ -2,7 +2,7 @@
 
 The painting in real size : 
 
-👉 ![](api/public/images/1000000000.svg) 
+👉 ![](public/1000000000.svg) 
 
 [The painting right now (big size)](https://api.1000000000.art)
 <br/>[Download the painting (reale tiny size)](https://api.1000000000.art/api/users/svg) 
