@@ -4,6 +4,15 @@ var router = express.Router();
 const { MongoClient } = require('mongodb');
 var ulam = require('../utils/ulam');
 
+const twitter = require('twitter-lite');
+const client = new twitter({  
+  consumer_key: process.env.TWITTER_CONSUMER_KEY ,  
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,  
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,  
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET  
+});
+
+
 
 /* GET users/pixels listing. */
 async function get_pixels(res) {
@@ -94,6 +103,17 @@ router.get('/', async function (req, res, next) {
   res.json(tmp[0]);
 
 });
+
+
+router.get('/twitter', async function (req, res, next) {
+
+  client.post('statuses/update', { status: 'Test du 31 mai' }).then(result => {
+    console.log('You successfully tweeted this : "' + result.text + '"');
+    res.send('You successfully tweeted this : "' + result.text + '"')
+  }).catch(console.error);
+
+});
+
 
 router.get('/svg', async function (req, res) {
 

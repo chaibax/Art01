@@ -38,6 +38,7 @@
     "rgb-hex": "^3.0.0",
     "socket.io": "^2.3.0",
     "twitter": "^1.7.1",
+    "twitter-lite": "^1.1.0",
     "uuid": "^3.4.0",
     "zero-indexed-ulam-spiral": "^0.0.1"
   }
