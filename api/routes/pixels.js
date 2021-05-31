@@ -79,8 +79,8 @@ router.all('/last', function (req, res, next) {
     const red = color[0];
     const green = color[1];
     const blue = color[2];
-    const opacity = Math.round((color[3]/255) * 100) / 100;
-    evt_to_send = { "position": evt.position, "commitStamp": evt.commitStamp, "eventId": evt.id, "r": color[0],"g": color[1],"b": color[2],"alpha": opacity, "given_name" : evt.payload[3].given_name, "avatar" : evt.payload[4].picture_large };
+    const opacity = (color[3]/255 * 100) / 100;
+    evt_to_send = { "position": evt.position, "commitStamp": evt.commitStamp, "r": color[0],"g": color[1],"b": color[2],"alpha": opacity, "name" : evt.payload[3].given_name, "avatar" : evt.payload[4].picture_large };
     res.send(evt_to_send);
   });
 });
@@ -146,6 +146,7 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
           //:position/:r/:g/:b/:alpha
           let pixelparams = { position: position_added, r: red, g: green, b: blue, alpha: opacity };
           
+          // Je n'ai plus besoin de générer une image
          image.generateimage(pixelparams, function (res1) {
        
             console.log('🌈 génération de image ok avec resulta = ' + res1);
@@ -153,8 +154,8 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
             if( !res1 ) {
               //soucis avec la génération de l'image. Il faudrait : soit ne pas enregistrer le pixel, soit créer un event d'erreur?
             }
-            io.emit('newpixel', { 'newpixel' : pixelparams, 'given_name' : req.body.given_name, 'picture' : req.body.picture_large, 'date' : stream.eventsToDispatch[0]['commitStamp'] });
-            res.send({ 'position': position_added });
+            //io.emit('newpixel', { 'newpixel' : pixelparams, 'given_name' : req.body.given_name, 'picture' : req.body.picture_large, 'date' : stream.eventsToDispatch[0]['commitStamp'] });
+            //res.send({ 'position': position_added });
           });
        
           io.emit('newpixel', { 'newpixel' : pixelparams, 'given_name' : req.body.given_name, 'picture' : req.body.picture_large, 'date' : stream.eventsToDispatch[0]['commitStamp'] });
