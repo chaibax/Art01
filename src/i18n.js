@@ -46,7 +46,9 @@ const resources = {
       "4 ways to participate more":"4 ways to participate more",
       "About":"About",
       "Developer? Contribute":"Developer? Contribute",
-      "logout":"logout"
+      "logout":"logout",
+      "Login":"Login",
+      "About Painter":"About Painter"
 
     }
   },
@@ -91,7 +93,9 @@ const resources = {
       "About":"À propos",
       "4 ways to participate more":"4 façon de participer plus",
       "Developer? Contribute":"Developpeur? Contribuez ici",
-      "logout":"déconnexion"
+      "logout":"déconnexion",
+      "Login":"Connexion",
+      "About Painter":"À propos du peintre"
 
     }
   },
@@ -136,7 +140,9 @@ const resources = {
           "4 ways to participate more":"4 formas de participar más",
           "About":"A proposito",
           "Developer? Contribute":"Developer? Contribuir",
-          "logout":"cerrar sesión"
+          "logout":"cerrar sesión",
+          "Login":"Iniciar sesión",
+          "About Painter":"Sobre el pintor"
         }
       
     }
