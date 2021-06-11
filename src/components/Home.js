@@ -15,7 +15,7 @@ ReactGA.event({
 });
 
   const { t } = useTranslation();
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, loginWithRedirect } = useAuth0();
   const history = useHistory();
   if (isAuthenticated) {
     //console.log('isAuthenticated');
@@ -124,8 +124,9 @@ ReactGA.event({
             
             <a className="shadowed" style={{  opacity: "0.5", fontSize: "1em" }} href="?lng=en"  alt="in english please"> En - </a>
             <a className="shadowed" style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=fr" alt="en Français merci">Fr - </a>
-            <a className="shadowed " style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=es" alt="en Castellano porfa">Es  </a>  
-            <a className=" shadowed " style={{ opacity: "0.5", fontSize: "1em" }}  href="https://twitter.com/chaibax" target="_blank"  alt="About">- About Painter #1  </a>  
+            <a className="shadowed " style={{ opacity: "0.5", fontSize: "1em" }} href="?lng=es" alt="en Castellano porfa">Es - </a>  
+            <a  className="shadowed " style={{ opacity: "1", fontSize: "1em" }} onClick={() => loginWithRedirect({ appState: { targetUrl: window.location.origin + '/paint' } })} >{t("Login")} </a>
+            <a className=" shadowed " style={{ opacity: "0.5", fontSize: "1em" }}  href="https://twitter.com/chaibax" target="_blank"  alt="About">- {t("About Painter")} #1  </a>  
         
           </div>
           <div  className="is-hidden-mobile	  card column blackbackground has-text-right">
