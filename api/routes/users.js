@@ -158,7 +158,7 @@ router.get('/svg', async function (req, res) {
       var obj = svg_file[0][i];
       svg += '<g>\r\n';
       svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" />\r\n'
-      svg += '<text  x="' + eval(coordinate[0]+0.25) + 'px" y="' + eval(coordinate[1]+0.5) + 'px"  font-size="0.1" >Painter #'+i+'</text>\r\n'
+      svg += '<text  x="' + eval(coordinate[0]+0.5) + 'px" y="' + eval(coordinate[1]+0.5) + 'px"  alignment-baseline="middle" text-anchor="middle" font-size="0.3" >#'+i+'</text>\r\n'
       svg += '</g>\r\n'
     }
   } 
