@@ -96,7 +96,7 @@ const Share = ({ match }) => {
 {'>'} {t('Your pixel')} (#{match.params.id}) : 
         <br/></div>
         <center>
-        <img  className="has-text-centered" style={{ backgroundColor: 'rgb(255, 255, 255)', height: '25vmin', width: '25vmin', zIndex: 1 }} src={process.env.REACT_APP_SOCKET_URL +"/api/users/mysvg?id="+eval(match.params.id)} />
+        <img  className="has-text-centered" style={{ backgroundColor: 'rgb(255, 255, 255)', height: '25vmin', width: '25vmin', zIndex: 1 }} src={process.env.REACT_APP_SOCKET_URL +"/api/users/mysvg?id="+eval(match.params.id-1)} />
         </center>
 <br/>
 
