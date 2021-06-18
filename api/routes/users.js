@@ -75,7 +75,7 @@ async function get_pixel(pos) {
 
       let usercolor = result.payload[0].pixel;
       let given_name = result.payload[3].given_name;
-      let picture_large = myPix.payload[4].picture_large
+      let picture_large = result.payload[4].picture_large;
       let commitStamp = result.commitStamp;
       const color = usercolor.split('.');
       const red = color[0];
@@ -126,10 +126,8 @@ router.get('/svg', async function (req, res) {
 
   let size = ulam.getSquareSize(svg_file[1]);
   var svg = '<?xml version="1.0" encoding="utf-8" ?>';
-
-  svg += '<svg baseProfile="full" height="' + size + 'px" version="1.1" width="' + size + 'px" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs />\r\n'
-
-  //console.log(svg_file[0])
+  svg += '<svg baseProfile="full" height="' + size + 'px" version="1.1" width="' + size + 'px" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" ><defs />\r\n'
+  //svg+='<style type="text/css" >/* <![CDATA[ */ text {display: none;}; g:hover text {display: block;}}/* ]]> */</style>';
   if (req.query.id >= -1) {
     for (var i = 0; i < svg_file[0].length; i++) {
       let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
@@ -158,7 +156,7 @@ router.get('/svg', async function (req, res) {
       var obj = svg_file[0][i];
       svg += '<g>\r\n';
       svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" />\r\n'
-      svg += '<text  x="' + eval(coordinate[0]+0.5) + 'px" y="' + eval(coordinate[1]+0.5) + 'px"  alignment-baseline="middle" text-anchor="middle" font-size="0.3" >#'+i+'</text>\r\n'
+      svg += '<text  x="' + eval(coordinate[0]+0.5) + 'px" y="' + eval(coordinate[1]+0.5) + 'px"  alignment-baseline="middle" text-anchor="middle" font-size="0.3" >#'+eval(i+1)+'</text>\r\n'
       svg += '</g>\r\n'
     }
   } 
@@ -169,7 +167,7 @@ router.get('/svg', async function (req, res) {
       var obj = svg_file[0][i];
  
 
-      svg += '<image  xlink:href="https://i1.wp.com/cdn.auth0.com/avatars/te.png?ssl=1" height="1px" width="1px" x="' + coordinate[0] + '" y="' + coordinate[1] + '" />\r\n'
+      svg += '<image href="https://i1.wp.com/cdn.auth0.com/avatars/te.png" height="1px" width="1px" x="' + coordinate[0] + '" y="' + coordinate[1] + '" />\r\n'
     
     }
   }
@@ -204,5 +202,32 @@ router.get('/mysvg', async function (req, res) {
 
 });
 
+
+
+router.get('/avatars', async function (req, res) {
+
+  //await get_pixels(res);
+
+  var svg_file;
+  svg_file = await get_pixels();
+
+  let size = ulam.getSquareSize(svg_file[1]);
+  var table = '<table>';
+  table += '<svg baseProfile="full" height="' + size + 'px" version="1.1" width="' + size + 'px" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" ><defs />\r\n'
+  //svg+='<style type="text/css" >/* <![CDATA[ */ text {display: none;}; g:hover text {display: block;}}/* ]]> */</style>';
+  
+    for (var i = 0; i < svg_file[0].length; i++) {
+    let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
+    var obj = svg_file[0][i];
+    table += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" />\r\n'
+  }
+  
+
+  //mydata:position="'+obj['position']+'"  mydata:given_name="'+obj['given_name']+'"
+  table += '</table>';
+  //res.setHeader('Content-Type', 'image/svg+xml');
+  res.send(table);
+
+});
 
 module.exports = router;
