@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> test1000000000.art</title>
+    
+
+    <script src="http://fabricjs.com/lib/fabric_with_gestures.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+// Make a request for a user with a given ID
+axios.get('http://api.1000000000.art/api/users/')
+  .then(function (response) {
+    // handle success
+    var avatars = document.querySelector("#avatars");
+    console.log(response);
+    response.data.forEach( pix => {
+     // console.log(pix.given_name);
+      avatars.innerHTML += '<span><img title="'+pix.given_name+'" alt="Painter #'+pix.position +'" width=120 height=120 src="'+pix.picture_large+'" /><span>';
+    
+    }
+      );
+    //var avatars = document.querySelector("#log");
+    //avatars.innerHTML += '<span>'++'<span>';
+
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+
+    </script>
+
+<style>
+
+svg text {display: none;}
+svg g:hover text {display: block;}
+
+.test:hover {
+  fill: #DA4567;
+}
+
+</style>
+
+
+  </head>
+  <body>
+
+    <div id='avatars'>
+
+    </div>
+
+
+   
+
+  </body>
+</html>
