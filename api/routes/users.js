@@ -40,6 +40,10 @@ async function get_pixels(res) {
       var fbid = auth0Id.split("|");
       console.log(fbid[0]+ ' -- '+ fbid[1]);
       picture_large = 'https://graph.facebook.com/'+fbid[1]+'/picture?height=120&width=120&breaking_change=profile_picture';
+
+      if(fbid[1] === '10155911505438072') picture_large = '/1.jpg';
+      else if(fbid[1] === '10160018149257388') picture_large = '/3.jpg';
+      
       };
       let commitStamp = myPix.commitStamp;
      
