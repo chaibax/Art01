@@ -41,7 +41,7 @@ axios.get('https://api.1000000000.art/api/users/')
 .then(function (response) {
     // handle success
    
-   // console.log(response);
+    console.log(response);
     response.data.forEach( pix => {
      // console.log(pix.given_name);
 
@@ -57,7 +57,7 @@ axios.get('https://api.1000000000.art/api/users/')
   // console.log('hop');
   //  avatars.innerHTML += '<img style="width: 120px;height: 120px;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />';
     
-  avatars.insertAdjacentHTML('beforeend','<img  title="'+pix.position+' '+pix.given_name+'" alt="Painter #'+pix.position +'" style="width: 120px;height: 120px;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');
+  avatars.insertAdjacentHTML('beforeend','<img style="width: 120px;height: 120px;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');
 
         
     }

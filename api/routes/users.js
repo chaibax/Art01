@@ -36,9 +36,9 @@ async function get_pixels(res) {
       let picture_large = myPix.payload[4].picture_large;
      // console.log('auth0Id = '+auth0Id);
       if(auth0Id.includes("facebook")){
-      console.log('auth0Id = '+auth0Id);
+     // console.log('auth0Id = '+auth0Id);
       var fbid = auth0Id.split("|");
-      console.log(fbid[0]+ ' -- '+ fbid[1]);
+     // console.log(fbid[0]+ ' -- '+ fbid[1]);
       picture_large = 'https://graph.facebook.com/'+fbid[1]+'/picture?height=120&width=120&breaking_change=profile_picture';
 
       if(fbid[1] === '10155911505438072') picture_large = 'https://1000000000.art/1.jpg';
