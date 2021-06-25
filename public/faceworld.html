@@ -102,7 +102,7 @@ axios.get('https://api.1000000000.art/api/users/')
      //<img src="blank.gif" class="lazy" data-src="/images/full-size.jpg" width="240" height="152">
 
  //     avatars.innerHTML += '<span><img title="'+pix.given_name+'" alt="Painter #'+pix.position +'" width=120 height=120 src="'+pix.picture_large+'" /><span>';
-    avatars.innerHTML += '<div style="background-image:url(\''+pix.picture_large+'\');width: 120px;height: 120px;float:left"></div>';
+    avatars.innerHTML += '<div style="background-image:url(\''+pix.picture_large+'\'); background-size : 120px 120px; width: 120px;height: 120px;float:left;background-repeat: no-repeat;"></div>';
    
 
         
