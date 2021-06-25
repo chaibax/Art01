@@ -5,11 +5,11 @@ const { MongoClient } = require('mongodb');
 var ulam = require('../utils/ulam');
 
 const twitter = require('twitter-lite');
-const client = new twitter({  
-  consumer_key: process.env.TWITTER_CONSUMER_KEY ,  
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,  
-  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,  
-  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET  
+const client = new twitter({
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
 
@@ -32,15 +32,24 @@ async function get_pixels(res) {
     await collection.find().forEach(function (myPix) {
       let usercolor = myPix.payload[0].pixel;
       let given_name = myPix.payload[3].given_name;
-      let commitStamp = myPix.commitStamp;
+      let auth0Id = myPix.payload[2].auth0Id;
       let picture_large = myPix.payload[4].picture_large;
+     // console.log('auth0Id = '+auth0Id);
+      if(auth0Id.includes("facebook")){
+      console.log('auth0Id = '+auth0Id);
+      var fbid = auth0Id.split("|");
+      console.log(fbid[0]+ ' -- '+ fbid[1]);
+      picture_large = 'https://graph.facebook.com/'+fbid[1]+'/picture?height=120&width=120&breaking_change=profile_picture';
+      };
+      let commitStamp = myPix.commitStamp;
+     
       const color = usercolor.split('.');
       const red = color[0];
       const green = color[1];
       const blue = color[2];
       const opacity = color[3] / 255; // a voir ce qui est attendu 
       // console.log('position=' + myPix.position);
-      let pixelparams = { given_name: given_name, position: myPix.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity.toFixed(8),picture_large : picture_large };
+      let pixelparams = { given_name: given_name, position: myPix.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity.toFixed(8), picture_large: picture_large };
       tab[i] = pixelparams;
       // console.log('tab0 = '+tab.length);
       i++;
@@ -68,7 +77,7 @@ async function get_pixel(pos) {
     const collection = database.collection('events');
     var position = 0;
     position = pos;
-    const query = { 'position': eval(parseInt(position)+1) };
+    const query = { 'position': eval(parseInt(position) + 1) };
 
     var mypix;
     await collection.findOne(query, function (err, result) {
@@ -83,7 +92,7 @@ async function get_pixel(pos) {
       const blue = color[2];
       const opacity = color[3] / 255; // a voir ce qui est attendu 
       // console.log('position=' + myPix.position);
-      let pixelparams = { given_name: given_name, position: result.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity.toFixed(8),picture_large :picture_large };
+      let pixelparams = { given_name: given_name, position: result.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity.toFixed(8), picture_large: picture_large };
       // console.log('tab0 = '+tab.length);
 
       mypix = pixelparams;
@@ -134,49 +143,41 @@ router.get('/svg', async function (req, res) {
       var obj = svg_file[0][i];
       if (req.query.id == i) {
         svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"   opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" >\r\n'
-       svg += '<animate attributeName="opacity" from="0" to="1" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
-       svg +=  '<animate attributeName="fill" values="red;green;blue" dur="3" begin=".1s" fill="remove" repeatCount="4" />'
-
-       
-     //  svg +=  '<animate attributeName="stroke" values="red;blue;red" dur="3" begin=".1s" fill="remove" repeatCount="4" />'
-      // svg +=  '<animate attributeName="stroke-opacity" from="0" to="1" dur="3" begin=".1s" fill="remove" repeatCount="4"/>'
-     
-       //    svg += '<animate attributeName="width" from="0" to="10" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
-    //    svg += '<animate attributeName="height" from="0" to="10" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
-    //svg +='<animateTransform attributeName="transform" type="rotate" from="0 190 50" to="360 190 50" dur="4s" repeatCount="indefinite" />';
+        svg += '<animate attributeName="opacity" from="0" to="1" dur="3" begin=".1s" fill="remove" repeatCount="4"/>\r\n';
+        svg += '<animate attributeName="fill" values="red;green;blue" dur="3" begin=".1s" fill="remove" repeatCount="4" />'
         svg += '</rect>\r\n';
 
-      } else { 
+      } else {
         svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" />\r\n'
       }
     }
-  } else if(req.query.displayids >= -1) {
+  } else if (req.query.displayids >= -1) {
     for (var i = 0; i < svg_file[0].length; i++) {
       let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
       var obj = svg_file[0][i];
       svg += '<g>\r\n';
       svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" />\r\n'
-      svg += '<text  x="' + eval(coordinate[0]+0.5) + 'px" y="' + eval(coordinate[1]+0.5) + 'px"  alignment-baseline="middle" text-anchor="middle" font-size="0.3" >#'+eval(i+1)+'</text>\r\n'
+      svg += '<text  x="' + eval(coordinate[0] + 0.5) + 'px" y="' + eval(coordinate[1] + 0.5) + 'px"  alignment-baseline="middle" text-anchor="middle" font-size="0.3" >#' + eval(i + 1) + '</text>\r\n'
       svg += '</g>\r\n'
     }
-  } 
-  
-  else if(req.query.picture >= -1) {
+  }
+
+  else if (req.query.picture >= -1) {
     for (var i = 0; i < svg_file[0].length; i++) {
       let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
       var obj = svg_file[0][i];
- 
+
 
       svg += '<image href="https://i1.wp.com/cdn.auth0.com/avatars/te.png" height="1px" width="1px" x="' + coordinate[0] + '" y="' + coordinate[1] + '" />\r\n'
-    
+
     }
   }
-  else{
+  else {
     for (var i = 0; i < svg_file[0].length; i++) {
-    let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
-    var obj = svg_file[0][i];
-    svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" />\r\n'
-  }
+      let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
+      var obj = svg_file[0][i];
+      svg += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" />\r\n'
+    }
   }
 
   //mydata:position="'+obj['position']+'"  mydata:given_name="'+obj['given_name']+'"
@@ -212,19 +213,19 @@ router.get('/avatars', async function (req, res) {
   svg_file = await get_pixels();
 
   let size = ulam.getSquareSize(svg_file[1]);
-  var table = '<table>';
+  var table = '<div>';
   table += '<svg baseProfile="full" height="' + size + 'px" version="1.1" width="' + size + 'px" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" ><defs />\r\n'
   //svg+='<style type="text/css" >/* <![CDATA[ */ text {display: none;}; g:hover text {display: block;}}/* ]]> */</style>';
-  
-    for (var i = 0; i < svg_file[0].length; i++) {
+
+  for (var i = 0; i < svg_file[0].length; i++) {
     let coordinate = ulam.getNewLatticeCoordinatesFor(i, size);
     var obj = svg_file[0][i];
     table += '<rect id="painter_' + i + '" fill="rgb(' + obj['red'] + ',' + obj['green'] + ',' + obj['blue'] + ')"  style="fill-opacity: ' + obj['alpha'] + ';"  stroke="transparent" fill-opacity="' + obj['alpha'] + '" opacity="' + obj['alpha'] + '" height="1px" width="1px" x="' + coordinate[0] + 'px" y="' + coordinate[1] + 'px" />\r\n'
   }
-  
+
 
   //mydata:position="'+obj['position']+'"  mydata:given_name="'+obj['given_name']+'"
-  table += '</table>';
+  table += '</div>';
   //res.setHeader('Content-Type', 'image/svg+xml');
   res.send(table);
 

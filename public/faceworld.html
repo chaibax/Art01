@@ -9,15 +9,20 @@
     <script>
 
 // Make a request for a user with a given ID
-axios.get('http://api.1000000000.art/api/users/')
+axios.get('https://api.1000000000.art/api/users/')
   .then(function (response) {
     // handle success
     var avatars = document.querySelector("#avatars");
     console.log(response);
     response.data.forEach( pix => {
      // console.log(pix.given_name);
+
+     // https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=10155911505438072&height=50&width=50&ext=1598475357&hash=AeS3HgBi983hWz02
+     //=>   
+     //   https://graph.facebook.com/10225895123747488/picture?height=120&width=120&breaking_change=profile_picture
+
       avatars.innerHTML += '<span><img title="'+pix.given_name+'" alt="Painter #'+pix.position +'" width=120 height=120 src="'+pix.picture_large+'" /><span>';
-    
+     
     }
       );
     //var avatars = document.querySelector("#log");
