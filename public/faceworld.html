@@ -3,10 +3,10 @@
   <head>
     <title> test1000000000.art</title>
     
-
+    <script src="zenscroll-min.js"></script>
     <script src="http://fabricjs.com/lib/fabric_with_gestures.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  
+
 
 <style>
     /*
@@ -30,8 +30,14 @@ img {
 -webkit-animation-timing-function: ease-in-out;
 font-size: 0.1em;
 }
+body{
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
 html{
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 @keyframes zoom {
   from {
@@ -53,12 +59,12 @@ html{
 
 <script>
 
-
 </script>
 
   </head>
-  <body style="width: 100%;">
+  <body style="width: 100%;scroll-behavior: smooth;">
     <div style="width: 100%;" id='avatars'></div>
+    <br/><br/><div id="end"></div>
   </body>
     <script>
 
@@ -94,7 +100,9 @@ axios.get('https://api.1000000000.art/api/users/')
 
 
   window.setInterval(function() {
-    window.scrollTo(0, 5000);
+    //window.scrollTo(0, 125000);
+    zenscroll.toY(125000);
+
 }, 40000);
 
     </script>
