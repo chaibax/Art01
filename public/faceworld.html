@@ -41,58 +41,47 @@ html{
   }
 
   to {
+  /*  height: 15vmin; 
+    width: 15vmin;*/
     height: 15vmin; 
     width: 15vmin;
     font-size:1em;
   }
   }
-}
+
 </style>
 
+<script>
+
+
+</script>
 
   </head>
   <body style="width: 100%;">
-    <div style="width: 100%;" id='avatars'>
-
-    </div>
-
-
-   <div id="end"></div>
-
+    <div style="width: 100%;" id='avatars'></div>
   </body>
     <script>
+
 
 
 // Make a request for a user with a given ID
 //axios.get('http://localhost:3001/api/users/');
 var avatars = document.getElementById("avatars");
 axios.get('https://api.1000000000.art/api/users/')  
+//axios.get('http://localhost:3001/api/users/')
 .then(function (response) {
     // handle success
    
    // console.log(response);
     response.data.forEach( pix => {
-     // console.log(pix.given_name);
-
-     // https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=10155911505438072&height=50&width=50&ext=1598475357&hash=AeS3HgBi983hWz02
-     //=>   
-     //   https://graph.facebook.com/10225895123747488/picture?height=120&width=120&breaking_change=profile_picture
-
-
-     //<img src="blank.gif" class="lazy" data-src="/images/full-size.jpg" width="240" height="152">
-
- //     avatars.innerHTML += '<span><img title="'+pix.given_name+'" alt="Painter #'+pix.position +'" width=120 height=120 src="'+pix.picture_large+'" /><span>';
-   
-  // console.log('hop');
-  //  avatars.innerHTML += '<img style="width: 120px;height: 120px;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />';
-    
   avatars.insertAdjacentHTML('beforeend','<img  title="'+pix.position+' '+pix.given_name+'"  style="height: 1vmin; width: 1vmin;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');
 
         
     }
+
+
       );
-    //var avatars = document.querySelector("#log");
-    //avatars.innerHTML += '<span>'++'<span>';
+
 
   })
   .catch(function (error) {
@@ -102,6 +91,11 @@ axios.get('https://api.1000000000.art/api/users/')
   .then(function () {
     // always executed
   });
+
+
+  window.setInterval(function() {
+    window.scrollTo(0, 5000);
+}, 40000);
 
     </script>
 </html>
