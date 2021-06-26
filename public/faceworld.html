@@ -9,26 +9,55 @@
   
 
 <style>
+    /*
+ div {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  }
+*/
 
-svg text {display: none;}
-svg g:hover text {display: block;}
-
-.test:hover {
-  fill: #DA4567;
+img {
+  animation-duration: 30s;
+  animation-delay: 5s;
+  animation-name: zoom;
+  animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode :forwards;
+  animation-timing-function: ease-in-out;
+-webkit-animation-timing-function: ease-in-out;
+font-size: 0.1em;
 }
+html{
+  scroll-behavior: smooth;
+}
+@keyframes zoom {
+  from {
+    height: 1vmin; 
+    width: 1vmin;
+    font-size: 0.1em;
+  }
 
+  to {
+    height: 15vmin; 
+    width: 15vmin;
+    font-size:1em;
+  }
+  }
+}
 </style>
 
 
   </head>
-  <body>
-
-    <div id='avatars'>
+  <body style="width: 100%;">
+    <div style="width: 100%;" id='avatars'>
 
     </div>
 
 
-   
+   <div id="end"></div>
 
   </body>
     <script>
@@ -57,7 +86,7 @@ axios.get('https://api.1000000000.art/api/users/')
   // console.log('hop');
   //  avatars.innerHTML += '<img style="width: 120px;height: 120px;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />';
     
-  avatars.insertAdjacentHTML('beforeend','<img  title="'+pix.position+' '+pix.given_name+'" alt="Painter #'+pix.position +'" style="width: 120px;height: 120px;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');
+  avatars.insertAdjacentHTML('beforeend','<img  title="'+pix.position+' '+pix.given_name+'"  style="height: 1vmin; width: 1vmin;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');
 
         
     }
