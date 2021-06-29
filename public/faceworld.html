@@ -150,19 +150,33 @@
         <div class="is-centered" style="width: 100%;" id='avatars'></div>
         <br/><br/><div id="end"></div>
         </div></section>
-        
+
         <div class="is-clearfix"></div>
 
-        <section class="hero is-medium  is-halfheigh">
+        <section id="hero" class="hero is-medium  is-halfheigh">
             <div class="hero-body has-text-centered">
-              <p class="title is-1">
+              <p  class="title is-1">
                 1000000000.art
               </p>
-              <p class="subtitle is-2">
+              <p  class="subtitle is-2">
                 First massively participatory Art project
               </p>
+              <a class="button is-large is-outlined">Participate</a>
+
             </div>
           </section>
+
+          <section id="participate" class="hero is-medium  is-hidden is-halfheigh">
+            <div class="hero-body has-text-centered">
+              <p id="become1"  class="title is-1">
+                
+              </p>
+              <p  id="become" class="subtitle is-2">
+                             Add your avatar   </p>
+            <a class="button is-large is-outlined">Sign up</a>
+            </div>
+          </section>
+
   </body>
   <script>
     // Make a request for a user with a given ID
@@ -182,13 +196,51 @@
         // handle error
         console.log(error);
       })
-      .then(function () {
-        // always executed
-      });
+   
+      var participants = 0;
+      axios.get('https://api.1000000000.art/api/pixels/count')  
+    .then(function (response) {
+        // handle success
+       // console.log(response);
+       participants = response.data.count;
+        console.log(response.data.count);
+          
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+
+      var last_participant = '';
+      axios.get('https://api.1000000000.art/api/pixels/last')  
+    .then(function (response) {
+        // handle success
+       // console.log(response);
+       last_participant = response.data.name;
+        console.log(response.data);
+        
+          
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+   
     
-      window.setInterval(function() {
+    
+      window.setTimeout(function() {
         //window.scrollTo(0, 125000);
+        avatars.insertAdjacentHTML('beforeend','<div style="float:left;height: 12vmin; width: 36vmin;margin-left: 1vmin; margin-top:1vmin"> '+last_participant+ ' is the last participant (number '+ participants +'). '+eval(1000000000-participants)+' participations remaining </div>');   
+
         zenscroll.toY(125000);
+        console.log("participants = "+participants);
+        var participate = document.querySelector("#participate");
+        var hero = document.querySelector("#hero");
+        var become1 = document.querySelector("#become1");
+        participate.classList.remove("is-hidden");
+        hero.classList.add("is-hidden");
+        become1.innerHTML = 'Become participant number '+eval(participants+1);
+
     }, 50000);
         </script>
 </html>
