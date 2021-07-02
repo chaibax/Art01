@@ -65,7 +65,7 @@ const Start = () => {
             loginWithRedirect({
               appState: {
                 targetUrl:
-                  window.location.origin + "/faceworld2",
+                  window.location.origin + "/merci",
               },
             })
           }>
@@ -95,7 +95,7 @@ const Start = () => {
             loginWithRedirect({
               appState: {
                 targetUrl:
-                  window.location.origin + "/faceworld2",
+                  window.location.origin + "/merci",
               },
             })
           }
