@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "./react-auth0-wrapper";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { socket } from "./components/Socket";
 import Profile from "./components/Profile";
 import Paint from "./components/Paint";
@@ -15,8 +15,8 @@ import Share from "./components/Share";
 import About from "./components/About";
 import Tmp from "./components/Tmp";
 import TermsOfService from "./components/TermsOfService";
-import './App.sass';
-import './App.css';
+import './App2.sass';
+import './App2.css';
 import ReactGA from 'react-ga';
 
 require('dotenv').config();
@@ -60,7 +60,22 @@ function App() {
                         <div className="column is-centered">
                             <BrowserRouter>
                                 <Switch>
-                                    <Route path="/" exact={true} component={Home} />
+                                <Route path='/' exact={true}  component={() => { 
+     window.location.href = '/faceworld.html'; 
+     return null;
+}}/>
+
+<Route path='/faceworld2' exact={true}  component={() => { 
+     window.location.href = '/faceworld.html?utm_source=loginOK'; 
+     return null;
+}}/>
+
+ <Route path='/faceworld.html' exact={true}  component={() => { 
+     window.location.href = '/faceworld.html'; 
+     return null;
+}}/>
+
+
                                     <Route path="/start" exact={false} component={Start} />
                                     <Route path="/ExternalApi" exact={true} component={ExternalApi} />
                                     <Route path="/privacy-policy" component={Privacy} />
