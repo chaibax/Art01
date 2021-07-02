@@ -61,7 +61,7 @@ const Start = () => {
   };
   return (
     <Fragment>
-      <div className=" is-size-4 is-size-3-mobile	 has-text-centered	" id="start1" onClick={() =>
+      <div className=" is-size-4 is-size-5-mobile	 has-text-centered	" id="start1" onClick={() =>
             loginWithRedirect({
               appState: {
                 targetUrl:
@@ -74,7 +74,7 @@ const Start = () => {
         )}
         .
         <br />
-        <span className=" is-size-4 is-size-3-mobile ">
+        <span className=" is-size-4 is-size-5-mobile ">
           <p>
             {" "}
             {t("For the moment")}, <span id="count">0</span>{" "}
