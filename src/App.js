@@ -65,15 +65,12 @@ function App() {
      return null;
 }}/>
 
-<Route path='/faceworld2' exact={true}  component={() => { 
-     window.location.href = '/faceworld.html?utm_source=loginOK'; 
+<Route path='/merci' exact={true}  component={() => { 
+     window.location.href = '/merci.html?utm_source=loginOK'; 
      return null;
 }}/>
 
- <Route path='/faceworld.html' exact={true}  component={() => { 
-     window.location.href = '/faceworld.html'; 
-     return null;
-}}/>
+
 
 
                                     <Route path="/start" exact={false} component={Start} />

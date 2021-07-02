@@ -161,7 +161,7 @@ router.post('/add', auth1.checkJwt, function (req, res, next) {
           io.emit('newpixel', { 'newpixel' : pixelparams, 'given_name' : req.body.given_name, 'picture' : req.body.picture_large, 'date' : stream.eventsToDispatch[0]['commitStamp'] });
           res.send({ 'position': position_added });
           if(!(process.env.DEBUG_MODE == '1')){
-          var newstatus = req.body.given_name + ' add a new pixel and become painter number '+position_added + ' in a billion  #generativeArt #ParticipatoryArt #PxielArt  #Art Participate 👉 https://1000000000.art ';
+          var newstatus = req.body.given_name + ' become participant number '+position_added + ' in a billion  #generativeArt #ParticipatoryArt #PxielArt  #Art Participate 👉 https://1000000000.art ';
           client.post('statuses/update', { status: newstatus }).then(result => {
             console.log('You successfully tweeted this : "' + result.text + '"');
             //res.send('You successfully tweeted this : "' + result.text + '"')
