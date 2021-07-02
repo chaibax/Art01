@@ -61,13 +61,20 @@ const Start = () => {
   };
   return (
     <Fragment>
-      <div className=" is-size-4 has-text-centered	" id="start1">
+      <div className=" is-size-4 is-size-3-mobile	 has-text-centered	" id="start1" onClick={() =>
+            loginWithRedirect({
+              appState: {
+                targetUrl:
+                  window.location.origin + "/faceworld2",
+              },
+            })
+          }>
         {t(
           "Let's create together a painting that needs a billion participants to be finished"
         )}
         .
         <br />
-        <span className=" is-size-4 ">
+        <span className=" is-size-4 is-size-3-mobile ">
           <p>
             {" "}
             {t("For the moment")}, <span id="count">0</span>{" "}
@@ -81,8 +88,8 @@ const Start = () => {
           </p>
         </span>
         <br />
-        <a
-          href=""
+        <div
+        
           className=" button is-large is-outlined "
           onClick={() =>
             loginWithRedirect({
@@ -94,7 +101,7 @@ const Start = () => {
           }
         >
           {t("Participate")}
-        </a>
+        </div>
 
         <br/><br/>
        
