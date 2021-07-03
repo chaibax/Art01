@@ -86,18 +86,7 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
 <style>
-    img {
-        animation-duration: 30s;
-        animation-delay: 10s;
-        animation-name: zoom; 
-        animation-iteration-count: 1;
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode :forwards;
-        animation-timing-function: ease-in-out;
-      -webkit-animation-timing-function: ease-in-out;
-      font-size: 0.1em;
-  display: table;
-      }
+  
       body{
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
@@ -107,23 +96,7 @@
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
       }
-      @keyframes zoom {
-        from {
-          height: 1vmin; 
-          width: 1vmin;
-          font-size: 0.1em;
-        }
-      
-      
-      
-        to {
-        /*  height: 15vmin; 
-          width: 15vmin;*/
-          height: 12vmin; 
-          width: 12vmin;
-          font-size:1em;
-        }
-        }
+ 
       
       </style>
       
@@ -156,32 +129,23 @@
         <section class="section ">
             <div class="container">
         <div class="is-centered" style="width: 100%;" id='avatars'></div>
-        <br/><br/><div id="end"></div>
+        <div id="end"></div>
         </div></section>
-
         <div class="is-clearfix"></div>
-
-        <section id="hero" class="hero is-medium  is-halfheigh">
-            <div class="hero-body has-text-centered">
-              <p  class="title is-1">
-                1000000000.art
-              </p>
-              <p  class="subtitle is-2">
-                First massively participatory Art project
-              </p>
-              <a id="participatebutton" class="button is-large is-outlined">Participate in &nbsp;<span id="countdowntimer"> </span>&nbsp;s</a>
-
-            </div>
-          </section>
-
+        <br/>
           <section id="participate" class="hero is-medium  is-hidden is-halfheigh">
-            <div class="hero-body has-text-centered">
+            <div class=" has-text-centered">
               <p id="become1"  class="title is-2">
                 
               </p>
               <p  id="become" class="subtitle is-3">
-                             Add your avatar   </p>
-            <a class="button is-large is-outlined" href="/start">Sign up</a>
+                Thank you - Merci - Gracias
+            </p>
+            <a class="button is-large is-outlined" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://1000000000.art/faceworld.html?utm_source=share">Share on Facebook</a> 
+            <a class="button is-large is-outlined" target="_blank" href="https://twitter.com/intent/tweet?url=https://1000000000.art/faceworld.html?utm_source=share&text=Let's create together a painting that needs a billion participants to be finished.">Share on Twitter</a> 
+            <a class="button is-large is-outlined" target="_blank" href="https://api.whatsapp.com/send?text=https://1000000000.art/faceworld.html?utm_source=share">Share on Whatsapp</a><br/>
+            <img src="QR_code.png"><br/>
+            <a class="button is-large is-outlined" target="_blank" href="https://github.com/chaibax/Art01">About</a>
             </div>
           </section>
 
@@ -196,7 +160,7 @@
         // handle success
        // console.log(response);
         response.data.forEach( pix => {
-      avatars.insertAdjacentHTML('beforeend','<img  title="'+pix.position+' '+pix.given_name+'"  style="height: 1vmin; width: 1vmin;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');   
+      avatars.insertAdjacentHTML('beforeend','<img  title="'+pix.position+' '+pix.given_name+'"  style="height: 12vmin; width: 12vmin;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');   
         }
           );
       })
@@ -235,24 +199,24 @@
       })
    
     
-      var participate = document.querySelector("#participatebutton");
-      participate.addEventListener('click', function() {
 
-      });
-
-      var timeleft = 10;
-    var downloadTimer = setInterval(function(){
-    timeleft--;
-    document.getElementById("countdowntimer").textContent = timeleft;
-    if(timeleft <= 0)
-        clearInterval(downloadTimer);
-    },1000);
+     
     
       window.setTimeout(function() {
         //window.scrollTo(0, 125000);
-        avatars.insertAdjacentHTML('beforeend','<div style="float:left;font-size:1em;height: 12vmin; width: 48vmin;margin-left: 1vmin; margin-top:1vmin"> '+last_participant+ ' is the last participant (#'+ participants +')</div>');   
+       // avatars.insertAdjacentHTML('beforeend','<div style="float:left;font-size:1em;height: 12vmin; width: 48vmin;margin-left: 1vmin; margin-top:1vmin"> </div>');   
+       var participate = document.querySelector("#participate");
+
+participate.classList.remove("is-hidden");
+       var become1 = document.querySelector("#become1");
+        become1.innerHTML = last_participant+ ' is the last participant (#'+ participants +')';
+       
 
         zenscroll.toY(125000);
+        
+
+
+        /*
         console.log("participants = "+participants);
         var participate = document.querySelector("#participate");
         var hero = document.querySelector("#hero");
@@ -260,8 +224,9 @@
         participate.classList.remove("is-hidden");
         hero.classList.add("is-hidden");
         become1.innerHTML = 'Become participant #'+eval(participants+1)+ ' out of a billion';
+        */
 
-    }, 45000);
+    }, 3000);
         </script>
 </html>
 
