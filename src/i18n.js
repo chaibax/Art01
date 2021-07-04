@@ -7,11 +7,13 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
+      "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)" : "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)",
       "first massively participatory art project": "first massively participatory art project",
       "participate": "participate",
       "welcome back painter #" : "welcome back painter #",
       "View paiting" : "View paiting",
       "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED" : "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED",
+      "Let's create together a painting that needs a billion participants to be finished" : "Let's create together a painting that needs a billion participants to be finished",
       "This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added" : "This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added",
       "It's your pixel, your contribution" : "It's your pixel, your contribution",
       "NEXT" : "NEXT",
@@ -54,11 +56,13 @@ const resources = {
   },
   fr: {
     translation: {
+      "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)" : "Ajoutez votre photo de profil Facebook ou Google, ou vos initiales (inscription avec jsute un e-mail)",
       "first massively participatory art project": "première oeuvre d'art massivement participative",
       "participate" : "participer",
       "welcome back painter #" : "content de vous revoir peintre #",
       "View paiting" : "Voir la peinture",
       "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED" : "CRÉONS ENSEMBLE UN TABLEAU QUI A BESOIN D'UN MILLIARD DE PARTICIPANTS POUR ÊTRE ACHEVÉ",
+      "Let's create together a painting that needs a billion participants to be finished" : "Créons ensemble une frèsque d'un milliard de personnes",
       "This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added" : "Ce tableau fera 40 000 pixels de large sur 25 000 de haut (soit 1 000 000 000 pixels). Chaque pixel (point de couleur) est ajouté par une personne, vous par  exemple. Quand vous vous inscrirez, un point de couleur correspondant à votre adresse internet sera ajouté.",
       "It's your pixel, your contribution" : "Cela sera votre pixel, votre contriubtion à l'oeuvre.",
       "NEXT" : "SUIVANT",
@@ -101,15 +105,17 @@ const resources = {
   },
     es: {
         translation: {
+          "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)" : "Agregue su foto de perfil de Facebook o Google, o sus iniciales (registro con un correo electrónico)",
           "first massively participatory art project": "primera obra de arte masivamente participativa",
           "participate" : "participar",
           "welcome back painter #" : "bienvenido pintor #",
           "View paiting" : "Ver pintura",
-          "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED" : "CREAMOS JUNTOS UNA PINTURA QUE NECESITA MIL MILLONES DE PARTICIPANTES PAR ACABARSE",
+          "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED" : "CREAMOS JUNTOS UN FRESCO QUE NECESITA MIL MILLONES DE PARTICIPANTES PAR ACABARSE",
+          "Let's create together a painting that needs a billion participants to be finished" : "Creamos juntos un fresco que necesita mil millones de participantes par acabarse",
           "This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added" : "El tamaño del cuadro será de 40.000 píxeles de ancho por 25.000 píxeles de alto (es decir, 1.000.000.000 de píxeles). Cada píxel (punto de color) lo agrega una persona, por ejemplo, usted. Cuando inicie sesión por primera vez, aparecerá un punto de color correspondiente a su dirección de Internet ",
           "It's your pixel, your contribution" : "Es tu píxel, tu contribución",
           "NEXT" : "SIGUIENTE",
-          "For the moment" : "DE momento",
+          "For the moment" : "De momento",
           "people have participated to this project since its beginning" : "personas han participado en este proyecto desde sus inicios",
           "of the painting is complete" : "de la pintura está completa",
           "At this rate, 1000000000.art be finished in" : "A este ritmo, 1000000000.art se terminará dentro de" ,
