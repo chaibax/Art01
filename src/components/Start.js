@@ -83,8 +83,9 @@ const Start = () => {
             {t("of the painting is complete")}.{" "}
             {t("At this rate, 1000000000.art be finished in")}{" "}
             <span id="date_fin"></span> {t("years")}.
-            <br/>
-            Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)
+            <br/>{t(
+          "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)"
+            )}
           </p>
         </span>
         <br />
