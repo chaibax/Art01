@@ -130,7 +130,7 @@ ReactGA.event({
         
           </div>
           <div  className="is-hidden-mobile	  card column blackbackground has-text-right">
-            <a style={{ color: "white", opacity: "0.5", fontSize: "1.8em" }} href="https://github.com/chaibax/Art01" target="_blank" alt="First massively participatory art project"><i className="fab fa-github"></i></a>
+            <a style={{ opacity: "0.5", fontSize: "1.8em" }} href="https://github.com/chaibax/Art01" target="_blank" alt="First massively participatory art project"><i className="fab fa-github"></i></a>
           </div>
         </nav>
 

@@ -86,7 +86,7 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
 <style>
-    img {
+ .avatars   img {
         animation-duration: 30s;
         animation-delay: 10s;
         animation-name: zoom;  
@@ -166,7 +166,7 @@
     <body style="width: 100%;scroll-behavior: smooth;">
         <section class="section ">
             <div class="container">
-        <div class="is-centered" style="width: 100%;" id='avatars'></div>
+        <div class="is-centered avatars" style="width: 100%;" id='avatars'></div>
         <br/><br/><div id="end"></div>
         </div></section>
 
@@ -191,14 +191,14 @@
                 
               </p>
               <p  id="become" class="subtitle is-3">
-                             Add your avatar   </p>
+                             Add your profile picture or initials  </p>
             <a class="button is-large is-outlined" href="/start">Sign up</a>
             </div>
           </section>
 
-          <nav class=" is-fixed-bottom columns  is-vcentered" style="bottom: 0px;position: fixed;width:100%" >
+          <section id="footer" class=" section columns  is-vcentered" style="width:100%;position: fixed;bottom: 1px;z-index: -1;" >
 
-          
+         
             <div  class="is-hidden-mobile	 auth0badge  column " style="margin-left: 1em;">
               <a href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0">
                 <img width=150 height=50 alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-dark.png" /></a>
@@ -209,8 +209,7 @@
             </div>
             <div  class="is-hidden-mobile	   column  has-text-right">
               <a style="margin-right: 1vmin; font-size: 1em;" href="https://github.com/chaibax/Art01" target="_blank" alt="First massively participatory art project">View on Github <i class="fab fa-github"></i></a>
-            </div>
-          </nav>
+            </div>          </section>
 
           
 
@@ -263,7 +262,7 @@
         console.log(error);
       })
    
-    
+      var footer = document.querySelector("#footer");
       var participate = document.querySelector("#participatebutton");
       participate.addEventListener('click', function() {
 
@@ -273,8 +272,10 @@
     var downloadTimer = setInterval(function(){
     timeleft--;
     document.getElementById("countdowntimer").textContent = timeleft;
-    if(timeleft <= 0)
-        clearInterval(downloadTimer);
+    if(timeleft <= 0){
+      footer.classList.add("is-hidden");
+   
+        clearInterval(downloadTimer); }
     },1000);
     
       window.setTimeout(function() {
@@ -288,6 +289,7 @@
         var become1 = document.querySelector("#become1");
         participate.classList.remove("is-hidden");
         hero.classList.add("is-hidden");
+        footer.classList.remove("is-hidden");
         become1.innerHTML = 'Become participant #'+eval(participants+1)+ ' out of a billion';
 
     }, 45000);
