@@ -90,8 +90,7 @@ svg g:hover text {display: block;}
 
    <img   src="http://localhost:3001/api/users/svg?displayids=1" style="background-color: white;" width="400"  height="400"/>
     <hr/>
-    <object data="http://localhost:3001/api/users/svg?picture=1" style="background-color: white;" width="400"  height="400">
-</object>
+    <img src="http://localhost:3001/api/users/svg?picture=1" style="background-color: white;" width="400"  height="400" />
     <hr/>
 
 
@@ -109,7 +108,7 @@ svg g:hover text {display: block;}
     <script>
 
 var canvas = new fabric.Canvas('c');
-fabric.Image.fromURL('http://localhost:3001/api/users/svg', function(img) {
+fabric.Image.fromURL('http://localhost:3001/api/users/svg?picture=1', function(img) {
   img.scale(1).set({
     left: 0,
     top: 0,
@@ -144,7 +143,7 @@ image.onload = function () {
 
     ctx.drawImage(image, 0, 0);
 }
-image.src = 'http://localhost:3001/api/users/svg';
+image.src = 'http://localhost:3001/api/users/svg?picture=1';
 </script>
 
 <!--

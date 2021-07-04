@@ -81,7 +81,7 @@ const Share = ({ match }) => {
          
         </div>
       </center>
-      <div id="share" className="  has-text-centered shadowed" >
+      <div id="share" className=" title is-size-5-mobile	is-size-4-desktop has-text-centered  has-text-centered shadowed" >
 
       <a style={{ textDeconration: 'none', color: '#f0fff8' }} target="_blank" href={process.env.REACT_APP_SOCKET_URL +"/api/users/svg?id="+eval(match.params.id-1)} >{'>'}   {t('Download painting (real size)')}</a>
     </div>
