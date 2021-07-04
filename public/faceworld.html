@@ -89,7 +89,7 @@
     img {
         animation-duration: 30s;
         animation-delay: 10s;
-        animation-name: zoom; 
+        /*animation-name: zoom; */
         animation-iteration-count: 1;
         -webkit-animation-fill-mode: forwards;
         animation-fill-mode :forwards;
@@ -125,6 +125,17 @@
         }
         }
       
+
+.auth0badge {
+
+}
+
+.auth0badge img {
+	opacity: 0.5;
+}
+
+
+
       </style>
       
     <link rel="manifest" href="/manifest.json" />
@@ -184,6 +195,24 @@
             <a class="button is-large is-outlined" href="/start">Sign up</a>
             </div>
           </section>
+
+          <nav class=" is-fixed-bottom columns  is-vcentered" style="bottom: 0px;position: fixed;width:100%" >
+
+          
+            <div  class="is-hidden-mobile	 auth0badge  column " style="margin-left: 1em;">
+              <a href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0">
+                <img width=150 height=50 alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-dark.png" /></a>
+            </div>
+            
+            <div  class="column has-text-centered ">
+              <a href="https://twitter.com/chaibax" target="_blank"  alt="About">About Participant #1</a>  
+            </div>
+            <div  class="is-hidden-mobile	   column  has-text-right">
+              <a style="margin-right: 1vmin; font-size: 1em;" href="https://github.com/chaibax/Art01" target="_blank" alt="First massively participatory art project">View on Github <i class="fab fa-github"></i></a>
+            </div>
+          </nav>
+
+          
 
   </body>
   <script>
