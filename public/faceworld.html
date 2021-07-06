@@ -3,6 +3,7 @@
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179027037-1"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -155,11 +156,44 @@
       src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
     ></script>
     <script src="zenscroll-min.js"></script>
-   
+ 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    
+    <script src="stonejs.min.js"></script>
+<script>
+
+    var catalogs = {
+        "en": {
+            "messages": {
+                "Become participant": ["Become participant"],
+                "First massively participatory Art project" : ["First massively participatory Art project"],
+                "Participate in" : ["Participate in"],
+                "is the last participant" : ["is the last participant"],
+                "Sign up" : ["Sign up"],
+                "Add your profile picture or initials" : ["Add your profile picture or initials"],
+                "out of a billion" : ["out of a billion"]
+            }
+        },
+        "fr": {
+            "messages": {
+                "Become participant": ["Devenez le participant"],
+                "First massively participatory Art project" : ["Premier projet artisitique massivement participatif"],
+                "Participate in" : ["Participer dans"],
+                "is the last participant" : ["est le dernier parcticipant"],
+                "Sign up" : ["Participer"],
+                "Add your profile picture or initials" : ["Ajouter votre photo de profile ou vos initiales"],
+                "out of a billion" : ["sur un milliard"]
+                
+            }
+        }
+    };
+
+    window._ = Stone.gettext;       // Alias the Stone.gettext function
+    Stone.addCatalogs(catalogs);    // Add catalogs (here it is hard coded for the need of the example
+    Stone.enableDomScan(true);      // Allow Stone.js to scan the DOM to find translatable nodes
+
+</script>
   </head>
   <body>
     <body style="width: 100%;scroll-behavior: smooth;">
@@ -176,10 +210,10 @@
               <p  class="title is-1">
                 1000000000.art
               </p>
-              <p  class="subtitle is-2">
+              <p  id="titre" class="subtitle is-2">
                 First massively participatory Art project
               </p>
-              <a id="participatebutton" class="button is-large is-outlined">Participate in &nbsp;<span id="countdowntimer"> </span>&nbsp;s</a>
+              <a id="participatebutton" class="button is-large is-outlined"><span id="part">Participate in</span> &nbsp;<span id="countdowntimer"> </span>&nbsp;s</a>
 
             </div>
           </section>
@@ -191,16 +225,12 @@
               </p>
               <p  id="become" class="subtitle is-3">
                              Add your profile picture or initials  </p>
-          <a class='button is-large is-outlined' href="/start"    >Sign up</a>
+          <a class='button is-large is-outlined' id="signup" href="/start" >Sign up</a>
             </div>
           </section>
           <div class="is-clearfix"></div>
 
          
-         
-
-        
-
   </body>
   <script>
     // Make a request for a user with a given ID
@@ -251,10 +281,8 @@
       })
    
       //var footer = document.querySelector("#footer");
-      var participate = document.querySelector("#participatebutton");
-      participate.addEventListener('click', function() {
-
-      });
+    
+  
 
       var timeleft = 10;
     var downloadTimer = setInterval(function(){
@@ -268,7 +296,7 @@
     
       window.setTimeout(function() {
         //window.scrollTo(0, 125000);
-        avatars.insertAdjacentHTML('beforeend','<div style="float:left;font-size:1em;height: 12vmin; width: 48vmin;margin-left: 1vmin; margin-top:1vmin"> '+last_participant+ ' is the last participant (#'+ participants +')</div>');   
+        avatars.insertAdjacentHTML('beforeend','<div style="float:left;font-size:1em;height: 12vmin; width: 48vmin;margin-left: 1vmin; margin-top:1vmin"> '+last_participant+ ' '+_('is the last participant')+' (#'+ participants +')</div>');   
 
         zenscroll.toY(125000);
         console.log("participants = "+participants);
@@ -278,9 +306,30 @@
         participate.classList.remove("is-hidden");
         hero.classList.add("is-hidden");
         //footer.classList.remove("is-hidden");
-        become1.innerHTML = 'Become participant #'+eval(participants+1)+ ' out of a billion';
+        become1.innerHTML = _('Become participant')+ '# '+eval(participants+1)+ ' '+_('out of a billion');
 
     }, 45000);
+
+    const params = new URLSearchParams(window.location.search);
+   
+   if(params.has('lng')) {
+     Stone.setLocale(params.get('lng'));
+     var a = document.getElementById('signup');
+   a.href = "/start?lng="+params.get('lng');
+     
+ }  else {
+
+   if(navigator.language === 'fr-FR') { Stone.setLocale("fr"); 
+   var a = document.getElementById('signup');
+   a.href = "/start?lng=fr";  
+ }
+}
+
+    document.getElementById("titre").innerHTML= _("First massively participatory Art project");
+    document.getElementById("part").innerHTML= _("Participate in");
+    document.getElementById("become").innerHTML= _("Add your profile picture or initials");
+    document.getElementById("signup").innerHTML= _("Sign up");
+    console.log( Stone.getLocale())
         </script>
 </html>
 
