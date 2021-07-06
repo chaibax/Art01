@@ -10,7 +10,7 @@
 
   gtag('config', 'UA-179027037-1');
 </script>
-
+<script src="stonejs.min.js"></script>
     <meta charset="utf-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -102,6 +102,30 @@
       
     <link rel="manifest" href="/manifest.json" />
 
+    <script>
+
+      var catalogs = {
+          "en": {
+              "messages": {
+                  
+                  "is the last participant" : ["is the last participant"]
+                  
+              }
+          },
+          "fr": {
+              "messages": {
+                 
+                  "is the last participant" : ["est le dernier parcticipant"]
+                  
+              }
+          }
+      };
+  
+      window._ = Stone.gettext;       // Alias the Stone.gettext function
+      Stone.addCatalogs(catalogs);    // Add catalogs (here it is hard coded for the need of the example
+      Stone.enableDomScan(true);      // Allow Stone.js to scan the DOM to find translatable nodes
+  
+  </script>
 
     <script type="application/ld+json">
       {
@@ -198,10 +222,19 @@
         console.log(error);
       })
    
-    
 
+    const params = new URLSearchParams(window.location.search);
+   
+   if(params.has('lng')) {
+     Stone.setLocale(params.get('lng'));
      
-    
+ }  else {
+
+   if(navigator.language === 'fr-FR') { Stone.setLocale("fr"); 
+   
+ }
+}
+
       window.setTimeout(function() {
         //window.scrollTo(0, 125000);
        // avatars.insertAdjacentHTML('beforeend','<div style="float:left;font-size:1em;height: 12vmin; width: 48vmin;margin-left: 1vmin; margin-top:1vmin"> </div>');   
@@ -209,23 +242,8 @@
 
 participate.classList.remove("is-hidden");
        var become1 = document.querySelector("#become1");
-        become1.innerHTML = last_participant+ ' is the last participant (#'+ participants +')';
-       
-
+        become1.innerHTML = last_participant+ ' '+_('is the last participant')+' (#'+ participants +')';
         zenscroll.toY(125000);
-        
-
-
-        /*
-        console.log("participants = "+participants);
-        var participate = document.querySelector("#participate");
-        var hero = document.querySelector("#hero");
-        var become1 = document.querySelector("#become1");
-        participate.classList.remove("is-hidden");
-        hero.classList.add("is-hidden");
-        become1.innerHTML = 'Become participant #'+eval(participants+1)+ ' out of a billion';
-        */
-
     }, 3000);
         </script>
 </html>
