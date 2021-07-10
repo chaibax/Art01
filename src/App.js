@@ -18,6 +18,7 @@ import TermsOfService from "./components/TermsOfService";
 import './App2.sass';
 import './App2.css';
 import ReactGA from 'react-ga';
+import Participate from "./components/Participate";
 
 require('dotenv').config();
 
@@ -25,7 +26,7 @@ require('dotenv').config();
 socket.on('newpixel', (data) => {
 
     const opacity = Math.round((data.newpixel.alpha / 255) * 100) / 100;
-    document.getElementById('notif').innerHTML = '> ' + data.given_name + ' added pixel #' + data.newpixel.position + ' <span style=""><span style="background-color:rgba(255, 255, 255, 1);color:rgba(' + data.newpixel.r + ', ' + data.newpixel.g + ', ' + data.newpixel.b + ', ' + opacity + ')">█</span> </span><span data-livestamp=' + data.date + '></span> '
+    document.getElementById('notif').innerHTML = '> ' + data.given_name + ' is the last participant (#' + data.newpixel.position + ' ) '
 });
 
 
@@ -65,13 +66,16 @@ function App() {
      return null;
 }}/>
 
-<Route path='/merci' exact={true}  component={() => { 
-     window.location.href = '/merci.html?utm_source=loginOK'; 
+<Route path='/merci/:id?' exact={false}  component={(req) => { 
+    
+    //console.log(req.match.params.id);
+    if(req.match.params.id) {
+     window.location.href = '/merci.html?painter='+req.match.params.id;  }
+     else {
+        window.location.href = '/merci.html';
+     }
      return null;
 }}/>
-
-
-
 
                                     <Route path="/start" exact={false} component={Start} />
                                     <Route path="/ExternalApi" exact={true} component={ExternalApi} />
@@ -79,6 +83,7 @@ function App() {
                                     <Route path="/terms-of-service" component={TermsOfService} />
                                     <PrivateRoute path="/profile" component={Profile} />
                                     <PrivateRoute path="/paint" component={Paint} />
+                                    <PrivateRoute path="/participate" component={Participate} />
                                     <PrivateRoute path="/paintdev" component={PaintDev} />
                                     <Route path="/tmp" component={Tmp} />
                                     <Route path="/view/:id?" component={View} />

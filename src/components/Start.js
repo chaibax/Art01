@@ -65,7 +65,7 @@ const Start = () => {
             loginWithRedirect({
               appState: {
                 targetUrl:
-                  window.location.origin + "/merci",
+                  window.location.origin + "/participate",
               },
             })
           }>
@@ -96,7 +96,7 @@ const Start = () => {
             loginWithRedirect({
               appState: {
                 targetUrl:
-                  window.location.origin + "/merci",
+                  window.location.origin + "/participate",
               },
             })
           }
@@ -117,7 +117,7 @@ const Start = () => {
         className="cursor"
         onClick={() =>
           loginWithRedirect({
-            appState: { targetUrl: window.location.origin + "/paint" },
+            appState: { targetUrl: window.location.origin + "/participate" },
           })
         }
       >
@@ -142,7 +142,7 @@ const Start = () => {
             className="title button is-large is-outlined is-size-2 has-text-centered shadowed cursor has-margin-top-20"
             onClick={() =>
               loginWithRedirect({
-                appState: { targetUrl: window.location.origin + "/paint" },
+                appState: { targetUrl: window.location.origin + "/participate" },
               })
             }
           >
