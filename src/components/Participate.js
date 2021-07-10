@@ -128,8 +128,8 @@ console.log('picture_large = '+picture_large);
 
       <Fragment>
         <div id="mypixel" >
-         
-          <img src='1.jpg' style={{  height: "22vmin", width: "22vmin" }}  alt="Profile"/> <br/>
+       
+          <img src={user.picture} style={{  height: "22vmin", width: "22vmin" }}  alt="Profile"/> <br/>
         </div>
         <div id="addpixel" className="" >
           <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
@@ -139,7 +139,7 @@ console.log('picture_large = '+picture_large);
         </div>
 
         <div id="pixelwait" className="is-hidden" >
-        <img src='1.jpg' style={{  height: "22vmin", width: "22vmin" }}  alt="Profile"/> <br/>
+        <img src={user.picture} style={{  height: "22vmin", width: "22vmin" }}  alt="Profile"/> <br/>
 
           <h2 id="waittext" className="title is-size-2 has-text-centered shadowed has-margin-top-20">
           <a id="participatebutton" className="button is-large is-outlined"> {t('Adding pixel: please wait...')} </a><br/>

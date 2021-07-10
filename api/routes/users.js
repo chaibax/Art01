@@ -71,6 +71,7 @@ async function get_pixels(res) {
 
 /* GET one user/pixel listing. */
 async function get_pixel(pos) {
+  console.log('dans get_pixel avec pos = '+pos)
   try {
     const uri = process.env.MONGODB_URI;
     const client = new MongoClient(uri);
@@ -81,7 +82,7 @@ async function get_pixel(pos) {
     const collection = database.collection('events');
     var position = 0;
     position = pos;
-    const query = { 'position': eval(parseInt(position) + 1) };
+    const query = { 'position': eval(parseInt(position)) };
 
     var mypix;
     await collection.findOne(query, function (err, result) {
@@ -95,9 +96,10 @@ async function get_pixel(pos) {
       const green = color[1];
       const blue = color[2];
       const opacity = color[3] / 255; // a voir ce qui est attendu 
-      // console.log('position=' + myPix.position);
+       console.log('commitStamp=' + commitStamp);
       let pixelparams = { given_name: given_name, position: result.position, date: commitStamp, red: red, green: green, blue: blue, alpha: opacity.toFixed(8), picture_large: picture_large };
-      // console.log('tab0 = '+tab.length);
+     
+      console.log(pixelparams);
 
       mypix = pixelparams;
     });
@@ -118,6 +120,16 @@ router.get('/', async function (req, res, next) {
   res.json(tmp[0]);
 
 });
+
+
+router.get('/justone', async function (req, res) {
+
+  var tmp;
+  tmp = await get_pixel(req.query.id);
+  res.json(tmp);
+//res.send(req.query.id);
+});
+
 
 
 router.get('/twitter', async function (req, res, next) {
