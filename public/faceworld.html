@@ -87,10 +87,14 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
 <style>
- .avatars   img {
+
+  .gozoom {
+    animation-play-state: running; 
+  }
+ .avatars img {
         animation-duration: 30s;
-        animation-delay: 10s;
-        animation-name: zoom;  
+        animation-play-state: paused;
+        animation-name: zoom; 
         animation-iteration-count: 1;
         -webkit-animation-fill-mode: forwards;
         animation-fill-mode :forwards;
@@ -115,12 +119,21 @@
           font-size: 0.1em;
         }
 
-   
-      
-      
         to {
-        /*  height: 15vmin; 
-          width: 15vmin;*/
+          height: 12vmin; 
+          width: 12vmin;
+          font-size:1em;
+        }
+        }
+
+        @-webkit-keyframes zoom {
+        from {
+          height: 1vmin; 
+          width: 1vmin;
+          font-size: 0.1em;
+        }
+
+        to {
           height: 12vmin; 
           width: 12vmin;
           font-size:1em;
@@ -169,6 +182,7 @@
                 "Become participant": ["Become participant"],
                 "First massively participatory Art project" : ["First massively participatory Art project"],
                 "Participate in" : ["Participate in"],
+                "Participate" : ["Participate"],
                 "is the last participant" : ["is the last participant"],
                 "Sign up" : ["Sign up"],
                 "Add your profile picture or initials" : ["Add your profile picture or initials"],
@@ -182,6 +196,7 @@
                 "Participate in" : ["Participer dans"],
                 "is the last participant" : ["est le dernier parcitipant"],
                 "Sign up" : ["Participer"],
+                "Participate" : ["Participer"],
                 "Add your profile picture or initials" : ["Ajouter votre photo de profile ou vos initiales"],
                 "out of a billion" : ["sur un milliard"]
                 
@@ -213,7 +228,7 @@
               <p  id="titre" class="subtitle is-2">
                 First massively participatory Art project
               </p>
-              <a id="participatebutton" class="button is-large is-outlined"><span id="part">Participate in</span> &nbsp;<span id="countdowntimer"> </span>&nbsp;s</a>
+              <a id="participatebutton"  class="button is-large is-outlined " style="display:none"><span id="part">Participate</span></a>
 
             </div>
           </section>
@@ -233,18 +248,38 @@
          
   </body>
   <script>
+
+
     // Make a request for a user with a given ID
     //axios.get('http://localhost:3001/api/users/');
     var avatars = document.getElementById("avatars");
+
+
+function play(){
+ console.log('play');
+ var avataar = document.querySelectorAll("div#avatars img");
+ console.log('.length = '+ avataar.length);
+
+ for (i = 0; i < avataar.length; i++) {
+  avataar[i].style.animationPlayState = "running";
+} lastparticipant();
+
+}
+
     axios.get('https://api.1000000000.art/api/users/')  
     //axios.get('http://localhost:3001/api/users/')
     .then(function (response) {
         // handle success
        // console.log(response);
         response.data.forEach( pix => {
-      avatars.insertAdjacentHTML('beforeend','<img  title="'+pix.position+' '+pix.given_name+'"  style="height: 1vmin; width: 1vmin;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');   
+      avatars.insertAdjacentHTML('beforeend','<img  class="avataar" title="'+pix.position+' '+pix.given_name+'"  style="height: 1vmin; width: 1vmin;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');   
         }
           );
+         console.log('avatars chargés');
+         document.querySelector("#participatebutton").style.display = ""
+         document.querySelector("#participatebutton").addEventListener("click", play, false);
+
+
       })
       .catch(function (error) {
         // handle error
@@ -284,16 +319,8 @@
     
   
 
-      var timeleft = 10;
-    var downloadTimer = setInterval(function(){
-    timeleft--;
-    document.getElementById("countdowntimer").textContent = timeleft;
-    if(timeleft <= 0){
-      //footer.classList.add("is-hidden");
-   
-        clearInterval(downloadTimer); }
-    },1000);
     
+      function lastparticipant() {
       window.setTimeout(function() {
         //window.scrollTo(0, 125000);
         avatars.insertAdjacentHTML('beforeend','<div style="float:left;font-size:1em;height: 12vmin; width: 48vmin;margin-left: 1vmin; margin-top:1vmin"> '+last_participant+ ' '+_('is the last participant')+' (#'+ participants +')</div>');   
@@ -306,10 +333,11 @@
         participate.classList.remove("is-hidden");
         hero.classList.add("is-hidden");
         //footer.classList.remove("is-hidden");
-        become1.innerHTML = _('Become participant')+ '# '+eval(participants+1)+ ' '+_('out of a billion');
+        become1.innerHTML = _('Become participant')+ ' #'+eval(participants+1)+ ' '+_('out of a billion');
 
-    }, 45000);
-
+    }, 30000);
+  }
+    // 0 changer pour les 45S
     const params = new URLSearchParams(window.location.search);
    
    if(params.has('lng')) {
@@ -326,7 +354,7 @@
 }
 
     document.getElementById("titre").innerHTML= _("First massively participatory Art project");
-    document.getElementById("part").innerHTML= _("Participate in");
+    document.getElementById("part").innerHTML= _("Participate");
     document.getElementById("become").innerHTML= _("Add your profile picture or initials");
     document.getElementById("signup").innerHTML= _("Sign up");
     console.log( Stone.getLocale())
