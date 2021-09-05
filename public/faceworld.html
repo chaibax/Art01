@@ -245,7 +245,29 @@
           </section>
           <div class="is-clearfix"></div>
 
-         
+        
+          <div class="is-clearfix"></div>
+
+
+          <section id="footer" class=" section  has-text-centered columns is-vcentered" style="width:100%;position: fixed;bottom: 1px;" >
+            
+            
+            <div  class="is-hidden-mobile	 auth0badge  column " style="margin-left: 1em;">
+              <a href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0">
+                <img width=150 height=50 alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-dark.png" /></a>
+            </div>
+
+            
+            <div  class="column  ">
+              <a style="margin-right: 1vmin; font-size: 1em;" href="https://twitter.com/chaibax" target="_blank" alt="About author">About painter #1</a>
+            </div>    
+
+            <div  class="column ">
+              <a style="margin-right: 1vmin; font-size: 1em;" href="https://github.com/chaibax/Art01" target="_blank" alt="First massively participatory art project">About project <i class="fab fa-github"></i></a> 
+              <a style="margin-right: 1vmin; font-size: 1em;" href="https://twitter.com/1000000000_Art" target="_blank" alt="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>          
+          </section>
+
   </body>
   <script>
 
@@ -262,8 +284,10 @@ function play(){
 
  for (i = 0; i < avataar.length; i++) {
   avataar[i].style.animationPlayState = "running";
-} lastparticipant();
-
+} 
+lastparticipant();
+var footer = document.getElementById("footer");
+footer.style.display="none";
 }
 
     axios.get('https://api.1000000000.art/api/users/')  
@@ -334,7 +358,8 @@ function play(){
         hero.classList.add("is-hidden");
         //footer.classList.remove("is-hidden");
         become1.innerHTML = _('Become participant')+ ' #'+eval(participants+1)+ ' '+_('out of a billion');
-
+        var footer = document.getElementById("footer");
+      footer.style.display="";
     }, 30000);
   }
     // 0 changer pour les 45S
