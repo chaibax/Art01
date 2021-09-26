@@ -214,7 +214,7 @@ var tmpfrequence = (parseFloat(tabpixel[i].red)+parseFloat(tabpixel[i].green)+pa
 console.log('participant #'+i+' Frequence = '+tmpfrequence + ' Note = '+Tone.Frequency( tmpfrequence ).toNote());
 
 
-synth.triggerAttackRelease(Tone.Frequency( tmpfrequence ).toNote(),  now);
+synth.triggerAttackRelease(Tone.Frequency( tmpfrequence ).toNote(), now);
 
 
 //synth.triggerAttackRelease(Tone.Frequency(tabpixel[i].green).toNote(), now+0.3);
