@@ -57,13 +57,13 @@ const resources = {
   },
   fr: {
     translation: {
-      "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)" : "Ajoutez votre photo de profil Facebook ou Google, ou vos initiales (inscription avec jsute un e-mail)",
+      "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)" : "Ajoutez votre photo de profil Facebook ou Google, ou vos initiales (inscription avec juste un e-mail)",
       "first massively participatory art project": "première oeuvre d'art massivement participative",
       "participate" : "participer",
       "welcome back painter #" : "content de vous revoir peintre #",
       "View paiting" : "Voir la peinture",
       "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED" : "CRÉONS ENSEMBLE UN TABLEAU QUI A BESOIN D'UN MILLIARD DE PARTICIPANTS POUR ÊTRE ACHEVÉ",
-      "Let's create together a painting that needs a billion participants to be finished" : "Créons ensemble une frèsque d'un milliard de personnes",
+      "Let's create together a painting that needs a billion participants to be finished" : "Créons ensemble une fresque d'un milliard de personnes",
       "This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added" : "Ce tableau fera 40 000 pixels de large sur 25 000 de haut (soit 1 000 000 000 pixels). Chaque pixel (point de couleur) est ajouté par une personne, vous par  exemple. Quand vous vous inscrirez, un point de couleur correspondant à votre adresse internet sera ajouté.",
       "It's your pixel, your contribution" : "Cela sera votre pixel, votre contriubtion à l'oeuvre.",
       "NEXT" : "SUIVANT",
