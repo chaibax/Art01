@@ -106,11 +106,13 @@
       body{
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
+        min-height: 100%;
       }
       
       html{
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
+        height: 100%;
       }
       @keyframes zoom {
         from {
@@ -175,42 +177,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <script src="stonejs.min.js"></script>
 <script>
-
-    var catalogs = {
-        "en": {
-            "messages": {
-                "Become participant": ["Become participant"],
-                "A massively participatory Art project" : ["A massively participatory Art project"],
-                "Participate in" : ["Participate in"],
-                "Participate" : ["Participate"],
-                "is the last participant" : ["is the last participant"],
-                "Sign up" : ["Sign up"],
-                "Add your profile picture or initials" : ["Add your profile picture or initials"],
-                "out of a billion" : ["out of a billion"]
-            }
-        },
-        "fr": {
-            "messages": {
-                "Become participant": ["Devenez le participant"],
-                "A massively participatory Art project" : ["Un projet artistique massivement participatif"],
-                "Participate in" : ["Participer dans"],
-                "is the last participant" : ["est le dernier parcitipant"],
-                "Sign up" : ["Participer"],
-                "Participate" : ["Participer"],
-                "Add your profile picture or initials" : ["Ajouter votre photo de profile ou vos initiales"],
-                "out of a billion" : ["sur un milliard"]
-                
-            }
-        }
-    };
-
-    window._ = Stone.gettext;       // Alias the Stone.gettext function
-    Stone.addCatalogs(catalogs);    // Add catalogs (here it is hard coded for the need of the example
-    Stone.enableDomScan(true);      // Allow Stone.js to scan the DOM to find translatable nodes
-
 </script>
   </head>
-  <body>
+  <body id='body'>
     <body style="width: 100%;scroll-behavior: smooth;">
         <section class="section ">
             <div class="container">
@@ -235,6 +204,15 @@
     var avatars = document.getElementById("avatars");
 
 
+    function play(){
+ console.log('play');
+ var avataar = document.querySelectorAll("div#avatars img");
+ console.log('.length = '+ avataar.length);
+
+ for (i = 0; i < avataar.length; i++) {
+  avataar[i].style.animationPlayState = "running";
+} 
+}
 
     axios.get('https://api.1000000000.art/api/users/')  
     //axios.get('http://localhost:3001/api/users/')
@@ -246,8 +224,13 @@
         }
           );
          console.log('avatars chargés');
-         document.querySelector("#participatebutton").style.display = ""
-         document.querySelector("#participatebutton").addEventListener("click", play, false);
+       //  document.querySelector("#participatebutton").style.display = ""
+       //  document.querySelector("#participatebutton").addEventListener("click", play, false);
+
+         
+         document.querySelector("#avatars").addEventListener("click", play, false);
+         document.querySelector("#body").addEventListener("click", play, false);
+
 
 
       })
