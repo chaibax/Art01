@@ -115,31 +115,7 @@
         height: 100%;
       }
       @keyframes zoom {
-        from {
-          height: 1vmin; 
-          width: 1vmin;
-          font-size: 0.1em;
-        }
-
-        to {
-          height: 12vmin; 
-          width: 12vmin;
-          font-size:1em;
-        }
-        }
-
-        @-webkit-keyframes zoom {
-        from {
-          height: 1vmin; 
-          width: 1vmin;
-          font-size: 0.1em;
-        }
-
-        to {
-          height: 12vmin; 
-          width: 12vmin;
-          font-size:1em;
-        }
+       
         }
       
 
@@ -155,7 +131,7 @@
       
     <link rel="manifest" href="/manifest.json" />
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.js" integrity="sha512-+esjJ8NSEfoB5Sr8R7jTcYxCR1Bd6q9C+WQC0JA2UXVPT8Mlo/TJqqyp0qeeoxFzkAaa8t6tZCHLGmw3oNI2Qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -194,45 +170,100 @@
           
           <div class="is-clearfix"></div>
 
+          <section id="hero" class="hero is-medium  is-halfheigh">
+            <div class="hero-body has-text-centered">
+             
+             
+              <a id="participatebutton"  class="button is-medium is-outlined " ><span id="part">> Play</span></a>
+
+            </div>
+          </section>
+
 
   </body>
   <script>
 
 
+
     // Make a request for a user with a given ID
     //axios.get('http://localhost:3001/api/users/');
     var avatars = document.getElementById("avatars");
-
-
     function play(){
  console.log('play');
- var avataar = document.querySelectorAll("div#avatars img");
- console.log('.length = '+ avataar.length);
+ const synth = new Tone.Synth().toDestination();
+ const now = Tone.now()
 
- for (i = 0; i < avataar.length; i++) {
-  avataar[i].style.animationPlayState = "running";
-} 
+ var avataar = document.querySelectorAll("div#avatars img");
+// console.log('.length = '+ avataar.length);
+
+
+var i = 0;                  //  set your counter to 1
+
+function myLoop() {         //  create a loop function
+  setTimeout(function() {   //  call a 3s setTimeout when the loop is called
+ 
+    var imageselector = 'avatar'+i;
+//console.log('i = '+i + 'imageselector = '+imageselector);
+//console.log (document.getElementById('avatar'+i));
+
+
+//console.log('tabpixel[i].red+tabpixel[i].green+tabpixel[i].blue)*tabpixel[i].alpha ='+eval((tabpixel[i].red+tabpixel[i].green+tabpixel[i].blue)*tabpixel[i].alpha));
+//console.log( 'i ='+i+ ' >>>'+tabpixel[i].blue + ' >'+Tone.Frequency( (tabpixel[i].red+tabpixel[i].green+tabpixel[i].blue)*tabpixel[i].alpha ).toNote() );
+
+var tmpfrequence = (parseFloat(tabpixel[i].red)+parseFloat(tabpixel[i].green)+parseFloat(tabpixel[i].blue))*parseFloat(tabpixel[i].alpha);
+console.log('participant #'+i+' Frequence = '+tmpfrequence + ' Note = '+Tone.Frequency( tmpfrequence ).toNote());
+
+
+synth.triggerAttackRelease(Tone.Frequency( tmpfrequence ).toNote(), now);
+
+
+//synth.triggerAttackRelease(Tone.Frequency(tabpixel[i].green).toNote(), now+0.3);
+//synth.triggerAttackRelease(Tone.Frequency(tabpixel[i].blue).toNote(), now+0.6);
+
+
+
+//synth.triggerRelease(now  + 1)
+document.getElementById(imageselector).style.display='';
+
+    i++;
+//    return;                    //  increment the counter
+    if (i < avataar.length) {           //  if the counter < 10, call the loop function
+      myLoop();             //  ..  again which will trigger another 
+    }                       //  ..  setTimeout()
+  }, 300)
 }
+
+myLoop();     
+
+
+
+} 
+
+//create a synth and connect it to the main output (your speakers)
+
+//play a middle 'C' for the duration of an 8th note
+
+
+var tabpixel = [];
+
 
     axios.get('https://api.1000000000.art/api/users/')  
     //axios.get('http://localhost:3001/api/users/')
     .then(function (response) {
         // handle success
        // console.log(response);
+       var i = 0;
+       tabpixel = response.data; 
         response.data.forEach( pix => {
-      avatars.insertAdjacentHTML('beforeend','<img  class="avataar" title="'+pix.position+' '+pix.given_name+'"  style="height: 1vmin; width: 1vmin;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');   
-        }
+      avatars.insertAdjacentHTML('beforeend','<img  id="avatar'+i+'" class="avataar" title="'+pix.position+' '+pix.given_name+'"  style="display:none;height: 3vmin; width: 3vmin;float:left;background-repeat: no-repeat;" src="'+pix.picture_large+'" loading="lazy" />');   
+       i++
+    }
           );
          console.log('avatars chargés');
        //  document.querySelector("#participatebutton").style.display = ""
        //  document.querySelector("#participatebutton").addEventListener("click", play, false);
-
-         
          document.querySelector("#avatars").addEventListener("click", play, false);
          document.querySelector("#body").addEventListener("click", play, false);
-
-
-
       })
       .catch(function (error) {
         // handle error
