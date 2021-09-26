@@ -92,7 +92,7 @@
     animation-play-state: running; 
   }
  .avatars img {
-        animation-duration: 30s;
+        animation-duration: 10s;
         animation-play-state: paused;
         animation-name: zoom; 
         animation-iteration-count: 1;
@@ -180,6 +180,7 @@
         "en": {
             "messages": {
                 "Become participant": ["Become participant"],
+                "Share your data with artists and make participatory art" : ['Share your data with artists and make participatory Art'],
                 "A massively participatory Art project" : ["A massively participatory Art project"],
                 "Participate in" : ["Participate in"],
                 "Participate" : ["Participate"],
@@ -192,6 +193,7 @@
         "fr": {
             "messages": {
                 "Become participant": ["Devenez le participant"],
+                "Share your data with artists and make participatory art" : ['Partagez vos donnés avec des Artistes et faites de l\'Art participatif'],
                 "A massively participatory Art project" : ["Un projet artistique massivement participatif"],
                 "Participate in" : ["Participer dans"],
                 "is the last participant" : ["est le dernier parcitipant"],
@@ -226,8 +228,7 @@
                 1000000000.art
               </p>
               <p  id="titre" class="subtitle ">
-                A massively participatory Art project
-              </p>
+                Share your data with artists to turn it into Art              </p>
               <a id="participatebutton"  class="button is-medium is-outlined " style="display:none"><span id="part">Participate</span></a>
 
             </div>
@@ -356,7 +357,7 @@ footer.style.display="none";
         become1.innerHTML = _('Become participant')+ ' #'+eval(participants+1)+ ' '+_('out of a billion');
        // var footer = document.getElementById("footer");
       //footer.style.display="";
-    }, 30000);
+    }, 10000);
   }
     // 0 changer pour les 45S
     const params = new URLSearchParams(window.location.search);
@@ -374,7 +375,7 @@ footer.style.display="none";
  }
 }
 
-    document.getElementById("titre").innerHTML= _("A massively participatory Art project");
+    document.getElementById("titre").innerHTML= _("Share your data with artists and make participatory art");
     document.getElementById("part").innerHTML= _("Participate");
     document.getElementById("become").innerHTML= _("Add your profile picture or initials");
     document.getElementById("signup").innerHTML= _("Sign up");

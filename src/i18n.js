@@ -14,13 +14,22 @@ const resources = {
       "View paiting" : "View paiting",
       "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED" : "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED",
       "Let's create together a painting that needs a billion participants to be finished" : "Let's create together a painting that needs a billion participants to be finished",
+      
+      "Let's make participatory Art together" : "Let's make participatory Art together",
+      "By registering, you allow artists to create Art with your data, such as paintings or music." : "By registering, you allow artists to create Art with your data, such as paintings or music.",
+      "This project started" : "This project started", 
+      "and will end when 1,000,000 people participate" : "and will end when 1,000,000 people participate",
+
+
       "This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added" : "This painting size will be 40,000 pixel wide by 25,000 pixel high (that is 1 000 000 000 pixels). Every pixel (colored dot) is added by one person, you for example. When you first signs in, a colored dot corresponding to your Internet address is added",
       "It's your pixel, your contribution" : "It's your pixel, your contribution",
       "NEXT" : "NEXT",
       "For the moment" : "For the moment",
-      "people have participated to this project since its beginning" : "people have participated to this project since its beginning",
+      "people have participated" : "people have participated",
       "of the painting is complete" : "of the painting is complete",
       "At this rate, 1000000000.art be finished in" : "At this rate, 1000000000.art be finished in",
+      " At this rate, 1000000000.art be finished in" : " At this rate, 1000000000.art be finished in",
+    
       "years" : "years",
       "Participate" : "Participate",
       "Because there cannot be several particiaption per person, your email/signup will be requested in the next step." : "              Because there cannot be several particiaption per person, your email/signup will be requested in the next step.",
@@ -61,6 +70,12 @@ const resources = {
       "first massively participatory art project": "première oeuvre d'art massivement participative",
       "participate" : "participer",
       "welcome back painter #" : "content de vous revoir peintre #",
+    
+      "Let's make participatory Art together" : "Faisons de l'Art participatif ensemble",
+      "By registering, you allow artists to create Art with your data, such as paintings or music." : "En vous inscrivant, vous permettez à des artiste des créer des oeuvres d'Art avec vos donnés, comme des tableaux ou de la musique.",
+      "This project started" : "Ce projet a commencé", 
+      "and will end when 1,000,000 people participate" : "et se terminera quand 1 000 000 de personnes aurons participé",
+
       "View paiting" : "Voir la peinture",
       "LET'S CREATE TOGETHER A PAINTING THAT NEEDS A BILLION PARTICIPANTS TO BE FINISHED" : "CRÉONS ENSEMBLE UN TABLEAU QUI A BESOIN D'UN MILLIARD DE PARTICIPANTS POUR ÊTRE ACHEVÉ",
       "Let's create together a painting that needs a billion participants to be finished" : "Créons ensemble une fresque d'un milliard de personnes",
@@ -68,9 +83,11 @@ const resources = {
       "It's your pixel, your contribution" : "Cela sera votre pixel, votre contriubtion à l'oeuvre.",
       "NEXT" : "SUIVANT",
       "For the moment" : "Pour le moment",
-      "people have participated to this project since its beginning" : "personnes ont participé à ce projet depuis son commencement",
+      "people have participated" : "personnes ont participé",
       "of the painting is complete" : "du tableau est complété",
       "At this rate, 1000000000.art be finished in" : "Á ce rythme, 1000000000.art sera fini dans" ,
+      " At this rate, 1000000000.art be finished in" : "Á ce rythme, 1000000000.art sera fini dans" ,
+
       "years" : "années" ,
       "Add this image to the painting" : "Ajouter cette image au tableau",
       "Participate" : "Participer",
@@ -104,7 +121,9 @@ const resources = {
       "About Painter":"À propos du peintre"
 
     }
-  },
+  }
+  /*
+  ,
     es: {
         translation: {
           "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)" : "Agregue su foto de perfil de Facebook o Google, o sus iniciales (registro con un correo electrónico)",
@@ -155,6 +174,9 @@ const resources = {
         }
       
     }
+
+*/
+
 }; 
 
 i18n
