@@ -43,7 +43,7 @@ const Start = () => {
         "YYYYMMDD"
       ).fromNow();
       let pourcentage = (response.data.count * 100) / 1000000000;
-      document.getElementById("pourcentage").innerHTML = pourcentage.toFixed(7);
+      //document.getElementById("pourcentage").innerHTML = pourcentage.toFixed(7);
 
       let date_fin = (-100 * dif) / pourcentage.toFixed(7) / 365;
       document.getElementById("date_fin").innerHTML = date_fin.toFixed(0);
@@ -70,19 +70,20 @@ const Start = () => {
             })
           }>
         {t(
-          "Let's create together a painting that needs a billion participants to be finished"
+          "Let's make participatory Art together"
         )}
         .
         <br />
         <span className=" is-size-4 is-size-5-mobile ">
           <p>
             {" "}
+            {t("By registering, you allow artists to create Art with your data, such as paintings or music.")} 
+            {t('This project started')}  <span id="since">0</span>  {t('and will end when 1,000,000 people participate')}. {" "}
             {t("For the moment")}, <span id="count">0</span>{" "}
-            {t("people have participated to this project since its beginning")},{" "}
-            <span id="since">0</span>. <span id="pourcentage"></span>%{" "}
-            {t("of the painting is complete")}.{" "}
-            {t("At this rate, 1000000000.art be finished in")}{" "}
-            <span id="date_fin"></span> {t("years")}.
+            {t("people have participated")}{" "}
+           .  {" "}
+             {t(" At this rate, 1000000000.art be finished in")}{" "}
+            <span id="date_fin"></span> {t("years")}.<br/>
             <br/>{t(
           "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)"
             )}
@@ -129,8 +130,7 @@ const Start = () => {
               {t(
                 "people have participated to this project since its beginning"
               )}
-              , <span id="since">0</span>. <span id="pourcentage"></span>%{" "}
-              {t("of the painting is complete")}
+              
             </p>
             <p>
               {t("At this rate, 1000000000.art be finished in")}{" "}
