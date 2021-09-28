@@ -228,11 +228,109 @@
                 1000000000.art
               </p>
               <p  id="titre" class="subtitle ">
-                Share your data with artists to turn it into Art              </p>
-              <a id="participatebutton"  class="button is-medium is-outlined " style="display:none"><span id="part">Participate</span></a>
+                Share your data with artists to turn it into Art              
+              </p>
+              <a id="" href="#about" class="button is-medium  " >About</a>
+
+              <a id="participatebutton"  class="button is-medium is-outlined " style="display:none"><b><span id="part"></span></b></a>
 
             </div>
           </section>
+
+          <section id="about"  class="hero-body is-medium container ">
+
+            <div class="columns ">
+              <div class="column  has-text-centered">
+                <b>Un projet hyper-participatif</b>
+              </div>   
+            </div>
+
+            <div class="columns">
+              <div class="column has-text-justified">
+                Chaque visiteur est invité à participer en s'inscrivant. L'inscription <i>est</i> la participation. L'acte volontaire de donner ces informations personnelles est l'acte créatif innitial, sans lequel il n'y a rien.
+              </div> 
+              <div class="column has-text-justified">
+                Chacun est libre de créer à partir de la data ainsi récoltée depuis le début. Une api public est <a href="https://api.1000000000.art/api/users" target="_blank">mise à disposition</a> pour cela. Elle a permis de créer <a href="#art">une musique, et plusieurs tableaux</a> 
+              </div> 
+              <div class="column has-text-justified">
+                Enfin, chacun est libre  de participer au code source ouvert du projet ou de demander une évolution de 1000000000.art. <a href="https://github.com/chaibax/Art01" target="_blank">Voir le code sour projet sur Github</a> ou demandez <a href="mailto:">une évolution </a>
+              </div>   
+            </div>
+
+
+          </section>
+
+          <div class="is-clearfix"><br/><br/></div>
+
+
+          
+
+            
+          <section id="about3"  class="hero-body is-medium container ">
+
+            <div class="columns ">
+              <div class="column  has-text-centered">
+                <b>6 créations en cours</b>
+              </div>   
+            </div>
+            <div class="columns">
+              <div class="column has-text-justified">
+<i>Trombinoscope</i><br/>
+<a target="_blank" href="https://1000000000.art/trombinoscope.html">https://1000000000.art/trombinoscope.html</a>, réalisé par le participant #1. Un trombinoscope de tout les participants.  
+               </div> 
+              <div class="column has-text-justified">
+              <i>Pixels</i><br/> 
+
+              <a target="_blank" href="https://1000000000.art/pixels.html">https://1000000000.art/pixels.html</a>, réalisé par le participant #1. Une spiral d'ulman généré par la transposition des adresses ip des participants en code couleurs RGBA
+              
+              </div> 
+              <div class="column has-text-justified">
+                <i>The last one</i><br/>
+                <a target="_blank" href="https://1000000000.art/last_one.html">https://1000000000.art/last_one.html</a>, réalisé par le participant #1. Portrait du dernier participant : <span id="lastname"></span>
+              
+              </div>   
+            </div>
+
+            <div class="columns">
+              <div class="column has-text-justified">
+<i>Participants Feed</i><br/>
+<a href="https://twitter.com/1000000000_Art" target="_blank">https://twitter.com/1000000000_Art </a>,réalisé part le participant #1. Flux des participations en temps réels
+               </div> 
+              <div class="column has-text-justified">
+              <i>Musica</i><br/>  
+              <a target="_blank" href="https://1000000000.art/musica.html">https://1000000000.art/last_one.html</a>, réalisé part le participant #1. Une expérience sonore générée par la transposition des adresses ip des participants en note de musique.
+              
+              </div> 
+              <div class="column has-text-justified">
+                <i>Book</i><br/>
+                Un livre généré par les participations. Travail du participant #1 en cours...
+              
+              </div>   
+            </div>
+
+          </section>
+
+
+          <section id="about2"  class="hero-body is-medium container ">
+
+            <div class="columns ">
+              <div class="column  has-text-centered">
+                <b>Un début et une fin pour 1 000 000 de participants</b>
+              </div>   
+            </div>
+            <div class="columns">
+              <div class="column has-text-justified">
+                La 1er participation a eu lieu 27 juillet 2020. La milliardième participation sera la dernière             </div> 
+              <div class="column has-text-justified">
+                Aujourd'hui, <span id="lastid"></span> personnes on participé à ce projet           </div> 
+              <div class="column has-text-justified">
+                Á ce rythme, 1000000000.art sera fini dans 1 907 271 années.    </div>   
+            </div>
+
+          </section>
+
+
+
 
           <section id="participate" class="hero is-medium  is-hidden is-halfheigh">   
             <div class="hero-body has-text-centered">
@@ -244,9 +342,10 @@
           <a class='button is-medium is-outlined' id="signup" href="/start" >Sign up</a>
             </div>
           </section>
+          <br/><br/>
           <div class="is-clearfix"></div>
 
-          <section id="footer" class="has-text-centered columns is-vcentered" style="width:100%;position: fixed;bottom: 1px;" >
+          <section id="footer" class="has-text-centered columns is-vcentered" style="bottom: 1px;" >
             
             
             <div  class="is-hidden-mobile	 auth0badge  column " style="margin-left: 1em;">
@@ -327,6 +426,11 @@ footer.style.display="none";
         // handle success
        // console.log(response);
        last_participant = response.data.name;
+      var lastname =  document.getElementById("lastname");
+      var lastid =  document.getElementById("lastid");
+      
+      lastname.innerHTML = last_participant;
+      lastid.innerHTML = response.data.position;
         console.log(response.data);
         
           
@@ -377,7 +481,7 @@ footer.style.display="none";
 
     document.getElementById("titre").innerHTML= _("Share your data with artists and make participatory art");
     document.getElementById("part").innerHTML= _("Participate");
-    document.getElementById("become").innerHTML= _("Add your profile picture or initials");
+    document.getElementById("become").innerHTML= _("Share your data with artists and make participatory art");
     document.getElementById("signup").innerHTML= _("Sign up");
     console.log( Stone.getLocale())
         </script>
