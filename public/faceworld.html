@@ -203,8 +203,12 @@
                 "Voir" : ["See"],
                 "Ecouter" : ["Listen"],
                 "Suivre" : ["Follow"],
-                "Réalisé par le participant #1" : ["By participant #1"]
-
+                "Réalisé par le participant #1" : ["By participant #1"],
+                "titre_1000000000" : ["1,000,000 participants to finish this work"],
+                "explication1_1000000000" : ["The 1st participation took place July 27, 2020. The billionth participation will be the last."],
+                "explication2_1000000000" : ["people participated in this project"],
+                "explication3_1000000000" : ["At this rate, 1,000,000,000.art will be finished in 1,907,271 years."],
+                "Aujourd'hui" : ["Today"]
 
 
 
@@ -239,7 +243,13 @@
                 "Voir" : ["Voir"],
                 "Ecouter" : ["Ecouter"],
                 "Suivre" : ["Suivre"],
-                "Réalisé par le participant #1" : ["Réalisé par le participant #1"]
+                "Réalisé par le participant #1" : ["Réalisé par le participant #1"],
+                "titre_1000000000" : ["1 000 000 de participants pour finir cette oeuvre"],
+                "explication1_1000000000" : ["La 1er participation a eu lieu 27 juillet 2020. La milliardième participation sera la dernière."],
+                "explication2_1000000000" : ["personnes ont participé à ce projet"],
+                "explication3_1000000000" : ["À ce rythme, 1000000000.art sera fini dans 1 907 271 années."],
+                "Aujourd'hui" : ["Aujourd'hui"],
+
 
 
 
@@ -326,7 +336,7 @@
 
             <div class="columns  ">
               <div class="column  has-text-centered">
-                <b>6 créations en cours</b>
+                <b><script>document.write(_("6 créations en cours"))</script></b>
               </div>   
             </div>
             <div class="columns">
@@ -375,16 +385,16 @@
 
             <div class="columns ">
               <div class="column  has-text-centered">
-                <b>Un début et une fin pour 1 000 000 de participants</b>
+                <b><script>document.write(_("titre_1000000000"));</script></b>
               </div>   
             </div>
             <div class="columns">
               <div class="column has-text-justified">
-                La 1er participation a eu lieu 27 juillet 2020. La milliardième participation sera la dernière.</div> 
+                <script>document.write(_("explication1_1000000000"));</script> </div> 
               <div class="column has-text-justified">
-                Aujourd'hui, <span id="lastid"></span> personnes ont participé à ce projet.</div> 
+                <script>document.write(_("Aujourd'hui"));</script>, <span id="lastid"></span> <script>document.write(_("explication2_1000000000"));</script> .</div> 
               <div class="column has-text-justified">
-                À ce rythme, 1000000000.art sera fini dans 1 907 271 années.    </div>   
+                <script>document.write(_("explication3_1000000000"));</script>     </div>   
             </div>
 
           </section>
