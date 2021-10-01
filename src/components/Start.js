@@ -92,7 +92,7 @@ const Start = () => {
         <br />
         <div
         
-          className=" button is-large is-outlined "
+          className=" button is-large  is-rounded is-dark"
           onClick={() =>
             loginWithRedirect({
               appState: {
@@ -139,7 +139,7 @@ const Start = () => {
           </span>
           <a
             href=""
-            className="title button is-large is-outlined is-size-2 has-text-centered shadowed cursor has-margin-top-20"
+            className="title button is-large is-rounded is-rounded is-dark is-size-2 has-text-centered shadowed cursor has-margin-top-20"
             onClick={() =>
               loginWithRedirect({
                 appState: { targetUrl: window.location.origin + "/participate" },
