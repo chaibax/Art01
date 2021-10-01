@@ -175,7 +175,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <script src="stonejs.min.js"></script>
 <script>
-
     var catalogs = {
         "en": {
             "messages": {
@@ -248,16 +247,13 @@
                 "explication1_1000000000" : ["La 1er participation a eu lieu 27 juillet 2020. La milliardième participation sera la dernière."],
                 "explication2_1000000000" : ["personnes ont participé à ce projet"],
                 "explication3_1000000000" : ["À ce rythme, 1000000000.art sera fini dans 1 907 271 années."],
-                "Aujourd'hui" : ["Aujourd'hui"],
-
-
-
-
-                
+                "Aujourd'hui" : ["Aujourd'hui"],                
             }
         }
     };
 
+
+console.log('navigator.language ='+navigator.language);
     window._ = Stone.gettext;       // Alias the Stone.gettext function
     Stone.addCatalogs(catalogs);    // Add catalogs (here it is hard coded for the need of the example
     Stone.enableDomScan(true);      // Allow Stone.js to scan the DOM to find translatable nodes
@@ -271,9 +267,14 @@
      
  }  else {
 
-   if(navigator.language === 'fr-FR') { Stone.setLocale("fr"); 
+   if(navigator.language === 'fr') { 
+     Stone.setLocale("fr"); 
    var a = document.getElementById('signup');
    a.href = "/start?lng=fr";  
+ } else {
+  Stone.setLocale("en"); 
+  a.href = "/start?lng=en";  
+
  }
 }
 
