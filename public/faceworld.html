@@ -187,7 +187,16 @@
                 "is the last participant" : ["is the last participant"],
                 "Sign up" : ["Sign up"],
                 "Add your profile picture or initials" : ["Add your profile picture or initials"],
-                "out of a billion" : ["out of a billion"]
+                "out of a billion" : ["out of a billion"],
+                "About" : ["About"],
+                "Un projet hyper-participatif" : ["A hyper-participatory project"],
+                "explication1" : ["Everyone is invited to participate by registering. Registration is participation. It is the voluntary act of giving this personal information: his profile picture, his IP address, his nickname or name, his email (not made public)."],
+                "explication2" : ["The data thus collected from the beginning are used as creative material. A <a href='https://api.1000000000.art/api/users' target='_blank'>public API</a> is available for this. It has so far made it possible to create music, and several paintings."],
+                "explication3" : ["Finally, everyone is free to contribute to source code of the project or to request an improvement. See <a href='https://github.com/chaibax/Art01' target='_blank'>the source code of the project on Github</a> or <a href='mailto:weareart0x@gmail.com'>request an improvement</a>."]
+
+
+
+                
             }
         },
         "fr": {
@@ -200,7 +209,14 @@
                 "Sign up" : ["Participer"],
                 "Participate" : ["Participer"],
                 "Add your profile picture or initials" : ["Ajouter votre photo de profile ou vos initiales"],
-                "out of a billion" : ["sur un milliard"]
+                "out of a billion" : ["sur un milliard"],
+                "About" : ["A-propos"],
+                "Un projet hyper-participatif" : ["Un projet hyper-participatif"],
+                "explication1" : ["Chacun est invité à participer en s'inscrivant. L'inscription est la participation. C'est L'acte volontaire de donner ces informations personnelles: sa photo de profil, son adresse IP, son pseudo ou nom, son email (non rendu public)."],
+                "explication2" : ["Les données ainsi recolté depuis le début sont utilisées comme matière créative. Une API publique est <a href='https://api.1000000000.art/api/users' target='_blank'>mise à disposition</a> pour cela. Elle a permis de créer jusqu'a maintenant  <a href='#art'>une musique, et plusieurs tableaux</a>."],
+                "explication3" : ["Enfin, chacun est libre de participer au code source ouvert du projet ou de demander une évolution de 1000000000.art. <a href='https://github.com/chaibax/Art01' target='_blank'>Voir le code source du projet sur Github</a> ou demandez <a href='mailto:weareart0x@gmail.com'>une évolution </a>."]
+
+
                 
             }
         }
@@ -209,6 +225,21 @@
     window._ = Stone.gettext;       // Alias the Stone.gettext function
     Stone.addCatalogs(catalogs);    // Add catalogs (here it is hard coded for the need of the example
     Stone.enableDomScan(true);      // Allow Stone.js to scan the DOM to find translatable nodes
+
+    const params = new URLSearchParams(window.location.search);
+   
+   if(params.has('lng')) {
+     Stone.setLocale(params.get('lng'));
+     var a = document.getElementById('signup');
+   a.href = "/start?lng="+params.get('lng');
+     
+ }  else {
+
+   if(navigator.language === 'fr-FR') { Stone.setLocale("fr"); 
+   var a = document.getElementById('signup');
+   a.href = "/start?lng=fr";  
+ }
+}
 
 </script>
   </head>
@@ -228,9 +259,9 @@
                 1000000000.art
               </p>
               <p  id="titre" class="subtitle ">
-                Share your data with artists to turn it into Art              
+                <script>document.write(_("Share your data with artists and make participatory art"))</script>  
               </p>
-              <a id="" href="#about" class="button is-medium  " >À-propos</a>
+              <a id="" href="#about" class="button is-medium" ><script>document.write(_("About"))</script></a>
 
               <a id="participatebutton"  class="button is-medium is-outlined " style="display:none"><b><span id="part"></span></b></a>
             </div>
@@ -240,19 +271,19 @@
 
             <div class="columns ">
               <div class="column  has-text-centered">
-                <b>Un projet hyper-participatif</b>
+                <b><script>document.write(_("Un projet hyper-participatif"))</script></b>
               </div>   
             </div>
 
             <div class="columns">
               <div class="column has-text-justified">
-                Chacun est invité à participer en s'inscrivant. L'inscription <i>est</i> la participation. C'est L'acte volontaire de donner ces informations personnelles: sa photo de profil, son adresse IP, son pseudo ou nom, son email (non rendu public)
+                <script>document.write(_("explication1"))</script> 
               </div> 
               <div class="column has-text-justified">
-                Les données ainsi recolté depuis le début sont utilisées comme matière créative. Une API publique est <a href="https://api.1000000000.art/api/users" target="_blank">mise à disposition</a> pour cela. Elle a permis de créer jusqu'a maintenant <a href="#art">une musique, et plusieurs tableaux</a> 
+                <script>document.write(_("explication2"))</script> 
               </div> 
               <div class="column has-text-justified">
-                Enfin, chacun est libre  de participer au code source ouvert du projet ou de demander une évolution de 1000000000.art. <a href="https://github.com/chaibax/Art01" target="_blank">Voir le code source du projet sur Github</a> ou demandez <a href="mailto:weareart0x@gmail.com">une évolution </a>
+                <script>document.write(_("explication3"))</script>   
               </div>   
             </div>
 
@@ -468,26 +499,13 @@ footer.style.display="none";
     }, 10000);
   }
     // 0 changer pour les 45S
-    const params = new URLSearchParams(window.location.search);
    
-   if(params.has('lng')) {
-     Stone.setLocale(params.get('lng'));
-     var a = document.getElementById('signup');
-   a.href = "/start?lng="+params.get('lng');
-     
- }  else {
 
-   if(navigator.language === 'fr-FR') { Stone.setLocale("fr"); 
-   var a = document.getElementById('signup');
-   a.href = "/start?lng=fr";  
- }
-}
-
-    document.getElementById("titre").innerHTML= _("Share your data with artists and make participatory art");
+  //  document.getElementById("titre").innerHTML= _("Share your data with artists and make participatory art");
     document.getElementById("part").innerHTML= _("Participate");
     document.getElementById("become").innerHTML= _("Share your data with artists and make participatory art");
     document.getElementById("signup").innerHTML= _("Sign up");
-    console.log( Stone.getLocale())
+    console.log( 'langue local ='+Stone.getLocale())
         </script>
 </html>
 
