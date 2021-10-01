@@ -18,13 +18,13 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="First massively participatory Art project. This painting requires a billion participants to be completed. Every pixel is added by one person, you for example. Generative Art Participatory Art Pixel Art"
+      content="Share your data with artists and make participatory art. Generative Art Participatory Art Pixel Art"
     />
     <!-- Google / Search Engine Tags -->
     <meta itemprop="name" content="1000000000.art" />
     <meta
       itemprop="description"
-      content="First massively participatory Art project. This painting requires a billion participants to be completed. Generative Art Participatory Art Pixel Art"
+      content="Share your data with artists and make participatory art. Generative Art Participatory Art Pixel Art"
     />
     <meta itemprop="image" content="https://1000000000.art/695.png" />
 
@@ -37,7 +37,7 @@
     />
     <meta
       property="og:description"
-      content="First massively participatory Art project. This painting requires a billion participants to be completed. Generative Art Participatory Art Pixel Art"
+      content="Share your data with artists and make participatory art. Generative Art Participatory Art Pixel Art"
     />
     <meta property="og:image" content="https://1000000000.art/695.png" />
     <meta property="fb:app_id" content="3117538125012871" />
@@ -50,7 +50,7 @@
     />
     <meta
       name="twitter:description"
-      content="First massively participatory Art project. This painting requires a billion participants to be completed."
+      content="Share your data with artists and make participatory art. Generative Art Participatory Art Pixel Art"
     />
     <meta name="twitter:image" content="https://1000000000.art/695.png" />
 
@@ -159,7 +159,7 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "url": "https://1000000000.art",
-        "logo": "https://api.1000000000.art/api/users/svg"
+        "logo": "https://1000000000.art/695.png"
       }
     </script>
 
@@ -259,23 +259,23 @@ console.log('navigator.language ='+navigator.language);
     Stone.enableDomScan(true);      // Allow Stone.js to scan the DOM to find translatable nodes
 
     const params = new URLSearchParams(window.location.search);
-   
+    
    if(params.has('lng')) {
      Stone.setLocale(params.get('lng'));
-     var a = document.getElementById('signup');
-   a.href = "/start?lng="+params.get('lng');
      
+ //a.href = "/start?lng="+params.get('lng');
  }  else {
 
-   if(navigator.language === 'fr') { 
+   if( (navigator.language === 'fr') || (navigator.language === 'fr-FR') ) { 
      Stone.setLocale("fr"); 
-   var a = document.getElementById('signup');
-   a.href = "/start?lng=fr";  
+  // a.href = "/start?lng=fr";  
  } else {
   Stone.setLocale("en"); 
-  a.href = "/start?lng=en";  
+ // a.href = "/start?lng=en";  
 
  }
+
+ 
 }
 
 </script>
@@ -542,7 +542,27 @@ footer.style.display="none";
     document.getElementById("part").innerHTML= _("Participate");
     document.getElementById("become").innerHTML= _("Share your data with artists and make participatory art");
     document.getElementById("signup").innerHTML= _("Sign up");
-    console.log( 'langue local ='+Stone.getLocale())
+    console.log( 'langue local ='+Stone.getLocale());
+
+    var a = document.getElementById('signup');
+    
+
+     
+   if(params.has('lng')) {
+     
+ a.href = "/start?lng="+params.get('lng');
+ }  else {
+
+  if( (navigator.language === 'fr') || (navigator.language === 'fr-FR') ) { 
+    
+   a.href = "/start?lng=fr";  
+ } else {
+  a.href = "/start?lng=en";  
+
+ }
+ }
+
+
         </script>
 </html>
 
