@@ -207,8 +207,10 @@
                 "titre_1000000000" : ["1,000,000 participants to finish this work"],
                 "explication1_1000000000" : ["The 1st participation took place July 27, 2020. The billionth participation will be the last."],
                 "explication2_1000000000" : ["people participated in this project"],
-                "explication3_1000000000" : ["At this rate, 1,000,000,000.art will be finished in 1,907,271 years."],
-                "Aujourd'hui" : ["Today"]
+                "explication3_1000000000" : ["At this rate, it will be finished in 1,907,271 years."],
+                "explication4_1000000000" : ["This artistic project is a personal work, free and open source.  I have nothing to sell and do not sell your data to a third party."],
+                "Aujourd'hui" : ["Today"],
+                "From this day" : ["From this day"],
 
 
 
@@ -246,10 +248,13 @@
                 "Suivre" : ["Suivre"],
                 "Réalisé par le participant #1" : ["Réalisé par le participant #1"],
                 "titre_1000000000" : ["1 000 000 de participants pour finir cette oeuvre"],
-                "explication1_1000000000" : ["La 1er participation a eu lieu 27 juillet 2020. La milliardième participation sera la dernière."],
+                "explication1_1000000000" : ["La 1er participation a eu lieu le 27 juillet 2020. La milliardième participation sera la dernière."],
                 "explication2_1000000000" : ["personnes ont participé à ce projet"],
-                "explication3_1000000000" : ["À ce rythme, 1000000000.art sera fini dans 1 907 271 années."],
-                "Aujourd'hui" : ["Aujourd'hui"],                
+                "explication3_1000000000" : ["À ce rythme, il sera fini dans 1 907 271 années."],
+                "explication4_1000000000" : ["Ce projet artistique est un travail personnel, gratuit et open source. Je n'ai rien à vous vendre et ne vend pas vos données a un tiers. Je finance moi-même les couts de fonctionnement."],
+                "Aujourd'hui" : ["Aujourd'hui"],  
+                "From this day" : ["Depuis"],
+              
             }
         }
     };
@@ -395,9 +400,11 @@ console.log('navigator.language ='+navigator.language);
               <div class="column has-text-justified">
                 <script>document.write(_("explication1_1000000000"));</script> </div> 
               <div class="column has-text-justified">
-                <script>document.write(_("Aujourd'hui"));</script>, <span id="lastid"></span> <script>document.write(_("explication2_1000000000"));</script> .</div> 
+                <script>document.write(_("From this day"));</script>, <span id="lastid"></span> <script>document.write(_("explication2_1000000000"));</script>. 
+                <script>document.write(_("explication3_1000000000"));</script>  
+              </div> 
               <div class="column has-text-justified">
-                <script>document.write(_("explication3_1000000000"));</script>     </div>   
+                   </div>   
             </div>
 
           </section>
