@@ -303,16 +303,14 @@ console.log('navigator.language ='+navigator.language);
                 1000000000.art
               </p>
               <p  id="titre" class="subtitle ">
-                <script>document.write(_("Turn your data into participatory Art"))</script>  
+                <script>document.write(_("Turn your data into participatory Art"))</script>. <span id="become2"></span> 
               </p>
               <a id="" href="#about" class="button is-medium is-rounded" ><script>document.write(_("About"))</script></a>
-
-              <a id="participatebutton"  class="button is-medium is-rounded is-dark" style="display:none"><b><span id="part"></span></b></a>
+              <a href="https://login.1000000000.art/authorize?response_type=token&client_id=Ybm23Tisf6e2gahE61v0E4wL107VrGXP&redirect_uri=http://1000000000.art/merci.html&state=STATE" id="participatebutton"  class="button is-medium is-rounded is-dark" style="display:none"><b><span id="part"></span></b></a>
             </div>
           </section>
 
           <section id="about"  class=" hero-body is-medium container  ">
-
             <div class="columns ">
               <div class="column  has-text-centered">
                 <b><script>document.write(_("Un projet hyper-participatif"))</script></b>
@@ -449,7 +447,6 @@ console.log('navigator.language ='+navigator.language);
   </body>
   <script>
 
-
     // Make a request for a user with a given ID
     //axios.get('http://localhost:3001/api/users/');
     var avatars = document.getElementById("avatars");
@@ -479,7 +476,7 @@ footer.style.display="none";
           );
          console.log('avatars chargés');
          document.querySelector("#participatebutton").style.display = ""
-         document.querySelector("#participatebutton").addEventListener("click", play, false);
+         //document.querySelector("#participatebutton").addEventListener("click", play, false);
 
 
       })
@@ -513,6 +510,10 @@ footer.style.display="none";
       
       lastname.innerHTML = last_participant;
       lastid.innerHTML = response.data.position;
+      var become2 = document.querySelector("#become2");
+      become2.innerHTML = _('Become participant')+ ' #'+eval(response.data.position+1)+ ' '+_('out of a billion');
+
+
         console.log(response.data);
         
           
@@ -541,6 +542,7 @@ footer.style.display="none";
         hero.classList.add("is-hidden");
         //footer.classList.remove("is-hidden");
         become1.innerHTML = _('Become participant')+ ' #'+eval(participants+1)+ ' '+_('out of a billion');
+
        // var footer = document.getElementById("footer");
       //footer.style.display="";
     }, 10000);
