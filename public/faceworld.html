@@ -450,6 +450,25 @@ console.log('navigator.language ='+navigator.language);
   <script>
 
 
+var options = {
+  method: 'PATCH',
+  url: 'https://art0x.eu.auth0.com/api/v2/clients/Ybm23Tisf6e2gahE61v0E4wL107VrGXP',
+  headers: {
+    'content-type': 'application/json',
+    authorization: 'Bearer API2_ACCESS_TOKEN',
+    'cache-control': 'no-cache'
+  },
+  data: {initiate_login_uri: 'http://localhost:3000/merci.html'}
+};
+
+axios.request(options).then(function (response) {
+  console.log('>>>>>>');
+
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
+});
+
     // Make a request for a user with a given ID
     //axios.get('http://localhost:3001/api/users/');
     var avatars = document.getElementById("avatars");
