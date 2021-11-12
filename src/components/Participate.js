@@ -116,14 +116,14 @@ console.log('picture_large = '+picture_large);
   if (pixel_added) {
 
    //history.push("/merci.html?painter=" + (pixel_position));
-   history.push("/merci/" + (pixel_position));
+   history.push("/merci/" + (pixel_position)+"&reconnected=1");
   }
 
   return (
     <h2 className="title is-size-4-mobile	is-size-3-desktop  has-text-centered shadowed cursor" onClick={sendpixel}  >
         <big>{t('Hello')} {given_name} </big><br/>
 
-        {t('Add this image to the painting')}
+        {t('Do you want to share your profile picture, ip address, first name or nickname with artists?')}
       
 
       <Fragment>
@@ -133,7 +133,7 @@ console.log('picture_large = '+picture_large);
         </div>
         <div id="addpixel" className="" >
           <h2 className="title is-size-2 has-text-centered shadowed cursor has-margin-top-20">
-          <a id="participatebutton" className="button is-large is-outlined">Participate </a><br/>
+          <a id="participatebutton" className="button is-large is-outlined">  {t('Yes I want to participate')} </a><br/>
         
           </h2>
         </div>

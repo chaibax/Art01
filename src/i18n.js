@@ -7,6 +7,9 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
+
+      "Do you want to share your profile picture, ip address, first name or nickname with artists?" : "Do you want to share your profile picture, ip address, first name or nickname with artists?",
+      "Yes I want to participate" : "Yes I want to participate",
       "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)" : "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)",
       "first massively participatory art project": "first massively participatory art project",
       "participate": "participate",
@@ -66,6 +69,8 @@ const resources = {
   },
   fr: {
     translation: {
+      "Do you want to share your profile picture, ip address, first name or nickname with artists?" : "Voulez-vous partager votre image de profile, vous adresse ip, votre prénom ou surnom avec des artistes?",
+      "Yes I want to participate" : "Oui, je veux participer",
       "Add your Facebook or Google profile picture, or your initials (non-social signgup with an email)" : "Ajoutez votre photo de profil Facebook ou Google, ou vos initiales (inscription avec juste un e-mail)",
       "first massively participatory art project": "première oeuvre d'art massivement participative",
       "participate" : "participer",
