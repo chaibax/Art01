@@ -62,7 +62,7 @@ function App() {
                             <BrowserRouter>
                                 <Switch>
                                 <Route path='/' exact={true}  component={() => { 
-     window.location.href = '/faceworld.html'; 
+     window.location.href = '/participatory-art.html'; 
      return null;
 }}/>
 
