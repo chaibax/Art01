@@ -1,6 +1,6 @@
 
 const authConfig = {
-    domain: "login.1000000000.art",
+    domain: "art0x.eu.auth0.com",
     audience: "https://art01/"
   };
 
