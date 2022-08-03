@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.8.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "babel-preset-react-app": "^9.1.2",
     "bulma": "^0.8.2",
     "bulma-helpers": "^0.3.8",
